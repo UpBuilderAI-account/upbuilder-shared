@@ -1,0 +1,255 @@
+// ============================================================================
+// WORKFLOW TYPES - Single source of truth for all workflow state
+// ============================================================================
+// SIMPLIFIED: 3-level hierarchy only (Stage → Design → Section)
+// No beforeSteps, afterSteps, exportSteps - just simple progress tracking
+// ============================================================================
+
+import type { ProjectStatus, Platform } from './core-domain';
+
+/**
+ * Stage = active processing stages (excludes idle, complete, failed)
+ * Derived from ProjectStatus for single source of truth
+ */
+export type Stage = Exclude<ProjectStatus, 'idle' | 'complete' | 'failed'>;
+
+/** Progress: -1 = failed, 0 = pending, 1-99 = running, 100 = complete */
+export type Progress = number;
+
+// Re-export Platform from core-domain for convenience
+export type { Platform };
+
+// =============================================================================
+// PROGRESS HIERARCHY (3 levels only: Stage → Design → Section)
+// =============================================================================
+
+export interface WorkflowSection {
+  id: string;
+  name: string;
+  progress: Progress;
+  isGlobal?: boolean;
+  variant?: string;
+}
+
+/**
+ * Export step for design-level or global export progress
+ * Progress: 0=pending, 1-99=running, 100=complete, -1=failed
+ */
+export interface ExportStep {
+  id: string;
+  label: string;
+  progress: Progress;
+  message?: string;
+}
+
+export interface WorkflowDesign {
+  id: string;
+  name: string;
+  progress: Progress;
+  featuredImgUrl?: string;
+  sections?: WorkflowSection[];
+  steps?: ExportStep[];
+}
+
+// =============================================================================
+// STAGE STATE
+// =============================================================================
+
+export interface WorkflowStage {
+  stage: Stage;
+  progress: Progress;
+  message?: string;
+  designs?: WorkflowDesign[];
+  exportSteps?: ExportStep[];
+}
+
+export interface WorkflowStages {
+  projectId: string;
+  projectName: string;
+  platform: Platform;
+  currentStage: number;
+  stages: WorkflowStage[];
+  css?: string;
+  js?: string;
+}
+
+// =============================================================================
+// SERVER → CLIENT EVENTS
+// =============================================================================
+
+export interface WorkflowStream {
+  stage: 'generate_styles' | 'consolidate_css' | 'consolidate_scripts';
+  type: 'css' | 'js';
+  chunk: string;
+  done?: boolean;
+}
+
+export interface WorkflowError {
+  stage: Stage;
+  message: string;
+}
+
+// =============================================================================
+// EDITOR (Customize Stage)
+// =============================================================================
+
+export interface EditorSection {
+  id: string;
+  name: string;
+  html: string;
+  css: string;
+  js?: string;
+  globalId?: string;
+}
+
+export interface EditorDesign {
+  id: string;
+  name: string;
+  sections: EditorSection[];
+}
+
+export interface EditorGlobal {
+  id: string;
+  name: string;
+  variant: string;
+  html: string;
+  css?: string;
+  js?: string;
+}
+
+export interface EditorAsset {
+  name: string;
+  url: string;
+}
+
+export interface WorkflowEditor {
+  stylesheet: string;
+  globalJS?: string;
+  assets: EditorAsset[];
+  globals: EditorGlobal[];
+  designs: EditorDesign[];
+}
+
+// =============================================================================
+// CUSTOMIZE STAGE TYPES
+// =============================================================================
+
+export interface CustomSectionCode {
+  html?: string;
+  css?: string;
+  js?: string;
+}
+
+export interface CustomizeData {
+  action: 'save' | 'cancel';
+  sectionCustomizations?: Record<string, { code: CustomSectionCode }>;
+}
+
+// =============================================================================
+// EXPORT COMPLETE EVENT (workflow:export_complete)
+// =============================================================================
+
+export interface ExportDesignData {
+  id: string;
+  name: string;
+  sections: { id: string; name: string }[];
+  xscpUrl: string;      // S3 URL to fetch XSCP JSON (Webflow) or Bricks template JSON
+  jsHeadUrl?: string;   // S3 URL for JS head code (Webflow only)
+  jsBodyUrl?: string;   // S3 URL for JS body code (Webflow only)
+  nodeCount: number;
+  styleCount: number;
+}
+
+export interface WorkflowExportComplete {
+  projectId: string;
+  platform: Platform;
+  designs: ExportDesignData[];
+}
+
+// =============================================================================
+// CLIENT → SERVER EVENTS
+// =============================================================================
+
+export interface WorkflowCommand {
+  projectId: string;
+  action: 'start' | 'cancel' | 'next' | 'reprocess_export' | 'reprocess_export_fast';
+  retry?: boolean;
+}
+
+// =============================================================================
+// SOCKET EVENT TYPES
+// =============================================================================
+
+export interface ServerToClientWorkflowEvents {
+  'workflow:stage': (data: WorkflowStage) => void;
+  'workflow:stages': (data: WorkflowStages) => void;
+  'workflow:stream': (data: WorkflowStream) => void;
+  'workflow:error': (data: WorkflowError) => void;
+  'workflow:editor': (data: WorkflowEditor) => void;
+  'workflow:export_complete': (data: WorkflowExportComplete) => void;
+}
+
+export interface ClientToServerWorkflowEvents {
+  'workflow:command': (data: WorkflowCommand, cb: (ok: boolean) => void) => void;
+}
+
+// =============================================================================
+// HELPERS
+// =============================================================================
+
+export const isPending = (p: Progress): boolean => p === 0;
+export const isRunning = (p: Progress): boolean => p > 0 && p < 100;
+export const isComplete = (p: Progress): boolean => p === 100;
+export const isFailed = (p: Progress): boolean => p === -1;
+
+export const STAGE_ORDER: Stage[] = [
+  'load',
+  'detect_sections',
+  'generate_styles',
+  'prepare_build',
+  'build',
+  'consolidate_css',
+  'consolidate_scripts',
+  'customize',
+  'export',
+];
+
+export const STAGE_LABELS: Record<Stage, string> = {
+  load: 'Loading Data',
+  detect_sections: 'Detecting Sections',
+  generate_styles: 'Generating Base Styles',
+  prepare_build: 'Preparing Build',
+  build: 'Building Sections',
+  consolidate_css: 'Regenerating All Styles',
+  consolidate_scripts: 'Generating Scripts',
+  customize: 'Review & Customize',
+  export: 'Exporting',
+};
+
+/**
+ * Stages to skip for inline CSS platforms (Bricks, Elementor)
+ * These platforms use inline styles per section instead of global stylesheets
+ */
+export const INLINE_PLATFORM_SKIPPED_STAGES: Stage[] = [
+  'generate_styles',
+  'consolidate_css',
+  'consolidate_scripts',
+];
+
+/**
+ * Check if a platform uses inline CSS (skips global stylesheet stages)
+ */
+export function isInlineCSSPlatform(platform: string): boolean {
+  return platform === 'bricks' || platform === 'elementor';
+}
+
+/**
+ * Get the stage order for a specific platform
+ * Filters out stages that should be skipped for inline CSS platforms
+ */
+export function getStageOrderForPlatform(platform: string): Stage[] {
+  if (isInlineCSSPlatform(platform)) {
+    return STAGE_ORDER.filter(stage => !INLINE_PLATFORM_SKIPPED_STAGES.includes(stage));
+  }
+  return STAGE_ORDER;
+}

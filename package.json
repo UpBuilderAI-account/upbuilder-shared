@@ -1,0 +1,79 @@
+{
+  "name": "@upbuilder/shared",
+  "version": "1.0.0",
+  "description": "Shared types, handlers, and utilities for UpBuilder WebSocket system",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./logos": {
+      "types": "./dist/logos/index.d.ts",
+      "default": "./dist/logos/index.js"
+    },
+    "./branding": {
+      "types": "./dist/branding/index.d.ts",
+      "default": "./dist/branding/index.js"
+    },
+    "./utils/element-helpers": {
+      "types": "./dist/utils/element-helpers.d.ts",
+      "default": "./dist/utils/element-helpers.js"
+    },
+    "./utils/bounds": {
+      "types": "./dist/utils/bounds.d.ts",
+      "default": "./dist/utils/bounds.js"
+    },
+    "./utils/html-generator": {
+      "types": "./dist/utils/html-generator.d.ts",
+      "default": "./dist/utils/html-generator.js"
+    },
+    "./utils/workflow-helpers": {
+      "types": "./dist/utils/workflow-helpers.d.ts",
+      "default": "./dist/utils/workflow-helpers.js"
+    },
+    "./utils/rooms": {
+      "types": "./dist/utils/rooms.d.ts",
+      "default": "./dist/utils/rooms.js"
+    },
+    "./utils/paths": {
+      "types": "./dist/utils/paths.d.ts",
+      "default": "./dist/utils/paths.js"
+    },
+    "./utils/validators": {
+      "types": "./dist/utils/validators.d.ts",
+      "default": "./dist/utils/validators.js"
+    },
+    "./*": {
+      "types": "./dist/*/index.d.ts",
+      "default": "./dist/*/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "upbuilder",
+    "websocket",
+    "types",
+    "shared"
+  ],
+  "author": "UpBuilder Team",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0",
+    "socket.io": "^4.6.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "socket.io": "^4.6.0",
+    "react": "^18.0.0"
+  },
+  "dependencies": {
+    "zod": "^4.1.12"
+  }
+}
