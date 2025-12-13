@@ -2,8 +2,8 @@
   "name": "@upbuilder/shared",
   "version": "1.0.0",
   "description": "Shared types, handlers, and utilities for UpBuilder WebSocket system",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

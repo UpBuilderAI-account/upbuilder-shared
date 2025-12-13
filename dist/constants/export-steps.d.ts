@@ -1,0 +1,166 @@
+/**
+ * Export step definitions per platform
+ * - global: Overall export progress (shown in left panel)
+ * - design: Per-design progress (shown in design cards)
+ */
+export declare const EXPORT_STEPS_CONFIG: {
+    readonly webflow: {
+        readonly global: readonly [{
+            readonly id: "prepare";
+            readonly label: "Preparing";
+        }, {
+            readonly id: "assets";
+            readonly label: "Uploading assets";
+        }, {
+            readonly id: "processing";
+            readonly label: "Processing designs";
+        }, {
+            readonly id: "finalize";
+            readonly label: "Finalizing";
+        }];
+        readonly design: readonly [{
+            readonly id: "convert_styles";
+            readonly label: "Convert styles";
+        }, {
+            readonly id: "build_sections";
+            readonly label: "Build sections";
+        }, {
+            readonly id: "page_assembly";
+            readonly label: "Page assembly";
+        }, {
+            readonly id: "generate_xscp";
+            readonly label: "Generate export";
+        }];
+    };
+    readonly bricks: {
+        readonly global: readonly [{
+            readonly id: "prepare";
+            readonly label: "Preparing";
+        }, {
+            readonly id: "processing";
+            readonly label: "Processing designs";
+        }, {
+            readonly id: "finalize";
+            readonly label: "Finalizing";
+        }];
+        readonly design: readonly [{
+            readonly id: "initialize";
+            readonly label: "Initialize";
+        }, {
+            readonly id: "build";
+            readonly label: "Build sections";
+        }, {
+            readonly id: "assembly";
+            readonly label: "Assembly";
+        }, {
+            readonly id: "generate";
+            readonly label: "Generate JSON";
+        }];
+    };
+    readonly elementor: {
+        readonly global: readonly [{
+            readonly id: "prepare";
+            readonly label: "Preparing";
+        }, {
+            readonly id: "processing";
+            readonly label: "Processing designs";
+        }, {
+            readonly id: "finalize";
+            readonly label: "Finalizing";
+        }];
+        readonly design: readonly [{
+            readonly id: "initialize";
+            readonly label: "Initialize";
+        }, {
+            readonly id: "build";
+            readonly label: "Build sections";
+        }, {
+            readonly id: "assembly";
+            readonly label: "Assembly";
+        }, {
+            readonly id: "generate";
+            readonly label: "Generate JSON";
+        }];
+    };
+};
+/**
+ * Get export steps config for a platform
+ * Falls back to webflow if platform not found
+ */
+export declare function getExportStepsConfig(platform: string): {
+    readonly global: readonly [{
+        readonly id: "prepare";
+        readonly label: "Preparing";
+    }, {
+        readonly id: "assets";
+        readonly label: "Uploading assets";
+    }, {
+        readonly id: "processing";
+        readonly label: "Processing designs";
+    }, {
+        readonly id: "finalize";
+        readonly label: "Finalizing";
+    }];
+    readonly design: readonly [{
+        readonly id: "convert_styles";
+        readonly label: "Convert styles";
+    }, {
+        readonly id: "build_sections";
+        readonly label: "Build sections";
+    }, {
+        readonly id: "page_assembly";
+        readonly label: "Page assembly";
+    }, {
+        readonly id: "generate_xscp";
+        readonly label: "Generate export";
+    }];
+} | {
+    readonly global: readonly [{
+        readonly id: "prepare";
+        readonly label: "Preparing";
+    }, {
+        readonly id: "processing";
+        readonly label: "Processing designs";
+    }, {
+        readonly id: "finalize";
+        readonly label: "Finalizing";
+    }];
+    readonly design: readonly [{
+        readonly id: "initialize";
+        readonly label: "Initialize";
+    }, {
+        readonly id: "build";
+        readonly label: "Build sections";
+    }, {
+        readonly id: "assembly";
+        readonly label: "Assembly";
+    }, {
+        readonly id: "generate";
+        readonly label: "Generate JSON";
+    }];
+} | {
+    readonly global: readonly [{
+        readonly id: "prepare";
+        readonly label: "Preparing";
+    }, {
+        readonly id: "processing";
+        readonly label: "Processing designs";
+    }, {
+        readonly id: "finalize";
+        readonly label: "Finalizing";
+    }];
+    readonly design: readonly [{
+        readonly id: "initialize";
+        readonly label: "Initialize";
+    }, {
+        readonly id: "build";
+        readonly label: "Build sections";
+    }, {
+        readonly id: "assembly";
+        readonly label: "Assembly";
+    }, {
+        readonly id: "generate";
+        readonly label: "Generate JSON";
+    }];
+};
+//# sourceMappingURL=export-steps.d.ts.map

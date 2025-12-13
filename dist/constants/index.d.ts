@@ -1,0 +1,41 @@
+/**
+ * General application config
+ * Includes: Auth, Platform, Network, Validation, UI/CSS
+ */
+export * from './app';
+/**
+ * API Protocol constants
+ * Includes: Socket events, Error codes
+ */
+export * from './protocol';
+/**
+ * Pricing and plan constants
+ * Includes: Plan features, pricing configuration
+ */
+export * from './pricing';
+/**
+ * Error codes and types
+ * Note: ERROR_CODES and ErrorCode are exported from types/socket-protocol.ts
+ */
+export { ERROR_CODES, type ErrorCode } from '../types/socket-protocol';
+/**
+ * AI response markers for prompt generators and parsers
+ * Used to maintain consistency between AI prompts and response parsing
+ */
+export * from './ai-markers';
+/**
+ * Server/Backend-only constants
+ * Includes: AI models, browser config, streaming, image processing
+ */
+export * from './server';
+/**
+ * Plugin progress milestones
+ * Shared between plugin frontend and backend for consistent progress tracking
+ */
+export * from './plugin-progress';
+/**
+ * Export steps config per platform
+ * Single source of truth for export stage UI
+ */
+export * from './export-steps';
+//# sourceMappingURL=index.d.ts.map
