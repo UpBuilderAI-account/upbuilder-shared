@@ -16,6 +16,14 @@ export declare const MAX_DESIGNS_PER_PROJECT: {
     readonly pro: 4;
 };
 /**
+ * Section export limits per tier
+ * Controls how many sections free users can export per design
+ */
+export declare const MAX_SECTIONS_PER_EXPORT: {
+    readonly free: 2;
+    readonly pro: number;
+};
+/**
  * Pricing configuration for display
  * Note: priceId values should be injected from environment variables at runtime
  */
@@ -29,6 +37,7 @@ export declare const PRICING_CONFIG: {
         readonly projectLimit: 3;
         readonly exportsPerMonth: 1;
         readonly maxDesigns: 2;
+        readonly maxSectionsPerExport: 2;
     };
     readonly pro: {
         readonly name: "Pro";
@@ -40,6 +49,7 @@ export declare const PRICING_CONFIG: {
         readonly projectLimit: "unlimited";
         readonly exportsPerMonth: "unlimited";
         readonly maxDesigns: 4;
+        readonly maxSectionsPerExport: number;
         readonly popular: true;
         readonly trialDays: 14;
     };

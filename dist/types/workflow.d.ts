@@ -118,6 +118,7 @@ export interface WorkflowExportComplete {
     projectId: string;
     platform: Platform;
     designs: ExportDesignData[];
+    isPro?: boolean;
 }
 export interface WorkflowCommand {
     projectId: string;

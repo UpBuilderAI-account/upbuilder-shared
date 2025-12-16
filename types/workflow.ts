@@ -164,6 +164,7 @@ export interface WorkflowExportComplete {
   projectId: string;
   platform: Platform;
   designs: ExportDesignData[];
+  isPro?: boolean;  // Subscription status for frontend section limiting
 }
 
 // =============================================================================

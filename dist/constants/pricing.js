@@ -4,7 +4,7 @@
 // Centralized pricing plan and feature definitions
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.BASIC_FEATURES = exports.PRO_FEATURES = void 0;
+exports.PRICING_CONFIG = exports.MAX_SECTIONS_PER_EXPORT = exports.MAX_DESIGNS_PER_PROJECT = exports.BASIC_FEATURES = exports.PRO_FEATURES = void 0;
 /**
  * Pro plan feature list
  * Single source of truth for all UIs (PricingTable, UpgradeModal, etc.)
@@ -35,6 +35,14 @@ exports.MAX_DESIGNS_PER_PROJECT = {
     pro: 4,
 };
 /**
+ * Section export limits per tier
+ * Controls how many sections free users can export per design
+ */
+exports.MAX_SECTIONS_PER_EXPORT = {
+    free: 2,
+    pro: Infinity,
+};
+/**
  * Pricing configuration for display
  * Note: priceId values should be injected from environment variables at runtime
  */
@@ -48,6 +56,7 @@ exports.PRICING_CONFIG = {
         projectLimit: 3,
         exportsPerMonth: 1,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.free,
+        maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.free,
     },
     pro: {
         name: 'Pro',
@@ -59,6 +68,7 @@ exports.PRICING_CONFIG = {
         projectLimit: 'unlimited',
         exportsPerMonth: 'unlimited',
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
+        maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.pro,
         popular: true,
         trialDays: 14,
     },

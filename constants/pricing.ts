@@ -36,6 +36,15 @@ export const MAX_DESIGNS_PER_PROJECT = {
 } as const;
 
 /**
+ * Section export limits per tier
+ * Controls how many sections free users can export per design
+ */
+export const MAX_SECTIONS_PER_EXPORT = {
+  free: 2,
+  pro: Infinity,
+} as const;
+
+/**
  * Pricing configuration for display
  * Note: priceId values should be injected from environment variables at runtime
  */
@@ -49,6 +58,7 @@ export const PRICING_CONFIG = {
     projectLimit: 3,
     exportsPerMonth: 1,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.free,
+    maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.free,
   },
   pro: {
     name: 'Pro',
@@ -60,6 +70,7 @@ export const PRICING_CONFIG = {
     projectLimit: 'unlimited' as const,
     exportsPerMonth: 'unlimited' as const,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
+    maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.pro,
     popular: true,
     trialDays: 14,
   },
