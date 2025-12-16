@@ -82,6 +82,8 @@ export interface WorkflowStream {
   type: 'css' | 'js';
   chunk: string;
   done?: boolean;
+  /** If true, frontend should clear accumulated code before appending chunk (used for retries) */
+  reset?: boolean;
 }
 
 export interface WorkflowError {

@@ -54,7 +54,7 @@ exports.PRICING_CONFIG = {
         description: 'Try UpBuilder for free',
         features: exports.BASIC_FEATURES,
         projectLimit: 3,
-        exportsPerMonth: 1,
+        exportsPerMonth: 2,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.free,
         maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.free,
     },

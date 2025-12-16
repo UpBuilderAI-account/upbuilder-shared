@@ -35,7 +35,7 @@ export declare const PRICING_CONFIG: {
         readonly description: "Try UpBuilder for free";
         readonly features: readonly ["Support for small designs", "1 design per project", "Limited platform exports", "Basic component detection", "Community support"];
         readonly projectLimit: 3;
-        readonly exportsPerMonth: 1;
+        readonly exportsPerMonth: 2;
         readonly maxDesigns: 2;
         readonly maxSectionsPerExport: 2;
     };
