@@ -61,6 +61,8 @@ export interface WorkflowStage {
   message?: string;
   designs?: WorkflowDesign[];
   exportSteps?: ExportStep[];
+  /** If true, this is a retry - frontend should allow progress to decrease */
+  retry?: boolean;
 }
 
 export interface WorkflowStages {
