@@ -23,6 +23,7 @@ import type {
   WorkflowExportComplete,
 } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
+import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 
 // Re-export export types for use in socket events
 export type { ExportOptions, ExportPayload };
@@ -382,6 +383,12 @@ export interface ClientToServerEvents {
     callback: CallbackResponse<GitHubPushResult>
   ) => void;
 
+  // GitHub sync (pull from repository)
+  github_sync_start: (
+    data: GitHubSyncStartPayload,
+    callback: CallbackResponse<void>
+  ) => void;
+
   // Check subscription status
   'user:check_subscription': (
     data: void,
@@ -454,6 +461,10 @@ export interface ServerToClientEvents {
     trialEnd?: number | null;
     currentPeriodEnd?: number;
   }) => void;
+
+  // GitHub sync events
+  github_sync_progress: (data: GitHubSyncProgress) => void;
+  github_sync_complete: (data: GitHubSyncResult) => void;
 }
 
 /**

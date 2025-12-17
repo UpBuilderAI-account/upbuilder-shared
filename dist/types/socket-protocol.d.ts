@@ -2,6 +2,7 @@ import type { ImagePair, PreviewData, FramePreview } from './plugin';
 import type { Element } from './element';
 import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
+import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 export type { ExportOptions, ExportPayload };
 export declare const ERROR_CODES: {
     readonly AUTH_INVALID_CREDENTIALS: "AUTH_INVALID_CREDENTIALS";
@@ -256,6 +257,7 @@ export interface ClientToServerEvents {
     }, callback: CallbackResponse) => void;
     github_get_repos: (data: GitHubPayloads['get_repos'], callback: CallbackResponse<GitHubRepository[]>) => void;
     github_push_code: (data: GitHubPayloads['push_code'], callback: CallbackResponse<GitHubPushResult>) => void;
+    github_sync_start: (data: GitHubSyncStartPayload, callback: CallbackResponse<void>) => void;
     'user:check_subscription': (data: void, callback: CallbackResponse<{
         tier: 'free' | 'pro';
         isTrialing?: boolean;
@@ -308,6 +310,8 @@ export interface ServerToClientEvents {
         trialEnd?: number | null;
         currentPeriodEnd?: number;
     }) => void;
+    github_sync_progress: (data: GitHubSyncProgress) => void;
+    github_sync_complete: (data: GitHubSyncResult) => void;
 }
 /**
  * Socket data attached to each connection
