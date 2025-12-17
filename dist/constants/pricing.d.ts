@@ -51,7 +51,6 @@ export declare const PRICING_CONFIG: {
         readonly maxDesigns: 4;
         readonly maxSectionsPerExport: number;
         readonly popular: true;
-        readonly trialDays: 14;
     };
 };
 //# sourceMappingURL=pricing.d.ts.map

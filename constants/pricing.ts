@@ -72,7 +72,6 @@ export const PRICING_CONFIG = {
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
     maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.pro,
     popular: true,
-    trialDays: 14,
   },
 } as const;
 

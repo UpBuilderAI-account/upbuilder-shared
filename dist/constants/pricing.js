@@ -70,6 +70,5 @@ exports.PRICING_CONFIG = {
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
         maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.pro,
         popular: true,
-        trialDays: 14,
     },
 };
