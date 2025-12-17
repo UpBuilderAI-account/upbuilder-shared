@@ -59,3 +59,5 @@ __exportStar(require("./webflow"), exports);
 __exportStar(require("./bricks"), exports);
 // Elementor Builder export types
 __exportStar(require("./elementor"), exports);
+// GitHub sync types
+__exportStar(require("./github-sync"), exports);

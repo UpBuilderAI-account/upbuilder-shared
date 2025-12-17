@@ -432,6 +432,9 @@ export interface Project {
   designs?: Design[]; // Top-level designs array (for list/detail API responses)
   description?: string | null;
   figma_url?: string | null;
+  // GitHub integration
+  github_repo?: string | null;
+  github_synced_at?: string | null;
 }
 
 // ============================================================================

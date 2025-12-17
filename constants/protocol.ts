@@ -118,6 +118,9 @@ export const SOCKET_EVENTS = {
   GITHUB: {
     GET_REPOS: 'github_get_repos',
     PUSH_CODE: 'github_push_code',
+    SYNC_START: 'github_sync_start',
+    SYNC_PROGRESS: 'github_sync_progress',
+    SYNC_COMPLETE: 'github_sync_complete',
   },
 
   /**

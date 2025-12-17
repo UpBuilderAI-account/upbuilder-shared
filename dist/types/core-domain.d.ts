@@ -285,6 +285,8 @@ export interface Project {
     designs?: Design[];
     description?: string | null;
     figma_url?: string | null;
+    github_repo?: string | null;
+    github_synced_at?: string | null;
 }
 /**
  * Export type/format

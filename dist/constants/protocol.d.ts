@@ -92,6 +92,9 @@ export declare const SOCKET_EVENTS: {
     readonly GITHUB: {
         readonly GET_REPOS: "github_get_repos";
         readonly PUSH_CODE: "github_push_code";
+        readonly SYNC_START: "github_sync_start";
+        readonly SYNC_PROGRESS: "github_sync_progress";
+        readonly SYNC_COMPLETE: "github_sync_complete";
     };
     /**
      * User events (client ↔ server)

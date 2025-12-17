@@ -2,7 +2,7 @@
  * Available Gemini models
  */
 export declare const GEMINI_MODELS: {
-    readonly pro: "gemini-3-flash-preview";
+    readonly pro: "gemini-3-pro-preview";
     readonly flash: "gemini-3-flash-preview";
     readonly flash2: "gemini-2.0-flash";
     readonly lite: "gemini-flash-lite-latest";

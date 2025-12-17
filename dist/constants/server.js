@@ -12,8 +12,8 @@ exports.WEBFLOW_IMAGE_UPLOAD_DELAY = exports.STAGE_PROCESSING_DELAY_MS = exports
  * Available Gemini models
  */
 exports.GEMINI_MODELS = {
-    pro: 'gemini-3-flash-preview',
-    flash: 'gemini-3-flash-preview', // Same as pro - legacy alias
+    pro: 'gemini-3-pro-preview',
+    flash: 'gemini-3-flash-preview',
     flash2: 'gemini-2.0-flash',
     lite: 'gemini-flash-lite-latest',
     thinking2: 'gemini-2.0-flash-thinking-exp'

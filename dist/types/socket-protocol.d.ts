@@ -168,6 +168,7 @@ export interface GitHubRepository {
 export interface GitHubPushResult {
     url: string;
     sha: string;
+    repository?: string;
 }
 /**
  * Project update event (Standard)

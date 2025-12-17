@@ -249,6 +249,7 @@ export interface GitHubRepository {
 export interface GitHubPushResult {
   url: string;
   sha: string;
+  repository?: string; // Full name: owner/repo
 }
 
 // ============================================================================

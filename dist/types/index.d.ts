@@ -9,4 +9,5 @@ export * from './element';
 export * from './webflow';
 export * from './bricks';
 export * from './elementor';
+export * from './github-sync';
 //# sourceMappingURL=index.d.ts.map
