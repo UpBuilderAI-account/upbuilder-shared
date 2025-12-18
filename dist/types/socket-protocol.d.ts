@@ -1,6 +1,6 @@
 import type { ImagePair, PreviewData, FramePreview } from './plugin';
 import type { Element } from './element';
-import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete } from './workflow';
+import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, CodeSaveRequest, CodeSaveResult } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 export type { ExportOptions, ExportPayload };
@@ -249,6 +249,7 @@ export interface ClientToServerEvents {
         success: boolean;
     }) => void) => void;
     'workflow:command': (data: WorkflowCommand, callback: (ok: boolean) => void) => void;
+    'workflow:save_code': (data: CodeSaveRequest, callback: (result: CodeSaveResult) => void) => void;
     transfer_project_ownership: (data: {
         projectId: string;
     }, callback: CallbackResponse) => void;

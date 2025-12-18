@@ -21,6 +21,8 @@ import type {
   WorkflowEditor,
   WorkflowCommand,
   WorkflowExportComplete,
+  CodeSaveRequest,
+  CodeSaveResult,
 } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
@@ -358,6 +360,12 @@ export interface ClientToServerEvents {
   'workflow:command': (
     data: WorkflowCommand,
     callback: (ok: boolean) => void
+  ) => void;
+
+  // Workflow save code (save edited code from customizer)
+  'workflow:save_code': (
+    data: CodeSaveRequest,
+    callback: (result: CodeSaveResult) => void
   ) => void;
 
   // Ownership transfer
