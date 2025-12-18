@@ -66,6 +66,7 @@ export const SOCKET_EVENTS = {
     ERROR: 'workflow:error',           // Server → Client: Error events
     EDITOR: 'workflow:editor',         // Server → Client: Editor data for customize stage
     EXPORT_COMPLETE: 'workflow:export_complete', // Server → Client: Export complete with S3 URLs
+    SAVE_CODE: 'workflow:save_code',   // Client → Server: Save edited code from customizer
   },
 
   /**

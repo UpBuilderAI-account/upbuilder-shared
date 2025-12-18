@@ -55,6 +55,10 @@ export {
   type WorkflowExportComplete,
   // Client events
   type WorkflowCommand,
+  // Editor code save types
+  type CodeSaveRequest,
+  type CodeChange,
+  type CodeSaveResult,
   // Socket event interfaces
   type ServerToClientWorkflowEvents,
   type ClientToServerWorkflowEvents,

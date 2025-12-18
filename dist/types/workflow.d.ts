@@ -129,6 +129,42 @@ export interface WorkflowCommand {
     action: 'start' | 'cancel' | 'next' | 'reprocess_export' | 'reprocess_export_fast';
     retry?: boolean;
 }
+/**
+ * Request to save edited code from the customizer
+ */
+export interface CodeSaveRequest {
+    projectId: string;
+    changes: CodeChange[];
+}
+/**
+ * A single code change to save
+ */
+export interface CodeChange {
+    /** Type of item being saved */
+    type: 'section' | 'globalSection' | 'stylesheet' | 'globalScript';
+    /** Section or GlobalSection ID (not needed for stylesheet/globalScript) */
+    id?: string;
+    /** Design ID (for sections only, used for logging) */
+    designId?: string;
+    /** The code to save */
+    code: {
+        html?: string;
+        css?: string;
+        js?: string;
+    };
+}
+/**
+ * Result of a code save operation
+ */
+export interface CodeSaveResult {
+    success: boolean;
+    savedCount: number;
+    errors?: Array<{
+        type: string;
+        id?: string;
+        message: string;
+    }>;
+}
 export interface ServerToClientWorkflowEvents {
     'workflow:stage': (data: WorkflowStage) => void;
     'workflow:stages': (data: WorkflowStages) => void;
@@ -139,6 +175,7 @@ export interface ServerToClientWorkflowEvents {
 }
 export interface ClientToServerWorkflowEvents {
     'workflow:command': (data: WorkflowCommand, cb: (ok: boolean) => void) => void;
+    'workflow:save_code': (data: CodeSaveRequest, cb: (result: CodeSaveResult) => void) => void;
 }
 export declare const isPending: (p: Progress) => boolean;
 export declare const isRunning: (p: Progress) => boolean;
