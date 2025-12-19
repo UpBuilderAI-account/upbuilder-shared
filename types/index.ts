@@ -47,6 +47,9 @@ export {
   type EditorGlobal,
   type EditorAsset,
   type WorkflowEditor,
+  // Styles config types
+  type StylesConfig,
+  DEFAULT_STYLES_CONFIG,
   // Customize types
   type CustomSectionCode,
   type CustomizeData,

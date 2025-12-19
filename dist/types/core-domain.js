@@ -21,6 +21,7 @@ exports.PROJECT_STATUS = {
     IDLE: 'idle',
     LOAD: 'load',
     DETECT_SECTIONS: 'detect_sections',
+    STYLES_CONFIG: 'styles_config',
     GENERATE_STYLES: 'generate_styles',
     PREPARE_BUILD: 'prepare_build',
     BUILD: 'build',
@@ -57,7 +58,8 @@ function getNextStatus(status, platform) {
     const transitions = {
         idle: 'load',
         load: 'detect_sections',
-        detect_sections: 'generate_styles',
+        detect_sections: 'styles_config',
+        styles_config: 'generate_styles',
         generate_styles: 'prepare_build',
         prepare_build: 'build',
         build: 'consolidate_css',
@@ -82,8 +84,8 @@ function getNextStatus(status, platform) {
  * Check if user action is required after this stage completes
  */
 function requiresUserActionAfter(status) {
-    // Only customize stage requires user action (to proceed to export)
-    return status === 'customize';
+    // styles_config and customize stages require user action to proceed
+    return status === 'styles_config' || status === 'customize';
 }
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION
@@ -94,8 +96,8 @@ function requiresUserActionAfter(status) {
  */
 exports.SKIPPED_STAGES = {
     webflow: [],
-    bricks: ['generate_styles', 'consolidate_css', 'consolidate_scripts'],
-    elementor: ['generate_styles', 'consolidate_css', 'consolidate_scripts'],
+    bricks: ['styles_config', 'generate_styles', 'consolidate_css', 'consolidate_scripts'],
+    elementor: ['styles_config', 'generate_styles', 'consolidate_css', 'consolidate_scripts'],
 };
 /**
  * Platforms that use per-section CSS (vs global stylesheet)

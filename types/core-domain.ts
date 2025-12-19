@@ -82,6 +82,7 @@ export type ProjectStatus =
   | 'idle'
   | 'load'
   | 'detect_sections'
+  | 'styles_config'
   | 'generate_styles'
   | 'prepare_build'
   | 'build'
@@ -99,6 +100,7 @@ export const PROJECT_STATUS = {
   IDLE: 'idle' as ProjectStatus,
   LOAD: 'load' as ProjectStatus,
   DETECT_SECTIONS: 'detect_sections' as ProjectStatus,
+  STYLES_CONFIG: 'styles_config' as ProjectStatus,
   GENERATE_STYLES: 'generate_styles' as ProjectStatus,
   PREPARE_BUILD: 'prepare_build' as ProjectStatus,
   BUILD: 'build' as ProjectStatus,
@@ -136,7 +138,8 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform): Proje
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
     idle: 'load',
     load: 'detect_sections',
-    detect_sections: 'generate_styles',
+    detect_sections: 'styles_config',
+    styles_config: 'generate_styles',
     generate_styles: 'prepare_build',
     prepare_build: 'build',
     build: 'consolidate_css',
@@ -165,8 +168,8 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform): Proje
  * Check if user action is required after this stage completes
  */
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
-  // Only customize stage requires user action (to proceed to export)
-  return status === 'customize';
+  // styles_config and customize stages require user action to proceed
+  return status === 'styles_config' || status === 'customize';
 }
 
 export type Platform = 'webflow' | 'bricks' | 'elementor';
@@ -182,8 +185,8 @@ export type StyleFramework = 'client-first' | 'tailwind' | 'bootstrap' | 'vanill
  */
 export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
   webflow: [],
-  bricks: ['generate_styles', 'consolidate_css', 'consolidate_scripts'],
-  elementor: ['generate_styles', 'consolidate_css', 'consolidate_scripts'],
+  bricks: ['styles_config', 'generate_styles', 'consolidate_css', 'consolidate_scripts'],
+  elementor: ['styles_config', 'generate_styles', 'consolidate_css', 'consolidate_scripts'],
 };
 
 /**

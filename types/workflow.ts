@@ -145,6 +145,32 @@ export interface WorkflowEditor {
 }
 
 // =============================================================================
+// STYLES CONFIG STAGE TYPES
+// =============================================================================
+
+/**
+ * Configuration options for stylesheet generation
+ */
+export interface StylesConfig {
+  useRemFontSizes: boolean;
+  useUnitlessLineHeight: boolean;
+  generateSpacingUtilities: boolean;
+  generateSizingUtilities: boolean;
+  customInstructions?: string;
+}
+
+/**
+ * Default values for StylesConfig
+ */
+export const DEFAULT_STYLES_CONFIG: StylesConfig = {
+  useRemFontSizes: false,
+  useUnitlessLineHeight: true,
+  generateSpacingUtilities: false,
+  generateSizingUtilities: false,
+  customInstructions: '',
+};
+
+// =============================================================================
 // CUSTOMIZE STAGE TYPES
 // =============================================================================
 
@@ -189,6 +215,8 @@ export interface WorkflowCommand {
   projectId: string;
   action: 'start' | 'cancel' | 'next' | 'reprocess_export' | 'reprocess_export_fast';
   retry?: boolean;
+  /** Styles configuration from styles_config stage */
+  stylesConfig?: StylesConfig;
 }
 
 // =============================================================================
@@ -284,6 +312,7 @@ export const isFailed = (p: Progress): boolean => p === -1;
 export const STAGE_ORDER: Stage[] = [
   'load',
   'detect_sections',
+  'styles_config',
   'generate_styles',
   'prepare_build',
   'build',
@@ -296,6 +325,7 @@ export const STAGE_ORDER: Stage[] = [
 export const STAGE_LABELS: Record<Stage, string> = {
   load: 'Loading Data',
   detect_sections: 'Detecting Sections',
+  styles_config: 'Configure Styles',
   generate_styles: 'Generating Base Styles',
   prepare_build: 'Preparing Build',
   build: 'Building Sections',
@@ -310,6 +340,7 @@ export const STAGE_LABELS: Record<Stage, string> = {
  * These platforms use inline styles per section instead of global stylesheets
  */
 export const INLINE_PLATFORM_SKIPPED_STAGES: Stage[] = [
+  'styles_config',
   'generate_styles',
   'consolidate_css',
   'consolidate_scripts',

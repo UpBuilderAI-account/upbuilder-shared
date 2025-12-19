@@ -108,6 +108,20 @@ export interface WorkflowEditor {
     globals: EditorGlobal[];
     designs: EditorDesign[];
 }
+/**
+ * Configuration options for stylesheet generation
+ */
+export interface StylesConfig {
+    useRemFontSizes: boolean;
+    useUnitlessLineHeight: boolean;
+    generateSpacingUtilities: boolean;
+    generateSizingUtilities: boolean;
+    customInstructions?: string;
+}
+/**
+ * Default values for StylesConfig
+ */
+export declare const DEFAULT_STYLES_CONFIG: StylesConfig;
 export interface CustomSectionCode {
     html?: string;
     css?: string;
@@ -142,6 +156,8 @@ export interface WorkflowCommand {
     projectId: string;
     action: 'start' | 'cancel' | 'next' | 'reprocess_export' | 'reprocess_export_fast';
     retry?: boolean;
+    /** Styles configuration from styles_config stage */
+    stylesConfig?: StylesConfig;
 }
 /**
  * Request to save edited code from the customizer

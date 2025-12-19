@@ -6,9 +6,19 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = void 0;
+exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_STYLES_CONFIG = void 0;
 exports.isInlineCSSPlatform = isInlineCSSPlatform;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
+/**
+ * Default values for StylesConfig
+ */
+exports.DEFAULT_STYLES_CONFIG = {
+    useRemFontSizes: false,
+    useUnitlessLineHeight: true,
+    generateSpacingUtilities: false,
+    generateSizingUtilities: false,
+    customInstructions: '',
+};
 // =============================================================================
 // HELPERS
 // =============================================================================
@@ -23,6 +33,7 @@ exports.isFailed = isFailed;
 exports.STAGE_ORDER = [
     'load',
     'detect_sections',
+    'styles_config',
     'generate_styles',
     'prepare_build',
     'build',
@@ -34,6 +45,7 @@ exports.STAGE_ORDER = [
 exports.STAGE_LABELS = {
     load: 'Loading Data',
     detect_sections: 'Detecting Sections',
+    styles_config: 'Configure Styles',
     generate_styles: 'Generating Base Styles',
     prepare_build: 'Preparing Build',
     build: 'Building Sections',
@@ -47,6 +59,7 @@ exports.STAGE_LABELS = {
  * These platforms use inline styles per section instead of global stylesheets
  */
 exports.INLINE_PLATFORM_SKIPPED_STAGES = [
+    'styles_config',
     'generate_styles',
     'consolidate_css',
     'consolidate_scripts',
