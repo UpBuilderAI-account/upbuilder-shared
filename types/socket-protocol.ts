@@ -401,7 +401,7 @@ export interface ClientToServerEvents {
   'user:check_subscription': (
     data: void,
     callback: CallbackResponse<{
-      tier: 'free' | 'pro';
+      tier: 'basic' | 'pro' | 'max';
       isTrialing?: boolean;
       trialEnd?: number | null;
       currentPeriodEnd?: number;
@@ -464,7 +464,7 @@ export interface ServerToClientEvents {
 
   // User subscription updates
   'user:subscription_updated': (data: {
-    tier: 'free' | 'pro';
+    tier: 'basic' | 'pro' | 'max';
     isTrialing?: boolean;
     trialEnd?: number | null;
     currentPeriodEnd?: number;

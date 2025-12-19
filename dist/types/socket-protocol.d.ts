@@ -260,7 +260,7 @@ export interface ClientToServerEvents {
     github_push_code: (data: GitHubPayloads['push_code'], callback: CallbackResponse<GitHubPushResult>) => void;
     github_sync_start: (data: GitHubSyncStartPayload, callback: CallbackResponse<void>) => void;
     'user:check_subscription': (data: void, callback: CallbackResponse<{
-        tier: 'free' | 'pro';
+        tier: 'basic' | 'pro' | 'max';
         isTrialing?: boolean;
         trialEnd?: number | null;
         currentPeriodEnd?: number;
@@ -306,7 +306,7 @@ export interface ServerToClientEvents {
         projectName?: string;
     }) => void;
     'user:subscription_updated': (data: {
-        tier: 'free' | 'pro';
+        tier: 'basic' | 'pro' | 'max';
         isTrialing?: boolean;
         trialEnd?: number | null;
         currentPeriodEnd?: number;
