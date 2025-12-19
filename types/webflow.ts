@@ -47,20 +47,10 @@ export type WebflowFormComponent =
   | 'FormSuccessMessage'
   | 'FormErrorMessage';
 
-export type WebflowSliderComponent =
-  | 'SliderContainer'
-  | 'SliderWrapper'
-  | 'SliderSlide'
-  | 'SliderNavigation'
-  | 'SliderArrowPrev'
-  | 'SliderArrowNext'
-  | 'SliderPagination';
-
 export type WebflowComponentType =
   | WebflowBasicComponent
   | WebflowNavComponent
-  | WebflowFormComponent
-  | WebflowSliderComponent;
+  | WebflowFormComponent;
 
 // -----------------------------------------------------------------------------
 // Breakpoints & States
@@ -106,15 +96,13 @@ export const NAVBAR_VALIDATION_CLASSES = {
 export const WEBFLOW_COMPONENT_TYPES_LIST = {
   basic: ['Block', 'Section', 'Heading', 'Paragraph', 'Image', 'Link', 'Button', 'List', 'ListItem', 'Icon'],
   navigation: ['NavbarWrapper', 'NavbarContainer', 'NavbarBrand', 'NavbarMenu', 'NavbarLink', 'NavbarButton', 'DropdownWrapper', 'DropdownToggle', 'DropdownList', 'DropdownLink'],
-  forms: ['FormWrapper', 'FormForm', 'FormTextInput', 'FormTextarea', 'FormButton', 'FormBlockLabel', 'FormInlineLabel', 'FormCheckboxWrapper', 'FormCheckboxInput', 'FormRadioWrapper', 'FormRadioInput', 'FormSelect', 'FormSuccessMessage', 'FormErrorMessage'],
-  sliders: ['SliderContainer', 'SliderWrapper', 'SliderSlide', 'SliderNavigation', 'SliderArrowPrev', 'SliderArrowNext', 'SliderPagination']
+  forms: ['FormWrapper', 'FormForm', 'FormTextInput', 'FormTextarea', 'FormButton', 'FormBlockLabel', 'FormInlineLabel', 'FormCheckboxWrapper', 'FormCheckboxInput', 'FormRadioWrapper', 'FormRadioInput', 'FormSelect', 'FormSuccessMessage', 'FormErrorMessage']
 } as const;
 
 // Pre-formatted string for prompts
 export const WEBFLOW_COMPONENT_TYPES_FOR_PROMPT = `Basic: ${WEBFLOW_COMPONENT_TYPES_LIST.basic.join(', ')}
 Navigation: ${WEBFLOW_COMPONENT_TYPES_LIST.navigation.join(', ')}
-Forms: ${WEBFLOW_COMPONENT_TYPES_LIST.forms.join(', ')}
-Sliders: ${WEBFLOW_COMPONENT_TYPES_LIST.sliders.join(', ')}`;
+Forms: ${WEBFLOW_COMPONENT_TYPES_LIST.forms.join(', ')}`;
 
 // -----------------------------------------------------------------------------
 // Hierarchy Documentation for Prompts
@@ -221,24 +209,6 @@ id: "search_input" | compType: "FormTextInput" | parent: "search_box"  ← WRONG
 3. **FormCheckboxInput** → MUST be inside **FormCheckboxWrapper**
 4. **FormRadioInput** → MUST be inside **FormRadioWrapper**
 5. **Don't wrap form fields in Blocks** → If HTML has field-group divs, SKIP them`;
-
-export const WEBFLOW_SLIDER_HIERARCHY_DOCS = `## Slider Hierarchy
-
-### Required Structure:
-\`\`\`
-SliderContainer
-├── SliderWrapper
-│   └── SliderSlide (multiple)
-├── SliderNavigation
-│   ├── SliderArrowPrev
-│   └── SliderArrowNext
-└── SliderPagination
-\`\`\`
-
-### Key Rules:
-1. **NEVER** nest SliderContainer inside SliderContainer
-2. **NEVER** put SliderWrapper outside of SliderContainer
-3. **NEVER** put Block between SliderContainer and SliderWrapper`;
 
 export const WEBFLOW_DROPDOWN_HIERARCHY_DOCS = `## Dropdown Hierarchy
 

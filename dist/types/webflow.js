@@ -4,7 +4,7 @@
 // Shared types and constants for Webflow structure conversion
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WEBFLOW_HIERARCHY_VALIDATION_CHECKLIST = exports.WEBFLOW_DROPDOWN_HIERARCHY_DOCS = exports.WEBFLOW_SLIDER_HIERARCHY_DOCS = exports.WEBFLOW_FORM_HIERARCHY_DOCS = exports.WEBFLOW_NAVBAR_HIERARCHY_DOCS = exports.WEBFLOW_COMPONENT_TYPES_FOR_PROMPT = exports.WEBFLOW_COMPONENT_TYPES_LIST = exports.NAVBAR_VALIDATION_CLASSES = exports.WEBFLOW_STATE_VARIANTS = exports.WEBFLOW_RESPONSIVE_BREAKPOINTS = exports.WEBFLOW_BREAKPOINTS = void 0;
+exports.WEBFLOW_HIERARCHY_VALIDATION_CHECKLIST = exports.WEBFLOW_DROPDOWN_HIERARCHY_DOCS = exports.WEBFLOW_FORM_HIERARCHY_DOCS = exports.WEBFLOW_NAVBAR_HIERARCHY_DOCS = exports.WEBFLOW_COMPONENT_TYPES_FOR_PROMPT = exports.WEBFLOW_COMPONENT_TYPES_LIST = exports.NAVBAR_VALIDATION_CLASSES = exports.WEBFLOW_STATE_VARIANTS = exports.WEBFLOW_RESPONSIVE_BREAKPOINTS = exports.WEBFLOW_BREAKPOINTS = void 0;
 // Runtime arrays for iteration
 exports.WEBFLOW_BREAKPOINTS = ['main', 'medium', 'small', 'tiny'];
 exports.WEBFLOW_RESPONSIVE_BREAKPOINTS = ['medium', 'small', 'tiny'];
@@ -30,14 +30,12 @@ exports.NAVBAR_VALIDATION_CLASSES = {
 exports.WEBFLOW_COMPONENT_TYPES_LIST = {
     basic: ['Block', 'Section', 'Heading', 'Paragraph', 'Image', 'Link', 'Button', 'List', 'ListItem', 'Icon'],
     navigation: ['NavbarWrapper', 'NavbarContainer', 'NavbarBrand', 'NavbarMenu', 'NavbarLink', 'NavbarButton', 'DropdownWrapper', 'DropdownToggle', 'DropdownList', 'DropdownLink'],
-    forms: ['FormWrapper', 'FormForm', 'FormTextInput', 'FormTextarea', 'FormButton', 'FormBlockLabel', 'FormInlineLabel', 'FormCheckboxWrapper', 'FormCheckboxInput', 'FormRadioWrapper', 'FormRadioInput', 'FormSelect', 'FormSuccessMessage', 'FormErrorMessage'],
-    sliders: ['SliderContainer', 'SliderWrapper', 'SliderSlide', 'SliderNavigation', 'SliderArrowPrev', 'SliderArrowNext', 'SliderPagination']
+    forms: ['FormWrapper', 'FormForm', 'FormTextInput', 'FormTextarea', 'FormButton', 'FormBlockLabel', 'FormInlineLabel', 'FormCheckboxWrapper', 'FormCheckboxInput', 'FormRadioWrapper', 'FormRadioInput', 'FormSelect', 'FormSuccessMessage', 'FormErrorMessage']
 };
 // Pre-formatted string for prompts
 exports.WEBFLOW_COMPONENT_TYPES_FOR_PROMPT = `Basic: ${exports.WEBFLOW_COMPONENT_TYPES_LIST.basic.join(', ')}
 Navigation: ${exports.WEBFLOW_COMPONENT_TYPES_LIST.navigation.join(', ')}
-Forms: ${exports.WEBFLOW_COMPONENT_TYPES_LIST.forms.join(', ')}
-Sliders: ${exports.WEBFLOW_COMPONENT_TYPES_LIST.sliders.join(', ')}`;
+Forms: ${exports.WEBFLOW_COMPONENT_TYPES_LIST.forms.join(', ')}`;
 // -----------------------------------------------------------------------------
 // Hierarchy Documentation for Prompts
 // Single source of truth - used by Phase 2 and Phase 3 prompts
@@ -141,23 +139,6 @@ id: "search_input" | compType: "FormTextInput" | parent: "search_box"  ← WRONG
 3. **FormCheckboxInput** → MUST be inside **FormCheckboxWrapper**
 4. **FormRadioInput** → MUST be inside **FormRadioWrapper**
 5. **Don't wrap form fields in Blocks** → If HTML has field-group divs, SKIP them`;
-exports.WEBFLOW_SLIDER_HIERARCHY_DOCS = `## Slider Hierarchy
-
-### Required Structure:
-\`\`\`
-SliderContainer
-├── SliderWrapper
-│   └── SliderSlide (multiple)
-├── SliderNavigation
-│   ├── SliderArrowPrev
-│   └── SliderArrowNext
-└── SliderPagination
-\`\`\`
-
-### Key Rules:
-1. **NEVER** nest SliderContainer inside SliderContainer
-2. **NEVER** put SliderWrapper outside of SliderContainer
-3. **NEVER** put Block between SliderContainer and SliderWrapper`;
 exports.WEBFLOW_DROPDOWN_HIERARCHY_DOCS = `## Dropdown Hierarchy
 
 ### Required Structure:
