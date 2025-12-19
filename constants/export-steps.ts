@@ -28,6 +28,7 @@ export const EXPORT_STEPS_CONFIG = {
   bricks: {
     global: [
       { id: 'prepare', label: 'Preparing' },
+      { id: 'global_sections', label: 'Building global sections' },
       { id: 'processing', label: 'Processing designs' },
       { id: 'finalize', label: 'Finalizing' },
     ],
@@ -41,6 +42,7 @@ export const EXPORT_STEPS_CONFIG = {
   elementor: {
     global: [
       { id: 'prepare', label: 'Preparing' },
+      { id: 'global_sections', label: 'Building global sections' },
       { id: 'processing', label: 'Processing designs' },
       { id: 'finalize', label: 'Finalizing' },
     ],

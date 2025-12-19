@@ -40,6 +40,9 @@ export declare const EXPORT_STEPS_CONFIG: {
             readonly id: "prepare";
             readonly label: "Preparing";
         }, {
+            readonly id: "global_sections";
+            readonly label: "Building global sections";
+        }, {
             readonly id: "processing";
             readonly label: "Processing designs";
         }, {
@@ -64,6 +67,9 @@ export declare const EXPORT_STEPS_CONFIG: {
         readonly global: readonly [{
             readonly id: "prepare";
             readonly label: "Preparing";
+        }, {
+            readonly id: "global_sections";
+            readonly label: "Building global sections";
         }, {
             readonly id: "processing";
             readonly label: "Processing designs";
@@ -125,6 +131,9 @@ export declare function getExportStepsConfig(platform: string): {
         readonly id: "prepare";
         readonly label: "Preparing";
     }, {
+        readonly id: "global_sections";
+        readonly label: "Building global sections";
+    }, {
         readonly id: "processing";
         readonly label: "Processing designs";
     }, {
@@ -148,6 +157,9 @@ export declare function getExportStepsConfig(platform: string): {
     readonly global: readonly [{
         readonly id: "prepare";
         readonly label: "Preparing";
+    }, {
+        readonly id: "global_sections";
+        readonly label: "Building global sections";
     }, {
         readonly id: "processing";
         readonly label: "Processing designs";
