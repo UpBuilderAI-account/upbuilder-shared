@@ -40,6 +40,8 @@ export interface ExportStep {
   label: string;
   progress: Progress;
   message?: string;
+  /** Nested sections for steps like global_sections that process multiple items */
+  sections?: { id: string; name: string; progress: Progress }[];
 }
 
 export interface WorkflowDesign {
@@ -233,6 +235,24 @@ export interface CodeSaveResult {
 }
 
 // =============================================================================
+// RENAME TYPES
+// =============================================================================
+
+export type RenameTargetType = 'design' | 'section' | 'globalSection';
+
+export interface RenameRequest {
+  projectId: string;
+  type: RenameTargetType;
+  id: string;
+  name: string;
+}
+
+export interface RenameResult {
+  success: boolean;
+  error?: string;
+}
+
+// =============================================================================
 // SOCKET EVENT TYPES
 // =============================================================================
 
@@ -243,11 +263,13 @@ export interface ServerToClientWorkflowEvents {
   'workflow:error': (data: WorkflowError) => void;
   'workflow:editor': (data: WorkflowEditor) => void;
   'workflow:export_complete': (data: WorkflowExportComplete) => void;
+  'workflow:renamed': (data: { type: RenameTargetType; id: string; name: string }) => void;
 }
 
 export interface ClientToServerWorkflowEvents {
   'workflow:command': (data: WorkflowCommand, cb: (ok: boolean) => void) => void;
   'workflow:save_code': (data: CodeSaveRequest, cb: (result: CodeSaveResult) => void) => void;
+  'workflow:rename': (data: RenameRequest, cb: (result: RenameResult) => void) => void;
 }
 
 // =============================================================================

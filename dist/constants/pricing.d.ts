@@ -1,15 +1,15 @@
 /**
  * Basic (Free) plan feature list
  */
-export declare const BASIC_FEATURES: readonly ["2 exports per month", "3 projects", "2 sections per export", "Basic component detection", "Community support"];
+export declare const BASIC_FEATURES: readonly ["2 designs per project", "2 sections per design", "2 exports per month", "3 active projects", "Community support"];
 /**
  * Pro plan feature list
  */
-export declare const PRO_FEATURES: readonly ["20 exports per month", "100 projects", "6 sections per export", "All platforms (Webflow, Elementor, Bricks)", "Priority email support"];
+export declare const PRO_FEATURES: readonly ["4 designs per project", "6 sections per design", "20 exports per month", "100 active projects", "All platforms supported", "Priority email support"];
 /**
  * Max plan feature list
  */
-export declare const MAX_FEATURES: readonly ["100 exports per month", "500 projects", "20 sections per export", "All platforms (Webflow, Elementor, Bricks)", "Priority support + early access"];
+export declare const MAX_FEATURES: readonly ["8 designs per project", "20 sections per design", "100 exports per month", "500 active projects", "All platforms supported", "Priority support + early access"];
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
@@ -38,7 +38,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 0;
         readonly displayPrice: "Free";
         readonly description: "Try UpBuilder for free";
-        readonly features: readonly ["2 exports per month", "3 projects", "2 sections per export", "Basic component detection", "Community support"];
+        readonly features: readonly ["2 designs per project", "2 sections per design", "2 exports per month", "3 active projects", "Community support"];
         readonly projectLimit: 3;
         readonly exportsPerMonth: 2;
         readonly maxDesigns: 2;
@@ -49,7 +49,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 9.99;
         readonly displayPrice: "9.99";
         readonly description: "For growing creators";
-        readonly features: readonly ["20 exports per month", "100 projects", "6 sections per export", "All platforms (Webflow, Elementor, Bricks)", "Priority email support"];
+        readonly features: readonly ["4 designs per project", "6 sections per design", "20 exports per month", "100 active projects", "All platforms supported", "Priority email support"];
         readonly projectLimit: 100;
         readonly exportsPerMonth: 20;
         readonly maxDesigns: 4;
@@ -61,7 +61,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 29.99;
         readonly displayPrice: "29.99";
         readonly description: "For professionals & teams";
-        readonly features: readonly ["100 exports per month", "500 projects", "20 sections per export", "All platforms (Webflow, Elementor, Bricks)", "Priority support + early access"];
+        readonly features: readonly ["8 designs per project", "20 sections per design", "100 exports per month", "500 active projects", "All platforms supported", "Priority support + early access"];
         readonly projectLimit: 500;
         readonly exportsPerMonth: 100;
         readonly maxDesigns: 8;

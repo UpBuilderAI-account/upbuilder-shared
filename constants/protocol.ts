@@ -67,6 +67,8 @@ export const SOCKET_EVENTS = {
     EDITOR: 'workflow:editor',         // Server → Client: Editor data for customize stage
     EXPORT_COMPLETE: 'workflow:export_complete', // Server → Client: Export complete with S3 URLs
     SAVE_CODE: 'workflow:save_code',   // Client → Server: Save edited code from customizer
+    RENAME: 'workflow:rename',         // Client → Server: Rename design/section
+    RENAMED: 'workflow:renamed',       // Server → Client: Broadcast rename to other clients
   },
 
   /**

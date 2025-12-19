@@ -49,6 +49,8 @@ export declare const SOCKET_EVENTS: {
         readonly EDITOR: "workflow:editor";
         readonly EXPORT_COMPLETE: "workflow:export_complete";
         readonly SAVE_CODE: "workflow:save_code";
+        readonly RENAME: "workflow:rename";
+        readonly RENAMED: "workflow:renamed";
     };
     /**
      * Server → Client: Project state updates

@@ -9,30 +9,32 @@ exports.PRICING_CONFIG = exports.MAX_SECTIONS_PER_EXPORT = exports.MAX_DESIGNS_P
  * Basic (Free) plan feature list
  */
 exports.BASIC_FEATURES = [
+    '2 designs per project',
+    '2 sections per design',
     '2 exports per month',
-    '3 projects',
-    '2 sections per export',
-    'Basic component detection',
+    '3 active projects',
     'Community support',
 ];
 /**
  * Pro plan feature list
  */
 exports.PRO_FEATURES = [
+    '4 designs per project',
+    '6 sections per design',
     '20 exports per month',
-    '100 projects',
-    '6 sections per export',
-    'All platforms (Webflow, Elementor, Bricks)',
+    '100 active projects',
+    'All platforms supported',
     'Priority email support',
 ];
 /**
  * Max plan feature list
  */
 exports.MAX_FEATURES = [
+    '8 designs per project',
+    '20 sections per design',
     '100 exports per month',
-    '500 projects',
-    '20 sections per export',
-    'All platforms (Webflow, Elementor, Bricks)',
+    '500 active projects',
+    'All platforms supported',
     'Priority support + early access',
 ];
 /**
