@@ -47,8 +47,16 @@ export interface WorkflowStages {
     platform: Platform;
     currentStage: number;
     stages: WorkflowStage[];
+    /** @deprecated Use generateStylesCSS/consolidateCssCSS instead */
     css?: string;
+    /** @deprecated Use consolidateScriptsJS instead */
     js?: string;
+    /** CSS from generate_styles stage */
+    generateStylesCSS?: string;
+    /** CSS from consolidate_css stage */
+    consolidateCssCSS?: string;
+    /** JS from consolidate_scripts stage */
+    consolidateScriptsJS?: string;
 }
 export interface WorkflowStream {
     stage: 'generate_styles' | 'consolidate_css' | 'consolidate_scripts';
@@ -113,8 +121,8 @@ export interface ExportDesignData {
         name: string;
     }[];
     xscpUrl: string;
-    jsHeadUrl?: string;
     jsBodyUrl?: string;
+    jsBody?: string;
     nodeCount: number;
     styleCount: number;
 }

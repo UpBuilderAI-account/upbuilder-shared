@@ -71,8 +71,16 @@ export interface WorkflowStages {
   platform: Platform;
   currentStage: number;
   stages: WorkflowStage[];
+  /** @deprecated Use generateStylesCSS/consolidateCssCSS instead */
   css?: string;
+  /** @deprecated Use consolidateScriptsJS instead */
   js?: string;
+  /** CSS from generate_styles stage */
+  generateStylesCSS?: string;
+  /** CSS from consolidate_css stage */
+  consolidateCssCSS?: string;
+  /** JS from consolidate_scripts stage */
+  consolidateScriptsJS?: string;
 }
 
 // =============================================================================
@@ -158,8 +166,8 @@ export interface ExportDesignData {
   name: string;
   sections: { id: string; name: string }[];
   xscpUrl: string;      // S3 URL to fetch XSCP JSON (Webflow) or Bricks template JSON
-  jsHeadUrl?: string;   // S3 URL for JS head code (Webflow only)
   jsBodyUrl?: string;   // S3 URL for JS body code (Webflow only)
+  jsBody?: string;      // Actual JS body content for clipboard copy (Webflow only)
   nodeCount: number;
   styleCount: number;
 }

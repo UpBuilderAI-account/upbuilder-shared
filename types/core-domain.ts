@@ -16,7 +16,7 @@
 /**
  * User subscription tiers
  */
-export type SubscriptionTier = 'free' | 'pro' | 'enterprise';
+export type SubscriptionTier = 'basic' | 'pro' | 'max';
 
 /**
  * User account data

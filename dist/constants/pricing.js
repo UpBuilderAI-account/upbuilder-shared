@@ -4,27 +4,36 @@
 // Centralized pricing plan and feature definitions
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PRICING_CONFIG = exports.MAX_SECTIONS_PER_EXPORT = exports.MAX_DESIGNS_PER_PROJECT = exports.BASIC_FEATURES = exports.PRO_FEATURES = void 0;
-/**
- * Pro plan feature list
- * Single source of truth for all UIs (PricingTable, UpgradeModal, etc.)
- */
-exports.PRO_FEATURES = [
-    'Unlimited design sizes',
-    'All platforms (Webflow, Elementor, Bricks)',
-    'Advanced component detection',
-    'Priority processing queue',
-    'Priority email support',
-];
+exports.PRICING_CONFIG = exports.MAX_SECTIONS_PER_EXPORT = exports.MAX_DESIGNS_PER_PROJECT = exports.MAX_FEATURES = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;
 /**
  * Basic (Free) plan feature list
  */
 exports.BASIC_FEATURES = [
-    'Support for small designs',
-    '1 design per project',
-    'Limited platform exports',
+    '2 exports per month',
+    '3 projects',
+    '2 sections per export',
     'Basic component detection',
     'Community support',
+];
+/**
+ * Pro plan feature list
+ */
+exports.PRO_FEATURES = [
+    '20 exports per month',
+    '100 projects',
+    '6 sections per export',
+    'All platforms (Webflow, Elementor, Bricks)',
+    'Priority email support',
+];
+/**
+ * Max plan feature list
+ */
+exports.MAX_FEATURES = [
+    '100 exports per month',
+    '500 projects',
+    '20 sections per export',
+    'All platforms (Webflow, Elementor, Bricks)',
+    'Priority support + early access',
 ];
 /**
  * Design slots per tier
@@ -33,14 +42,16 @@ exports.BASIC_FEATURES = [
 exports.MAX_DESIGNS_PER_PROJECT = {
     free: 2,
     pro: 4,
+    max: 8,
 };
 /**
  * Section export limits per tier
- * Controls how many sections free users can export per design
+ * Controls how many sections users can export per design
  */
 exports.MAX_SECTIONS_PER_EXPORT = {
     free: 2,
-    pro: Infinity,
+    pro: 6,
+    max: 20,
 };
 /**
  * Pricing configuration for display
@@ -61,14 +72,24 @@ exports.PRICING_CONFIG = {
     pro: {
         name: 'Pro',
         price: 9.99,
-        originalPrice: 14.99,
         displayPrice: '9.99',
-        description: 'For professionals & teams',
+        description: 'For growing creators',
         features: exports.PRO_FEATURES,
-        projectLimit: 'unlimited',
-        exportsPerMonth: 'unlimited',
+        projectLimit: 100,
+        exportsPerMonth: 20,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
         maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.pro,
         popular: true,
+    },
+    max: {
+        name: 'Max',
+        price: 29.99,
+        displayPrice: '29.99',
+        description: 'For professionals & teams',
+        features: exports.MAX_FEATURES,
+        projectLimit: 500,
+        exportsPerMonth: 100,
+        maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.max,
+        maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.max,
     },
 };

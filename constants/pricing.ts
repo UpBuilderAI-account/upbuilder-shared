@@ -4,26 +4,36 @@
 // ============================================================================
 
 /**
+ * Basic (Free) plan feature list
+ */
+export const BASIC_FEATURES = [
+  '2 exports per month',
+  '3 projects',
+  '2 sections per export',
+  'Basic component detection',
+  'Community support',
+] as const;
+
+/**
  * Pro plan feature list
- * Single source of truth for all UIs (PricingTable, UpgradeModal, etc.)
  */
 export const PRO_FEATURES = [
-  'Unlimited design sizes',
+  '20 exports per month',
+  '100 projects',
+  '6 sections per export',
   'All platforms (Webflow, Elementor, Bricks)',
-  'Advanced component detection',
-  'Priority processing queue',
   'Priority email support',
 ] as const;
 
 /**
- * Basic (Free) plan feature list
+ * Max plan feature list
  */
-export const BASIC_FEATURES = [
-  'Support for small designs',
-  '1 design per project',
-  'Limited platform exports',
-  'Basic component detection',
-  'Community support',
+export const MAX_FEATURES = [
+  '100 exports per month',
+  '500 projects',
+  '20 sections per export',
+  'All platforms (Webflow, Elementor, Bricks)',
+  'Priority support + early access',
 ] as const;
 
 /**
@@ -33,15 +43,17 @@ export const BASIC_FEATURES = [
 export const MAX_DESIGNS_PER_PROJECT = {
   free: 2,
   pro: 4,
+  max: 8,
 } as const;
 
 /**
  * Section export limits per tier
- * Controls how many sections free users can export per design
+ * Controls how many sections users can export per design
  */
 export const MAX_SECTIONS_PER_EXPORT = {
   free: 2,
-  pro: Infinity,
+  pro: 6,
+  max: 20,
 } as const;
 
 /**
@@ -63,15 +75,25 @@ export const PRICING_CONFIG = {
   pro: {
     name: 'Pro',
     price: 9.99,
-    originalPrice: 14.99,
     displayPrice: '9.99',
-    description: 'For professionals & teams',
+    description: 'For growing creators',
     features: PRO_FEATURES,
-    projectLimit: 'unlimited' as const,
-    exportsPerMonth: 'unlimited' as const,
+    projectLimit: 100,
+    exportsPerMonth: 20,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
     maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.pro,
     popular: true,
+  },
+  max: {
+    name: 'Max',
+    price: 29.99,
+    displayPrice: '29.99',
+    description: 'For professionals & teams',
+    features: MAX_FEATURES,
+    projectLimit: 500,
+    exportsPerMonth: 100,
+    maxDesigns: MAX_DESIGNS_PER_PROJECT.max,
+    maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.max,
   },
 } as const;
 

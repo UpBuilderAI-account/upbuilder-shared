@@ -1,12 +1,15 @@
 /**
- * Pro plan feature list
- * Single source of truth for all UIs (PricingTable, UpgradeModal, etc.)
- */
-export declare const PRO_FEATURES: readonly ["Unlimited design sizes", "All platforms (Webflow, Elementor, Bricks)", "Advanced component detection", "Priority processing queue", "Priority email support"];
-/**
  * Basic (Free) plan feature list
  */
-export declare const BASIC_FEATURES: readonly ["Support for small designs", "1 design per project", "Limited platform exports", "Basic component detection", "Community support"];
+export declare const BASIC_FEATURES: readonly ["2 exports per month", "3 projects", "2 sections per export", "Basic component detection", "Community support"];
+/**
+ * Pro plan feature list
+ */
+export declare const PRO_FEATURES: readonly ["20 exports per month", "100 projects", "6 sections per export", "All platforms (Webflow, Elementor, Bricks)", "Priority email support"];
+/**
+ * Max plan feature list
+ */
+export declare const MAX_FEATURES: readonly ["100 exports per month", "500 projects", "20 sections per export", "All platforms (Webflow, Elementor, Bricks)", "Priority support + early access"];
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
@@ -14,14 +17,16 @@ export declare const BASIC_FEATURES: readonly ["Support for small designs", "1 d
 export declare const MAX_DESIGNS_PER_PROJECT: {
     readonly free: 2;
     readonly pro: 4;
+    readonly max: 8;
 };
 /**
  * Section export limits per tier
- * Controls how many sections free users can export per design
+ * Controls how many sections users can export per design
  */
 export declare const MAX_SECTIONS_PER_EXPORT: {
     readonly free: 2;
-    readonly pro: number;
+    readonly pro: 6;
+    readonly max: 20;
 };
 /**
  * Pricing configuration for display
@@ -33,7 +38,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 0;
         readonly displayPrice: "Free";
         readonly description: "Try UpBuilder for free";
-        readonly features: readonly ["Support for small designs", "1 design per project", "Limited platform exports", "Basic component detection", "Community support"];
+        readonly features: readonly ["2 exports per month", "3 projects", "2 sections per export", "Basic component detection", "Community support"];
         readonly projectLimit: 3;
         readonly exportsPerMonth: 2;
         readonly maxDesigns: 2;
@@ -42,15 +47,25 @@ export declare const PRICING_CONFIG: {
     readonly pro: {
         readonly name: "Pro";
         readonly price: 9.99;
-        readonly originalPrice: 14.99;
         readonly displayPrice: "9.99";
-        readonly description: "For professionals & teams";
-        readonly features: readonly ["Unlimited design sizes", "All platforms (Webflow, Elementor, Bricks)", "Advanced component detection", "Priority processing queue", "Priority email support"];
-        readonly projectLimit: "unlimited";
-        readonly exportsPerMonth: "unlimited";
+        readonly description: "For growing creators";
+        readonly features: readonly ["20 exports per month", "100 projects", "6 sections per export", "All platforms (Webflow, Elementor, Bricks)", "Priority email support"];
+        readonly projectLimit: 100;
+        readonly exportsPerMonth: 20;
         readonly maxDesigns: 4;
-        readonly maxSectionsPerExport: number;
+        readonly maxSectionsPerExport: 6;
         readonly popular: true;
+    };
+    readonly max: {
+        readonly name: "Max";
+        readonly price: 29.99;
+        readonly displayPrice: "29.99";
+        readonly description: "For professionals & teams";
+        readonly features: readonly ["100 exports per month", "500 projects", "20 sections per export", "All platforms (Webflow, Elementor, Bricks)", "Priority support + early access"];
+        readonly projectLimit: 500;
+        readonly exportsPerMonth: 100;
+        readonly maxDesigns: 8;
+        readonly maxSectionsPerExport: 20;
     };
 };
 //# sourceMappingURL=pricing.d.ts.map
