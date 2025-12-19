@@ -23,6 +23,9 @@ import type {
   WorkflowExportComplete,
   CodeSaveRequest,
   CodeSaveResult,
+  RenameRequest,
+  RenameResult,
+  RenameTargetType,
 } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
@@ -368,6 +371,12 @@ export interface ClientToServerEvents {
     callback: (result: CodeSaveResult) => void
   ) => void;
 
+  // Workflow rename (rename design/section/globalSection)
+  'workflow:rename': (
+    data: RenameRequest,
+    callback: (result: RenameResult) => void
+  ) => void;
+
   // Ownership transfer
   transfer_project_ownership: (
     data: { projectId: string },
@@ -442,13 +451,14 @@ export interface ServerToClientEvents {
   // Error events
   error: (data: ErrorPayload) => void;
 
-  // Workflow events (6 events total)
+  // Workflow events (7 events total)
   'workflow:stage': (data: WorkflowStage) => void;
   'workflow:stages': (data: WorkflowStages) => void;
   'workflow:stream': (data: WorkflowStream) => void;
   'workflow:error': (data: WorkflowError) => void;
   'workflow:editor': (data: WorkflowEditor) => void;
   'workflow:export_complete': (data: WorkflowExportComplete) => void;
+  'workflow:renamed': (data: { type: RenameTargetType; id: string; name: string }) => void;
 
   // Ownership transfer events
   project_ownership_transferred: (data: {

@@ -1,6 +1,6 @@
 import type { ImagePair, PreviewData, FramePreview } from './plugin';
 import type { Element } from './element';
-import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, CodeSaveRequest, CodeSaveResult } from './workflow';
+import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 export type { ExportOptions, ExportPayload };
@@ -250,6 +250,7 @@ export interface ClientToServerEvents {
     }) => void) => void;
     'workflow:command': (data: WorkflowCommand, callback: (ok: boolean) => void) => void;
     'workflow:save_code': (data: CodeSaveRequest, callback: (result: CodeSaveResult) => void) => void;
+    'workflow:rename': (data: RenameRequest, callback: (result: RenameResult) => void) => void;
     transfer_project_ownership: (data: {
         projectId: string;
     }, callback: CallbackResponse) => void;
@@ -297,6 +298,11 @@ export interface ServerToClientEvents {
     'workflow:error': (data: WorkflowError) => void;
     'workflow:editor': (data: WorkflowEditor) => void;
     'workflow:export_complete': (data: WorkflowExportComplete) => void;
+    'workflow:renamed': (data: {
+        type: RenameTargetType;
+        id: string;
+        name: string;
+    }) => void;
     project_ownership_transferred: (data: {
         projectId: string;
         projectName?: string;

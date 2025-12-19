@@ -59,6 +59,10 @@ export {
   type CodeSaveRequest,
   type CodeChange,
   type CodeSaveResult,
+  // Rename types
+  type RenameTargetType,
+  type RenameRequest,
+  type RenameResult,
   // Socket event interfaces
   type ServerToClientWorkflowEvents,
   type ClientToServerWorkflowEvents,
