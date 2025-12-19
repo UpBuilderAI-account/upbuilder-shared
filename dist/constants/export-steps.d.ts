@@ -9,6 +9,12 @@ export declare const EXPORT_STEPS_CONFIG: {
             readonly id: "prepare";
             readonly label: "Preparing";
         }, {
+            readonly id: "styles";
+            readonly label: "Converting styles";
+        }, {
+            readonly id: "global_sections";
+            readonly label: "Building global sections";
+        }, {
             readonly id: "assets";
             readonly label: "Uploading assets";
         }, {
@@ -19,9 +25,6 @@ export declare const EXPORT_STEPS_CONFIG: {
             readonly label: "Finalizing";
         }];
         readonly design: readonly [{
-            readonly id: "convert_styles";
-            readonly label: "Convert styles";
-        }, {
             readonly id: "build_sections";
             readonly label: "Build sections";
         }, {
@@ -92,6 +95,12 @@ export declare function getExportStepsConfig(platform: string): {
         readonly id: "prepare";
         readonly label: "Preparing";
     }, {
+        readonly id: "styles";
+        readonly label: "Converting styles";
+    }, {
+        readonly id: "global_sections";
+        readonly label: "Building global sections";
+    }, {
         readonly id: "assets";
         readonly label: "Uploading assets";
     }, {
@@ -102,9 +111,6 @@ export declare function getExportStepsConfig(platform: string): {
         readonly label: "Finalizing";
     }];
     readonly design: readonly [{
-        readonly id: "convert_styles";
-        readonly label: "Convert styles";
-    }, {
         readonly id: "build_sections";
         readonly label: "Build sections";
     }, {

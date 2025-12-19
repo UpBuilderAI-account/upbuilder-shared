@@ -12,12 +12,14 @@ export const EXPORT_STEPS_CONFIG = {
   webflow: {
     global: [
       { id: 'prepare', label: 'Preparing' },
+      { id: 'styles', label: 'Converting styles' },
+      { id: 'global_sections', label: 'Building global sections' },
       { id: 'assets', label: 'Uploading assets' },
       { id: 'processing', label: 'Processing designs' },
       { id: 'finalize', label: 'Finalizing' },
     ],
     design: [
-      { id: 'convert_styles', label: 'Convert styles' },
+      // Note: convert_styles and global sections are now done globally, not per-design
       { id: 'build_sections', label: 'Build sections' },
       { id: 'page_assembly', label: 'Page assembly' },
       { id: 'generate_xscp', label: 'Generate export' },
