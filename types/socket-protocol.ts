@@ -26,6 +26,11 @@ import type {
   RenameRequest,
   RenameResult,
   RenameTargetType,
+  StylesheetSaveRequest,
+  StylesheetResetRequest,
+  StylesheetCleanRequest,
+  StylesheetSaveResult,
+  StylesheetCleanResult,
 } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
@@ -375,6 +380,22 @@ export interface ClientToServerEvents {
   'workflow:rename': (
     data: RenameRequest,
     callback: (result: RenameResult) => void
+  ) => void;
+
+  // Workflow stylesheet review (save/reset/clean)
+  'workflow:save_stylesheet': (
+    data: StylesheetSaveRequest,
+    callback: (result: StylesheetSaveResult) => void
+  ) => void;
+
+  'workflow:reset_stylesheet': (
+    data: StylesheetResetRequest,
+    callback: (result: StylesheetSaveResult) => void
+  ) => void;
+
+  'workflow:clean_stylesheet': (
+    data: StylesheetCleanRequest,
+    callback: (result: StylesheetCleanResult) => void
   ) => void;
 
   // Ownership transfer

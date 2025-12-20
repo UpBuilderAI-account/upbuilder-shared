@@ -1,6 +1,6 @@
 import type { ImagePair, PreviewData, FramePreview } from './plugin';
 import type { Element } from './element';
-import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType } from './workflow';
+import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType, StylesheetSaveRequest, StylesheetResetRequest, StylesheetCleanRequest, StylesheetSaveResult, StylesheetCleanResult } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 export type { ExportOptions, ExportPayload };
@@ -251,6 +251,9 @@ export interface ClientToServerEvents {
     'workflow:command': (data: WorkflowCommand, callback: (ok: boolean) => void) => void;
     'workflow:save_code': (data: CodeSaveRequest, callback: (result: CodeSaveResult) => void) => void;
     'workflow:rename': (data: RenameRequest, callback: (result: RenameResult) => void) => void;
+    'workflow:save_stylesheet': (data: StylesheetSaveRequest, callback: (result: StylesheetSaveResult) => void) => void;
+    'workflow:reset_stylesheet': (data: StylesheetResetRequest, callback: (result: StylesheetSaveResult) => void) => void;
+    'workflow:clean_stylesheet': (data: StylesheetCleanRequest, callback: (result: StylesheetCleanResult) => void) => void;
     transfer_project_ownership: (data: {
         projectId: string;
     }, callback: CallbackResponse) => void;
