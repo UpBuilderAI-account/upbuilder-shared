@@ -48,6 +48,7 @@ export {
   type EditorAsset,
   type WorkflowEditor,
   // Styles config types
+  type SpacingScale,
   type StylesConfig,
   DEFAULT_STYLES_CONFIG,
   // Customize types

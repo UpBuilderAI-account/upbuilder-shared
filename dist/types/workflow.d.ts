@@ -132,22 +132,22 @@ export interface StylesConfig {
     useRemFontSizes: boolean;
     /** Use unitless line-height values (Client-First requirement) */
     useUnitlessLineHeight: boolean;
-    /** Generate spacing utilities (margin-*, padding-*, spacer-*) */
-    generateSpacing: boolean;
     /** Generate typography utilities (text-size-*, text-weight-*, heading-style-*, etc.) */
     generateTypography: boolean;
     /** Generate color utilities (text-color-*, background-color-*) */
     generateColors: boolean;
     /** Generate button classes (.button, .button.is-*) */
     generateButtons: boolean;
-    /** Generate visibility utilities (hide, hide-tablet, etc.) */
-    generateVisibility: boolean;
-    /** Generate max-width utilities */
-    generateMaxWidth: boolean;
     /** Generate border/radius utilities */
     generateBorders: boolean;
     /** Generate shadow utilities */
     generateShadows: boolean;
+    /** Generate spacing utilities (margin-*, padding-*, spacer-*) */
+    generateSpacing: boolean;
+    /** Generate visibility utilities (hide, hide-tablet, etc.) */
+    generateVisibility: boolean;
+    /** Generate max-width utilities */
+    generateMaxWidth: boolean;
     /** Generate icon sizing utilities */
     generateIcons: boolean;
     /** Generate aspect ratio utilities */

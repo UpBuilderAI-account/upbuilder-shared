@@ -170,7 +170,7 @@ export interface SpacingScale {
  */
 export interface StylesConfig {
   // ===========================================
-  // CORE SETTINGS (Framework requirements - always true)
+  // REQUIRED - Core Settings (Locked, always true)
   // ===========================================
 
   /** Use rem units for font sizes (Client-First requirement) */
@@ -178,13 +178,6 @@ export interface StylesConfig {
 
   /** Use unitless line-height values (Client-First requirement) */
   useUnitlessLineHeight: boolean;
-
-  // ===========================================
-  // CORE UTILITIES (Required - enabled by default)
-  // ===========================================
-
-  /** Generate spacing utilities (margin-*, padding-*, spacer-*) */
-  generateSpacing: boolean;
 
   /** Generate typography utilities (text-size-*, text-weight-*, heading-style-*, etc.) */
   generateTypography: boolean;
@@ -199,21 +192,24 @@ export interface StylesConfig {
   /** Generate button classes (.button, .button.is-*) */
   generateButtons: boolean;
 
-  /** Generate visibility utilities (hide, hide-tablet, etc.) */
-  generateVisibility: boolean;
-
-  /** Generate max-width utilities */
-  generateMaxWidth: boolean;
-
-  // ===========================================
-  // EXTENDED UTILITIES (Disabled by default - adds CSS weight)
-  // ===========================================
-
   /** Generate border/radius utilities */
   generateBorders: boolean;
 
   /** Generate shadow utilities */
   generateShadows: boolean;
+
+  // ===========================================
+  // EXTENDED UTILITIES (Disabled by default - adds CSS weight)
+  // ===========================================
+
+  /** Generate spacing utilities (margin-*, padding-*, spacer-*) */
+  generateSpacing: boolean;
+
+  /** Generate visibility utilities (hide, hide-tablet, etc.) */
+  generateVisibility: boolean;
+
+  /** Generate max-width utilities */
+  generateMaxWidth: boolean;
 
   /** Generate icon sizing utilities */
   generateIcons: boolean;
