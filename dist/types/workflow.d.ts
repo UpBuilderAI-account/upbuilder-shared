@@ -70,7 +70,7 @@ export interface WorkflowStages {
 }
 export interface WorkflowStream {
     stage: 'generate_styles' | 'consolidate_css' | 'consolidate_scripts';
-    type: 'css' | 'js';
+    type: 'css' | 'js' | 'preview_html';
     chunk: string;
     done?: boolean;
     /** If true, frontend should clear accumulated code before appending chunk (used for retries) */
