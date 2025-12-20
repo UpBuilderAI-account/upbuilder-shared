@@ -13,20 +13,19 @@ exports.getStageOrderForPlatform = getStageOrderForPlatform;
  * Default values for Client-First V2.1 StylesConfig
  */
 exports.DEFAULT_STYLES_CONFIG = {
-    // Core settings (locked)
+    // Required (locked)
     useRemFontSizes: true,
     useUnitlessLineHeight: true,
-    // Core utilities (required)
+    generateSpacing: true,
     generateTypography: true,
     generateColors: true,
-    // Recommended utilities
+    // Recommended (enabled by default)
     generateButtons: true,
-    generateBorders: true,
-    generateShadows: true,
-    // Extended utilities (off by default)
-    generateSpacing: false,
-    generateVisibility: false,
-    generateMaxWidth: false,
+    generateVisibility: true,
+    generateMaxWidth: true,
+    // Extended (off by default)
+    generateBorders: false,
+    generateShadows: false,
     generateIcons: false,
     generateAspectRatios: false,
     generateOverflow: false,

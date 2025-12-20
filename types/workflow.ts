@@ -170,7 +170,7 @@ export interface SpacingScale {
  */
 export interface StylesConfig {
   // ===========================================
-  // REQUIRED - Core Settings (Locked, always true)
+  // REQUIRED (Locked, always true)
   // ===========================================
 
   /** Use rem units for font sizes (Client-First requirement) */
@@ -179,6 +179,9 @@ export interface StylesConfig {
   /** Use unitless line-height values (Client-First requirement) */
   useUnitlessLineHeight: boolean;
 
+  /** Generate spacing utilities (margin-*, padding-*, spacer-*) - Core Client-First system */
+  generateSpacing: boolean;
+
   /** Generate typography utilities (text-size-*, text-weight-*, heading-style-*, etc.) */
   generateTypography: boolean;
 
@@ -186,30 +189,27 @@ export interface StylesConfig {
   generateColors: boolean;
 
   // ===========================================
-  // RECOMMENDED UTILITIES (Enabled by default)
+  // RECOMMENDED (Enabled by default)
   // ===========================================
 
   /** Generate button classes (.button, .button.is-*) */
   generateButtons: boolean;
-
-  /** Generate border/radius utilities */
-  generateBorders: boolean;
-
-  /** Generate shadow utilities */
-  generateShadows: boolean;
-
-  // ===========================================
-  // EXTENDED UTILITIES (Disabled by default - adds CSS weight)
-  // ===========================================
-
-  /** Generate spacing utilities (margin-*, padding-*, spacer-*) */
-  generateSpacing: boolean;
 
   /** Generate visibility utilities (hide, hide-tablet, etc.) */
   generateVisibility: boolean;
 
   /** Generate max-width utilities */
   generateMaxWidth: boolean;
+
+  // ===========================================
+  // EXTENDED (Disabled by default - adds CSS weight)
+  // ===========================================
+
+  /** Generate border/radius utilities */
+  generateBorders: boolean;
+
+  /** Generate shadow utilities */
+  generateShadows: boolean;
 
   /** Generate icon sizing utilities */
   generateIcons: boolean;
@@ -238,23 +238,21 @@ export interface StylesConfig {
  * Default values for Client-First V2.1 StylesConfig
  */
 export const DEFAULT_STYLES_CONFIG: StylesConfig = {
-  // Core settings (locked)
+  // Required (locked)
   useRemFontSizes: true,
   useUnitlessLineHeight: true,
-
-  // Core utilities (required)
+  generateSpacing: true,
   generateTypography: true,
   generateColors: true,
 
-  // Recommended utilities
+  // Recommended (enabled by default)
   generateButtons: true,
-  generateBorders: true,
-  generateShadows: true,
+  generateVisibility: true,
+  generateMaxWidth: true,
 
-  // Extended utilities (off by default)
-  generateSpacing: false,
-  generateVisibility: false,
-  generateMaxWidth: false,
+  // Extended (off by default)
+  generateBorders: false,
+  generateShadows: false,
   generateIcons: false,
   generateAspectRatios: false,
   generateOverflow: false,
