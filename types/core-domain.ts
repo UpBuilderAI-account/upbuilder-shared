@@ -84,6 +84,7 @@ export type ProjectStatus =
   | 'detect_sections'
   | 'styles_config'
   | 'generate_styles'
+  | 'review_stylesheet'
   | 'prepare_build'
   | 'build'
   | 'consolidate_css'
@@ -102,6 +103,7 @@ export const PROJECT_STATUS = {
   DETECT_SECTIONS: 'detect_sections' as ProjectStatus,
   STYLES_CONFIG: 'styles_config' as ProjectStatus,
   GENERATE_STYLES: 'generate_styles' as ProjectStatus,
+  REVIEW_STYLESHEET: 'review_stylesheet' as ProjectStatus,
   PREPARE_BUILD: 'prepare_build' as ProjectStatus,
   BUILD: 'build' as ProjectStatus,
   CONSOLIDATE_CSS: 'consolidate_css' as ProjectStatus,
@@ -140,7 +142,8 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform): Proje
     load: 'detect_sections',
     detect_sections: 'styles_config',
     styles_config: 'generate_styles',
-    generate_styles: 'prepare_build',
+    generate_styles: 'review_stylesheet',
+    review_stylesheet: 'prepare_build',
     prepare_build: 'build',
     build: 'consolidate_css',
     consolidate_css: 'consolidate_scripts',
@@ -168,8 +171,8 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform): Proje
  * Check if user action is required after this stage completes
  */
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
-  // styles_config, generate_styles, and customize stages require user action to proceed
-  return status === 'styles_config' || status === 'generate_styles' || status === 'customize';
+  // styles_config, review_stylesheet, and customize stages require user action to proceed
+  return status === 'styles_config' || status === 'review_stylesheet' || status === 'customize';
 }
 
 export type Platform = 'webflow' | 'bricks' | 'elementor';
@@ -185,8 +188,8 @@ export type StyleFramework = 'client-first' | 'tailwind' | 'bootstrap' | 'vanill
  */
 export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
   webflow: [],
-  bricks: ['styles_config', 'generate_styles', 'consolidate_css', 'consolidate_scripts'],
-  elementor: ['styles_config', 'generate_styles', 'consolidate_css', 'consolidate_scripts'],
+  bricks: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_css', 'consolidate_scripts'],
+  elementor: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_css', 'consolidate_scripts'],
 };
 
 /**

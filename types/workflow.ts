@@ -459,6 +459,7 @@ export const STAGE_ORDER: Stage[] = [
   'detect_sections',
   'styles_config',
   'generate_styles',
+  'review_stylesheet',
   'prepare_build',
   'build',
   'consolidate_css',
@@ -472,6 +473,7 @@ export const STAGE_LABELS: Record<Stage, string> = {
   detect_sections: 'Detecting Sections',
   styles_config: 'Configure Styles',
   generate_styles: 'Generating Base Styles',
+  review_stylesheet: 'Review Stylesheet',
   prepare_build: 'Preparing Build',
   build: 'Building Sections',
   consolidate_css: 'Regenerating All Styles',
@@ -487,6 +489,7 @@ export const STAGE_LABELS: Record<Stage, string> = {
 export const INLINE_PLATFORM_SKIPPED_STAGES: Stage[] = [
   'styles_config',
   'generate_styles',
+  'review_stylesheet',
   'consolidate_css',
   'consolidate_scripts',
 ];

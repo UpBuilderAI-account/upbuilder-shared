@@ -23,6 +23,7 @@ exports.PROJECT_STATUS = {
     DETECT_SECTIONS: 'detect_sections',
     STYLES_CONFIG: 'styles_config',
     GENERATE_STYLES: 'generate_styles',
+    REVIEW_STYLESHEET: 'review_stylesheet',
     PREPARE_BUILD: 'prepare_build',
     BUILD: 'build',
     CONSOLIDATE_CSS: 'consolidate_css',
@@ -60,7 +61,8 @@ function getNextStatus(status, platform) {
         load: 'detect_sections',
         detect_sections: 'styles_config',
         styles_config: 'generate_styles',
-        generate_styles: 'prepare_build',
+        generate_styles: 'review_stylesheet',
+        review_stylesheet: 'prepare_build',
         prepare_build: 'build',
         build: 'consolidate_css',
         consolidate_css: 'consolidate_scripts',
@@ -84,8 +86,8 @@ function getNextStatus(status, platform) {
  * Check if user action is required after this stage completes
  */
 function requiresUserActionAfter(status) {
-    // styles_config, generate_styles, and customize stages require user action to proceed
-    return status === 'styles_config' || status === 'generate_styles' || status === 'customize';
+    // styles_config, review_stylesheet, and customize stages require user action to proceed
+    return status === 'styles_config' || status === 'review_stylesheet' || status === 'customize';
 }
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION
@@ -96,8 +98,8 @@ function requiresUserActionAfter(status) {
  */
 exports.SKIPPED_STAGES = {
     webflow: [],
-    bricks: ['styles_config', 'generate_styles', 'consolidate_css', 'consolidate_scripts'],
-    elementor: ['styles_config', 'generate_styles', 'consolidate_css', 'consolidate_scripts'],
+    bricks: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_css', 'consolidate_scripts'],
+    elementor: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_css', 'consolidate_scripts'],
 };
 /**
  * Platforms that use per-section CSS (vs global stylesheet)

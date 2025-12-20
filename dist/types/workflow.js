@@ -48,6 +48,7 @@ exports.STAGE_ORDER = [
     'detect_sections',
     'styles_config',
     'generate_styles',
+    'review_stylesheet',
     'prepare_build',
     'build',
     'consolidate_css',
@@ -60,6 +61,7 @@ exports.STAGE_LABELS = {
     detect_sections: 'Detecting Sections',
     styles_config: 'Configure Styles',
     generate_styles: 'Generating Base Styles',
+    review_stylesheet: 'Review Stylesheet',
     prepare_build: 'Preparing Build',
     build: 'Building Sections',
     consolidate_css: 'Regenerating All Styles',
@@ -74,6 +76,7 @@ exports.STAGE_LABELS = {
 exports.INLINE_PLATFORM_SKIPPED_STAGES = [
     'styles_config',
     'generate_styles',
+    'review_stylesheet',
     'consolidate_css',
     'consolidate_scripts',
 ];
