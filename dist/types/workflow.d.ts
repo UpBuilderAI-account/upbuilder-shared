@@ -160,8 +160,6 @@ export interface StylesConfig {
     generatePointerEvents: boolean;
     /** Custom spacing scale (overrides defaults) */
     spacingScale?: SpacingScale;
-    /** Additional instructions for the AI */
-    customInstructions?: string;
 }
 /**
  * Default values for Client-First V2.1 StylesConfig

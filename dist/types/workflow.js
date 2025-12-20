@@ -17,24 +17,21 @@ exports.DEFAULT_STYLES_CONFIG = {
     useRemFontSizes: true,
     useUnitlessLineHeight: true,
     // Core utilities (required)
-    generateSpacing: true,
     generateTypography: true,
     generateColors: true,
     // Recommended utilities
     generateButtons: true,
-    generateVisibility: true,
-    generateMaxWidth: true,
+    generateBorders: true,
+    generateShadows: true,
     // Extended utilities (off by default)
-    generateBorders: false,
-    generateShadows: false,
+    generateSpacing: false,
+    generateVisibility: false,
+    generateMaxWidth: false,
     generateIcons: false,
     generateAspectRatios: false,
     generateOverflow: false,
     generateZIndex: false,
     generatePointerEvents: false,
-    // No custom values by default
-    spacingScale: undefined,
-    customInstructions: '',
 };
 // =============================================================================
 // HELPERS

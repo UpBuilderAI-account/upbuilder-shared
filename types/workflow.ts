@@ -236,9 +236,6 @@ export interface StylesConfig {
 
   /** Custom spacing scale (overrides defaults) */
   spacingScale?: SpacingScale;
-
-  /** Additional instructions for the AI */
-  customInstructions?: string;
 }
 
 /**
@@ -250,27 +247,23 @@ export const DEFAULT_STYLES_CONFIG: StylesConfig = {
   useUnitlessLineHeight: true,
 
   // Core utilities (required)
-  generateSpacing: true,
   generateTypography: true,
   generateColors: true,
 
   // Recommended utilities
   generateButtons: true,
-  generateVisibility: true,
-  generateMaxWidth: true,
+  generateBorders: true,
+  generateShadows: true,
 
   // Extended utilities (off by default)
-  generateBorders: false,
-  generateShadows: false,
+  generateSpacing: false,
+  generateVisibility: false,
+  generateMaxWidth: false,
   generateIcons: false,
   generateAspectRatios: false,
   generateOverflow: false,
   generateZIndex: false,
   generatePointerEvents: false,
-
-  // No custom values by default
-  spacingScale: undefined,
-  customInstructions: '',
 };
 
 // =============================================================================
