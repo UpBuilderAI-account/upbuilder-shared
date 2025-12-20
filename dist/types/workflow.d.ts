@@ -59,6 +59,10 @@ export interface WorkflowStages {
     js?: string;
     /** CSS from generate_styles stage */
     generateStylesCSS?: string;
+    /** Original CSS from generate_styles stage (for reset functionality) */
+    generateStylesOriginalCSS?: string;
+    /** Preview HTML from generate_styles stage (demonstrates all utility classes) */
+    generateStylesPreviewHtml?: string;
     /** CSS from consolidate_css stage */
     consolidateCssCSS?: string;
     /** JS from consolidate_scripts stage */
@@ -238,6 +242,44 @@ export interface CodeSaveResult {
         message: string;
     }>;
 }
+/**
+ * Request to save edited stylesheet during generate_styles review
+ */
+export interface StylesheetSaveRequest {
+    projectId: string;
+    css: string;
+}
+/**
+ * Request to reset stylesheet to original generated version
+ */
+export interface StylesheetResetRequest {
+    projectId: string;
+}
+/**
+ * Request to clean unused CSS classes from stylesheet
+ */
+export interface StylesheetCleanRequest {
+    projectId: string;
+}
+/**
+ * Result of stylesheet save/reset operation
+ */
+export interface StylesheetSaveResult {
+    success: boolean;
+    css?: string;
+    error?: string;
+}
+/**
+ * Result of stylesheet clean operation
+ */
+export interface StylesheetCleanResult {
+    success: boolean;
+    css?: string;
+    removedClasses?: string[];
+    originalSize?: number;
+    cleanedSize?: number;
+    error?: string;
+}
 export type RenameTargetType = 'design' | 'section' | 'globalSection';
 export interface RenameRequest {
     projectId: string;
@@ -266,6 +308,9 @@ export interface ClientToServerWorkflowEvents {
     'workflow:command': (data: WorkflowCommand, cb: (ok: boolean) => void) => void;
     'workflow:save_code': (data: CodeSaveRequest, cb: (result: CodeSaveResult) => void) => void;
     'workflow:rename': (data: RenameRequest, cb: (result: RenameResult) => void) => void;
+    'workflow:save_stylesheet': (data: StylesheetSaveRequest, cb: (result: StylesheetSaveResult) => void) => void;
+    'workflow:reset_stylesheet': (data: StylesheetResetRequest, cb: (result: StylesheetSaveResult) => void) => void;
+    'workflow:clean_stylesheet': (data: StylesheetCleanRequest, cb: (result: StylesheetCleanResult) => void) => void;
 }
 export declare const isPending: (p: Progress) => boolean;
 export declare const isRunning: (p: Progress) => boolean;

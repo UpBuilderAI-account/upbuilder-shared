@@ -84,8 +84,8 @@ function getNextStatus(status, platform) {
  * Check if user action is required after this stage completes
  */
 function requiresUserActionAfter(status) {
-    // styles_config and customize stages require user action to proceed
-    return status === 'styles_config' || status === 'customize';
+    // styles_config, generate_styles, and customize stages require user action to proceed
+    return status === 'styles_config' || status === 'generate_styles' || status === 'customize';
 }
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION

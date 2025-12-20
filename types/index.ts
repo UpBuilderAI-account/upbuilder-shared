@@ -67,6 +67,12 @@ export {
   type RenameTargetType,
   type RenameRequest,
   type RenameResult,
+  // Stylesheet review types (generate_styles stage)
+  type StylesheetSaveRequest,
+  type StylesheetResetRequest,
+  type StylesheetCleanRequest,
+  type StylesheetSaveResult,
+  type StylesheetCleanResult,
   // Socket event interfaces
   type ServerToClientWorkflowEvents,
   type ClientToServerWorkflowEvents,

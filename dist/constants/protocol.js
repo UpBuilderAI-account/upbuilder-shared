@@ -66,6 +66,10 @@ exports.SOCKET_EVENTS = {
         SAVE_CODE: 'workflow:save_code', // Client → Server: Save edited code from customizer
         RENAME: 'workflow:rename', // Client → Server: Rename design/section
         RENAMED: 'workflow:renamed', // Server → Client: Broadcast rename to other clients
+        // Stylesheet review (generate_styles stage)
+        SAVE_STYLESHEET: 'workflow:save_stylesheet', // Client → Server: Save edited stylesheet
+        RESET_STYLESHEET: 'workflow:reset_stylesheet', // Client → Server: Reset to original stylesheet
+        CLEAN_STYLESHEET: 'workflow:clean_stylesheet', // Client → Server: Remove unused CSS classes
     },
     /**
      * Server → Client: Project state updates

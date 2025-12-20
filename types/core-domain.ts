@@ -168,8 +168,8 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform): Proje
  * Check if user action is required after this stage completes
  */
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
-  // styles_config and customize stages require user action to proceed
-  return status === 'styles_config' || status === 'customize';
+  // styles_config, generate_styles, and customize stages require user action to proceed
+  return status === 'styles_config' || status === 'generate_styles' || status === 'customize';
 }
 
 export type Platform = 'webflow' | 'bricks' | 'elementor';
