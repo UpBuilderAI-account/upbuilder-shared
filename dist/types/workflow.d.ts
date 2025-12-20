@@ -109,17 +109,62 @@ export interface WorkflowEditor {
     designs: EditorDesign[];
 }
 /**
- * Configuration options for stylesheet generation
+ * Custom spacing scale values (rem units)
+ */
+export interface SpacingScale {
+    tiny?: string;
+    xxsmall?: string;
+    xsmall?: string;
+    small?: string;
+    medium?: string;
+    large?: string;
+    xlarge?: string;
+    xxlarge?: string;
+    huge?: string;
+    xhuge?: string;
+    xxhuge?: string;
+}
+/**
+ * Configuration options for Client-First V2.1 stylesheet generation
  */
 export interface StylesConfig {
+    /** Use rem units for font sizes (Client-First requirement) */
     useRemFontSizes: boolean;
+    /** Use unitless line-height values (Client-First requirement) */
     useUnitlessLineHeight: boolean;
-    generateSpacingUtilities: boolean;
-    generateSizingUtilities: boolean;
+    /** Generate spacing utilities (margin-*, padding-*, spacer-*) */
+    generateSpacing: boolean;
+    /** Generate typography utilities (text-size-*, text-weight-*, heading-style-*, etc.) */
+    generateTypography: boolean;
+    /** Generate color utilities (text-color-*, background-color-*) */
+    generateColors: boolean;
+    /** Generate button classes (.button, .button.is-*) */
+    generateButtons: boolean;
+    /** Generate visibility utilities (hide, hide-tablet, etc.) */
+    generateVisibility: boolean;
+    /** Generate max-width utilities */
+    generateMaxWidth: boolean;
+    /** Generate border/radius utilities */
+    generateBorders: boolean;
+    /** Generate shadow utilities */
+    generateShadows: boolean;
+    /** Generate icon sizing utilities */
+    generateIcons: boolean;
+    /** Generate aspect ratio utilities */
+    generateAspectRatios: boolean;
+    /** Generate overflow utilities */
+    generateOverflow: boolean;
+    /** Generate z-index utilities */
+    generateZIndex: boolean;
+    /** Generate pointer-events utilities */
+    generatePointerEvents: boolean;
+    /** Custom spacing scale (overrides defaults) */
+    spacingScale?: SpacingScale;
+    /** Additional instructions for the AI */
     customInstructions?: string;
 }
 /**
- * Default values for StylesConfig
+ * Default values for Client-First V2.1 StylesConfig
  */
 export declare const DEFAULT_STYLES_CONFIG: StylesConfig;
 export interface CustomSectionCode {

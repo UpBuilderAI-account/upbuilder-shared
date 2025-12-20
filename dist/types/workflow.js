@@ -10,13 +10,30 @@ exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_OR
 exports.isInlineCSSPlatform = isInlineCSSPlatform;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
 /**
- * Default values for StylesConfig
+ * Default values for Client-First V2.1 StylesConfig
  */
 exports.DEFAULT_STYLES_CONFIG = {
-    useRemFontSizes: false,
+    // Core settings (locked)
+    useRemFontSizes: true,
     useUnitlessLineHeight: true,
-    generateSpacingUtilities: false,
-    generateSizingUtilities: false,
+    // Core utilities (required)
+    generateSpacing: true,
+    generateTypography: true,
+    generateColors: true,
+    // Recommended utilities
+    generateButtons: true,
+    generateVisibility: true,
+    generateMaxWidth: true,
+    // Extended utilities (off by default)
+    generateBorders: false,
+    generateShadows: false,
+    generateIcons: false,
+    generateAspectRatios: false,
+    generateOverflow: false,
+    generateZIndex: false,
+    generatePointerEvents: false,
+    // No custom values by default
+    spacingScale: undefined,
     customInstructions: '',
 };
 // =============================================================================

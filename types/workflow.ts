@@ -145,28 +145,131 @@ export interface WorkflowEditor {
 }
 
 // =============================================================================
-// STYLES CONFIG STAGE TYPES
+// STYLES CONFIG STAGE TYPES (Client-First V2.1)
 // =============================================================================
 
 /**
- * Configuration options for stylesheet generation
+ * Custom spacing scale values (rem units)
+ */
+export interface SpacingScale {
+  tiny?: string;      // default: 0.125rem (2px)
+  xxsmall?: string;   // default: 0.25rem (4px)
+  xsmall?: string;    // default: 0.5rem (8px)
+  small?: string;     // default: 1rem (16px)
+  medium?: string;    // default: 2rem (32px)
+  large?: string;     // default: 3rem (48px)
+  xlarge?: string;    // default: 4rem (64px)
+  xxlarge?: string;   // default: 5rem (80px)
+  huge?: string;      // default: 6rem (96px)
+  xhuge?: string;     // default: 8rem (128px)
+  xxhuge?: string;    // default: 12rem (192px)
+}
+
+/**
+ * Configuration options for Client-First V2.1 stylesheet generation
  */
 export interface StylesConfig {
+  // ===========================================
+  // CORE SETTINGS (Framework requirements - always true)
+  // ===========================================
+
+  /** Use rem units for font sizes (Client-First requirement) */
   useRemFontSizes: boolean;
+
+  /** Use unitless line-height values (Client-First requirement) */
   useUnitlessLineHeight: boolean;
-  generateSpacingUtilities: boolean;
-  generateSizingUtilities: boolean;
+
+  // ===========================================
+  // CORE UTILITIES (Required - enabled by default)
+  // ===========================================
+
+  /** Generate spacing utilities (margin-*, padding-*, spacer-*) */
+  generateSpacing: boolean;
+
+  /** Generate typography utilities (text-size-*, text-weight-*, heading-style-*, etc.) */
+  generateTypography: boolean;
+
+  /** Generate color utilities (text-color-*, background-color-*) */
+  generateColors: boolean;
+
+  // ===========================================
+  // RECOMMENDED UTILITIES (Enabled by default)
+  // ===========================================
+
+  /** Generate button classes (.button, .button.is-*) */
+  generateButtons: boolean;
+
+  /** Generate visibility utilities (hide, hide-tablet, etc.) */
+  generateVisibility: boolean;
+
+  /** Generate max-width utilities */
+  generateMaxWidth: boolean;
+
+  // ===========================================
+  // EXTENDED UTILITIES (Disabled by default - adds CSS weight)
+  // ===========================================
+
+  /** Generate border/radius utilities */
+  generateBorders: boolean;
+
+  /** Generate shadow utilities */
+  generateShadows: boolean;
+
+  /** Generate icon sizing utilities */
+  generateIcons: boolean;
+
+  /** Generate aspect ratio utilities */
+  generateAspectRatios: boolean;
+
+  /** Generate overflow utilities */
+  generateOverflow: boolean;
+
+  /** Generate z-index utilities */
+  generateZIndex: boolean;
+
+  /** Generate pointer-events utilities */
+  generatePointerEvents: boolean;
+
+  // ===========================================
+  // CUSTOM VALUES (Optional overrides)
+  // ===========================================
+
+  /** Custom spacing scale (overrides defaults) */
+  spacingScale?: SpacingScale;
+
+  /** Additional instructions for the AI */
   customInstructions?: string;
 }
 
 /**
- * Default values for StylesConfig
+ * Default values for Client-First V2.1 StylesConfig
  */
 export const DEFAULT_STYLES_CONFIG: StylesConfig = {
-  useRemFontSizes: false,
+  // Core settings (locked)
+  useRemFontSizes: true,
   useUnitlessLineHeight: true,
-  generateSpacingUtilities: false,
-  generateSizingUtilities: false,
+
+  // Core utilities (required)
+  generateSpacing: true,
+  generateTypography: true,
+  generateColors: true,
+
+  // Recommended utilities
+  generateButtons: true,
+  generateVisibility: true,
+  generateMaxWidth: true,
+
+  // Extended utilities (off by default)
+  generateBorders: false,
+  generateShadows: false,
+  generateIcons: false,
+  generateAspectRatios: false,
+  generateOverflow: false,
+  generateZIndex: false,
+  generatePointerEvents: false,
+
+  // No custom values by default
+  spacingScale: undefined,
   customInstructions: '',
 };
 
