@@ -9,7 +9,7 @@ exports.PRICING_CONFIG = exports.MAX_SECTIONS_PER_EXPORT = exports.MAX_DESIGNS_P
  * Basic (Free) plan feature list
  */
 exports.BASIC_FEATURES = [
-    '2 designs per project',
+    '4 designs per project',
     '2 sections per design',
     '2 exports per month',
     '3 active projects',
@@ -40,11 +40,12 @@ exports.MAX_FEATURES = [
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
+ * Note: All users get 4 design slots
  */
 exports.MAX_DESIGNS_PER_PROJECT = {
-    free: 2,
+    free: 4,
     pro: 4,
-    max: 8,
+    max: 4,
 };
 /**
  * Section export limits per tier

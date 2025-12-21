@@ -7,7 +7,7 @@
  * Basic (Free) plan feature list
  */
 export const BASIC_FEATURES = [
-  '2 designs per project',
+  '4 designs per project',
   '2 sections per design',
   '2 exports per month',
   '3 active projects',
@@ -41,11 +41,12 @@ export const MAX_FEATURES = [
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
+ * Note: All users get 4 design slots
  */
 export const MAX_DESIGNS_PER_PROJECT = {
-  free: 2,
+  free: 4,
   pro: 4,
-  max: 8,
+  max: 4,
 } as const;
 
 /**
