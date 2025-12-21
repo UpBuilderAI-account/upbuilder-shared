@@ -33,6 +33,9 @@ export declare const EXPORT_STEPS_CONFIG: {
         }, {
             readonly id: "generate_xscp";
             readonly label: "Generate export";
+        }, {
+            readonly id: "validate_structure";
+            readonly label: "Validating structure";
         }];
     };
     readonly bricks: {
@@ -125,6 +128,9 @@ export declare function getExportStepsConfig(platform: string): {
     }, {
         readonly id: "generate_xscp";
         readonly label: "Generate export";
+    }, {
+        readonly id: "validate_structure";
+        readonly label: "Validating structure";
     }];
 } | {
     readonly global: readonly [{

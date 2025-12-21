@@ -26,6 +26,7 @@ exports.EXPORT_STEPS_CONFIG = {
             { id: 'build_sections', label: 'Build sections' },
             { id: 'page_assembly', label: 'Page assembly' },
             { id: 'generate_xscp', label: 'Generate export' },
+            { id: 'validate_structure', label: 'Validating structure' },
         ],
     },
     bricks: {
