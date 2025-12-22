@@ -110,6 +110,14 @@ export declare const SOCKET_EVENTS: {
         readonly SUBSCRIPTION_UPDATED: "user:subscription_updated";
         readonly CHECK_SUBSCRIPTION: "user:check_subscription";
     };
+    /**
+     * System events (server → client)
+     * For system-wide notifications like maintenance mode
+     */
+    readonly SYSTEM: {
+        readonly MAINTENANCE: "system:maintenance";
+        readonly MAINTENANCE_END: "system:maintenance_end";
+    };
 };
 /**
  * Type helper to get all client → server event names
@@ -118,5 +126,13 @@ export type ClientEventName = typeof SOCKET_EVENTS.AUTH[keyof typeof SOCKET_EVEN
 /**
  * Type helper to get all server → client event names
  */
-export type ServerEventName = typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE] | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS] | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE] | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR] | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP] | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER];
+export type ServerEventName = typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE] | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS] | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE] | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR] | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP] | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER] | typeof SOCKET_EVENTS.SYSTEM[keyof typeof SOCKET_EVENTS.SYSTEM];
+/**
+ * Maintenance mode information sent to clients
+ */
+export interface MaintenanceInfo {
+    enabled: boolean;
+    message: string;
+    estimatedEndTime?: string;
+}
 //# sourceMappingURL=protocol.d.ts.map

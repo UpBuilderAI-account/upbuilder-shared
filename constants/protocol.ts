@@ -138,6 +138,15 @@ export const SOCKET_EVENTS = {
     SUBSCRIPTION_UPDATED: 'user:subscription_updated',
     CHECK_SUBSCRIPTION: 'user:check_subscription',
   },
+
+  /**
+   * System events (server → client)
+   * For system-wide notifications like maintenance mode
+   */
+  SYSTEM: {
+    MAINTENANCE: 'system:maintenance',
+    MAINTENANCE_END: 'system:maintenance_end',
+  },
 } as const;
 
 /**
@@ -160,7 +169,17 @@ export type ServerEventName =
   | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE]
   | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR]
   | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP]
-  | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER];
+  | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER]
+  | typeof SOCKET_EVENTS.SYSTEM[keyof typeof SOCKET_EVENTS.SYSTEM];
+
+/**
+ * Maintenance mode information sent to clients
+ */
+export interface MaintenanceInfo {
+  enabled: boolean;
+  message: string;
+  estimatedEndTime?: string; // ISO timestamp
+}
 
 // ============================================================================
 // ERROR CODES

@@ -128,6 +128,14 @@ exports.SOCKET_EVENTS = {
         SUBSCRIPTION_UPDATED: 'user:subscription_updated',
         CHECK_SUBSCRIPTION: 'user:check_subscription',
     },
+    /**
+     * System events (server → client)
+     * For system-wide notifications like maintenance mode
+     */
+    SYSTEM: {
+        MAINTENANCE: 'system:maintenance',
+        MAINTENANCE_END: 'system:maintenance_end',
+    },
 };
 // ============================================================================
 // ERROR CODES
