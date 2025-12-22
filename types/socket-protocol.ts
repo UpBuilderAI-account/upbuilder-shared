@@ -504,6 +504,10 @@ export interface ServerToClientEvents {
   // GitHub sync events
   github_sync_progress: (data: GitHubSyncProgress) => void;
   github_sync_complete: (data: GitHubSyncResult) => void;
+
+  // System events (maintenance mode)
+  'system:maintenance': (data: { enabled: boolean; message: string; estimatedEndTime?: string }) => void;
+  'system:maintenance_end': (data: Record<string, never>) => void;
 }
 
 /**

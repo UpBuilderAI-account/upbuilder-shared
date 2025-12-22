@@ -322,6 +322,12 @@ export interface ServerToClientEvents {
     }) => void;
     github_sync_progress: (data: GitHubSyncProgress) => void;
     github_sync_complete: (data: GitHubSyncResult) => void;
+    'system:maintenance': (data: {
+        enabled: boolean;
+        message: string;
+        estimatedEndTime?: string;
+    }) => void;
+    'system:maintenance_end': (data: Record<string, never>) => void;
 }
 /**
  * Socket data attached to each connection
