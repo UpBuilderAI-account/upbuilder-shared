@@ -26,7 +26,6 @@ exports.PROJECT_STATUS = {
     REVIEW_STYLESHEET: 'review_stylesheet',
     PREPARE_BUILD: 'prepare_build',
     BUILD: 'build',
-    CONSOLIDATE_CSS: 'consolidate_css',
     CONSOLIDATE_SCRIPTS: 'consolidate_scripts',
     CUSTOMIZE: 'customize',
     EXPORT: 'export',
@@ -43,7 +42,6 @@ function isProcessingStage(status) {
         'generate_styles',
         'prepare_build',
         'build',
-        'consolidate_css',
         'consolidate_scripts',
         'export',
     ];
@@ -64,8 +62,7 @@ function getNextStatus(status, platform) {
         generate_styles: 'review_stylesheet',
         review_stylesheet: 'prepare_build',
         prepare_build: 'build',
-        build: 'consolidate_css',
-        consolidate_css: 'consolidate_scripts',
+        build: 'consolidate_scripts',
         consolidate_scripts: 'customize',
         customize: 'export',
         export: 'complete',
@@ -98,14 +95,15 @@ function requiresUserActionAfter(status) {
  */
 exports.SKIPPED_STAGES = {
     webflow: [],
-    bricks: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_css', 'consolidate_scripts'],
-    elementor: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_css', 'consolidate_scripts'],
+    bricks: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_scripts'],
+    elementor: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_scripts'],
 };
 /**
- * Platforms that use per-section CSS (vs global stylesheet)
+ * Platforms that use per-section CSS (in addition to global stylesheet)
+ * All platforms now show section CSS in the customizer
  */
 exports.USES_SECTION_CSS = {
-    webflow: false,
+    webflow: true,
     bricks: true,
     elementor: true,
 };

@@ -73,18 +73,16 @@ export interface WorkflowStages {
   platform: Platform;
   currentStage: number;
   stages: WorkflowStage[];
-  /** @deprecated Use generateStylesCSS/consolidateCssCSS instead */
+  /** @deprecated Use generateStylesCSS instead */
   css?: string;
   /** @deprecated Use consolidateScriptsJS instead */
   js?: string;
-  /** CSS from generate_styles stage */
+  /** CSS from generate_styles stage (global stylesheet) */
   generateStylesCSS?: string;
   /** Original CSS from generate_styles stage (for reset functionality) */
   generateStylesOriginalCSS?: string;
   /** Preview HTML from generate_styles stage (demonstrates all utility classes) */
   generateStylesPreviewHtml?: string;
-  /** CSS from consolidate_css stage */
-  consolidateCssCSS?: string;
   /** JS from consolidate_scripts stage */
   consolidateScriptsJS?: string;
 }
@@ -94,7 +92,7 @@ export interface WorkflowStages {
 // =============================================================================
 
 export interface WorkflowStream {
-  stage: 'generate_styles' | 'consolidate_css' | 'consolidate_scripts';
+  stage: 'generate_styles' | 'consolidate_scripts';
   type: 'css' | 'js' | 'preview_html';
   chunk: string;
   done?: boolean;
@@ -464,7 +462,6 @@ export const STAGE_ORDER: Stage[] = [
   'review_stylesheet',
   'prepare_build',
   'build',
-  'consolidate_css',
   'consolidate_scripts',
   'customize',
   'export',
@@ -478,7 +475,6 @@ export const STAGE_LABELS: Record<Stage, string> = {
   review_stylesheet: 'Review Stylesheet',
   prepare_build: 'Preparing Build',
   build: 'Building Sections',
-  consolidate_css: 'Regenerating All Styles',
   consolidate_scripts: 'Generating Scripts',
   customize: 'Review & Customize',
   export: 'Exporting',
@@ -492,7 +488,6 @@ export const INLINE_PLATFORM_SKIPPED_STAGES: Stage[] = [
   'styles_config',
   'generate_styles',
   'review_stylesheet',
-  'consolidate_css',
   'consolidate_scripts',
 ];
 

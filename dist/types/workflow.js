@@ -51,7 +51,6 @@ exports.STAGE_ORDER = [
     'review_stylesheet',
     'prepare_build',
     'build',
-    'consolidate_css',
     'consolidate_scripts',
     'customize',
     'export',
@@ -64,7 +63,6 @@ exports.STAGE_LABELS = {
     review_stylesheet: 'Review Stylesheet',
     prepare_build: 'Preparing Build',
     build: 'Building Sections',
-    consolidate_css: 'Regenerating All Styles',
     consolidate_scripts: 'Generating Scripts',
     customize: 'Review & Customize',
     export: 'Exporting',
@@ -77,7 +75,6 @@ exports.INLINE_PLATFORM_SKIPPED_STAGES = [
     'styles_config',
     'generate_styles',
     'review_stylesheet',
-    'consolidate_css',
     'consolidate_scripts',
 ];
 /**

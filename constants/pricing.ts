@@ -16,24 +16,13 @@ export const BASIC_FEATURES = [
 
 /**
  * Pro plan feature list
+ * Note: Pro includes all premium features with unlimited sections
  */
 export const PRO_FEATURES = [
-  '4 designs per project',
-  '6 sections per design',
-  '20 exports per month',
-  '100 active projects',
-  'All platforms supported',
-  'Priority email support',
-] as const;
-
-/**
- * Max plan feature list
- */
-export const MAX_FEATURES = [
-  '8 designs per project',
-  '20 sections per design',
-  '100 exports per month',
-  '500 active projects',
+  'Unlimited designs per project',
+  'Unlimited sections per design',
+  'Unlimited exports per month',
+  'Unlimited active projects',
   'All platforms supported',
   'Priority support + early access',
 ] as const;
@@ -41,22 +30,21 @@ export const MAX_FEATURES = [
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
- * Note: All users get 4 design slots
+ * Note: Pro has unlimited (Infinity)
  */
 export const MAX_DESIGNS_PER_PROJECT = {
   free: 4,
-  pro: 4,
-  max: 4,
+  pro: Infinity,
 } as const;
 
 /**
  * Section export limits per tier
  * Controls how many sections users can export per design
+ * Note: Pro has unlimited (Infinity)
  */
 export const MAX_SECTIONS_PER_EXPORT = {
   free: 2,
-  pro: 6,
-  max: 20,
+  pro: Infinity,
 } as const;
 
 /**
@@ -77,26 +65,15 @@ export const PRICING_CONFIG = {
   },
   pro: {
     name: 'Pro',
-    price: 9.99,
-    displayPrice: '9.99',
-    description: 'For growing creators',
-    features: PRO_FEATURES,
-    projectLimit: 100,
-    exportsPerMonth: 20,
-    maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
-    maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.pro,
-    popular: true,
-  },
-  max: {
-    name: 'Max',
     price: 14.99,
     displayPrice: '14.99',
     description: 'For professionals & teams',
-    features: MAX_FEATURES,
-    projectLimit: 500,
-    exportsPerMonth: 100,
-    maxDesigns: MAX_DESIGNS_PER_PROJECT.max,
-    maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.max,
+    features: PRO_FEATURES,
+    projectLimit: Infinity,
+    exportsPerMonth: Infinity,
+    maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
+    maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.pro,
+    popular: true,
   },
 } as const;
 

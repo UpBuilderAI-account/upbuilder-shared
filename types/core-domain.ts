@@ -16,7 +16,7 @@
 /**
  * User subscription tiers
  */
-export type SubscriptionTier = 'basic' | 'pro' | 'max';
+export type SubscriptionTier = 'basic' | 'pro';
 
 /**
  * User account data
@@ -87,7 +87,6 @@ export type ProjectStatus =
   | 'review_stylesheet'
   | 'prepare_build'
   | 'build'
-  | 'consolidate_css'
   | 'consolidate_scripts'
   | 'customize'
   | 'export'
@@ -106,7 +105,6 @@ export const PROJECT_STATUS = {
   REVIEW_STYLESHEET: 'review_stylesheet' as ProjectStatus,
   PREPARE_BUILD: 'prepare_build' as ProjectStatus,
   BUILD: 'build' as ProjectStatus,
-  CONSOLIDATE_CSS: 'consolidate_css' as ProjectStatus,
   CONSOLIDATE_SCRIPTS: 'consolidate_scripts' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   EXPORT: 'export' as ProjectStatus,
@@ -124,7 +122,6 @@ export function isProcessingStage(status: ProjectStatus): boolean {
     'generate_styles',
     'prepare_build',
     'build',
-    'consolidate_css',
     'consolidate_scripts',
     'export',
   ];
@@ -145,8 +142,7 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform): Proje
     generate_styles: 'review_stylesheet',
     review_stylesheet: 'prepare_build',
     prepare_build: 'build',
-    build: 'consolidate_css',
-    consolidate_css: 'consolidate_scripts',
+    build: 'consolidate_scripts',
     consolidate_scripts: 'customize',
     customize: 'export',
     export: 'complete',
@@ -188,15 +184,16 @@ export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap
  */
 export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
   webflow: [],
-  bricks: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_css', 'consolidate_scripts'],
-  elementor: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_css', 'consolidate_scripts'],
+  bricks: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_scripts'],
+  elementor: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_scripts'],
 };
 
 /**
- * Platforms that use per-section CSS (vs global stylesheet)
+ * Platforms that use per-section CSS (in addition to global stylesheet)
+ * All platforms now show section CSS in the customizer
  */
 export const USES_SECTION_CSS: Partial<Record<Platform, boolean>> = {
-  webflow: false,
+  webflow: true,
   bricks: true,
   elementor: true,
 };

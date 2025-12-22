@@ -1,7 +1,7 @@
 /**
  * User subscription tiers
  */
-export type SubscriptionTier = 'basic' | 'pro' | 'max';
+export type SubscriptionTier = 'basic' | 'pro';
 /**
  * User account data
  */
@@ -52,7 +52,7 @@ export interface PluginAuthTokenResponse {
     user?: User;
     error?: string;
 }
-export type ProjectStatus = 'idle' | 'load' | 'detect_sections' | 'styles_config' | 'generate_styles' | 'review_stylesheet' | 'prepare_build' | 'build' | 'consolidate_css' | 'consolidate_scripts' | 'customize' | 'export' | 'complete' | 'failed';
+export type ProjectStatus = 'idle' | 'load' | 'detect_sections' | 'styles_config' | 'generate_styles' | 'review_stylesheet' | 'prepare_build' | 'build' | 'consolidate_scripts' | 'customize' | 'export' | 'complete' | 'failed';
 /**
  * Type-safe constants for ProjectStatus
  */
@@ -65,7 +65,6 @@ export declare const PROJECT_STATUS: {
     readonly REVIEW_STYLESHEET: ProjectStatus;
     readonly PREPARE_BUILD: ProjectStatus;
     readonly BUILD: ProjectStatus;
-    readonly CONSOLIDATE_CSS: ProjectStatus;
     readonly CONSOLIDATE_SCRIPTS: ProjectStatus;
     readonly CUSTOMIZE: ProjectStatus;
     readonly EXPORT: ProjectStatus;
@@ -94,7 +93,8 @@ export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap
  */
 export declare const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>>;
 /**
- * Platforms that use per-section CSS (vs global stylesheet)
+ * Platforms that use per-section CSS (in addition to global stylesheet)
+ * All platforms now show section CSS in the customizer
  */
 export declare const USES_SECTION_CSS: Partial<Record<Platform, boolean>>;
 /**
