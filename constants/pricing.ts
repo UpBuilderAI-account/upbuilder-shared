@@ -89,8 +89,8 @@ export const PRICING_CONFIG = {
   },
   max: {
     name: 'Max',
-    price: 29.99,
-    displayPrice: '29.99',
+    price: 14.99,
+    displayPrice: '14.99',
     description: 'For professionals & teams',
     features: MAX_FEATURES,
     projectLimit: 500,

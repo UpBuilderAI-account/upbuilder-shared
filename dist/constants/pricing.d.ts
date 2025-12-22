@@ -59,8 +59,8 @@ export declare const PRICING_CONFIG: {
     };
     readonly max: {
         readonly name: "Max";
-        readonly price: 29.99;
-        readonly displayPrice: "29.99";
+        readonly price: 14.99;
+        readonly displayPrice: "14.99";
         readonly description: "For professionals & teams";
         readonly features: readonly ["8 designs per project", "20 sections per design", "100 exports per month", "500 active projects", "All platforms supported", "Priority support + early access"];
         readonly projectLimit: 500;
