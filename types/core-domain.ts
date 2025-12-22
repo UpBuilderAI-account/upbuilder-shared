@@ -176,7 +176,7 @@ export function requiresUserActionAfter(status: ProjectStatus): boolean {
 }
 
 export type Platform = 'webflow' | 'bricks' | 'elementor';
-export type StyleFramework = 'client-first' | 'tailwind' | 'bootstrap' | 'vanilla' | 'inline';
+export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap' | 'vanilla' | 'inline';
 
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION

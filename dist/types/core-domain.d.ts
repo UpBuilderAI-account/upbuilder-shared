@@ -87,7 +87,7 @@ export declare function getNextStatus(status: ProjectStatus, platform?: Platform
  */
 export declare function requiresUserActionAfter(status: ProjectStatus): boolean;
 export type Platform = 'webflow' | 'bricks' | 'elementor';
-export type StyleFramework = 'client-first' | 'tailwind' | 'bootstrap' | 'vanilla' | 'inline';
+export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap' | 'vanilla' | 'inline';
 /**
  * Stages to skip for each platform
  * Bricks/Elementor skip stylesheet generation and consolidation (sections are self-contained)

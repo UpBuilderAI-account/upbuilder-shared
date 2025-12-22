@@ -309,8 +309,10 @@ export interface WorkflowCommand {
   projectId: string;
   action: 'start' | 'cancel' | 'next' | 'reprocess_export' | 'reprocess_export_fast';
   retry?: boolean;
-  /** Styles configuration from styles_config stage */
+  /** Styles configuration from styles_config stage (client-first only) */
   stylesConfig?: StylesConfig;
+  /** Style framework selected in styles_config stage */
+  framework?: 'client-first' | 'simple';
 }
 
 // =============================================================================
