@@ -9,8 +9,8 @@ exports.GITHUB_SYNC_LIMITS = void 0;
  * Sync limits to prevent abuse
  */
 exports.GITHUB_SYNC_LIMITS = {
-    maxDesigns: 5,
-    maxSectionsPerDesign: 20,
+    maxDesigns: 20,
+    maxSectionsPerDesign: 50,
     maxSharedSections: 10,
     maxAssets: 50,
     maxHtmlFileSize: 100 * 1024, // 100KB

@@ -2,8 +2,8 @@
  * Sync limits to prevent abuse
  */
 export declare const GITHUB_SYNC_LIMITS: {
-    readonly maxDesigns: 5;
-    readonly maxSectionsPerDesign: 20;
+    readonly maxDesigns: 20;
+    readonly maxSectionsPerDesign: 50;
     readonly maxSharedSections: 10;
     readonly maxAssets: 50;
     readonly maxHtmlFileSize: number;
