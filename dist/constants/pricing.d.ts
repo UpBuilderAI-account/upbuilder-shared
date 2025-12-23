@@ -25,6 +25,10 @@ export declare const MAX_SECTIONS_PER_EXPORT: {
     readonly pro: number;
 };
 /**
+ * Trial configuration
+ */
+export declare const TRIAL_DAYS = 3;
+/**
  * Pricing configuration for display
  * Note: priceId values should be injected from environment variables at runtime
  */
@@ -39,6 +43,7 @@ export declare const PRICING_CONFIG: {
         readonly exportsPerMonth: 2;
         readonly maxDesigns: 4;
         readonly maxSectionsPerExport: 2;
+        readonly trialDays: 0;
     };
     readonly pro: {
         readonly name: "Pro";
@@ -51,6 +56,7 @@ export declare const PRICING_CONFIG: {
         readonly maxDesigns: 8;
         readonly maxSectionsPerExport: number;
         readonly popular: true;
+        readonly trialDays: 3;
     };
 };
 //# sourceMappingURL=pricing.d.ts.map

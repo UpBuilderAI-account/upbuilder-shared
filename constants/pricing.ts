@@ -47,6 +47,11 @@ export const MAX_SECTIONS_PER_EXPORT = {
 } as const;
 
 /**
+ * Trial configuration
+ */
+export const TRIAL_DAYS = 3;
+
+/**
  * Pricing configuration for display
  * Note: priceId values should be injected from environment variables at runtime
  */
@@ -61,6 +66,7 @@ export const PRICING_CONFIG = {
     exportsPerMonth: 2,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.free,
     maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.free,
+    trialDays: 0,
   },
   pro: {
     name: 'Pro',
@@ -73,6 +79,7 @@ export const PRICING_CONFIG = {
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
     maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.pro,
     popular: true,
+    trialDays: TRIAL_DAYS,
   },
 } as const;
 
