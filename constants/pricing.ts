@@ -8,7 +8,7 @@
  */
 export const BASIC_FEATURES = [
   '2 sections per design',
-  '2 exports per month',
+  '10 projects per month',
   'Community support',
 ] as const;
 
@@ -18,7 +18,7 @@ export const BASIC_FEATURES = [
  */
 export const PRO_FEATURES = [
   'Unlimited sections per design',
-  '100 exports per month',
+  '200 projects per month',
   'All platforms supported',
   'Priority support + early access',
 ] as const;
@@ -28,8 +28,8 @@ export const PRO_FEATURES = [
  * Controls how many frames/designs users can select in the plugin
  */
 export const MAX_DESIGNS_PER_PROJECT = {
-  free: 4,
-  pro: 8,
+  free: 10,
+  pro: 20,
 } as const;
 
 /**
@@ -58,7 +58,7 @@ export const PRICING_CONFIG = {
     displayPrice: 'Free',
     description: 'Try UpBuilder for free',
     features: BASIC_FEATURES,
-    exportsPerMonth: 2,
+    exportsPerMonth: 10,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.free,
     maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.free,
     trialDays: 0,
@@ -69,7 +69,7 @@ export const PRICING_CONFIG = {
     displayPrice: '9.99',
     description: 'For growing creators',
     features: PRO_FEATURES,
-    exportsPerMonth: 100,
+    exportsPerMonth: 200,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
     maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.pro,
     popular: true,
