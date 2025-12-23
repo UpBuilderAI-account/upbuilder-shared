@@ -107,13 +107,13 @@ export function isImageFile(filename: string): boolean {
  * Maximum number of nodes allowed per export
  * Enforced in both plugin UI and backend
  */
-export const MAX_NODES = 1000;
+export const MAX_NODES = 5000;
 
 /**
  * Maximum number of images allowed per export
  * Enforced in both plugin UI and backend
  */
-export const MAX_IMAGES = 500;
+export const MAX_IMAGES = 2000;
 
 /**
  * Maximum image dimension (width or height) in pixels

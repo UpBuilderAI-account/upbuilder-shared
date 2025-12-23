@@ -59,12 +59,12 @@ export declare function isImageFile(filename: string): boolean;
  * Maximum number of nodes allowed per export
  * Enforced in both plugin UI and backend
  */
-export declare const MAX_NODES = 1000;
+export declare const MAX_NODES = 5000;
 /**
  * Maximum number of images allowed per export
  * Enforced in both plugin UI and backend
  */
-export declare const MAX_IMAGES = 500;
+export declare const MAX_IMAGES = 2000;
 /**
  * Maximum image dimension (width or height) in pixels
  */
@@ -78,13 +78,13 @@ export declare const MAX_IMAGE_DIMENSION: {
  */
 export declare const PROCESSING_LIMITS: {
     readonly free: {
-        readonly maxNodes: 1000;
-        readonly maxImages: 500;
+        readonly maxNodes: 5000;
+        readonly maxImages: 2000;
         readonly maxDimension: 1920;
     };
     readonly pro: {
-        readonly maxNodes: 1000;
-        readonly maxImages: 500;
+        readonly maxNodes: 5000;
+        readonly maxImages: 2000;
         readonly maxDimension: 7680;
     };
 };
