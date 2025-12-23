@@ -4,21 +4,20 @@
 // Centralized pricing plan and feature definitions
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PRICING_CONFIG = exports.TRIAL_DAYS = exports.MAX_SECTIONS_PER_EXPORT = exports.MAX_DESIGNS_PER_PROJECT = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;
+exports.PRICING_CONFIG = exports.TRIAL_DAYS = exports.MAX_DESIGNS_PER_PROJECT = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;
 /**
  * Basic (Free) plan feature list
  */
 exports.BASIC_FEATURES = [
-    '2 sections per design',
+    '1 design per project',
     '10 projects per month',
     'Community support',
 ];
 /**
  * Pro plan feature list
- * Note: Pro has unlimited sections per design
  */
 exports.PRO_FEATURES = [
-    'Unlimited sections per design',
+    'Up to 10 designs per project',
     '200 projects per month',
     'All platforms supported',
     'Priority support + early access',
@@ -26,19 +25,12 @@ exports.PRO_FEATURES = [
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
+ * Basic: 1 design per project (was 10)
+ * Pro: 10 designs per project (was 20)
  */
 exports.MAX_DESIGNS_PER_PROJECT = {
-    free: 10,
-    pro: 20,
-};
-/**
- * Section export limits per tier
- * Controls how many sections users can export per design
- * Note: Pro has unlimited sections (Infinity)
- */
-exports.MAX_SECTIONS_PER_EXPORT = {
-    free: 2,
-    pro: Infinity,
+    free: 1,
+    pro: 10,
 };
 /**
  * Trial configuration
@@ -57,7 +49,6 @@ exports.PRICING_CONFIG = {
         features: exports.BASIC_FEATURES,
         exportsPerMonth: 10,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.free,
-        maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.free,
         trialDays: 0,
     },
     pro: {
@@ -68,7 +59,6 @@ exports.PRICING_CONFIG = {
         features: exports.PRO_FEATURES,
         exportsPerMonth: 200,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
-        maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.pro,
         popular: true,
         trialDays: exports.TRIAL_DAYS,
     },

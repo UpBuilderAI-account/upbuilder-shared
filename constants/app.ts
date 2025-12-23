@@ -104,6 +104,12 @@ export function isImageFile(filename: string): boolean {
 // ============================================================================
 
 /**
+ * Maximum designs to process in parallel during export
+ * Was 4, now 2 for better resource management
+ */
+export const MAX_PARALLEL_DESIGNS = 2;
+
+/**
  * Maximum number of nodes allowed per export
  * Enforced in both plugin UI and backend
  */

@@ -7,17 +7,16 @@
  * Basic (Free) plan feature list
  */
 export const BASIC_FEATURES = [
-  '2 sections per design',
+  '1 design per project',
   '10 projects per month',
   'Community support',
 ] as const;
 
 /**
  * Pro plan feature list
- * Note: Pro has unlimited sections per design
  */
 export const PRO_FEATURES = [
-  'Unlimited sections per design',
+  'Up to 10 designs per project',
   '200 projects per month',
   'All platforms supported',
   'Priority support + early access',
@@ -26,20 +25,12 @@ export const PRO_FEATURES = [
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
+ * Basic: 1 design per project (was 10)
+ * Pro: 10 designs per project (was 20)
  */
 export const MAX_DESIGNS_PER_PROJECT = {
-  free: 10,
-  pro: 20,
-} as const;
-
-/**
- * Section export limits per tier
- * Controls how many sections users can export per design
- * Note: Pro has unlimited sections (Infinity)
- */
-export const MAX_SECTIONS_PER_EXPORT = {
-  free: 2,
-  pro: Infinity,
+  free: 1,
+  pro: 10,
 } as const;
 
 /**
@@ -60,7 +51,6 @@ export const PRICING_CONFIG = {
     features: BASIC_FEATURES,
     exportsPerMonth: 10,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.free,
-    maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.free,
     trialDays: 0,
   },
   pro: {
@@ -71,7 +61,6 @@ export const PRICING_CONFIG = {
     features: PRO_FEATURES,
     exportsPerMonth: 200,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
-    maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.pro,
     popular: true,
     trialDays: TRIAL_DAYS,
   },
