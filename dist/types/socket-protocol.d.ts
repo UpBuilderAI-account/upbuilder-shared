@@ -306,6 +306,10 @@ export interface ServerToClientEvents {
         id: string;
         name: string;
     }) => void;
+    'workflow:export_limit_reached': (data: {
+        projectId: string;
+        message: string;
+    }) => void;
     project_ownership_transferred: (data: {
         projectId: string;
         projectName?: string;

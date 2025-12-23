@@ -472,7 +472,7 @@ export interface ServerToClientEvents {
   // Error events
   error: (data: ErrorPayload) => void;
 
-  // Workflow events (7 events total)
+  // Workflow events (8 events total)
   'workflow:stage': (data: WorkflowStage) => void;
   'workflow:stages': (data: WorkflowStages) => void;
   'workflow:stream': (data: WorkflowStream) => void;
@@ -480,6 +480,7 @@ export interface ServerToClientEvents {
   'workflow:editor': (data: WorkflowEditor) => void;
   'workflow:export_complete': (data: WorkflowExportComplete) => void;
   'workflow:renamed': (data: { type: RenameTargetType; id: string; name: string }) => void;
+  'workflow:export_limit_reached': (data: { projectId: string; message: string }) => void;
 
   // Ownership transfer events
   project_ownership_transferred: (data: {
