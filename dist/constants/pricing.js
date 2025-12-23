@@ -9,10 +9,8 @@ exports.PRICING_CONFIG = exports.TRIAL_DAYS = exports.MAX_SECTIONS_PER_EXPORT = 
  * Basic (Free) plan feature list
  */
 exports.BASIC_FEATURES = [
-    '4 designs per project',
     '2 sections per design',
     '2 exports per month',
-    '3 active projects',
     'Community support',
 ];
 /**
@@ -20,10 +18,8 @@ exports.BASIC_FEATURES = [
  * Note: Pro has unlimited sections per design
  */
 exports.PRO_FEATURES = [
-    '8 designs per project',
     'Unlimited sections per design',
     '100 exports per month',
-    '500 active projects',
     'All platforms supported',
     'Priority support + early access',
 ];
@@ -59,7 +55,6 @@ exports.PRICING_CONFIG = {
         displayPrice: 'Free',
         description: 'Try UpBuilder for free',
         features: exports.BASIC_FEATURES,
-        projectLimit: 3,
         exportsPerMonth: 2,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.free,
         maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.free,
@@ -71,7 +66,6 @@ exports.PRICING_CONFIG = {
         displayPrice: '9.99',
         description: 'For growing creators',
         features: exports.PRO_FEATURES,
-        projectLimit: 500,
         exportsPerMonth: 100,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
         maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.pro,

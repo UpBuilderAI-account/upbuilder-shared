@@ -7,10 +7,8 @@
  * Basic (Free) plan feature list
  */
 export const BASIC_FEATURES = [
-  '4 designs per project',
   '2 sections per design',
   '2 exports per month',
-  '3 active projects',
   'Community support',
 ] as const;
 
@@ -19,10 +17,8 @@ export const BASIC_FEATURES = [
  * Note: Pro has unlimited sections per design
  */
 export const PRO_FEATURES = [
-  '8 designs per project',
   'Unlimited sections per design',
   '100 exports per month',
-  '500 active projects',
   'All platforms supported',
   'Priority support + early access',
 ] as const;
@@ -62,7 +58,6 @@ export const PRICING_CONFIG = {
     displayPrice: 'Free',
     description: 'Try UpBuilder for free',
     features: BASIC_FEATURES,
-    projectLimit: 3,
     exportsPerMonth: 2,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.free,
     maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.free,
@@ -74,7 +69,6 @@ export const PRICING_CONFIG = {
     displayPrice: '9.99',
     description: 'For growing creators',
     features: PRO_FEATURES,
-    projectLimit: 500,
     exportsPerMonth: 100,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
     maxSectionsPerExport: MAX_SECTIONS_PER_EXPORT.pro,

@@ -1,12 +1,12 @@
 /**
  * Basic (Free) plan feature list
  */
-export declare const BASIC_FEATURES: readonly ["4 designs per project", "2 sections per design", "2 exports per month", "3 active projects", "Community support"];
+export declare const BASIC_FEATURES: readonly ["2 sections per design", "2 exports per month", "Community support"];
 /**
  * Pro plan feature list
  * Note: Pro has unlimited sections per design
  */
-export declare const PRO_FEATURES: readonly ["8 designs per project", "Unlimited sections per design", "100 exports per month", "500 active projects", "All platforms supported", "Priority support + early access"];
+export declare const PRO_FEATURES: readonly ["Unlimited sections per design", "100 exports per month", "All platforms supported", "Priority support + early access"];
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
@@ -38,8 +38,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 0;
         readonly displayPrice: "Free";
         readonly description: "Try UpBuilder for free";
-        readonly features: readonly ["4 designs per project", "2 sections per design", "2 exports per month", "3 active projects", "Community support"];
-        readonly projectLimit: 3;
+        readonly features: readonly ["2 sections per design", "2 exports per month", "Community support"];
         readonly exportsPerMonth: 2;
         readonly maxDesigns: 4;
         readonly maxSectionsPerExport: 2;
@@ -50,8 +49,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 9.99;
         readonly displayPrice: "9.99";
         readonly description: "For growing creators";
-        readonly features: readonly ["8 designs per project", "Unlimited sections per design", "100 exports per month", "500 active projects", "All platforms supported", "Priority support + early access"];
-        readonly projectLimit: 500;
+        readonly features: readonly ["Unlimited sections per design", "100 exports per month", "All platforms supported", "Priority support + early access"];
         readonly exportsPerMonth: 100;
         readonly maxDesigns: 8;
         readonly maxSectionsPerExport: number;
