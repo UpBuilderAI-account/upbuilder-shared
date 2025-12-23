@@ -17,29 +17,28 @@ exports.BASIC_FEATURES = [
 ];
 /**
  * Pro plan feature list
- * Note: Pro includes all premium features with unlimited sections
+ * Note: Pro has unlimited sections per design
  */
 exports.PRO_FEATURES = [
-    'Unlimited designs per project',
+    '8 designs per project',
     'Unlimited sections per design',
-    'Unlimited exports per month',
-    'Unlimited active projects',
+    '100 exports per month',
+    '500 active projects',
     'All platforms supported',
     'Priority support + early access',
 ];
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
- * Note: Pro has unlimited (Infinity)
  */
 exports.MAX_DESIGNS_PER_PROJECT = {
     free: 4,
-    pro: Infinity,
+    pro: 8,
 };
 /**
  * Section export limits per tier
  * Controls how many sections users can export per design
- * Note: Pro has unlimited (Infinity)
+ * Note: Pro has unlimited sections (Infinity)
  */
 exports.MAX_SECTIONS_PER_EXPORT = {
     free: 2,
@@ -63,12 +62,12 @@ exports.PRICING_CONFIG = {
     },
     pro: {
         name: 'Pro',
-        price: 14.99,
-        displayPrice: '14.99',
-        description: 'For professionals & teams',
+        price: 9.99,
+        displayPrice: '9.99',
+        description: 'For growing creators',
         features: exports.PRO_FEATURES,
-        projectLimit: Infinity,
-        exportsPerMonth: Infinity,
+        projectLimit: 500,
+        exportsPerMonth: 100,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
         maxSectionsPerExport: exports.MAX_SECTIONS_PER_EXPORT.pro,
         popular: true,
