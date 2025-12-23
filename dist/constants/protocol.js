@@ -70,6 +70,8 @@ exports.SOCKET_EVENTS = {
         SAVE_STYLESHEET: 'workflow:save_stylesheet', // Client → Server: Save edited stylesheet
         RESET_STYLESHEET: 'workflow:reset_stylesheet', // Client → Server: Reset to original stylesheet
         CLEAN_STYLESHEET: 'workflow:clean_stylesheet', // Client → Server: Remove unused CSS classes
+        // Export limit events
+        EXPORT_LIMIT_REACHED: 'workflow:export_limit_reached', // Server → Client: Export limit exceeded
     },
     /**
      * Server → Client: Project state updates
