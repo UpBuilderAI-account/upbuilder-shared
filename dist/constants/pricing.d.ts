@@ -1,7 +1,7 @@
 /**
  * Basic (Free) plan feature list
  */
-export declare const BASIC_FEATURES: readonly ["1 design per project", "10 projects per month", "Community support"];
+export declare const BASIC_FEATURES: readonly ["1 design per project", "2 projects per month", "Community support"];
 /**
  * Pro plan feature list
  */
@@ -30,8 +30,8 @@ export declare const PRICING_CONFIG: {
         readonly price: 0;
         readonly displayPrice: "Free";
         readonly description: "Try UpBuilder for free";
-        readonly features: readonly ["1 design per project", "10 projects per month", "Community support"];
-        readonly exportsPerMonth: 10;
+        readonly features: readonly ["1 design per project", "2 projects per month", "Community support"];
+        readonly exportsPerMonth: 2;
         readonly maxDesigns: 1;
         readonly trialDays: 0;
     };

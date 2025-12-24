@@ -172,10 +172,22 @@ export interface GitHubPushResult {
     repository?: string;
 }
 /**
+ * Pending design info - design that was saved but not processed due to tier limits
+ */
+export interface PendingDesign {
+    id: string;
+    name: string;
+    featured_img_url?: string;
+    processing_status: 'pending_upgrade';
+    created_at: string;
+}
+/**
  * Project update event (Standard)
  */
 export interface ProjectUpdate {
     project: Project;
+    /** Designs that are pending upgrade to be processed */
+    pendingDesigns?: PendingDesign[];
 }
 /**
  * Plugin-related events
@@ -254,6 +266,13 @@ export interface ClientToServerEvents {
     'workflow:save_stylesheet': (data: StylesheetSaveRequest, callback: (result: StylesheetSaveResult) => void) => void;
     'workflow:reset_stylesheet': (data: StylesheetResetRequest, callback: (result: StylesheetSaveResult) => void) => void;
     'workflow:clean_stylesheet': (data: StylesheetCleanRequest, callback: (result: StylesheetCleanResult) => void) => void;
+    'workflow:process_pending': (data: {
+        projectId: string;
+    }, callback: (result: {
+        success: boolean;
+        error?: string;
+        designCount?: number;
+    }) => void) => void;
     transfer_project_ownership: (data: {
         projectId: string;
     }, callback: CallbackResponse) => void;

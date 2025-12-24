@@ -10,7 +10,7 @@ exports.PRICING_CONFIG = exports.TRIAL_DAYS = exports.MAX_DESIGNS_PER_PROJECT = 
  */
 exports.BASIC_FEATURES = [
     '1 design per project',
-    '10 projects per month',
+    '2 projects per month',
     'Community support',
 ];
 /**
@@ -47,7 +47,7 @@ exports.PRICING_CONFIG = {
         displayPrice: 'Free',
         description: 'Try UpBuilder for free',
         features: exports.BASIC_FEATURES,
-        exportsPerMonth: 10,
+        exportsPerMonth: 2,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.free,
         trialDays: 0,
     },

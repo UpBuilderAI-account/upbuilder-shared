@@ -55,6 +55,7 @@ export declare const SOCKET_EVENTS: {
         readonly RESET_STYLESHEET: "workflow:reset_stylesheet";
         readonly CLEAN_STYLESHEET: "workflow:clean_stylesheet";
         readonly EXPORT_LIMIT_REACHED: "workflow:export_limit_reached";
+        readonly PROCESS_PENDING: "workflow:process_pending";
     };
     /**
      * Server → Client: Project state updates

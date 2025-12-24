@@ -8,7 +8,7 @@
  */
 export const BASIC_FEATURES = [
   '1 design per project',
-  '10 projects per month',
+  '2 projects per month',
   'Community support',
 ] as const;
 
@@ -49,7 +49,7 @@ export const PRICING_CONFIG = {
     displayPrice: 'Free',
     description: 'Try UpBuilder for free',
     features: BASIC_FEATURES,
-    exportsPerMonth: 10,
+    exportsPerMonth: 2,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.free,
     trialDays: 0,
   },

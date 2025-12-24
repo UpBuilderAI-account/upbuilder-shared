@@ -404,6 +404,30 @@ export const DESIGN_STATUS = {
 } as const;
 
 /**
+ * Design processing status - tracks whether design is queued for processing
+ * Used to implement tier-based processing limits (Basic: 1 design, Pro: 10 designs)
+ */
+export type DesignProcessingStatus =
+  | 'pending'          // Just created, not yet in workflow
+  | 'pending_upgrade'  // Saved but awaiting Pro upgrade to process
+  | 'queued'           // Ready to be processed
+  | 'processing'       // Currently in workflow
+  | 'complete'         // Finished processing
+  | 'failed';          // Processing failed
+
+/**
+ * Type-safe constants for DesignProcessingStatus
+ */
+export const DESIGN_PROCESSING_STATUS = {
+  PENDING: 'pending' as DesignProcessingStatus,
+  PENDING_UPGRADE: 'pending_upgrade' as DesignProcessingStatus,
+  QUEUED: 'queued' as DesignProcessingStatus,
+  PROCESSING: 'processing' as DesignProcessingStatus,
+  COMPLETE: 'complete' as DesignProcessingStatus,
+  FAILED: 'failed' as DesignProcessingStatus,
+} as const;
+
+/**
  * Design interface - simplified
  */
 export interface Design {
@@ -598,6 +622,9 @@ export interface DesignEntity {
 
   /** Fonts used in this design with their sources */
   fonts?: DesignFonts | null;
+
+  /** Processing status - tracks if design is queued, pending upgrade, or processed */
+  processing_status?: DesignProcessingStatus;
 
   // Legacy fields - NOT stored in DB, exist only in Project.state.designs[]
   // These are here only for type compatibility during database queries

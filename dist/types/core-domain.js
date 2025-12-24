@@ -9,7 +9,7 @@
 // - export.ts: Export configuration and operation types
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DESIGN_STATUS = exports.createDefaultStageStatus = exports.STAGE_STATUS = exports.SECTION_STAGE = exports.USES_SECTION_CSS = exports.SKIPPED_STAGES = exports.PROJECT_STATUS = void 0;
+exports.DESIGN_PROCESSING_STATUS = exports.DESIGN_STATUS = exports.createDefaultStageStatus = exports.STAGE_STATUS = exports.SECTION_STAGE = exports.USES_SECTION_CSS = exports.SKIPPED_STAGES = exports.PROJECT_STATUS = void 0;
 exports.isProcessingStage = isProcessingStage;
 exports.getNextStatus = getNextStatus;
 exports.requiresUserActionAfter = requiresUserActionAfter;
@@ -147,6 +147,17 @@ exports.createDefaultStageStatus = createDefaultStageStatus;
 exports.DESIGN_STATUS = {
     PENDING: 'pending',
     RUNNING: 'running',
+    COMPLETE: 'complete',
+    FAILED: 'failed',
+};
+/**
+ * Type-safe constants for DesignProcessingStatus
+ */
+exports.DESIGN_PROCESSING_STATUS = {
+    PENDING: 'pending',
+    PENDING_UPGRADE: 'pending_upgrade',
+    QUEUED: 'queued',
+    PROCESSING: 'processing',
     COMPLETE: 'complete',
     FAILED: 'failed',
 };

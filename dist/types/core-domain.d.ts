@@ -258,6 +258,22 @@ export declare const DESIGN_STATUS: {
     readonly FAILED: DesignStatus;
 };
 /**
+ * Design processing status - tracks whether design is queued for processing
+ * Used to implement tier-based processing limits (Basic: 1 design, Pro: 10 designs)
+ */
+export type DesignProcessingStatus = 'pending' | 'pending_upgrade' | 'queued' | 'processing' | 'complete' | 'failed';
+/**
+ * Type-safe constants for DesignProcessingStatus
+ */
+export declare const DESIGN_PROCESSING_STATUS: {
+    readonly PENDING: DesignProcessingStatus;
+    readonly PENDING_UPGRADE: DesignProcessingStatus;
+    readonly QUEUED: DesignProcessingStatus;
+    readonly PROCESSING: DesignProcessingStatus;
+    readonly COMPLETE: DesignProcessingStatus;
+    readonly FAILED: DesignProcessingStatus;
+};
+/**
  * Design interface - simplified
  */
 export interface Design {
@@ -427,6 +443,8 @@ export interface DesignEntity {
     featured_img_url?: string;
     /** Fonts used in this design with their sources */
     fonts?: DesignFonts | null;
+    /** Processing status - tracks if design is queued, pending upgrade, or processed */
+    processing_status?: DesignProcessingStatus;
     status?: string;
     width?: number;
     height?: number;
