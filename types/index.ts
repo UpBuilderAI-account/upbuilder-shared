@@ -106,3 +106,6 @@ export * from './elementor';
 
 // GitHub sync types
 export * from './github-sync';
+
+// Complex hierarchy detection types
+export * from './complex-hierarchy';

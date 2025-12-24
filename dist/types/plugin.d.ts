@@ -1,5 +1,6 @@
 import type { User, AuthStatus, Dimensions } from './core-domain';
 import type { Element, ColorRGBA } from './element';
+import type { ComplexHierarchyDetection } from './complex-hierarchy';
 /**
  * Border styling
  */
@@ -128,6 +129,12 @@ export type PluginBackendMessage = {
 } | {
     type: 'error';
     data: PluginErrorData;
+} | {
+    type: 'complex-hierarchy-detected';
+    data: ComplexHierarchyDetectedData;
+} | {
+    type: 'full-preview-ready';
+    data: FullPreviewData;
 };
 /**
  * Messages from plugin UI → plugin backend
@@ -198,6 +205,22 @@ export type PluginFrontendMessage = {
 } | {
     type: 'load-recent-projects';
     data: {};
+} | {
+    type: 'scan-complex-hierarchies';
+    data: {
+        frameIds: string[];
+    };
+} | {
+    type: 'complex-hierarchy-approval';
+    data: {
+        approvedNodeIds: string[];
+        excludedNodeIds: string[];
+    };
+} | {
+    type: 'request-full-preview';
+    data: {
+        nodeId: string;
+    };
 };
 /**
  * Nodes extraction result (plugin UI wrapper)
@@ -274,5 +297,24 @@ export interface PluginAuthPayload {
         };
     };
     timestamp: number;
+}
+/**
+ * Data for complex hierarchy detection message
+ */
+export interface ComplexHierarchyDetectedData {
+    detections: ComplexHierarchyDetection[];
+    frameId: string;
+    frameName: string;
+    totalFrames: number;
+}
+/**
+ * Data for full preview response
+ */
+export interface FullPreviewData {
+    nodeId: string;
+    imageData: string;
+    width: number;
+    height: number;
+    nodeName: string;
 }
 //# sourceMappingURL=plugin.d.ts.map

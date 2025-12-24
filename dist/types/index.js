@@ -62,3 +62,5 @@ __exportStar(require("./bricks"), exports);
 __exportStar(require("./elementor"), exports);
 // GitHub sync types
 __exportStar(require("./github-sync"), exports);
+// Complex hierarchy detection types
+__exportStar(require("./complex-hierarchy"), exports);

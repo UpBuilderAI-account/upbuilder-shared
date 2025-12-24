@@ -8,6 +8,7 @@ import type {
   Element,
   ColorRGBA
 } from './element';
+import type { ComplexHierarchyDetection } from './complex-hierarchy';
 
 /**
  * Border styling
@@ -125,7 +126,10 @@ export type PluginBackendMessage =
   | { type: 'progress-update'; data: PluginProgressData }
   | { type: 'recent-projects-saved'; data: { success: boolean } }
   | { type: 'recent-projects-loaded'; data: { success: boolean; projects: RecentProject[] } }
-  | { type: 'error'; data: PluginErrorData };
+  | { type: 'error'; data: PluginErrorData }
+  // Complex hierarchy detection messages
+  | { type: 'complex-hierarchy-detected'; data: ComplexHierarchyDetectedData }
+  | { type: 'full-preview-ready'; data: FullPreviewData };
 
 /**
  * Messages from plugin UI → plugin backend
@@ -145,7 +149,11 @@ export type PluginFrontendMessage =
   | { type: 'extract-images-for-design'; data: { projectId: string; designId: string; frameIndex: number; isLastDesign: boolean } }
   | { type: 'extract-all-images'; data: { projectId: string; frameToDesignMap: Record<number, string> } }
   | { type: 'save-recent-projects'; data: { projects: RecentProject[] } }
-  | { type: 'load-recent-projects'; data: {} };
+  | { type: 'load-recent-projects'; data: {} }
+  // Complex hierarchy approval messages
+  | { type: 'scan-complex-hierarchies'; data: { frameIds: string[] } }
+  | { type: 'complex-hierarchy-approval'; data: { approvedNodeIds: string[]; excludedNodeIds: string[] } }
+  | { type: 'request-full-preview'; data: { nodeId: string } };
 
 // ============================================================================
 // PLUGIN UI DATA STRUCTURES
@@ -240,4 +248,29 @@ export interface PluginAuthPayload {
     };
   };
   timestamp: number;
+}
+
+// ============================================================================
+// COMPLEX HIERARCHY DETECTION DATA STRUCTURES
+// ============================================================================
+
+/**
+ * Data for complex hierarchy detection message
+ */
+export interface ComplexHierarchyDetectedData {
+  detections: ComplexHierarchyDetection[];
+  frameId: string;
+  frameName: string;
+  totalFrames: number;
+}
+
+/**
+ * Data for full preview response
+ */
+export interface FullPreviewData {
+  nodeId: string;
+  imageData: string;  // base64
+  width: number;
+  height: number;
+  nodeName: string;
 }
