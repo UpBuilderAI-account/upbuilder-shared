@@ -109,6 +109,9 @@ export type PluginBackendMessage = {
         isGlobalDedup?: boolean;
     };
 } | {
+    type: 'design-images-batch';
+    data: PluginImagesBatchData;
+} | {
     type: 'progress-update';
     data: PluginProgressData;
 } | {
@@ -214,6 +217,18 @@ export interface PluginImagesData {
     images: ImagePair[];
     frameId: string;
     framePreview?: FramePreview;
+}
+/**
+ * Image batch data for chunked transfer (plugin → frontend)
+ * Used to send images in ~5MB batches to prevent UI freezing
+ */
+export interface PluginImagesBatchData {
+    images: ImagePair[];
+    batchIndex: number;
+    totalBatches: number;
+    designId: string;
+    frameIndex: number;
+    isLastBatch: boolean;
 }
 /**
  * Progress update data (plugin UI)

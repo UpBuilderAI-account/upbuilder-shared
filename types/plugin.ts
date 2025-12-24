@@ -121,6 +121,7 @@ export type PluginBackendMessage =
   | { type: 'nodes-extracted'; data: PluginNodesData }
   | { type: 'images-extracted'; data: PluginImagesData }
   | { type: 'design-images-extracted'; data: PluginImagesData & { frameIndex: number; designId: string; isGlobalDedup?: boolean } }
+  | { type: 'design-images-batch'; data: PluginImagesBatchData }
   | { type: 'progress-update'; data: PluginProgressData }
   | { type: 'recent-projects-saved'; data: { success: boolean } }
   | { type: 'recent-projects-loaded'; data: { success: boolean; projects: RecentProject[] } }
@@ -172,6 +173,19 @@ export interface PluginImagesData {
   images: ImagePair[];
   frameId: string;
   framePreview?: FramePreview;
+}
+
+/**
+ * Image batch data for chunked transfer (plugin → frontend)
+ * Used to send images in ~5MB batches to prevent UI freezing
+ */
+export interface PluginImagesBatchData {
+  images: ImagePair[];
+  batchIndex: number;      // 0-based batch number
+  totalBatches: number;    // Total number of batches for this design
+  designId: string;        // Design these images belong to
+  frameIndex: number;      // Frame index in the design
+  isLastBatch: boolean;    // True if this is the final batch
 }
 
 /**
