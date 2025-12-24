@@ -257,6 +257,9 @@ export interface ProjectState {
 
   // Error tracking
   error_message?: string;
+
+  // Custom fonts detected during Webflow export (need manual import in Webflow)
+  customFonts?: string[];
 }
 
 export interface SectionCode {
