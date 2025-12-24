@@ -155,7 +155,6 @@ exports.DESIGN_STATUS = {
  */
 exports.DESIGN_PROCESSING_STATUS = {
     PENDING: 'pending',
-    PENDING_UPGRADE: 'pending_upgrade',
     QUEUED: 'queued',
     PROCESSING: 'processing',
     COMPLETE: 'complete',

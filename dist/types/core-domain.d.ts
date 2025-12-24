@@ -261,13 +261,12 @@ export declare const DESIGN_STATUS: {
  * Design processing status - tracks whether design is queued for processing
  * Used to implement tier-based processing limits (Basic: 1 design, Pro: 10 designs)
  */
-export type DesignProcessingStatus = 'pending' | 'pending_upgrade' | 'queued' | 'processing' | 'complete' | 'failed';
+export type DesignProcessingStatus = 'pending' | 'queued' | 'processing' | 'complete' | 'failed';
 /**
  * Type-safe constants for DesignProcessingStatus
  */
 export declare const DESIGN_PROCESSING_STATUS: {
     readonly PENDING: DesignProcessingStatus;
-    readonly PENDING_UPGRADE: DesignProcessingStatus;
     readonly QUEUED: DesignProcessingStatus;
     readonly PROCESSING: DesignProcessingStatus;
     readonly COMPLETE: DesignProcessingStatus;

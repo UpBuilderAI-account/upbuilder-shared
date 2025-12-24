@@ -269,23 +269,10 @@ export interface GitHubPushResult {
 // ============================================================================
 
 /**
- * Pending design info - design that was saved but not processed due to tier limits
- */
-export interface PendingDesign {
-  id: string;
-  name: string;
-  featured_img_url?: string;
-  processing_status: 'pending_upgrade';
-  created_at: string;
-}
-
-/**
  * Project update event (Standard)
  */
 export interface ProjectUpdate {
   project: Project;
-  /** Designs that are pending upgrade to be processed */
-  pendingDesigns?: PendingDesign[];
 }
 
 /**

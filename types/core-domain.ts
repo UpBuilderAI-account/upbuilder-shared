@@ -409,7 +409,6 @@ export const DESIGN_STATUS = {
  */
 export type DesignProcessingStatus =
   | 'pending'          // Just created, not yet in workflow
-  | 'pending_upgrade'  // Saved but awaiting Pro upgrade to process
   | 'queued'           // Ready to be processed
   | 'processing'       // Currently in workflow
   | 'complete'         // Finished processing
@@ -420,7 +419,6 @@ export type DesignProcessingStatus =
  */
 export const DESIGN_PROCESSING_STATUS = {
   PENDING: 'pending' as DesignProcessingStatus,
-  PENDING_UPGRADE: 'pending_upgrade' as DesignProcessingStatus,
   QUEUED: 'queued' as DesignProcessingStatus,
   PROCESSING: 'processing' as DesignProcessingStatus,
   COMPLETE: 'complete' as DesignProcessingStatus,
