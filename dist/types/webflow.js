@@ -4,7 +4,7 @@
 // Shared types and constants for Webflow structure conversion
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WEBFLOW_HIERARCHY_VALIDATION_CHECKLIST = exports.WEBFLOW_DROPDOWN_HIERARCHY_DOCS = exports.WEBFLOW_FORM_HIERARCHY_DOCS = exports.WEBFLOW_NAVBAR_HIERARCHY_DOCS = exports.WEBFLOW_COMPONENT_TYPES_FOR_PROMPT = exports.WEBFLOW_COMPONENT_TYPES_LIST = exports.NAVBAR_VALIDATION_CLASSES = exports.WEBFLOW_STATE_VARIANTS = exports.WEBFLOW_RESPONSIVE_BREAKPOINTS = exports.WEBFLOW_BREAKPOINTS = void 0;
+exports.WEBFLOW_HTML_EMBED_DOCS = exports.WEBFLOW_HIERARCHY_VALIDATION_CHECKLIST = exports.WEBFLOW_DROPDOWN_HIERARCHY_DOCS = exports.WEBFLOW_FORM_HIERARCHY_DOCS = exports.WEBFLOW_NAVBAR_HIERARCHY_DOCS = exports.WEBFLOW_COMPONENT_TYPES_FOR_PROMPT = exports.WEBFLOW_COMPONENT_TYPES_LIST = exports.NAVBAR_VALIDATION_CLASSES = exports.WEBFLOW_STATE_VARIANTS = exports.WEBFLOW_RESPONSIVE_BREAKPOINTS = exports.WEBFLOW_BREAKPOINTS = void 0;
 // Runtime arrays for iteration
 exports.WEBFLOW_BREAKPOINTS = ['main', 'medium', 'small', 'tiny'];
 exports.WEBFLOW_RESPONSIVE_BREAKPOINTS = ['medium', 'small', 'tiny'];
@@ -28,7 +28,7 @@ exports.NAVBAR_VALIDATION_CLASSES = {
 // Prompt Generation Helpers
 // -----------------------------------------------------------------------------
 exports.WEBFLOW_COMPONENT_TYPES_LIST = {
-    basic: ['Block', 'Section', 'Heading', 'Paragraph', 'Image', 'Link', 'Button', 'List', 'ListItem', 'Icon'],
+    basic: ['Block', 'Section', 'Heading', 'Paragraph', 'Image', 'Link', 'Button', 'List', 'ListItem', 'Icon', 'HtmlEmbed'],
     navigation: ['NavbarWrapper', 'NavbarContainer', 'NavbarBrand', 'NavbarMenu', 'NavbarLink', 'NavbarButton', 'DropdownWrapper', 'DropdownToggle', 'DropdownList', 'DropdownLink'],
     forms: ['FormWrapper', 'FormForm', 'FormTextInput', 'FormTextarea', 'FormButton', 'FormBlockLabel', 'FormInlineLabel', 'FormCheckboxWrapper', 'FormCheckboxInput', 'FormRadioWrapper', 'FormRadioInput', 'FormSelect', 'FormSuccessMessage', 'FormErrorMessage']
 };
@@ -174,3 +174,36 @@ exports.WEBFLOW_HIERARCHY_VALIDATION_CHECKLIST = `### ⚠️ VALIDATION CHECKLIS
 - [ ] FormCheckboxInput is inside FormCheckboxWrapper
 - [ ] FormRadioInput is inside FormRadioWrapper
 - [ ] If HTML has field-group divs wrapping inputs, those divs are SKIPPED`;
+exports.WEBFLOW_HTML_EMBED_DOCS = `## HtmlEmbed Component (for inline SVGs and custom HTML)
+
+**Use HtmlEmbed when you need to embed raw SVG icons or custom HTML that can't be represented with standard components.**
+
+### When to use HtmlEmbed:
+- Inline SVG icons (arrows, indicators, decorative graphics)
+- Custom HTML that needs to be preserved exactly
+- SVG animations or interactive elements
+
+### Format:
+\`\`\`
+id: "[id]" | compType: "HtmlEmbed" | parent: "[parent]" | styles: ["..."] | html: "<svg>...</svg>"
+\`\`\`
+
+### ✅ CORRECT Example - Arrow icon inside a button:
+\`\`\`
+id: "carousel_prev" | compType: "Link" | parent: "carousel_controls" | styles: ["ss-carousel-005"]
+id: "carousel_prev_icon" | compType: "HtmlEmbed" | parent: "carousel_prev" | styles: [] | html: "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M19 12H5M5 12L12 19M5 12L12 5' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>"
+\`\`\`
+
+### ✅ CORRECT Example - Carousel indicator dots:
+\`\`\`
+id: "indicators" | compType: "Block" | parent: "carousel_controls" | styles: ["ss-carousel-006"]
+id: "indicator_1" | compType: "HtmlEmbed" | parent: "indicators" | styles: ["ss-carousel-007"] | html: "<svg width='12' height='12' viewBox='0 0 12 12'><circle cx='6' cy='6' r='5' fill='currentColor'/></svg>"
+id: "indicator_2" | compType: "HtmlEmbed" | parent: "indicators" | styles: ["ss-carousel-007"] | html: "<svg width='12' height='12' viewBox='0 0 12 12'><circle cx='6' cy='6' r='5' fill='currentColor' opacity='0.3'/></svg>"
+\`\`\`
+
+### Key Rules:
+1. **html attribute is REQUIRED** - Must contain the full SVG/HTML code
+2. **Use single quotes** inside the html value (the outer value uses double quotes)
+3. **Keep SVGs simple** - Remove unnecessary attributes like xmlns when possible
+4. **Use currentColor** for fills/strokes when the color should inherit from parent
+5. **HtmlEmbed can have styles** - Apply positioning, sizing via style classes`;
