@@ -196,6 +196,8 @@ export interface WorkflowExportComplete {
     platform: Platform;
     designs: ExportDesignData[];
     isPro?: boolean;
+    /** Custom fonts that need to be added to Webflow project before pasting (Webflow only) */
+    customFonts?: string[];
 }
 export interface WorkflowCommand {
     projectId: string;

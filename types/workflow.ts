@@ -297,6 +297,8 @@ export interface WorkflowExportComplete {
   platform: Platform;
   designs: ExportDesignData[];
   isPro?: boolean;  // Subscription status for frontend section limiting
+  /** Custom fonts that need to be added to Webflow project before pasting (Webflow only) */
+  customFonts?: string[];
 }
 
 // =============================================================================
