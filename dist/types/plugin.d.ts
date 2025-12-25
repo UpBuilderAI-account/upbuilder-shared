@@ -243,6 +243,7 @@ export type PluginFrontendMessage = {
     type: 'request-outside-preview';
     data: {
         nodeId: string;
+        parentFrameId: string;
     };
 };
 /**

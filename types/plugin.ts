@@ -161,7 +161,7 @@ export type PluginFrontendMessage =
   // Outside elements messages
   | { type: 'scan-outside-elements'; data: { frameIds: string[] } }
   | { type: 'outside-elements-approval'; data: { includedNodeIds: string[]; excludedNodeIds: string[] } }
-  | { type: 'request-outside-preview'; data: { nodeId: string } };
+  | { type: 'request-outside-preview'; data: { nodeId: string; parentFrameId: string } };
 
 // ============================================================================
 // PLUGIN UI DATA STRUCTURES
