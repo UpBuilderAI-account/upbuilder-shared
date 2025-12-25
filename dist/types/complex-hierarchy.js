@@ -4,7 +4,25 @@
 // Types for the plugin's complex hierarchy review panel
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getConfidenceFromReason = getConfidenceFromReason;
 exports.getReasonDisplayText = getReasonDisplayText;
+/**
+ * Get confidence level from detection reason
+ */
+function getConfidenceFromReason(reason) {
+    switch (reason) {
+        // Confident - Designer explicitly named/structured
+        case 'name_pattern':
+        case 'shape_composition':
+            return 'confident';
+        // Needs Review - No clear intent (auto-named elements)
+        case 'default_names':
+            return 'needs_review';
+        // Likely - Pattern-based detection (all other cases)
+        default:
+            return 'likely';
+    }
+}
 /**
  * Get user-friendly display text for a complexity reason
  */

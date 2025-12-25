@@ -3,6 +3,17 @@
  */
 export type ComplexityReason = 'hard_limit' | 'name_pattern' | 'scattered' | 'overlapping' | 'thin_lines' | 'low_opacity' | 'default_names' | 'very_deep' | 'deep' | 'complexity_score' | 'shape_composition';
 /**
+ * Confidence level for detection
+ * - confident: Designer explicitly named/structured as graphic
+ * - likely: Pattern-based detection, usually correct
+ * - needs_review: No clear intent, user should verify
+ */
+export type ConfidenceLevel = 'confident' | 'likely' | 'needs_review';
+/**
+ * Get confidence level from detection reason
+ */
+export declare function getConfidenceFromReason(reason: ComplexityReason): ConfidenceLevel;
+/**
  * Result from shouldTreatAsVector with reason
  */
 export interface VectorizationResult {
@@ -19,6 +30,7 @@ export interface ComplexHierarchyDetection {
     parentName: string;
     reason: ComplexityReason;
     reasonText: string;
+    confidence: ConfidenceLevel;
     level: number;
     descendantCount: number;
     bounds: {

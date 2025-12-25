@@ -20,6 +20,32 @@ export type ComplexityReason =
   | 'shape_composition'; // All children are shapes (icons made of vectors)
 
 /**
+ * Confidence level for detection
+ * - confident: Designer explicitly named/structured as graphic
+ * - likely: Pattern-based detection, usually correct
+ * - needs_review: No clear intent, user should verify
+ */
+export type ConfidenceLevel = 'confident' | 'likely' | 'needs_review';
+
+/**
+ * Get confidence level from detection reason
+ */
+export function getConfidenceFromReason(reason: ComplexityReason): ConfidenceLevel {
+  switch (reason) {
+    // Confident - Designer explicitly named/structured
+    case 'name_pattern':
+    case 'shape_composition':
+      return 'confident';
+    // Needs Review - No clear intent (auto-named elements)
+    case 'default_names':
+      return 'needs_review';
+    // Likely - Pattern-based detection (all other cases)
+    default:
+      return 'likely';
+  }
+}
+
+/**
  * Result from shouldTreatAsVector with reason
  */
 export interface VectorizationResult {
@@ -37,6 +63,7 @@ export interface ComplexHierarchyDetection {
   parentName: string;
   reason: ComplexityReason;
   reasonText: string;      // User-friendly description
+  confidence: ConfidenceLevel; // How confident we are this is a graphic
   level: number;
   descendantCount: number;
   bounds: {
@@ -44,7 +71,7 @@ export interface ComplexHierarchyDetection {
     height: number;
   };
   thumbnailUrl?: string;   // base64 small preview
-  isApproved: boolean;     // default true - user can uncheck to exclude
+  isApproved: boolean;     // default based on confidence level
 }
 
 /**
