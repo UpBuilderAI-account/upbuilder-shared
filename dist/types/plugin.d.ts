@@ -1,6 +1,7 @@
 import type { User, AuthStatus, Dimensions } from './core-domain';
 import type { Element, ColorRGBA } from './element';
 import type { ComplexHierarchyDetection } from './complex-hierarchy';
+import type { OutsideElementsDetectedData, OutsidePreviewData } from './outside-elements';
 /**
  * Border styling
  */
@@ -135,6 +136,12 @@ export type PluginBackendMessage = {
 } | {
     type: 'full-preview-ready';
     data: FullPreviewData;
+} | {
+    type: 'outside-elements-detected';
+    data: OutsideElementsDetectedData;
+} | {
+    type: 'outside-preview-ready';
+    data: OutsidePreviewData;
 };
 /**
  * Messages from plugin UI → plugin backend
@@ -218,6 +225,22 @@ export type PluginFrontendMessage = {
     };
 } | {
     type: 'request-full-preview';
+    data: {
+        nodeId: string;
+    };
+} | {
+    type: 'scan-outside-elements';
+    data: {
+        frameIds: string[];
+    };
+} | {
+    type: 'outside-elements-approval';
+    data: {
+        includedNodeIds: string[];
+        excludedNodeIds: string[];
+    };
+} | {
+    type: 'request-outside-preview';
     data: {
         nodeId: string;
     };

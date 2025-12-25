@@ -11,4 +11,5 @@ export * from './bricks';
 export * from './elementor';
 export * from './github-sync';
 export * from './complex-hierarchy';
+export * from './outside-elements';
 //# sourceMappingURL=index.d.ts.map

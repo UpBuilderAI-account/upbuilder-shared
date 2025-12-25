@@ -64,3 +64,5 @@ __exportStar(require("./elementor"), exports);
 __exportStar(require("./github-sync"), exports);
 // Complex hierarchy detection types
 __exportStar(require("./complex-hierarchy"), exports);
+// Outside elements detection types
+__exportStar(require("./outside-elements"), exports);

@@ -109,3 +109,6 @@ export * from './github-sync';
 
 // Complex hierarchy detection types
 export * from './complex-hierarchy';
+
+// Outside elements detection types
+export * from './outside-elements';

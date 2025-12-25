@@ -9,6 +9,7 @@ import type {
   ColorRGBA
 } from './element';
 import type { ComplexHierarchyDetection } from './complex-hierarchy';
+import type { OutsideElementsDetectedData, OutsidePreviewData } from './outside-elements';
 
 /**
  * Border styling
@@ -127,9 +128,12 @@ export type PluginBackendMessage =
   | { type: 'recent-projects-saved'; data: { success: boolean } }
   | { type: 'recent-projects-loaded'; data: { success: boolean; projects: RecentProject[] } }
   | { type: 'error'; data: PluginErrorData }
-  // Complex hierarchy detection messages
+  // Complex hierarchy (grouped graphics) detection messages
   | { type: 'complex-hierarchy-detected'; data: ComplexHierarchyDetectedData }
-  | { type: 'full-preview-ready'; data: FullPreviewData };
+  | { type: 'full-preview-ready'; data: FullPreviewData }
+  // Outside elements detection messages
+  | { type: 'outside-elements-detected'; data: OutsideElementsDetectedData }
+  | { type: 'outside-preview-ready'; data: OutsidePreviewData };
 
 /**
  * Messages from plugin UI → plugin backend
@@ -150,10 +154,14 @@ export type PluginFrontendMessage =
   | { type: 'extract-all-images'; data: { projectId: string; frameToDesignMap: Record<number, string> } }
   | { type: 'save-recent-projects'; data: { projects: RecentProject[] } }
   | { type: 'load-recent-projects'; data: {} }
-  // Complex hierarchy approval messages
+  // Complex hierarchy (grouped graphics) messages
   | { type: 'scan-complex-hierarchies'; data: { frameIds: string[] } }
   | { type: 'complex-hierarchy-approval'; data: { approvedNodeIds: string[]; excludedNodeIds: string[] } }
-  | { type: 'request-full-preview'; data: { nodeId: string } };
+  | { type: 'request-full-preview'; data: { nodeId: string } }
+  // Outside elements messages
+  | { type: 'scan-outside-elements'; data: { frameIds: string[] } }
+  | { type: 'outside-elements-approval'; data: { includedNodeIds: string[]; excludedNodeIds: string[] } }
+  | { type: 'request-outside-preview'; data: { nodeId: string } };
 
 // ============================================================================
 // PLUGIN UI DATA STRUCTURES
