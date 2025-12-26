@@ -199,7 +199,7 @@ export interface WorkflowExportComplete {
 }
 export interface WorkflowCommand {
     projectId: string;
-    action: 'start' | 'cancel' | 'next' | 'reprocess_export' | 'reprocess_export_fast';
+    action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_detect_sections' | 'reprocess_generate_styles' | 'reprocess_prepare_build' | 'reprocess_build' | 'reprocess_export' | 'reprocess_export_fast';
     retry?: boolean;
     /** Styles configuration from styles_config stage (client-first only) */
     stylesConfig?: StylesConfig;
