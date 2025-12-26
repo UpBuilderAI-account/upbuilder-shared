@@ -221,6 +221,7 @@ export interface ClientToServerEvents {
     authenticate: (data: {
         token?: string;
         guest?: boolean;
+        pluginToken?: string;
     }, callback: CallbackResponse<{
         userId: string;
         isGuest: boolean;
@@ -348,5 +349,6 @@ export interface SocketData {
     sessionId?: string;
     isAuthenticated?: boolean;
     isGuest?: boolean;
+    figmaUserId?: string;
 }
 //# sourceMappingURL=socket-protocol.d.ts.map

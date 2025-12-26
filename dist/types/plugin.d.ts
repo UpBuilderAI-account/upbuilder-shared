@@ -74,11 +74,21 @@ export type PluginUIStage = 'idle' | 'selecting' | 'loading' | 'analyzing' | 'ex
  * Messages from plugin backend → plugin UI
  * (Internal Figma plugin communication, not WebSocket)
  */
+/**
+ * Figma user info from figma.currentUser
+ */
+export interface FigmaUserInfo {
+    id: string | null;
+    name: string | null;
+    sessionId: number | null;
+}
 export type PluginBackendMessage = {
     type: 'plugin-ready';
     data: {
         version: string;
         figmaFileName?: string;
+        pluginToken?: string;
+        figmaUser?: FigmaUserInfo;
     };
 } | {
     type: 'auth-status';

@@ -329,7 +329,7 @@ export interface ErrorPayload {
 export interface ClientToServerEvents {
   // Authentication
   authenticate: (
-    data: { token?: string; guest?: boolean },
+    data: { token?: string; guest?: boolean; pluginToken?: string },
     callback: CallbackResponse<{ userId: string; isGuest: boolean }>
   ) => void;
 
@@ -525,6 +525,7 @@ export interface SocketData {
   sessionId?: string;
   isAuthenticated?: boolean;
   isGuest?: boolean;
+  figmaUserId?: string; // Figma user ID from plugin token (for guest isolation)
 }
 
 // ============================================================================
