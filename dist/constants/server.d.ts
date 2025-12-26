@@ -68,8 +68,9 @@ export declare const STREAMING_SIMPLE_TIMEOUT_MS = 300000;
 export declare const STREAMING_SIMPLE_RETRY_DELAY_MS = 5000;
 /**
  * Maximum dimension for browser screenshots (width or height)
+ * 8192 = very high quality for detailed designs
  */
-export declare const MAX_SCREENSHOT_DIMENSION = 2048;
+export declare const MAX_SCREENSHOT_DIMENSION = 8192;
 /**
  * Initial timeout for browser operations in milliseconds (updated from 60000)
  */

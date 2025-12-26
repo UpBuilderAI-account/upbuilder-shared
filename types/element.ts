@@ -51,6 +51,7 @@ export interface Font {
   size?: number;
   sizeUnit?: SizeUnit;
   weight?: number;
+  style?: 'normal' | 'italic' | 'oblique';  // Font style (italic, oblique)
   lineHeight?: number;
   lineHeightUnit?: LineHeightUnit;
   letterSpacing?: number;
@@ -71,6 +72,7 @@ export interface TextStyle {
   fontFamily?: string;
   fontSize?: number;
   fontWeight?: number;
+  fontStyle?: 'normal' | 'italic' | 'oblique';  // Font style (italic, oblique)
   lineHeight?: number;
   letterSpacing?: number;
   textAlign?: string;
