@@ -52,7 +52,7 @@ export interface PluginAuthTokenResponse {
     user?: User;
     error?: string;
 }
-export type ProjectStatus = 'idle' | 'load' | 'detect_sections' | 'styles_config' | 'generate_styles' | 'review_stylesheet' | 'prepare_build' | 'build' | 'consolidate_scripts' | 'customize' | 'export' | 'complete' | 'failed';
+export type ProjectStatus = 'idle' | 'load' | 'detect_sections' | 'styles_config' | 'generate_styles' | 'review_stylesheet' | 'prepare_build' | 'build' | 'customize' | 'export' | 'complete' | 'failed';
 /**
  * Type-safe constants for ProjectStatus
  */
@@ -65,7 +65,6 @@ export declare const PROJECT_STATUS: {
     readonly REVIEW_STYLESHEET: ProjectStatus;
     readonly PREPARE_BUILD: ProjectStatus;
     readonly BUILD: ProjectStatus;
-    readonly CONSOLIDATE_SCRIPTS: ProjectStatus;
     readonly CUSTOMIZE: ProjectStatus;
     readonly EXPORT: ProjectStatus;
     readonly COMPLETE: ProjectStatus;
@@ -89,7 +88,7 @@ export type Platform = 'webflow' | 'bricks' | 'elementor';
 export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap' | 'vanilla' | 'inline';
 /**
  * Stages to skip for each platform
- * Bricks/Elementor skip stylesheet generation and consolidation (sections are self-contained)
+ * Bricks/Elementor skip stylesheet generation (sections are self-contained)
  */
 export declare const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>>;
 /**

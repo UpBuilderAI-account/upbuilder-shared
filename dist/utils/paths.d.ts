@@ -45,12 +45,6 @@ export declare function createS3Paths(baseUrl: string): {
      */
     getExportUrl: (projectId: string, designId: string, fileName: string) => string;
     /**
-     * Get full URL for design image (DEPRECATED - use getProjectImageUrl)
-     * @deprecated Images are now stored at project level, not per-design
-     * @example getImageUrl('abc123', 'def456', 'preview.png')
-     */
-    getImageUrl: (projectId: string, designId: string, fileName: string) => string;
-    /**
      * Get full URL for project-level image (shared across all designs)
      * @example getProjectImageUrl('abc123', 'preview.png')
      * => 'https://bucket.s3.amazonaws.com/projects/abc123/images/preview.png'

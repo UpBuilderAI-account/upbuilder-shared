@@ -26,7 +26,6 @@ exports.PROJECT_STATUS = {
     REVIEW_STYLESHEET: 'review_stylesheet',
     PREPARE_BUILD: 'prepare_build',
     BUILD: 'build',
-    CONSOLIDATE_SCRIPTS: 'consolidate_scripts',
     CUSTOMIZE: 'customize',
     EXPORT: 'export',
     COMPLETE: 'complete',
@@ -42,7 +41,6 @@ function isProcessingStage(status) {
         'generate_styles',
         'prepare_build',
         'build',
-        'consolidate_scripts',
         'export',
     ];
     return processingStages.includes(status);
@@ -62,8 +60,7 @@ function getNextStatus(status, platform) {
         generate_styles: 'review_stylesheet',
         review_stylesheet: 'prepare_build',
         prepare_build: 'build',
-        build: 'consolidate_scripts',
-        consolidate_scripts: 'customize',
+        build: 'customize',
         customize: 'export',
         export: 'complete',
         complete: null,
@@ -91,12 +88,12 @@ function requiresUserActionAfter(status) {
 // =============================================================================
 /**
  * Stages to skip for each platform
- * Bricks/Elementor skip stylesheet generation and consolidation (sections are self-contained)
+ * Bricks/Elementor skip stylesheet generation (sections are self-contained)
  */
 exports.SKIPPED_STAGES = {
     webflow: [],
-    bricks: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_scripts'],
-    elementor: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_scripts'],
+    bricks: ['styles_config', 'generate_styles', 'review_stylesheet'],
+    elementor: ['styles_config', 'generate_styles', 'review_stylesheet'],
 };
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)

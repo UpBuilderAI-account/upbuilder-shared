@@ -229,10 +229,6 @@ export interface Element {
   /**
    * @deprecated Use relativeTransform instead. Kept for backward compatibility.
    */
-  localPosition?: { x: number; y: number };
-  /**
-   * @deprecated Use relativeTransform instead. Kept for backward compatibility.
-   */
   rotation?: number;
   opacity?: number;
   zIndex?: number;

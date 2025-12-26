@@ -87,7 +87,6 @@ export type ProjectStatus =
   | 'review_stylesheet'
   | 'prepare_build'
   | 'build'
-  | 'consolidate_scripts'
   | 'customize'
   | 'export'
   | 'complete'
@@ -105,7 +104,6 @@ export const PROJECT_STATUS = {
   REVIEW_STYLESHEET: 'review_stylesheet' as ProjectStatus,
   PREPARE_BUILD: 'prepare_build' as ProjectStatus,
   BUILD: 'build' as ProjectStatus,
-  CONSOLIDATE_SCRIPTS: 'consolidate_scripts' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   EXPORT: 'export' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
@@ -122,7 +120,6 @@ export function isProcessingStage(status: ProjectStatus): boolean {
     'generate_styles',
     'prepare_build',
     'build',
-    'consolidate_scripts',
     'export',
   ];
   return processingStages.includes(status);
@@ -142,8 +139,7 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform): Proje
     generate_styles: 'review_stylesheet',
     review_stylesheet: 'prepare_build',
     prepare_build: 'build',
-    build: 'consolidate_scripts',
-    consolidate_scripts: 'customize',
+    build: 'customize',
     customize: 'export',
     export: 'complete',
     complete: null,
@@ -180,12 +176,12 @@ export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap
 
 /**
  * Stages to skip for each platform
- * Bricks/Elementor skip stylesheet generation and consolidation (sections are self-contained)
+ * Bricks/Elementor skip stylesheet generation (sections are self-contained)
  */
 export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
   webflow: [],
-  bricks: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_scripts'],
-  elementor: ['styles_config', 'generate_styles', 'review_stylesheet', 'consolidate_scripts'],
+  bricks: ['styles_config', 'generate_styles', 'review_stylesheet'],
+  elementor: ['styles_config', 'generate_styles', 'review_stylesheet'],
 };
 
 /**
