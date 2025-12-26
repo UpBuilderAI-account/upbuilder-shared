@@ -46,6 +46,10 @@ export interface WorkflowStage {
     exportSteps?: ExportStep[];
     /** If true, this is a retry - frontend should allow progress to decrease */
     retry?: boolean;
+    /** Estimated remaining time in milliseconds (export stage only) */
+    estimatedRemainingMs?: number;
+    /** Timestamp when export stage started (for elapsed time calculation) */
+    exportStartedAt?: number;
 }
 export interface WorkflowStages {
     projectId: string;
