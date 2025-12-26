@@ -1,7 +1,10 @@
 /**
  * User subscription tiers
+ * basic: Free tier
+ * plus: $4.99/mo - mid-tier
+ * pro: $9.99/mo - full features + GitHub sync
  */
-export type SubscriptionTier = 'basic' | 'pro';
+export type SubscriptionTier = 'basic' | 'plus' | 'pro';
 /**
  * User account data
  */
