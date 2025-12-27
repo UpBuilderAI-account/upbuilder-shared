@@ -32,7 +32,7 @@ import type {
   StylesheetSaveResult,
   StylesheetCleanResult,
 } from './workflow';
-import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
+import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 
 // Re-export export types for use in socket events
@@ -437,7 +437,7 @@ export interface ClientToServerEvents {
   'user:check_subscription': (
     data: void,
     callback: CallbackResponse<{
-      tier: 'basic' | 'pro';
+      tier: SubscriptionTier;
       isTrialing?: boolean;
       trialEnd?: number | null;
       currentPeriodEnd?: number;
@@ -502,7 +502,7 @@ export interface ServerToClientEvents {
 
   // User subscription updates
   'user:subscription_updated': (data: {
-    tier: 'basic' | 'pro';
+    tier: SubscriptionTier;
     isTrialing?: boolean;
     trialEnd?: number | null;
     currentPeriodEnd?: number;

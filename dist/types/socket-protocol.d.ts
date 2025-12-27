@@ -1,7 +1,7 @@
 import type { ImagePair, PreviewData, FramePreview } from './plugin';
 import type { Element } from './element';
 import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType, StylesheetSaveRequest, StylesheetResetRequest, StylesheetCleanRequest, StylesheetSaveResult, StylesheetCleanResult } from './workflow';
-import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus } from './core-domain';
+import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 export type { ExportOptions, ExportPayload };
 export declare const ERROR_CODES: {
@@ -272,7 +272,7 @@ export interface ClientToServerEvents {
     github_push_code: (data: GitHubPayloads['push_code'], callback: CallbackResponse<GitHubPushResult>) => void;
     github_sync_start: (data: GitHubSyncStartPayload, callback: CallbackResponse<void>) => void;
     'user:check_subscription': (data: void, callback: CallbackResponse<{
-        tier: 'basic' | 'pro';
+        tier: SubscriptionTier;
         isTrialing?: boolean;
         trialEnd?: number | null;
         currentPeriodEnd?: number;
@@ -327,7 +327,7 @@ export interface ServerToClientEvents {
         projectName?: string;
     }) => void;
     'user:subscription_updated': (data: {
-        tier: 'basic' | 'pro';
+        tier: SubscriptionTier;
         isTrialing?: boolean;
         trialEnd?: number | null;
         currentPeriodEnd?: number;
