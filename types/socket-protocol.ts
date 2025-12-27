@@ -221,13 +221,16 @@ export interface PluginPayloads {
 
 /**
  * GitHub integration payloads
+ * Note: Either accessToken OR userId must be provided.
+ * If userId is provided, the backend looks up the token from database.
  */
 export interface GitHubPayloads {
   /**
    * Get user's repositories
    */
   get_repos: {
-    accessToken: string;
+    accessToken?: string;
+    userId?: string;
     page?: number;
   };
 
@@ -235,11 +238,14 @@ export interface GitHubPayloads {
    * Push project code to GitHub repository
    */
   push_code: {
-    accessToken: string;
+    accessToken?: string;
+    userId?: string;
     projectId: string;
     repository: string; // Format: "owner/repo"
     branch: string;
     message: string;
+    createRepo?: boolean;
+    isPrivate?: boolean;
   };
 }
 
