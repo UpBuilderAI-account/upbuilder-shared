@@ -74,7 +74,8 @@ export declare function calculateRemainingTime(state: ExportProgressState): numb
  */
 export declare function formatETA(ms: number): string;
 /**
- * Format to "~X min" for display
+ * Format to "~X-Y min" range for display
+ * Shows a 2-minute range for better accuracy expectations
  */
 export declare function formatETAApprox(ms: number): string;
 //# sourceMappingURL=export-eta.d.ts.map

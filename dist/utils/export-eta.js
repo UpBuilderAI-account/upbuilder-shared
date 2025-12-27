@@ -140,12 +140,18 @@ function formatETA(ms) {
     return `${minutes}min ${remainingSeconds}s`;
 }
 /**
- * Format to "~X min" for display
+ * Format to "~X-Y min" range for display
+ * Shows a 2-minute range for better accuracy expectations
  */
 function formatETAApprox(ms) {
     const minutes = Math.ceil(ms / 60000);
     if (minutes <= 1) {
-        return '~1 min';
+        return 'less than a minute';
     }
-    return `~${minutes} min`;
+    if (minutes <= 2) {
+        return '~1-2 min';
+    }
+    // Show range: (approx - 2) to approx
+    const lower = minutes - 2;
+    return `~${lower}-${minutes} min`;
 }
