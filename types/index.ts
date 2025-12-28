@@ -58,8 +58,6 @@ export {
   type ExportDesignData,
   type WorkflowExportComplete,
   // Client events
-  type WorkflowMode,
-  QUICK_MODE_SKIP_STAGES,
   type WorkflowCommand,
   // Editor code save types
   type CodeSaveRequest,
