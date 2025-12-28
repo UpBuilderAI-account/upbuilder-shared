@@ -6,7 +6,7 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_STYLES_CONFIG = void 0;
+exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.QUICK_MODE_SKIP_STAGES = exports.DEFAULT_STYLES_CONFIG = void 0;
 exports.isInlineCSSPlatform = isInlineCSSPlatform;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
 /**
@@ -32,6 +32,14 @@ exports.DEFAULT_STYLES_CONFIG = {
     generateZIndex: false,
     generatePointerEvents: false,
 };
+/**
+ * Stages that are skipped in quick mode (user action not required)
+ */
+exports.QUICK_MODE_SKIP_STAGES = [
+    'styles_config',
+    'review_stylesheet',
+    'customize',
+];
 // =============================================================================
 // HELPERS
 // =============================================================================
