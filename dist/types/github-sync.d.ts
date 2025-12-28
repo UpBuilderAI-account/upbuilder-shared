@@ -52,11 +52,14 @@ export interface GitHubSyncResult {
 }
 /**
  * Parsed section from GitHub
+ * Each section can have HTML, CSS, and JS files
  */
 export interface GitHubParsedSection {
     name: string;
     fileName: string;
     content: string;
+    css?: string;
+    js?: string;
     size: number;
 }
 /**

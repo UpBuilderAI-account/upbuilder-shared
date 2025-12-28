@@ -72,12 +72,15 @@ export interface GitHubSyncResult {
 
 /**
  * Parsed section from GitHub
+ * Each section can have HTML, CSS, and JS files
  */
 export interface GitHubParsedSection {
   name: string;
-  fileName: string;
-  content: string;
-  size: number;
+  fileName: string;    // The .html filename
+  content: string;     // HTML content
+  css?: string;        // CSS content (optional, from {section}.css file)
+  js?: string;         // JS content (optional, from {section}.js file)
+  size: number;        // HTML file size
 }
 
 /**
