@@ -462,6 +462,8 @@ export interface Project {
   // GitHub integration
   github_repo?: string | null;
   github_synced_at?: string | null;
+  // Workflow mode: 'quick' skips interactive stages, 'configurable' shows all
+  workflow_mode?: 'quick' | 'configurable' | null;
 }
 
 // ============================================================================
@@ -565,6 +567,8 @@ export interface ProjectEntity {
   };
   operation_started_at?: Date;
   state?: ProjectState;
+  /** Workflow mode: 'quick' skips interactive stages, 'configurable' shows all */
+  workflow_mode?: 'quick' | 'configurable' | null;
   created_at: Date;
   updated_at: Date;
 }

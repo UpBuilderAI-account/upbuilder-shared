@@ -307,6 +307,7 @@ export interface Project {
     figma_url?: string | null;
     github_repo?: string | null;
     github_synced_at?: string | null;
+    workflow_mode?: 'quick' | 'configurable' | null;
 }
 /**
  * Export type/format
@@ -393,6 +394,8 @@ export interface ProjectEntity {
     };
     operation_started_at?: Date;
     state?: ProjectState;
+    /** Workflow mode: 'quick' skips interactive stages, 'configurable' shows all */
+    workflow_mode?: 'quick' | 'configurable' | null;
     created_at: Date;
     updated_at: Date;
 }

@@ -210,7 +210,7 @@ export type WorkflowMode = 'quick' | 'configurable';
 export declare const QUICK_MODE_SKIP_STAGES: Stage[];
 export interface WorkflowCommand {
     projectId: string;
-    action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_detect_sections' | 'reprocess_generate_styles' | 'reprocess_prepare_build' | 'reprocess_build' | 'reprocess_export' | 'reprocess_export_fast';
+    action: 'start' | 'cancel' | 'next' | 'set_mode' | 'reprocess_load' | 'reprocess_detect_sections' | 'reprocess_generate_styles' | 'reprocess_prepare_build' | 'reprocess_build' | 'reprocess_export' | 'reprocess_export_fast';
     retry?: boolean;
     /** Workflow mode: 'quick' skips interactive stages, 'configurable' shows all stages */
     mode?: WorkflowMode;
