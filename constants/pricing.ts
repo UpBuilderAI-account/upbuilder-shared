@@ -44,12 +44,6 @@ export const MAX_DESIGNS_PER_PROJECT = {
 } as const;
 
 /**
- * Trial configuration
- * Only Pro tier has a trial
- */
-export const TRIAL_DAYS = 3;
-
-/**
  * Pricing configuration for display
  * Note: priceId values should be injected from environment variables at runtime
  */
@@ -62,7 +56,6 @@ export const PRICING_CONFIG = {
     features: BASIC_FEATURES,
     exportsPerMonth: 2,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.free,
-    trialDays: 0,
   },
   plus: {
     name: 'Plus',
@@ -72,7 +65,6 @@ export const PRICING_CONFIG = {
     features: PLUS_FEATURES,
     exportsPerMonth: 20,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.plus,
-    trialDays: 0,
   },
   pro: {
     name: 'Pro',
@@ -83,7 +75,6 @@ export const PRICING_CONFIG = {
     exportsPerMonth: 50,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
     popular: true,
-    trialDays: TRIAL_DAYS,
   },
 } as const;
 

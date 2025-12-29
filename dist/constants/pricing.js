@@ -4,7 +4,7 @@
 // Centralized pricing plan and feature definitions
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PRICING_CONFIG = exports.TRIAL_DAYS = exports.MAX_DESIGNS_PER_PROJECT = exports.PRO_FEATURES = exports.PLUS_FEATURES = exports.BASIC_FEATURES = void 0;
+exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.PRO_FEATURES = exports.PLUS_FEATURES = exports.BASIC_FEATURES = void 0;
 /**
  * Basic (Free) plan feature list
  */
@@ -42,11 +42,6 @@ exports.MAX_DESIGNS_PER_PROJECT = {
     pro: 10,
 };
 /**
- * Trial configuration
- * Only Pro tier has a trial
- */
-exports.TRIAL_DAYS = 3;
-/**
  * Pricing configuration for display
  * Note: priceId values should be injected from environment variables at runtime
  */
@@ -59,7 +54,6 @@ exports.PRICING_CONFIG = {
         features: exports.BASIC_FEATURES,
         exportsPerMonth: 2,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.free,
-        trialDays: 0,
     },
     plus: {
         name: 'Plus',
@@ -69,7 +63,6 @@ exports.PRICING_CONFIG = {
         features: exports.PLUS_FEATURES,
         exportsPerMonth: 20,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.plus,
-        trialDays: 0,
     },
     pro: {
         name: 'Pro',
@@ -80,6 +73,5 @@ exports.PRICING_CONFIG = {
         exportsPerMonth: 50,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
         popular: true,
-        trialDays: exports.TRIAL_DAYS,
     },
 };

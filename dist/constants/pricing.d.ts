@@ -20,11 +20,6 @@ export declare const MAX_DESIGNS_PER_PROJECT: {
     readonly pro: 10;
 };
 /**
- * Trial configuration
- * Only Pro tier has a trial
- */
-export declare const TRIAL_DAYS = 3;
-/**
  * Pricing configuration for display
  * Note: priceId values should be injected from environment variables at runtime
  */
@@ -37,7 +32,6 @@ export declare const PRICING_CONFIG: {
         readonly features: readonly ["1 design per project", "2 projects per month", "Community support"];
         readonly exportsPerMonth: 2;
         readonly maxDesigns: 1;
-        readonly trialDays: 0;
     };
     readonly plus: {
         readonly name: "Plus";
@@ -47,7 +41,6 @@ export declare const PRICING_CONFIG: {
         readonly features: readonly ["Up to 5 designs per project", "20 projects per month", "All platforms supported", "Email support"];
         readonly exportsPerMonth: 20;
         readonly maxDesigns: 5;
-        readonly trialDays: 0;
     };
     readonly pro: {
         readonly name: "Pro";
@@ -58,7 +51,6 @@ export declare const PRICING_CONFIG: {
         readonly exportsPerMonth: 50;
         readonly maxDesigns: 10;
         readonly popular: true;
-        readonly trialDays: 3;
     };
 };
 //# sourceMappingURL=pricing.d.ts.map
