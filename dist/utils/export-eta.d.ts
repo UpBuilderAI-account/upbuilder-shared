@@ -1,16 +1,17 @@
 /**
- * Average processing times in seconds
- * Tune these based on real-world observations
+ * Default processing times in seconds (used before actual times are measured)
+ * These are conservative estimates - actual times often vary significantly
  */
 export declare const EXPORT_TIMES: {
     readonly PREPARE: 2;
-    readonly CONVERT_STYLES: 90;
-    readonly SECTION_BUILD: 10;
-    readonly ASSEMBLY: 90;
-    readonly GENERATE: 5;
-    readonly VALIDATE: 5;
+    readonly CONVERT_STYLES: 60;
+    readonly SECTION_BUILD: 8;
+    readonly ASSEMBLY: 60;
+    readonly GENERATE: 3;
+    readonly VALIDATE: 3;
     readonly FINALIZE: 2;
-    readonly ASSET_BATCH: 5;
+    readonly ASSET_BATCH: 3;
+    readonly XSCP_REUSE: 1;
 };
 /**
  * Parallelism limits (must match backend constants)

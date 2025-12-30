@@ -1,21 +1,23 @@
 // ============================================================================
-// EXPORT ETA CALCULATION
-// Estimates remaining time for export stage based on parallelism limits
+// EXPORT ETA CALCULATION (ADAPTIVE)
+// Estimates remaining time based on actual measured times when available
+// Falls back to estimates for initial calculation, then adapts as steps complete
 // ============================================================================
 
 /**
- * Average processing times in seconds
- * Tune these based on real-world observations
+ * Default processing times in seconds (used before actual times are measured)
+ * These are conservative estimates - actual times often vary significantly
  */
 export const EXPORT_TIMES = {
   PREPARE: 2,
-  CONVERT_STYLES: 90,     // AI call for style registry (Webflow only)
-  SECTION_BUILD: 10,      // Per section avg (6-15s range)
-  ASSEMBLY: 90,           // Per design page assembly (40s-2min range)
-  GENERATE: 5,            // XSCP/JSON generation
-  VALIDATE: 5,            // Structure validation
+  CONVERT_STYLES: 60,     // AI call for style registry - reduced from 90s
+  SECTION_BUILD: 8,       // Per section avg - reduced (prebuilt globals are faster)
+  ASSEMBLY: 60,           // Per design page assembly - reduced from 90s
+  GENERATE: 3,            // XSCP/JSON generation
+  VALIDATE: 3,            // Structure validation
   FINALIZE: 2,
-  ASSET_BATCH: 5,         // Per ~10 assets
+  ASSET_BATCH: 3,         // Per ~10 assets
+  XSCP_REUSE: 1,          // Nearly instant - just clone cached XSCP
 } as const;
 
 /**
