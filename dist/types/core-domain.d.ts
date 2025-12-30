@@ -141,7 +141,11 @@ export interface ProjectState {
     styleGuideHTML?: string;
     progress_log?: ProgressLogEntry[];
     error_message?: string;
-    customFonts?: string[];
+    customFonts?: Array<{
+        family: string;
+        weights: string[];
+        styles: string[];
+    }>;
 }
 export interface SectionCode {
     html: string;

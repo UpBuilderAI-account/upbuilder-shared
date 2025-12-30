@@ -258,7 +258,7 @@ export interface ProjectState {
   error_message?: string;
 
   // Custom fonts detected during Webflow export (need manual import in Webflow)
-  customFonts?: string[];
+  customFonts?: Array<{ family: string; weights: string[]; styles: string[] }>;
 }
 
 export interface SectionCode {
