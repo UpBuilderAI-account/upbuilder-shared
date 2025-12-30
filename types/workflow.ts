@@ -291,13 +291,20 @@ export interface ExportDesignData {
   isLocked?: boolean;   // True if design exceeds tier limit and wasn't processed
 }
 
+/** Custom font info with weights and styles */
+export interface CustomFontInfo {
+  family: string;
+  weights: string[];  // e.g., ['400', '500', '700']
+  styles: string[];   // e.g., ['normal', 'italic']
+}
+
 export interface WorkflowExportComplete {
   projectId: string;
   platform: Platform;
   designs: ExportDesignData[];
   isPro?: boolean;  // Subscription status for frontend section limiting
   /** Custom fonts that need to be added to Webflow project before pasting (Webflow only) */
-  customFonts?: string[];
+  customFonts?: CustomFontInfo[];
 }
 
 // =============================================================================

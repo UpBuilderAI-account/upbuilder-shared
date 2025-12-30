@@ -190,13 +190,19 @@ export interface ExportDesignData {
     styleCount: number;
     isLocked?: boolean;
 }
+/** Custom font info with weights and styles */
+export interface CustomFontInfo {
+    family: string;
+    weights: string[];
+    styles: string[];
+}
 export interface WorkflowExportComplete {
     projectId: string;
     platform: Platform;
     designs: ExportDesignData[];
     isPro?: boolean;
     /** Custom fonts that need to be added to Webflow project before pasting (Webflow only) */
-    customFonts?: string[];
+    customFonts?: CustomFontInfo[];
 }
 export interface WorkflowCommand {
     projectId: string;

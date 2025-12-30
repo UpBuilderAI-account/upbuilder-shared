@@ -56,6 +56,7 @@ export {
   type CustomizeData,
   // Export types
   type ExportDesignData,
+  type CustomFontInfo,
   type WorkflowExportComplete,
   // Client events
   type WorkflowCommand,
