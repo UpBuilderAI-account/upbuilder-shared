@@ -69,6 +69,8 @@ export interface WorkflowStage {
   estimatedRemainingMs?: number;
   /** Timestamp when export stage started (for elapsed time calculation) */
   exportStartedAt?: number;
+  /** Assembly progress tracking (build stage only) */
+  assemblyProgress?: AssemblyProgress;
 }
 
 export interface WorkflowStages {
@@ -451,6 +453,55 @@ export interface ClientToServerWorkflowEvents {
   'workflow:save_stylesheet': (data: StylesheetSaveRequest, cb: (result: StylesheetSaveResult) => void) => void;
   'workflow:reset_stylesheet': (data: StylesheetResetRequest, cb: (result: StylesheetSaveResult) => void) => void;
   'workflow:clean_stylesheet': (data: StylesheetCleanRequest, cb: (result: StylesheetCleanResult) => void) => void;
+}
+
+// =============================================================================
+// ASSEMBLY TYPES (Build stage consolidation + assembly)
+// =============================================================================
+
+/**
+ * Consolidation step status (CSS or JS consolidation)
+ */
+export interface ConsolidationStep {
+  type: 'css' | 'js';
+  status: 'pending' | 'running' | 'complete' | 'failed';
+  progress: Progress;
+  message?: string;
+}
+
+/**
+ * Design assembly status
+ */
+export interface AssemblyDesign {
+  id: string;
+  name: string;
+  status: 'pending' | 'running' | 'complete' | 'failed';
+  progress: Progress;
+}
+
+/**
+ * Assembly progress tracking (consolidation + design assembly)
+ */
+export interface AssemblyProgress {
+  consolidation: {
+    css: ConsolidationStep;
+    js: ConsolidationStep;
+  };
+  designs: AssemblyDesign[];
+}
+
+/**
+ * Assembled design output (result of build stage)
+ */
+export interface AssembledDesign {
+  id: string;
+  designId: string;
+  name: string;
+  html: string;
+  css: string;
+  js: string;
+  sectionCount: number;
+  createdAt: string;
 }
 
 // =============================================================================

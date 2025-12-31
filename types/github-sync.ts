@@ -21,17 +21,13 @@ export const GITHUB_SYNC_LIMITS = {
   maxDesigns: 10,
   maxSectionsPerDesign: 20,
   maxSharedSections: 10,
-  maxAssets: 50,
+  maxAssets: 1000,                      // Max number of images
 
   // File size limits
-  maxHtmlFileSize: 100 * 1024,       // 100KB
-  maxCssFileSize: 500 * 1024,        // 500KB
-  maxJsFileSize: 100 * 1024,         // 100KB
-  maxAssetFileSize: 2 * 1024 * 1024, // 2MB
-
-  // Rate limiting
-  maxSyncsPerHour: 10,
-  maxPushesPerDay: 50,
+  maxHtmlFileSize: 100 * 1024,          // 100KB
+  maxCssFileSize: 500 * 1024,           // 500KB
+  maxJsFileSize: 100 * 1024,            // 100KB
+  maxTotalAssetSize: 500 * 1024 * 1024, // 500MB total for all assets (no per-file limit)
 
   // Name limits
   maxNameLength: 50,

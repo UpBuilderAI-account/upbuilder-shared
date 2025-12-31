@@ -12,13 +12,11 @@ export declare const GITHUB_SYNC_LIMITS: {
     readonly maxDesigns: 10;
     readonly maxSectionsPerDesign: 20;
     readonly maxSharedSections: 10;
-    readonly maxAssets: 50;
+    readonly maxAssets: 1000;
     readonly maxHtmlFileSize: number;
     readonly maxCssFileSize: number;
     readonly maxJsFileSize: number;
-    readonly maxAssetFileSize: number;
-    readonly maxSyncsPerHour: 10;
-    readonly maxPushesPerDay: 50;
+    readonly maxTotalAssetSize: number;
     readonly maxNameLength: 50;
     readonly syncLockTimeoutMs: number;
 };
