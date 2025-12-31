@@ -62,6 +62,19 @@ exports.EXPORT_STEPS_CONFIG = {
  * Get export steps config for a platform
  * Falls back to webflow if platform not found
  */
-function getExportStepsConfig(platform) {
-    return exports.EXPORT_STEPS_CONFIG[platform] || exports.EXPORT_STEPS_CONFIG.webflow;
+function getExportStepsConfig(platform, options) {
+    const config = exports.EXPORT_STEPS_CONFIG[platform] || exports.EXPORT_STEPS_CONFIG.webflow;
+    // If using assembled designs, filter out global_sections step
+    if (options === null || options === void 0 ? void 0 : options.skipGlobalSections) {
+        return Object.assign(Object.assign({}, config), { global: config.global.filter(step => step.id !== 'global_sections'), 
+            // Simplify design steps for assembled mode - just convert and validate
+            design: platform === 'webflow'
+                ? [
+                    { id: 'convert_design', label: 'Convert to Webflow' },
+                    { id: 'generate_xscp', label: 'Generate export' },
+                    { id: 'validate_structure', label: 'Validating structure' },
+                ]
+                : config.design });
+    }
+    return config;
 }

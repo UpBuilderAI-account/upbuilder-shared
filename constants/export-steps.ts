@@ -59,10 +59,33 @@ export const EXPORT_STEPS_CONFIG = {
 // Note: ExportPlatform type already exists in utils/paths.ts
 type ExportStepsPlatform = keyof typeof EXPORT_STEPS_CONFIG;
 
+interface ExportStepsOptions {
+  /** Skip global sections step (used when assembled designs are available) */
+  skipGlobalSections?: boolean;
+}
+
 /**
  * Get export steps config for a platform
  * Falls back to webflow if platform not found
  */
-export function getExportStepsConfig(platform: string) {
-  return EXPORT_STEPS_CONFIG[platform as ExportStepsPlatform] || EXPORT_STEPS_CONFIG.webflow;
+export function getExportStepsConfig(platform: string, options?: ExportStepsOptions) {
+  const config = EXPORT_STEPS_CONFIG[platform as ExportStepsPlatform] || EXPORT_STEPS_CONFIG.webflow;
+
+  // If using assembled designs, filter out global_sections step
+  if (options?.skipGlobalSections) {
+    return {
+      ...config,
+      global: config.global.filter(step => step.id !== 'global_sections'),
+      // Simplify design steps for assembled mode - just convert and validate
+      design: platform === 'webflow'
+        ? [
+            { id: 'convert_design', label: 'Convert to Webflow' },
+            { id: 'generate_xscp', label: 'Generate export' },
+            { id: 'validate_structure', label: 'Validating structure' },
+          ]
+        : config.design,
+    };
+  }
+
+  return config;
 }
