@@ -259,6 +259,18 @@ export interface ProjectState {
 
   // Custom fonts detected during Webflow export (need manual import in Webflow)
   customFonts?: Array<{ family: string; weights: string[]; styles: string[] }>;
+
+  // Assembled designs (consolidated HTML/CSS/JS from build stage)
+  assembledDesigns?: Array<{
+    id: string;
+    designId: string;
+    name: string;
+    html: string;
+    css: string;
+    js: string;
+    sectionCount: number;
+    createdAt: string;
+  }>;
 }
 
 export interface SectionCode {

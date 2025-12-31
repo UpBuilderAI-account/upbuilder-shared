@@ -146,6 +146,16 @@ export interface ProjectState {
         weights: string[];
         styles: string[];
     }>;
+    assembledDesigns?: Array<{
+        id: string;
+        designId: string;
+        name: string;
+        html: string;
+        css: string;
+        js: string;
+        sectionCount: number;
+        createdAt: string;
+    }>;
 }
 export interface SectionCode {
     html: string;

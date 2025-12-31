@@ -77,6 +77,11 @@ export {
   // Socket event interfaces
   type ServerToClientWorkflowEvents,
   type ClientToServerWorkflowEvents,
+  // Assembly types (build stage consolidation)
+  type ConsolidationStep,
+  type AssemblyDesign,
+  type AssemblyProgress,
+  type AssembledDesign,
   // Helpers
   isPending,
   isRunning,
