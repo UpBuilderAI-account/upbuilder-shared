@@ -53,14 +53,8 @@ export declare const EXPORT_STEPS_CONFIG: {
             readonly label: "Finalizing";
         }];
         readonly design: readonly [{
-            readonly id: "initialize";
-            readonly label: "Initialize";
-        }, {
             readonly id: "build";
-            readonly label: "Build sections";
-        }, {
-            readonly id: "assembly";
-            readonly label: "Assembly";
+            readonly label: "Convert to Bricks";
         }, {
             readonly id: "generate";
             readonly label: "Generate JSON";
@@ -81,14 +75,8 @@ export declare const EXPORT_STEPS_CONFIG: {
             readonly label: "Finalizing";
         }];
         readonly design: readonly [{
-            readonly id: "initialize";
-            readonly label: "Initialize";
-        }, {
             readonly id: "build";
-            readonly label: "Build sections";
-        }, {
-            readonly id: "assembly";
-            readonly label: "Assembly";
+            readonly label: "Convert to Elementor";
         }, {
             readonly id: "generate";
             readonly label: "Generate JSON";
@@ -151,14 +139,29 @@ export declare function getExportStepsConfig(platform: string, options?: ExportS
         readonly label: "Finalizing";
     }];
     readonly design: readonly [{
-        readonly id: "initialize";
-        readonly label: "Initialize";
-    }, {
         readonly id: "build";
-        readonly label: "Build sections";
+        readonly label: "Convert to Bricks";
     }, {
-        readonly id: "assembly";
-        readonly label: "Assembly";
+        readonly id: "generate";
+        readonly label: "Generate JSON";
+    }];
+} | {
+    readonly global: readonly [{
+        readonly id: "prepare";
+        readonly label: "Preparing";
+    }, {
+        readonly id: "global_sections";
+        readonly label: "Building global sections";
+    }, {
+        readonly id: "processing";
+        readonly label: "Processing designs";
+    }, {
+        readonly id: "finalize";
+        readonly label: "Finalizing";
+    }];
+    readonly design: readonly [{
+        readonly id: "build";
+        readonly label: "Convert to Elementor";
     }, {
         readonly id: "generate";
         readonly label: "Generate JSON";
@@ -196,14 +199,14 @@ export declare function getExportStepsConfig(platform: string, options?: ExportS
         readonly id: "validate_structure";
         readonly label: "Validating structure";
     }] | readonly [{
-        readonly id: "initialize";
-        readonly label: "Initialize";
-    }, {
         readonly id: "build";
-        readonly label: "Build sections";
+        readonly label: "Convert to Bricks";
     }, {
-        readonly id: "assembly";
-        readonly label: "Assembly";
+        readonly id: "generate";
+        readonly label: "Generate JSON";
+    }] | readonly [{
+        readonly id: "build";
+        readonly label: "Convert to Elementor";
     }, {
         readonly id: "generate";
         readonly label: "Generate JSON";

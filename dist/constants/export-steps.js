@@ -37,9 +37,7 @@ exports.EXPORT_STEPS_CONFIG = {
             { id: 'finalize', label: 'Finalizing' },
         ],
         design: [
-            { id: 'initialize', label: 'Initialize' },
-            { id: 'build', label: 'Build sections' },
-            { id: 'assembly', label: 'Assembly' },
+            { id: 'build', label: 'Convert to Bricks' },
             { id: 'generate', label: 'Generate JSON' },
         ],
     },
@@ -51,9 +49,7 @@ exports.EXPORT_STEPS_CONFIG = {
             { id: 'finalize', label: 'Finalizing' },
         ],
         design: [
-            { id: 'initialize', label: 'Initialize' },
-            { id: 'build', label: 'Build sections' },
-            { id: 'assembly', label: 'Assembly' },
+            { id: 'build', label: 'Convert to Elementor' },
             { id: 'generate', label: 'Generate JSON' },
         ],
     },
