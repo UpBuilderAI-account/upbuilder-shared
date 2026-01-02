@@ -109,6 +109,8 @@ export interface WorkflowEditor {
     assets: EditorAsset[];
     globals: EditorGlobal[];
     designs: EditorDesign[];
+    /** When true, editor is in view-only mode (superadmin viewing past customize stage) */
+    readOnly?: boolean;
 }
 /**
  * Custom spacing scale values (rem units)
@@ -186,7 +188,9 @@ export interface ExportDesignData {
         name: string;
     }[];
     xscpUrl: string;
+    /** @deprecated Use WorkflowExportComplete.globalJsUrl instead */
     jsBodyUrl?: string;
+    /** @deprecated Use WorkflowExportComplete.globalJs instead */
     jsBody?: string;
     nodeCount: number;
     styleCount: number;
@@ -205,6 +209,10 @@ export interface WorkflowExportComplete {
     isPro?: boolean;
     /** Custom fonts that need to be added to Webflow project before pasting (Webflow only) */
     customFonts?: CustomFontInfo[];
+    /** Global JavaScript for entire project (Webflow only) - add to Project Settings > Custom Code */
+    globalJs?: string;
+    /** S3 URL for global JavaScript file (Webflow only) */
+    globalJsUrl?: string;
 }
 export interface WorkflowCommand {
     projectId: string;

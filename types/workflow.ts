@@ -144,6 +144,8 @@ export interface WorkflowEditor {
   assets: EditorAsset[];
   globals: EditorGlobal[];
   designs: EditorDesign[];
+  /** When true, editor is in view-only mode (superadmin viewing past customize stage) */
+  readOnly?: boolean;
 }
 
 // =============================================================================
@@ -286,8 +288,10 @@ export interface ExportDesignData {
   name: string;
   sections: { id: string; name: string }[];
   xscpUrl: string;      // S3 URL to fetch XSCP JSON (Webflow) or Bricks template JSON
-  jsBodyUrl?: string;   // S3 URL for JS body code (Webflow only)
-  jsBody?: string;      // Actual JS body content for clipboard copy (Webflow only)
+  /** @deprecated Use WorkflowExportComplete.globalJsUrl instead */
+  jsBodyUrl?: string;   // S3 URL for JS body code (Webflow only) - DEPRECATED
+  /** @deprecated Use WorkflowExportComplete.globalJs instead */
+  jsBody?: string;      // Actual JS body content for clipboard copy (Webflow only) - DEPRECATED
   nodeCount: number;
   styleCount: number;
   isLocked?: boolean;   // True if design exceeds tier limit and wasn't processed
@@ -307,6 +311,10 @@ export interface WorkflowExportComplete {
   isPro?: boolean;  // Subscription status for frontend section limiting
   /** Custom fonts that need to be added to Webflow project before pasting (Webflow only) */
   customFonts?: CustomFontInfo[];
+  /** Global JavaScript for entire project (Webflow only) - add to Project Settings > Custom Code */
+  globalJs?: string;
+  /** S3 URL for global JavaScript file (Webflow only) */
+  globalJsUrl?: string;
 }
 
 // =============================================================================
