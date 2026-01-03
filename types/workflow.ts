@@ -160,19 +160,14 @@ export type ExportMode = 'quick' | 'custom';
 
 /**
  * Custom spacing scale values (rem units)
+ * Simplified 5-size scale for clarity
  */
 export interface SpacingScale {
-  tiny?: string;      // default: 0.125rem (2px)
-  xxsmall?: string;   // default: 0.25rem (4px)
-  xsmall?: string;    // default: 0.5rem (8px)
   small?: string;     // default: 1rem (16px)
   medium?: string;    // default: 2rem (32px)
   large?: string;     // default: 3rem (48px)
-  xlarge?: string;    // default: 4rem (64px)
-  xxlarge?: string;   // default: 5rem (80px)
-  huge?: string;      // default: 6rem (96px)
-  xhuge?: string;     // default: 8rem (128px)
-  xxhuge?: string;    // default: 12rem (192px)
+  xlarge?: string;    // default: 5rem (80px)
+  xxlarge?: string;   // default: 8rem (128px)
 }
 
 /**

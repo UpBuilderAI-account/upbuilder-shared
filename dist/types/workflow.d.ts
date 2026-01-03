@@ -118,19 +118,14 @@ export interface WorkflowEditor {
 export type ExportMode = 'quick' | 'custom';
 /**
  * Custom spacing scale values (rem units)
+ * Simplified 5-size scale for clarity
  */
 export interface SpacingScale {
-    tiny?: string;
-    xxsmall?: string;
-    xsmall?: string;
     small?: string;
     medium?: string;
     large?: string;
     xlarge?: string;
     xxlarge?: string;
-    huge?: string;
-    xhuge?: string;
-    xxhuge?: string;
 }
 /**
  * Stylesheet configuration (part of ExportConfig)
