@@ -77,6 +77,8 @@ export const SOCKET_EVENTS = {
     EXPORT_LIMIT_REACHED: 'workflow:export_limit_reached', // Server → Client: Export limit exceeded
     // Pending designs processing (Pro upgrade flow)
     PROCESS_PENDING: 'workflow:process_pending',  // Client → Server: Process pending designs after upgrade
+    // Background progress (export_config stage)
+    BACKGROUND_PROGRESS: 'workflow:background_progress', // Server → Client: Background job progress during export_config
   },
 
   /**

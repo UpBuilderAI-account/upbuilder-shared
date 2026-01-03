@@ -13,6 +13,7 @@ export {
   requiresUserActionAfter,
   shouldSkipStage,
   SKIPPED_STAGES,
+  QUICK_MODE_SKIPPED_STAGES,
   USES_SECTION_CSS,
 } from './core-domain';
 
@@ -47,10 +48,16 @@ export {
   type EditorGlobal,
   type EditorAsset,
   type WorkflowEditor,
-  // Styles config types
+  // Export config types
+  type ExportMode,
   type SpacingScale,
-  type StylesConfig,
-  DEFAULT_STYLES_CONFIG,
+  type StylesheetConfig,
+  type InteractivityConfig,
+  type ExportConfig,
+  DEFAULT_STYLESHEET_CONFIG,
+  DEFAULT_INTERACTIVITY_CONFIG,
+  DEFAULT_EXPORT_CONFIG,
+  QUICK_EXPORT_CONFIG,
   // Customize types
   type CustomSectionCode,
   type CustomizeData,
@@ -74,6 +81,9 @@ export {
   type StylesheetCleanRequest,
   type StylesheetSaveResult,
   type StylesheetCleanResult,
+  // Background progress types (export_config stage)
+  type BackgroundJobStatus,
+  type WorkflowBackgroundProgress,
   // Socket event interfaces
   type ServerToClientWorkflowEvents,
   type ClientToServerWorkflowEvents,

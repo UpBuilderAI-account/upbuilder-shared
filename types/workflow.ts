@@ -5,7 +5,7 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 
-import type { ProjectStatus, Platform } from './core-domain';
+import type { ProjectStatus, Platform, StyleFramework } from './core-domain';
 
 /**
  * Stage = active processing stages (excludes idle, complete, failed)
@@ -149,8 +149,14 @@ export interface WorkflowEditor {
 }
 
 // =============================================================================
-// STYLES CONFIG STAGE TYPES (Client-First V2.1)
+// EXPORT CONFIG STAGE TYPES
+// Replaces old StylesConfig - now includes mode, stylesheet, and interactivity
 // =============================================================================
+
+/**
+ * Export mode: quick uses defaults, custom allows full configuration
+ */
+export type ExportMode = 'quick' | 'custom';
 
 /**
  * Custom spacing scale values (rem units)
@@ -170,20 +176,24 @@ export interface SpacingScale {
 }
 
 /**
- * Configuration options for Client-First V2.1 stylesheet generation
+ * Stylesheet configuration (part of ExportConfig)
+ * Controls CSS generation options
  */
-export interface StylesConfig {
+export interface StylesheetConfig {
+  /** Style framework to use */
+  framework: StyleFramework;
+
   // ===========================================
-  // REQUIRED (Locked, always true)
+  // CORE (Locked, always true)
   // ===========================================
 
-  /** Use rem units for font sizes (Client-First requirement) */
+  /** Use rem units for font sizes */
   useRemFontSizes: boolean;
 
-  /** Use unitless line-height values (Client-First requirement) */
+  /** Use unitless line-height values */
   useUnitlessLineHeight: boolean;
 
-  /** Generate spacing utilities (margin-*, padding-*, spacer-*) - Core Client-First system */
+  /** Generate spacing utilities (margin-*, padding-*, spacer-*) */
   generateSpacing: boolean;
 
   /** Generate typography utilities (text-size-*, text-weight-*, heading-style-*, etc.) */
@@ -239,10 +249,43 @@ export interface StylesConfig {
 }
 
 /**
- * Default values for Client-First V2.1 StylesConfig
+ * Interactivity configuration (part of ExportConfig)
+ * Controls JavaScript and animation generation
  */
-export const DEFAULT_STYLES_CONFIG: StylesConfig = {
-  // Required (locked)
+export interface InteractivityConfig {
+  /** Generate page JavaScript (dropdowns, accordions, tabs, modals, etc.) */
+  generateJs: boolean;
+
+  /** Add smooth CSS transitions on hover/focus */
+  cssTransitions: boolean;
+
+  /** Add CSS keyframe animations (spinners, pulses, etc.) */
+  cssAnimations: boolean;
+
+  /** Add scroll-triggered animations (auto-enables generateJs) */
+  scrollAnimations: boolean;
+
+  /** Add page transition effects (auto-enables generateJs) */
+  pageTransitions: boolean;
+}
+
+/**
+ * Complete export configuration
+ * Sent from frontend to backend during export_config stage
+ */
+export interface ExportConfig {
+  mode: ExportMode;
+  stylesheet: StylesheetConfig;
+  interactivity: InteractivityConfig;
+}
+
+/**
+ * Default stylesheet configuration
+ */
+export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
+  framework: 'simple',
+
+  // Core (locked)
   useRemFontSizes: true,
   useUnitlessLineHeight: true,
   generateSpacing: true,
@@ -262,6 +305,35 @@ export const DEFAULT_STYLES_CONFIG: StylesConfig = {
   generateOverflow: false,
   generateZIndex: false,
   generatePointerEvents: false,
+};
+
+/**
+ * Default interactivity configuration
+ */
+export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
+  generateJs: false,
+  cssTransitions: false,
+  cssAnimations: false,
+  scrollAnimations: false,
+  pageTransitions: false,
+};
+
+/**
+ * Quick export config - uses defaults, skips stylesheet review
+ */
+export const QUICK_EXPORT_CONFIG: ExportConfig = {
+  mode: 'quick',
+  stylesheet: DEFAULT_STYLESHEET_CONFIG,
+  interactivity: DEFAULT_INTERACTIVITY_CONFIG,
+};
+
+/**
+ * Default export config - custom mode selected by default
+ */
+export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
+  mode: 'custom',
+  stylesheet: DEFAULT_STYLESHEET_CONFIG,
+  interactivity: DEFAULT_INTERACTIVITY_CONFIG,
 };
 
 // =============================================================================
@@ -325,10 +397,8 @@ export interface WorkflowCommand {
   projectId: string;
   action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_detect_sections' | 'reprocess_generate_styles' | 'reprocess_prepare_build' | 'reprocess_build' | 'reprocess_export' | 'reprocess_export_fast';
   retry?: boolean;
-  /** Styles configuration from styles_config stage (client-first only) */
-  stylesConfig?: StylesConfig;
-  /** Style framework selected in styles_config stage */
-  framework?: 'client-first' | 'simple';
+  /** Export configuration from export_config stage */
+  exportConfig?: ExportConfig;
 }
 
 // =============================================================================
@@ -440,6 +510,28 @@ export interface RenameResult {
 }
 
 // =============================================================================
+// BACKGROUND PROGRESS TYPES (export_config stage)
+// =============================================================================
+
+export type BackgroundJobStatus = 'pending' | 'running' | 'complete' | 'failed';
+
+/**
+ * Background job progress during export_config stage
+ * load + detect_sections run in background while user configures
+ */
+export interface WorkflowBackgroundProgress {
+  projectId: string;
+  load: BackgroundJobStatus;
+  detectSections: BackgroundJobStatus;
+  /** Number of designs loaded (after load completes) */
+  designCount?: number;
+  /** Number of sections detected (after detectSections completes) */
+  sectionCount?: number;
+  /** Error message if any job failed */
+  error?: string;
+}
+
+// =============================================================================
 // SOCKET EVENT TYPES
 // =============================================================================
 
@@ -451,6 +543,7 @@ export interface ServerToClientWorkflowEvents {
   'workflow:editor': (data: WorkflowEditor) => void;
   'workflow:export_complete': (data: WorkflowExportComplete) => void;
   'workflow:renamed': (data: { type: RenameTargetType; id: string; name: string }) => void;
+  'workflow:background_progress': (data: WorkflowBackgroundProgress) => void;
 }
 
 export interface ClientToServerWorkflowEvents {
@@ -522,9 +615,9 @@ export const isComplete = (p: Progress): boolean => p === 100;
 export const isFailed = (p: Progress): boolean => p === -1;
 
 export const STAGE_ORDER: Stage[] = [
+  'export_config',
   'load',
   'detect_sections',
-  'styles_config',
   'generate_styles',
   'review_stylesheet',
   'prepare_build',
@@ -534,9 +627,9 @@ export const STAGE_ORDER: Stage[] = [
 ];
 
 export const STAGE_LABELS: Record<Stage, string> = {
+  export_config: 'Configure Export',
   load: 'Loading Data',
   detect_sections: 'Detecting Sections',
-  styles_config: 'Configure Styles',
   generate_styles: 'Generating Base Styles',
   review_stylesheet: 'Review Stylesheet',
   prepare_build: 'Preparing Build',
@@ -550,7 +643,6 @@ export const STAGE_LABELS: Record<Stage, string> = {
  * These platforms use inline styles per section instead of global stylesheets
  */
 export const INLINE_PLATFORM_SKIPPED_STAGES: Stage[] = [
-  'styles_config',
   'generate_styles',
   'review_stylesheet',
 ];

@@ -55,15 +55,15 @@ export interface PluginAuthTokenResponse {
     user?: User;
     error?: string;
 }
-export type ProjectStatus = 'idle' | 'load' | 'detect_sections' | 'styles_config' | 'generate_styles' | 'review_stylesheet' | 'prepare_build' | 'build' | 'customize' | 'export' | 'complete' | 'failed';
+export type ProjectStatus = 'idle' | 'export_config' | 'load' | 'detect_sections' | 'generate_styles' | 'review_stylesheet' | 'prepare_build' | 'build' | 'customize' | 'export' | 'complete' | 'failed';
 /**
  * Type-safe constants for ProjectStatus
  */
 export declare const PROJECT_STATUS: {
     readonly IDLE: ProjectStatus;
+    readonly EXPORT_CONFIG: ProjectStatus;
     readonly LOAD: ProjectStatus;
     readonly DETECT_SECTIONS: ProjectStatus;
-    readonly STYLES_CONFIG: ProjectStatus;
     readonly GENERATE_STYLES: ProjectStatus;
     readonly REVIEW_STYLESHEET: ProjectStatus;
     readonly PREPARE_BUILD: ProjectStatus;
@@ -81,8 +81,9 @@ export declare function isProcessingStage(status: ProjectStatus): boolean;
  * Get the next status in the workflow sequence
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
+ * @param quickMode Optional - if true, skips generate_styles and review_stylesheet
  */
-export declare function getNextStatus(status: ProjectStatus, platform?: Platform): ProjectStatus | null;
+export declare function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean): ProjectStatus | null;
 /**
  * Check if user action is required after this stage completes
  */
@@ -94,6 +95,10 @@ export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap
  * Bricks/Elementor skip stylesheet generation (sections are self-contained)
  */
 export declare const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>>;
+/**
+ * Stages to skip in Quick mode (faster export with defaults)
+ */
+export declare const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[];
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)
  * All platforms now show section CSS in the customizer

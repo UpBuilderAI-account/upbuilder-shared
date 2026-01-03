@@ -9,7 +9,7 @@
 // - export.ts: Export configuration and operation types
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DESIGN_PROCESSING_STATUS = exports.DESIGN_STATUS = exports.createDefaultStageStatus = exports.STAGE_STATUS = exports.SECTION_STAGE = exports.USES_SECTION_CSS = exports.SKIPPED_STAGES = exports.PROJECT_STATUS = void 0;
+exports.DESIGN_PROCESSING_STATUS = exports.DESIGN_STATUS = exports.createDefaultStageStatus = exports.STAGE_STATUS = exports.SECTION_STAGE = exports.USES_SECTION_CSS = exports.QUICK_MODE_SKIPPED_STAGES = exports.SKIPPED_STAGES = exports.PROJECT_STATUS = void 0;
 exports.isProcessingStage = isProcessingStage;
 exports.getNextStatus = getNextStatus;
 exports.requiresUserActionAfter = requiresUserActionAfter;
@@ -19,9 +19,9 @@ exports.shouldSkipStage = shouldSkipStage;
  */
 exports.PROJECT_STATUS = {
     IDLE: 'idle',
+    EXPORT_CONFIG: 'export_config',
     LOAD: 'load',
     DETECT_SECTIONS: 'detect_sections',
-    STYLES_CONFIG: 'styles_config',
     GENERATE_STYLES: 'generate_styles',
     REVIEW_STYLESHEET: 'review_stylesheet',
     PREPARE_BUILD: 'prepare_build',
@@ -49,14 +49,15 @@ function isProcessingStage(status) {
  * Get the next status in the workflow sequence
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
+ * @param quickMode Optional - if true, skips generate_styles and review_stylesheet
  */
-function getNextStatus(status, platform) {
+function getNextStatus(status, platform, quickMode) {
     var _a;
     const transitions = {
-        idle: 'load',
+        idle: 'export_config',
+        export_config: 'load',
         load: 'detect_sections',
-        detect_sections: 'styles_config',
-        styles_config: 'generate_styles',
+        detect_sections: 'generate_styles',
         generate_styles: 'review_stylesheet',
         review_stylesheet: 'prepare_build',
         prepare_build: 'build',
@@ -74,14 +75,20 @@ function getNextStatus(status, platform) {
             next = transitions[next];
         }
     }
+    // Skip stages for quick mode
+    if (quickMode && next) {
+        while (next && exports.QUICK_MODE_SKIPPED_STAGES.includes(next)) {
+            next = transitions[next];
+        }
+    }
     return next;
 }
 /**
  * Check if user action is required after this stage completes
  */
 function requiresUserActionAfter(status) {
-    // styles_config, review_stylesheet, and customize stages require user action to proceed
-    return status === 'styles_config' || status === 'review_stylesheet' || status === 'customize';
+    // export_config, review_stylesheet, and customize stages require user action to proceed
+    return status === 'export_config' || status === 'review_stylesheet' || status === 'customize';
 }
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION
@@ -92,9 +99,16 @@ function requiresUserActionAfter(status) {
  */
 exports.SKIPPED_STAGES = {
     webflow: [],
-    bricks: ['styles_config', 'generate_styles', 'review_stylesheet'],
-    elementor: ['styles_config', 'generate_styles', 'review_stylesheet'],
+    bricks: ['generate_styles', 'review_stylesheet'],
+    elementor: ['generate_styles', 'review_stylesheet'],
 };
+/**
+ * Stages to skip in Quick mode (faster export with defaults)
+ */
+exports.QUICK_MODE_SKIPPED_STAGES = [
+    'generate_styles',
+    'review_stylesheet',
+];
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)
  * All platforms now show section CSS in the customizer

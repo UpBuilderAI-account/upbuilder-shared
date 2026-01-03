@@ -83,9 +83,9 @@ export interface PluginAuthTokenResponse {
 
 export type ProjectStatus =
   | 'idle'
+  | 'export_config'      // NEW: First stage - configure export options (replaces styles_config)
   | 'load'
   | 'detect_sections'
-  | 'styles_config'
   | 'generate_styles'
   | 'review_stylesheet'
   | 'prepare_build'
@@ -100,9 +100,9 @@ export type ProjectStatus =
  */
 export const PROJECT_STATUS = {
   IDLE: 'idle' as ProjectStatus,
+  EXPORT_CONFIG: 'export_config' as ProjectStatus,
   LOAD: 'load' as ProjectStatus,
   DETECT_SECTIONS: 'detect_sections' as ProjectStatus,
-  STYLES_CONFIG: 'styles_config' as ProjectStatus,
   GENERATE_STYLES: 'generate_styles' as ProjectStatus,
   REVIEW_STYLESHEET: 'review_stylesheet' as ProjectStatus,
   PREPARE_BUILD: 'prepare_build' as ProjectStatus,
@@ -132,13 +132,14 @@ export function isProcessingStage(status: ProjectStatus): boolean {
  * Get the next status in the workflow sequence
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
+ * @param quickMode Optional - if true, skips generate_styles and review_stylesheet
  */
-export function getNextStatus(status: ProjectStatus, platform?: Platform): ProjectStatus | null {
+export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean): ProjectStatus | null {
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
-    idle: 'load',
+    idle: 'export_config',
+    export_config: 'load',
     load: 'detect_sections',
-    detect_sections: 'styles_config',
-    styles_config: 'generate_styles',
+    detect_sections: 'generate_styles',
     generate_styles: 'review_stylesheet',
     review_stylesheet: 'prepare_build',
     prepare_build: 'build',
@@ -159,6 +160,13 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform): Proje
     }
   }
 
+  // Skip stages for quick mode
+  if (quickMode && next) {
+    while (next && QUICK_MODE_SKIPPED_STAGES.includes(next)) {
+      next = transitions[next];
+    }
+  }
+
   return next;
 }
 
@@ -166,8 +174,8 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform): Proje
  * Check if user action is required after this stage completes
  */
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
-  // styles_config, review_stylesheet, and customize stages require user action to proceed
-  return status === 'styles_config' || status === 'review_stylesheet' || status === 'customize';
+  // export_config, review_stylesheet, and customize stages require user action to proceed
+  return status === 'export_config' || status === 'review_stylesheet' || status === 'customize';
 }
 
 export type Platform = 'webflow' | 'bricks' | 'elementor';
@@ -183,9 +191,17 @@ export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap
  */
 export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
   webflow: [],
-  bricks: ['styles_config', 'generate_styles', 'review_stylesheet'],
-  elementor: ['styles_config', 'generate_styles', 'review_stylesheet'],
+  bricks: ['generate_styles', 'review_stylesheet'],
+  elementor: ['generate_styles', 'review_stylesheet'],
 };
+
+/**
+ * Stages to skip in Quick mode (faster export with defaults)
+ */
+export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [
+  'generate_styles',
+  'review_stylesheet',
+];
 
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)

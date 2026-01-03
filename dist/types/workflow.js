@@ -6,14 +6,15 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_STYLES_CONFIG = void 0;
+exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = void 0;
 exports.isInlineCSSPlatform = isInlineCSSPlatform;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
 /**
- * Default values for Client-First V2.1 StylesConfig
+ * Default stylesheet configuration
  */
-exports.DEFAULT_STYLES_CONFIG = {
-    // Required (locked)
+exports.DEFAULT_STYLESHEET_CONFIG = {
+    framework: 'simple',
+    // Core (locked)
     useRemFontSizes: true,
     useUnitlessLineHeight: true,
     generateSpacing: true,
@@ -32,6 +33,32 @@ exports.DEFAULT_STYLES_CONFIG = {
     generateZIndex: false,
     generatePointerEvents: false,
 };
+/**
+ * Default interactivity configuration
+ */
+exports.DEFAULT_INTERACTIVITY_CONFIG = {
+    generateJs: false,
+    cssTransitions: false,
+    cssAnimations: false,
+    scrollAnimations: false,
+    pageTransitions: false,
+};
+/**
+ * Quick export config - uses defaults, skips stylesheet review
+ */
+exports.QUICK_EXPORT_CONFIG = {
+    mode: 'quick',
+    stylesheet: exports.DEFAULT_STYLESHEET_CONFIG,
+    interactivity: exports.DEFAULT_INTERACTIVITY_CONFIG,
+};
+/**
+ * Default export config - custom mode selected by default
+ */
+exports.DEFAULT_EXPORT_CONFIG = {
+    mode: 'custom',
+    stylesheet: exports.DEFAULT_STYLESHEET_CONFIG,
+    interactivity: exports.DEFAULT_INTERACTIVITY_CONFIG,
+};
 // =============================================================================
 // HELPERS
 // =============================================================================
@@ -44,9 +71,9 @@ exports.isComplete = isComplete;
 const isFailed = (p) => p === -1;
 exports.isFailed = isFailed;
 exports.STAGE_ORDER = [
+    'export_config',
     'load',
     'detect_sections',
-    'styles_config',
     'generate_styles',
     'review_stylesheet',
     'prepare_build',
@@ -55,9 +82,9 @@ exports.STAGE_ORDER = [
     'export',
 ];
 exports.STAGE_LABELS = {
+    export_config: 'Configure Export',
     load: 'Loading Data',
     detect_sections: 'Detecting Sections',
-    styles_config: 'Configure Styles',
     generate_styles: 'Generating Base Styles',
     review_stylesheet: 'Review Stylesheet',
     prepare_build: 'Preparing Build',
@@ -70,7 +97,6 @@ exports.STAGE_LABELS = {
  * These platforms use inline styles per section instead of global stylesheets
  */
 exports.INLINE_PLATFORM_SKIPPED_STAGES = [
-    'styles_config',
     'generate_styles',
     'review_stylesheet',
 ];

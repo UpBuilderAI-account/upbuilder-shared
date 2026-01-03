@@ -1,6 +1,6 @@
 import type { ImagePair, PreviewData, FramePreview } from './plugin';
 import type { Element } from './element';
-import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType, StylesheetSaveRequest, StylesheetResetRequest, StylesheetCleanRequest, StylesheetSaveResult, StylesheetCleanResult } from './workflow';
+import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType, StylesheetSaveRequest, StylesheetResetRequest, StylesheetCleanRequest, StylesheetSaveResult, StylesheetCleanResult } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 export type { ExportOptions, ExportPayload };
@@ -324,6 +324,7 @@ export interface ServerToClientEvents {
         projectId: string;
         message: string;
     }) => void;
+    'workflow:background_progress': (data: WorkflowBackgroundProgress) => void;
     project_ownership_transferred: (data: {
         projectId: string;
         projectName?: string;
