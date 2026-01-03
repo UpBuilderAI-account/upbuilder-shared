@@ -169,19 +169,23 @@ export interface StylesheetConfig {
 }
 /**
  * Interactivity configuration (part of ExportConfig)
- * Controls JavaScript and animation generation
+ * Controls JavaScript and animation features
  */
 export interface InteractivityConfig {
-    /** Generate page JavaScript (dropdowns, accordions, tabs, modals, etc.) */
-    generateJs: boolean;
-    /** Add smooth CSS transitions on hover/focus */
-    cssTransitions: boolean;
-    /** Add CSS keyframe animations (spinners, pulses, etc.) */
-    cssAnimations: boolean;
-    /** Add scroll-triggered animations (auto-enables generateJs) */
-    scrollAnimations: boolean;
-    /** Add page transition effects (auto-enables generateJs) */
-    pageTransitions: boolean;
+    /**
+     * Enable JavaScript in the export:
+     * - Required for interactive elements (accordions, tabs, modals)
+     * - Required for animations to work
+     */
+    enableJavaScript: boolean;
+    /**
+     * Enable Webflow-style animations (requires enableJavaScript):
+     * - Scroll reveals (AOS fade-up on sections, zoom on images)
+     * - Hover effects (smooth transitions on buttons, links, cards)
+     * - Infinite marquees (auto-detected logo strips)
+     * - CSS animations (subtle pulses, fades)
+     */
+    enableAnimations: boolean;
 }
 /**
  * Complete export configuration
@@ -201,7 +205,11 @@ export declare const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig;
  */
 export declare const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig;
 /**
- * Quick export config - uses defaults, skips stylesheet review
+ * Quick mode interactivity - no JS/animations for faster export
+ */
+export declare const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig;
+/**
+ * Quick export config - uses defaults, skips stylesheet review, no animations
  */
 export declare const QUICK_EXPORT_CONFIG: ExportConfig;
 /**

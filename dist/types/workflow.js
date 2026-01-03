@@ -6,7 +6,7 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = void 0;
+exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = void 0;
 exports.isInlineCSSPlatform = isInlineCSSPlatform;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
 /**
@@ -37,19 +37,23 @@ exports.DEFAULT_STYLESHEET_CONFIG = {
  * Default interactivity configuration
  */
 exports.DEFAULT_INTERACTIVITY_CONFIG = {
-    generateJs: false,
-    cssTransitions: false,
-    cssAnimations: false,
-    scrollAnimations: false,
-    pageTransitions: false,
+    enableJavaScript: true, // Enabled by default for custom mode
+    enableAnimations: true, // Enabled by default for custom mode
 };
 /**
- * Quick export config - uses defaults, skips stylesheet review
+ * Quick mode interactivity - no JS/animations for faster export
+ */
+exports.QUICK_INTERACTIVITY_CONFIG = {
+    enableJavaScript: false,
+    enableAnimations: false,
+};
+/**
+ * Quick export config - uses defaults, skips stylesheet review, no animations
  */
 exports.QUICK_EXPORT_CONFIG = {
     mode: 'quick',
     stylesheet: exports.DEFAULT_STYLESHEET_CONFIG,
-    interactivity: exports.DEFAULT_INTERACTIVITY_CONFIG,
+    interactivity: exports.QUICK_INTERACTIVITY_CONFIG,
 };
 /**
  * Default export config - custom mode selected by default

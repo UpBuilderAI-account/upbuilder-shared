@@ -245,23 +245,24 @@ export interface StylesheetConfig {
 
 /**
  * Interactivity configuration (part of ExportConfig)
- * Controls JavaScript and animation generation
+ * Controls JavaScript and animation features
  */
 export interface InteractivityConfig {
-  /** Generate page JavaScript (dropdowns, accordions, tabs, modals, etc.) */
-  generateJs: boolean;
+  /**
+   * Enable JavaScript in the export:
+   * - Required for interactive elements (accordions, tabs, modals)
+   * - Required for animations to work
+   */
+  enableJavaScript: boolean;
 
-  /** Add smooth CSS transitions on hover/focus */
-  cssTransitions: boolean;
-
-  /** Add CSS keyframe animations (spinners, pulses, etc.) */
-  cssAnimations: boolean;
-
-  /** Add scroll-triggered animations (auto-enables generateJs) */
-  scrollAnimations: boolean;
-
-  /** Add page transition effects (auto-enables generateJs) */
-  pageTransitions: boolean;
+  /**
+   * Enable Webflow-style animations (requires enableJavaScript):
+   * - Scroll reveals (AOS fade-up on sections, zoom on images)
+   * - Hover effects (smooth transitions on buttons, links, cards)
+   * - Infinite marquees (auto-detected logo strips)
+   * - CSS animations (subtle pulses, fades)
+   */
+  enableAnimations: boolean;
 }
 
 /**
@@ -306,20 +307,25 @@ export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
  * Default interactivity configuration
  */
 export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
-  generateJs: false,
-  cssTransitions: false,
-  cssAnimations: false,
-  scrollAnimations: false,
-  pageTransitions: false,
+  enableJavaScript: true,  // Enabled by default for custom mode
+  enableAnimations: true,  // Enabled by default for custom mode
 };
 
 /**
- * Quick export config - uses defaults, skips stylesheet review
+ * Quick mode interactivity - no JS/animations for faster export
+ */
+export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
+  enableJavaScript: false,
+  enableAnimations: false,
+};
+
+/**
+ * Quick export config - uses defaults, skips stylesheet review, no animations
  */
 export const QUICK_EXPORT_CONFIG: ExportConfig = {
   mode: 'quick',
   stylesheet: DEFAULT_STYLESHEET_CONFIG,
-  interactivity: DEFAULT_INTERACTIVITY_CONFIG,
+  interactivity: QUICK_INTERACTIVITY_CONFIG,
 };
 
 /**
