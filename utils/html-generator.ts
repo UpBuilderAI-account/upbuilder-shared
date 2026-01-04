@@ -19,6 +19,8 @@ export interface HTMLBoilerplateOptions {
   headExtra?: string;
   /** Include CSS reset styles (default: true) */
   includeReset?: boolean;
+  /** Include AOS (Animate On Scroll) library CDN links */
+  enableAnimations?: boolean;
 }
 
 /**
@@ -56,6 +58,10 @@ p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }`;
 
+// AOS (Animate On Scroll) CDN URLs
+const AOS_CSS_CDN = 'https://unpkg.com/aos@2.3.1/dist/aos.css';
+const AOS_JS_CDN = 'https://unpkg.com/aos@2.3.1/dist/aos.js';
+
 /**
  * Generate a complete HTML document with consistent structure
  * This is the single source of truth for HTML boilerplate generation
@@ -68,7 +74,8 @@ export function generateHTMLDocument(options: HTMLBoilerplateOptions): string {
     js = '',
     googleFontsUrl = '',
     headExtra = '',
-    includeReset = true
+    includeReset = true,
+    enableAnimations = false
   } = options;
 
   // Build head content
@@ -81,6 +88,11 @@ export function generateHTMLDocument(options: HTMLBoilerplateOptions): string {
   // Google Fonts import
   if (googleFontsUrl) {
     headParts.push(`  <link href="${googleFontsUrl}" rel="stylesheet">`);
+  }
+
+  // AOS CSS (before custom styles so they can override if needed)
+  if (enableAnimations) {
+    headParts.push(`  <link href="${AOS_CSS_CDN}" rel="stylesheet">`);
   }
 
   // CSS Reset + Custom CSS
@@ -96,9 +108,16 @@ export function generateHTMLDocument(options: HTMLBoilerplateOptions): string {
 
   // Build body content
   let bodyContent = body;
+
+  // Add custom JS if provided
   if (js.trim()) {
-    // Use \x3c to escape < and prevent browser from parsing this as a real script tag
-    bodyContent += `\n  \x3cscript>\n${js}\n  \x3c/script>`;
+    bodyContent += `\n  <script>\n${js}\n  </script>`;
+  }
+
+  // Add AOS library and initialization
+  if (enableAnimations) {
+    bodyContent += `\n  <script src="${AOS_JS_CDN}"></script>`;
+    bodyContent += `\n  <script>AOS.init({ duration: 800, once: true, offset: 100 });</script>`;
   }
 
   return `<!DOCTYPE html>

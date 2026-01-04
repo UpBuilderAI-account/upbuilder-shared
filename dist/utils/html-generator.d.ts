@@ -13,6 +13,8 @@ export interface HTMLBoilerplateOptions {
     headExtra?: string;
     /** Include CSS reset styles (default: true) */
     includeReset?: boolean;
+    /** Include AOS (Animate On Scroll) library CDN links */
+    enableAnimations?: boolean;
 }
 /**
  * CSS Reset - Modern, minimal reset for consistent rendering
