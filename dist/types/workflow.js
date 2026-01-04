@@ -37,13 +37,15 @@ exports.DEFAULT_STYLESHEET_CONFIG = {
  * Default interactivity configuration
  */
 exports.DEFAULT_INTERACTIVITY_CONFIG = {
-    enableJavaScript: true, // Enabled by default for custom mode
-    enableAnimations: true, // Enabled by default for custom mode
+    enableTransitions: true, // CSS hover effects enabled by default
+    enableJavaScript: true, // JS components enabled by default
+    enableAnimations: false, // Scroll animations disabled (coming soon)
 };
 /**
  * Quick mode interactivity - no JS/animations for faster export
  */
 exports.QUICK_INTERACTIVITY_CONFIG = {
+    enableTransitions: true, // Keep CSS transitions even in quick mode
     enableJavaScript: false,
     enableAnimations: false,
 };

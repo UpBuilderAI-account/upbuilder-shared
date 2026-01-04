@@ -245,22 +245,29 @@ export interface StylesheetConfig {
 
 /**
  * Interactivity configuration (part of ExportConfig)
- * Controls JavaScript and animation features
+ * Controls CSS transitions, JavaScript components, and animations
  */
 export interface InteractivityConfig {
   /**
+   * Enable CSS transitions and hover effects:
+   * - Smooth hover states on buttons, links, cards
+   * - CSS transition properties
+   * - :hover, :focus, :active state changes
+   */
+  enableTransitions: boolean;
+
+  /**
    * Enable JavaScript in the export:
-   * - Required for interactive elements (accordions, tabs, modals)
-   * - Required for animations to work
+   * - Required for interactive elements (sliders, tabs, accordions, modals, filters)
+   * - Required for scroll animations to work
    */
   enableJavaScript: boolean;
 
   /**
-   * Enable Webflow-style animations (requires enableJavaScript):
+   * Enable scroll animations (requires enableJavaScript):
    * - Scroll reveals (AOS fade-up on sections, zoom on images)
-   * - Hover effects (smooth transitions on buttons, links, cards)
    * - Infinite marquees (auto-detected logo strips)
-   * - CSS animations (subtle pulses, fades)
+   * - Entrance animations
    */
   enableAnimations: boolean;
 }
@@ -307,14 +314,16 @@ export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
  * Default interactivity configuration
  */
 export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
-  enableJavaScript: true,  // Enabled by default for custom mode
-  enableAnimations: true,  // Enabled by default for custom mode
+  enableTransitions: true,   // CSS hover effects enabled by default
+  enableJavaScript: true,    // JS components enabled by default
+  enableAnimations: false,   // Scroll animations disabled (coming soon)
 };
 
 /**
  * Quick mode interactivity - no JS/animations for faster export
  */
 export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
+  enableTransitions: true,   // Keep CSS transitions even in quick mode
   enableJavaScript: false,
   enableAnimations: false,
 };
