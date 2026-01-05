@@ -132,7 +132,7 @@ export function isProcessingStage(status: ProjectStatus): boolean {
  * Get the next status in the workflow sequence
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
- * @param quickMode Optional - if true, skips generate_styles and review_stylesheet
+ * @param quickMode Optional - if true, skips review_stylesheet and customize (but NOT generate_styles)
  */
 export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean): ProjectStatus | null {
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
@@ -197,10 +197,9 @@ export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
 
 /**
  * Stages to skip in Quick mode (faster export with defaults)
- * Skips all review/customization stages for faster export
+ * Only skips REVIEW stages - generation still runs, users just don't see the review UI
  */
 export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [
-  'generate_styles',
   'review_stylesheet',
   'customize',
 ];
