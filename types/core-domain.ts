@@ -197,10 +197,12 @@ export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
 
 /**
  * Stages to skip in Quick mode (faster export with defaults)
+ * Skips all review/customization stages for faster export
  */
 export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [
   'generate_styles',
   'review_stylesheet',
+  'customize',
 ];
 
 /**

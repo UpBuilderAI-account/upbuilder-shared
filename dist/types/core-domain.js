@@ -104,10 +104,12 @@ exports.SKIPPED_STAGES = {
 };
 /**
  * Stages to skip in Quick mode (faster export with defaults)
+ * Skips all review/customization stages for faster export
  */
 exports.QUICK_MODE_SKIPPED_STAGES = [
     'generate_styles',
     'review_stylesheet',
+    'customize',
 ];
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)

@@ -18,7 +18,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.getStageOrderForPlatform = exports.isInlineCSSPlatform = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.QUICK_EXPORT_CONFIG = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.USES_SECTION_CSS = exports.QUICK_MODE_SKIPPED_STAGES = exports.SKIPPED_STAGES = exports.shouldSkipStage = exports.requiresUserActionAfter = exports.getNextStatus = exports.isProcessingStage = void 0;
+exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.getStageOrderForPlatform = exports.isInlineCSSPlatform = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.QUICK_EXPORT_CONFIG = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.USES_SECTION_CSS = exports.QUICK_MODE_SKIPPED_STAGES = exports.SKIPPED_STAGES = exports.shouldSkipStage = exports.requiresUserActionAfter = exports.getNextStatus = exports.isProcessingStage = void 0;
 // Core domain types (business logic & database entities)
 __exportStar(require("./core-domain"), exports);
 // Re-export workflow helpers from core-domain for convenience
@@ -40,6 +40,7 @@ __exportStar(require("./socket-protocol"), exports);
 // (workflow.ts types are lightweight progress-tracking types)
 var workflow_1 = require("./workflow");
 Object.defineProperty(exports, "DEFAULT_STYLESHEET_CONFIG", { enumerable: true, get: function () { return workflow_1.DEFAULT_STYLESHEET_CONFIG; } });
+Object.defineProperty(exports, "DEFAULT_RESPONSIVE_CONFIG", { enumerable: true, get: function () { return workflow_1.DEFAULT_RESPONSIVE_CONFIG; } });
 Object.defineProperty(exports, "DEFAULT_INTERACTIVITY_CONFIG", { enumerable: true, get: function () { return workflow_1.DEFAULT_INTERACTIVITY_CONFIG; } });
 Object.defineProperty(exports, "QUICK_INTERACTIVITY_CONFIG", { enumerable: true, get: function () { return workflow_1.QUICK_INTERACTIVITY_CONFIG; } });
 Object.defineProperty(exports, "DEFAULT_EXPORT_CONFIG", { enumerable: true, get: function () { return workflow_1.DEFAULT_EXPORT_CONFIG; } });

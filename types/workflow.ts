@@ -244,6 +244,21 @@ export interface StylesheetConfig {
 }
 
 /**
+ * Responsive configuration (part of ExportConfig)
+ * Controls responsive breakpoint CSS generation
+ */
+export interface ResponsiveConfig {
+  /**
+   * Enable responsive styles for Webflow breakpoints:
+   * - Desktop: Base styles (default)
+   * - Tablet: 991px and below
+   * - Mobile Landscape: 767px and below
+   * - Mobile Portrait: 478px and below
+   */
+  enableResponsive: boolean;
+}
+
+/**
  * Interactivity configuration (part of ExportConfig)
  * Controls CSS transitions, JavaScript components, and animations
  */
@@ -279,6 +294,7 @@ export interface InteractivityConfig {
 export interface ExportConfig {
   mode: ExportMode;
   stylesheet: StylesheetConfig;
+  responsive: ResponsiveConfig;
   interactivity: InteractivityConfig;
 }
 
@@ -311,6 +327,13 @@ export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
 };
 
 /**
+ * Default responsive configuration
+ */
+export const DEFAULT_RESPONSIVE_CONFIG: ResponsiveConfig = {
+  enableResponsive: true,    // Responsive styles enabled by default
+};
+
+/**
  * Default interactivity configuration
  */
 export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
@@ -334,6 +357,7 @@ export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
 export const QUICK_EXPORT_CONFIG: ExportConfig = {
   mode: 'quick',
   stylesheet: DEFAULT_STYLESHEET_CONFIG,
+  responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: QUICK_INTERACTIVITY_CONFIG,
 };
 
@@ -343,6 +367,7 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
 export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   mode: 'custom',
   stylesheet: DEFAULT_STYLESHEET_CONFIG,
+  responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
 };
 

@@ -168,6 +168,20 @@ export interface StylesheetConfig {
     spacingScale?: SpacingScale;
 }
 /**
+ * Responsive configuration (part of ExportConfig)
+ * Controls responsive breakpoint CSS generation
+ */
+export interface ResponsiveConfig {
+    /**
+     * Enable responsive styles for Webflow breakpoints:
+     * - Desktop: Base styles (default)
+     * - Tablet: 991px and below
+     * - Mobile Landscape: 767px and below
+     * - Mobile Portrait: 478px and below
+     */
+    enableResponsive: boolean;
+}
+/**
  * Interactivity configuration (part of ExportConfig)
  * Controls CSS transitions, JavaScript components, and animations
  */
@@ -200,12 +214,17 @@ export interface InteractivityConfig {
 export interface ExportConfig {
     mode: ExportMode;
     stylesheet: StylesheetConfig;
+    responsive: ResponsiveConfig;
     interactivity: InteractivityConfig;
 }
 /**
  * Default stylesheet configuration
  */
 export declare const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig;
+/**
+ * Default responsive configuration
+ */
+export declare const DEFAULT_RESPONSIVE_CONFIG: ResponsiveConfig;
 /**
  * Default interactivity configuration
  */
