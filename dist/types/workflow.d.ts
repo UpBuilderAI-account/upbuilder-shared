@@ -422,6 +422,7 @@ export interface AssemblyProgress {
     consolidation: {
         css: ConsolidationStep;
         js: ConsolidationStep;
+        jsEnabled: boolean;
     };
     designs: AssemblyDesign[];
 }

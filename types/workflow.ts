@@ -597,6 +597,7 @@ export interface AssemblyProgress {
   consolidation: {
     css: ConsolidationStep;
     js: ConsolidationStep;
+    jsEnabled: boolean;  // Whether JS consolidation is enabled (based on enableJavaScript config)
   };
   designs: AssemblyDesign[];
 }
