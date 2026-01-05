@@ -18,7 +18,9 @@ export type WebflowBasicComponent =
   | 'List'
   | 'ListItem'
   | 'Icon'
-  | 'HtmlEmbed';
+  | 'HtmlEmbed'
+  | 'Layout'
+  | 'Cell';
 
 export type WebflowNavComponent =
   | 'NavbarWrapper'
@@ -45,6 +47,14 @@ export type WebflowFormComponent =
   | 'FormRadioWrapper'
   | 'FormRadioInput'
   | 'FormSelect'
+  | 'FormFileUploadWrapper'
+  | 'FormFileUploadDefault'
+  | 'FormFileUploadUploading'
+  | 'FormFileUploadSuccess'
+  | 'FormFileUploadError'
+  | 'FormFileUploadInput'
+  | 'FormFileUploadLabel'
+  | 'FormFileUploadErrorMsg'
   | 'FormSuccessMessage'
   | 'FormErrorMessage';
 
@@ -95,9 +105,9 @@ export const NAVBAR_VALIDATION_CLASSES = {
 // -----------------------------------------------------------------------------
 
 export const WEBFLOW_COMPONENT_TYPES_LIST = {
-  basic: ['Block', 'Section', 'Heading', 'Paragraph', 'Image', 'Link', 'Button', 'List', 'ListItem', 'Icon', 'HtmlEmbed'],
+  basic: ['Block', 'Section', 'Heading', 'Paragraph', 'Image', 'Link', 'Button', 'List', 'ListItem', 'Icon', 'HtmlEmbed', 'Layout', 'Cell'],
   navigation: ['NavbarWrapper', 'NavbarContainer', 'NavbarBrand', 'NavbarMenu', 'NavbarLink', 'NavbarButton', 'DropdownWrapper', 'DropdownToggle', 'DropdownList', 'DropdownLink'],
-  forms: ['FormWrapper', 'FormForm', 'FormTextInput', 'FormTextarea', 'FormButton', 'FormBlockLabel', 'FormInlineLabel', 'FormCheckboxWrapper', 'FormCheckboxInput', 'FormRadioWrapper', 'FormRadioInput', 'FormSelect', 'FormSuccessMessage', 'FormErrorMessage']
+  forms: ['FormWrapper', 'FormForm', 'FormTextInput', 'FormTextarea', 'FormButton', 'FormBlockLabel', 'FormInlineLabel', 'FormCheckboxWrapper', 'FormCheckboxInput', 'FormRadioWrapper', 'FormRadioInput', 'FormSelect', 'FormFileUploadWrapper', 'FormFileUploadDefault', 'FormFileUploadUploading', 'FormFileUploadSuccess', 'FormFileUploadError', 'FormFileUploadInput', 'FormFileUploadLabel', 'FormFileUploadErrorMsg', 'FormSuccessMessage', 'FormErrorMessage']
 } as const;
 
 // Pre-formatted string for prompts
@@ -169,10 +179,18 @@ FormWrapper (must wrap entire form)
 │   ├── FormSelect (DIRECT child of FormForm!)
 │   ├── FormCheckboxWrapper (for checkboxes)
 │   │   ├── FormCheckboxInput
-│   │   └── Span (label text)
+│   │   └── FormInlineLabel (label text)
 │   ├── FormRadioWrapper (for radios)
 │   │   ├── FormRadioInput
-│   │   └── Span (label text)
+│   │   └── FormInlineLabel (label text)
+│   ├── FormFileUploadWrapper (for file uploads)
+│   │   ├── FormFileUploadDefault (DIRECT child, pinned)
+│   │   │   ├── FormFileUploadInput
+│   │   │   └── FormFileUploadLabel
+│   │   ├── FormFileUploadUploading (DIRECT child, pinned)
+│   │   ├── FormFileUploadSuccess (DIRECT child, pinned)
+│   │   └── FormFileUploadError (DIRECT child, pinned)
+│   │       └── FormFileUploadErrorMsg
 │   └── FormButton
 ├── FormSuccessMessage
 └── FormErrorMessage
@@ -246,7 +264,14 @@ export const WEBFLOW_HIERARCHY_VALIDATION_CHECKLIST = `### ⚠️ VALIDATION CHE
 - [ ] FormForm is inside FormWrapper
 - [ ] FormCheckboxInput is inside FormCheckboxWrapper
 - [ ] FormRadioInput is inside FormRadioWrapper
-- [ ] If HTML has field-group divs wrapping inputs, those divs are SKIPPED`;
+- [ ] FormFileUploadInput is inside FormFileUploadDefault
+- [ ] FormFileUpload states (Default/Uploading/Success/Error) are inside FormFileUploadWrapper
+- [ ] If HTML has field-group divs wrapping inputs, those divs are SKIPPED
+
+**Layout (CSS Grid) - MUST verify:**
+- [ ] Cell elements are DIRECT children of Layout (NOT wrapped in Blocks!)
+- [ ] Layout only contains Cell children
+- [ ] Content goes INSIDE Cell, not directly in Layout`;
 
 export const WEBFLOW_HTML_EMBED_DOCS = `## HtmlEmbed Component (for inline SVGs and custom HTML)
 
