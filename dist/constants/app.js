@@ -19,8 +19,9 @@ exports.isImageFile = isImageFile;
 /**
  * Fixed user ID for guest/anonymous users
  * Used consistently across all systems for unauthenticated access
+ * Must be a valid UUID format for PostgreSQL compatibility
  */
-exports.GUEST_USER_ID = 'guest-user-fixed-id';
+exports.GUEST_USER_ID = '00000000-0000-0000-0000-000000000000';
 // ============================================================================
 // PLATFORM & FRAMEWORK DEFAULTS
 // ============================================================================

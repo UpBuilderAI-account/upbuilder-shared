@@ -1,8 +1,9 @@
 /**
  * Fixed user ID for guest/anonymous users
  * Used consistently across all systems for unauthenticated access
+ * Must be a valid UUID format for PostgreSQL compatibility
  */
-export declare const GUEST_USER_ID = "guest-user-fixed-id";
+export declare const GUEST_USER_ID = "00000000-0000-0000-0000-000000000000";
 /**
  * Default export platform
  */
