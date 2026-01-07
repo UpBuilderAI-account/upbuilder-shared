@@ -76,6 +76,9 @@ exports.SOCKET_EVENTS = {
         PROCESS_PENDING: 'workflow:process_pending', // Client → Server: Process pending designs after upgrade
         // Background progress (export_config stage)
         BACKGROUND_PROGRESS: 'workflow:background_progress', // Server → Client: Background job progress during export_config
+        // Webflow structure preview (customize stage)
+        WEBFLOW_STRUCTURE: 'workflow:webflow_structure', // Server → Client: XSCP data for tree view
+        STYLE_REGISTRY: 'workflow:style_registry', // Server → Client: Style registry for style panel
     },
     /**
      * Server → Client: Project state updates

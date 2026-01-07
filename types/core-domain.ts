@@ -83,15 +83,14 @@ export interface PluginAuthTokenResponse {
 
 export type ProjectStatus =
   | 'idle'
-  | 'export_config'      // NEW: First stage - configure export options (replaces styles_config)
+  | 'export_config'      // First stage - configure export options
   | 'load'
   | 'detect_sections'
   | 'generate_styles'
   | 'review_stylesheet'
   | 'prepare_build'
-  | 'build'
-  | 'customize'
-  | 'export'
+  | 'convert_to_platform' // Combines: build sections + convert styles + assemble + convert JS
+  | 'customize'          // Preview Webflow structure + export modal
   | 'complete'
   | 'failed';
 
@@ -106,9 +105,8 @@ export const PROJECT_STATUS = {
   GENERATE_STYLES: 'generate_styles' as ProjectStatus,
   REVIEW_STYLESHEET: 'review_stylesheet' as ProjectStatus,
   PREPARE_BUILD: 'prepare_build' as ProjectStatus,
-  BUILD: 'build' as ProjectStatus,
+  CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
-  EXPORT: 'export' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
   FAILED: 'failed' as ProjectStatus,
 } as const;
@@ -122,8 +120,7 @@ export function isProcessingStage(status: ProjectStatus): boolean {
     'detect_sections',
     'generate_styles',
     'prepare_build',
-    'build',
-    'export',
+    'convert_to_platform',
   ];
   return processingStages.includes(status);
 }
@@ -142,10 +139,9 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
     detect_sections: 'generate_styles',
     generate_styles: 'review_stylesheet',
     review_stylesheet: 'prepare_build',
-    prepare_build: 'build',
-    build: 'customize',
-    customize: 'export',
-    export: 'complete',
+    prepare_build: 'convert_to_platform',
+    convert_to_platform: 'customize',
+    customize: 'complete',
     complete: null,
     failed: null,
   };
@@ -174,7 +170,7 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
  * Check if user action is required after this stage completes
  */
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
-  // export_config, review_stylesheet, and customize stages require user action to proceed
+  // These stages require user action to proceed
   return status === 'export_config' || status === 'review_stylesheet' || status === 'customize';
 }
 
@@ -201,7 +197,6 @@ export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
  */
 export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [
   'review_stylesheet',
-  'customize',
 ];
 
 /**

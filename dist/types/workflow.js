@@ -91,9 +91,8 @@ exports.STAGE_ORDER = [
     'generate_styles',
     'review_stylesheet',
     'prepare_build',
-    'build',
+    'convert_to_platform',
     'customize',
-    'export',
 ];
 exports.STAGE_LABELS = {
     export_config: 'Configure Export',
@@ -102,9 +101,8 @@ exports.STAGE_LABELS = {
     generate_styles: 'Generating Base Styles',
     review_stylesheet: 'Review Stylesheet',
     prepare_build: 'Preparing Build',
-    build: 'Building Sections',
-    customize: 'Review & Customize',
-    export: 'Exporting',
+    convert_to_platform: 'Converting to Webflow',
+    customize: 'Preview & Export',
 };
 /**
  * Stages to skip for inline CSS platforms (Bricks, Elementor)

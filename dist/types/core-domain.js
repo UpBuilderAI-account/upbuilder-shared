@@ -25,9 +25,8 @@ exports.PROJECT_STATUS = {
     GENERATE_STYLES: 'generate_styles',
     REVIEW_STYLESHEET: 'review_stylesheet',
     PREPARE_BUILD: 'prepare_build',
-    BUILD: 'build',
+    CONVERT_TO_PLATFORM: 'convert_to_platform',
     CUSTOMIZE: 'customize',
-    EXPORT: 'export',
     COMPLETE: 'complete',
     FAILED: 'failed',
 };
@@ -40,8 +39,7 @@ function isProcessingStage(status) {
         'detect_sections',
         'generate_styles',
         'prepare_build',
-        'build',
-        'export',
+        'convert_to_platform',
     ];
     return processingStages.includes(status);
 }
@@ -60,10 +58,9 @@ function getNextStatus(status, platform, quickMode) {
         detect_sections: 'generate_styles',
         generate_styles: 'review_stylesheet',
         review_stylesheet: 'prepare_build',
-        prepare_build: 'build',
-        build: 'customize',
-        customize: 'export',
-        export: 'complete',
+        prepare_build: 'convert_to_platform',
+        convert_to_platform: 'customize',
+        customize: 'complete',
         complete: null,
         failed: null,
     };
@@ -87,7 +84,7 @@ function getNextStatus(status, platform, quickMode) {
  * Check if user action is required after this stage completes
  */
 function requiresUserActionAfter(status) {
-    // export_config, review_stylesheet, and customize stages require user action to proceed
+    // These stages require user action to proceed
     return status === 'export_config' || status === 'review_stylesheet' || status === 'customize';
 }
 // =============================================================================
@@ -108,7 +105,6 @@ exports.SKIPPED_STAGES = {
  */
 exports.QUICK_MODE_SKIPPED_STAGES = [
     'review_stylesheet',
-    'customize',
 ];
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)

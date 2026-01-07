@@ -55,7 +55,7 @@ export interface PluginAuthTokenResponse {
     user?: User;
     error?: string;
 }
-export type ProjectStatus = 'idle' | 'export_config' | 'load' | 'detect_sections' | 'generate_styles' | 'review_stylesheet' | 'prepare_build' | 'build' | 'customize' | 'export' | 'complete' | 'failed';
+export type ProjectStatus = 'idle' | 'export_config' | 'load' | 'detect_sections' | 'generate_styles' | 'review_stylesheet' | 'prepare_build' | 'convert_to_platform' | 'customize' | 'complete' | 'failed';
 /**
  * Type-safe constants for ProjectStatus
  */
@@ -67,9 +67,8 @@ export declare const PROJECT_STATUS: {
     readonly GENERATE_STYLES: ProjectStatus;
     readonly REVIEW_STYLESHEET: ProjectStatus;
     readonly PREPARE_BUILD: ProjectStatus;
-    readonly BUILD: ProjectStatus;
+    readonly CONVERT_TO_PLATFORM: ProjectStatus;
     readonly CUSTOMIZE: ProjectStatus;
-    readonly EXPORT: ProjectStatus;
     readonly COMPLETE: ProjectStatus;
     readonly FAILED: ProjectStatus;
 };

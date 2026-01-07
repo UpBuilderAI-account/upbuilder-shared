@@ -430,7 +430,7 @@ export interface WorkflowExportComplete {
 
 export interface WorkflowCommand {
   projectId: string;
-  action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_detect_sections' | 'reprocess_generate_styles' | 'reprocess_prepare_build' | 'reprocess_build' | 'reprocess_export' | 'reprocess_export_fast';
+  action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_detect_sections' | 'reprocess_generate_styles' | 'reprocess_prepare_build' | 'reprocess_convert_to_platform';
   retry?: boolean;
   /** Export configuration from export_config stage */
   exportConfig?: ExportConfig;
@@ -657,9 +657,8 @@ export const STAGE_ORDER: Stage[] = [
   'generate_styles',
   'review_stylesheet',
   'prepare_build',
-  'build',
+  'convert_to_platform',
   'customize',
-  'export',
 ];
 
 export const STAGE_LABELS: Record<Stage, string> = {
@@ -669,9 +668,8 @@ export const STAGE_LABELS: Record<Stage, string> = {
   generate_styles: 'Generating Base Styles',
   review_stylesheet: 'Review Stylesheet',
   prepare_build: 'Preparing Build',
-  build: 'Building Sections',
-  customize: 'Review & Customize',
-  export: 'Exporting',
+  convert_to_platform: 'Converting to Webflow',
+  customize: 'Preview & Export',
 };
 
 /**
