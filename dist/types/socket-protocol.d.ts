@@ -325,6 +325,15 @@ export interface ServerToClientEvents {
         message: string;
     }) => void;
     'workflow:background_progress': (data: WorkflowBackgroundProgress) => void;
+    'workflow:webflow_structure': (data: {
+        designId: string;
+        designName: string;
+        xscp: any;
+    }) => void;
+    'workflow:style_registry': (data: {
+        styles: any[];
+        totalCount: number;
+    }) => void;
     project_ownership_transferred: (data: {
         projectId: string;
         projectName?: string;

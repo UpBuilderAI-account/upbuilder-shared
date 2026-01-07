@@ -495,6 +495,8 @@ export interface ServerToClientEvents {
   'workflow:renamed': (data: { type: RenameTargetType; id: string; name: string }) => void;
   'workflow:export_limit_reached': (data: { projectId: string; message: string }) => void;
   'workflow:background_progress': (data: WorkflowBackgroundProgress) => void;
+  'workflow:webflow_structure': (data: { designId: string; designName: string; xscp: any }) => void;
+  'workflow:style_registry': (data: { styles: any[]; totalCount: number }) => void;
 
   // Ownership transfer events
   project_ownership_transferred: (data: {

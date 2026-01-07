@@ -288,7 +288,7 @@ export interface WorkflowExportComplete {
 }
 export interface WorkflowCommand {
     projectId: string;
-    action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_detect_sections' | 'reprocess_generate_styles' | 'reprocess_prepare_build' | 'reprocess_convert_to_platform';
+    action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_detect_sections' | 'reprocess_generate_styles' | 'reprocess_prepare_build' | 'reprocess_convert_to_platform' | 'reprocess_customize' | 'reprocess_customize_fast';
     retry?: boolean;
     /** Export configuration from export_config stage */
     exportConfig?: ExportConfig;
