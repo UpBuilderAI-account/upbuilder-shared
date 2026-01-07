@@ -94,6 +94,7 @@ export {
   type ConsolidationStep,
   type AssemblyDesign,
   type AssemblyProgress,
+  type AssetUploadProgress,
   type AssembledDesign,
   // Helpers
   isPending,

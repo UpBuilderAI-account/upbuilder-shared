@@ -426,18 +426,36 @@ export interface ConsolidationStep {
     message?: string;
 }
 /**
- * Design assembly status
+ * Design assembly status with validation step
  */
 export interface AssemblyDesign {
     id: string;
     name: string;
+    /** Assembly step: building the design HTML */
     status: 'pending' | 'running' | 'complete' | 'failed';
     progress: Progress;
+    /** Validation step: runs after assembly completes */
+    validation?: {
+        status: 'pending' | 'running' | 'complete' | 'failed';
+        progress: Progress;
+        message?: string;
+    };
+}
+/**
+ * Asset upload progress (runs in background during conversion)
+ */
+export interface AssetUploadProgress {
+    status: 'pending' | 'running' | 'complete' | 'failed';
+    progress: Progress;
+    uploaded: number;
+    total: number;
 }
 /**
  * Assembly progress tracking (consolidation + design assembly)
  */
 export interface AssemblyProgress {
+    /** Asset upload runs in background during entire conversion */
+    assetUpload?: AssetUploadProgress;
     consolidation: {
         css: ConsolidationStep;
         js: ConsolidationStep;
