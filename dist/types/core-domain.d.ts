@@ -86,7 +86,7 @@ export declare function getNextStatus(status: ProjectStatus, platform?: Platform
  * Check if user action is required after this stage completes
  */
 export declare function requiresUserActionAfter(status: ProjectStatus): boolean;
-export type Platform = 'webflow' | 'bricks' | 'elementor';
+export type Platform = 'webflow';
 export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap' | 'vanilla' | 'inline';
 /**
  * Stages to skip for each platform
@@ -330,7 +330,7 @@ export interface Project {
  * Export type/format
  * Only includes currently implemented export types
  */
-export type ExportType = 'zip' | 'webflow' | 'bricks';
+export type ExportType = 'zip' | 'webflow';
 /**
  * Export options for code generation
  */

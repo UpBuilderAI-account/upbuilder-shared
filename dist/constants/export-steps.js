@@ -29,30 +29,31 @@ exports.EXPORT_STEPS_CONFIG = {
             { id: 'validate_structure', label: 'Validating structure' },
         ],
     },
-    bricks: {
-        global: [
-            { id: 'prepare', label: 'Preparing' },
-            { id: 'global_sections', label: 'Building global sections' },
-            { id: 'processing', label: 'Processing designs' },
-            { id: 'finalize', label: 'Finalizing' },
-        ],
-        design: [
-            { id: 'build', label: 'Convert to Bricks' },
-            { id: 'generate', label: 'Generate JSON' },
-        ],
-    },
-    elementor: {
-        global: [
-            { id: 'prepare', label: 'Preparing' },
-            { id: 'global_sections', label: 'Building global sections' },
-            { id: 'processing', label: 'Processing designs' },
-            { id: 'finalize', label: 'Finalizing' },
-        ],
-        design: [
-            { id: 'build', label: 'Convert to Elementor' },
-            { id: 'generate', label: 'Generate JSON' },
-        ],
-    },
+    // Bricks and Elementor commented out - only Webflow available for now
+    // bricks: {
+    //   global: [
+    //     { id: 'prepare', label: 'Preparing' },
+    //     { id: 'global_sections', label: 'Building global sections' },
+    //     { id: 'processing', label: 'Processing designs' },
+    //     { id: 'finalize', label: 'Finalizing' },
+    //   ],
+    //   design: [
+    //     { id: 'build', label: 'Convert to Bricks' },
+    //     { id: 'generate', label: 'Generate JSON' },
+    //   ],
+    // },
+    // elementor: {
+    //   global: [
+    //     { id: 'prepare', label: 'Preparing' },
+    //     { id: 'global_sections', label: 'Building global sections' },
+    //     { id: 'processing', label: 'Processing designs' },
+    //     { id: 'finalize', label: 'Finalizing' },
+    //   ],
+    //   design: [
+    //     { id: 'build', label: 'Convert to Elementor' },
+    //     { id: 'generate', label: 'Generate JSON' },
+    //   ],
+    // },
 };
 /**
  * Get export steps config for a platform

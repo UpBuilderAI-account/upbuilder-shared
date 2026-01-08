@@ -156,6 +156,20 @@ export const SOCKET_EVENTS = {
     MAINTENANCE: 'system:maintenance',
     MAINTENANCE_END: 'system:maintenance_end',
   },
+
+  /**
+   * Customizer events (client ↔ server)
+   * For editing Webflow structure before export
+   */
+  CUSTOMIZER: {
+    REQUEST_TREE: 'customizer:request_tree',     // Client → Server: Request editable tree data
+    TREE_DATA: 'customizer:tree_data',           // Server → Client: Tree data response
+    APPLY_EDITS: 'customizer:apply_edits',       // Client → Server: Apply edit operations
+    EDITS_APPLIED: 'customizer:edits_applied',   // Server → Client: Edits applied response
+    REQUEST_EXPORT: 'customizer:request_export', // Client → Server: Request export (Pro only)
+    EXPORT_READY: 'customizer:export_ready',     // Server → Client: Export ready response
+    ERROR: 'customizer:error',                   // Server → Client: Error event
+  },
 } as const;
 
 /**
@@ -167,7 +181,8 @@ export type ClientEventName =
   | typeof SOCKET_EVENTS.PLUGIN_ROOM[keyof typeof SOCKET_EVENTS.PLUGIN_ROOM]
   | typeof SOCKET_EVENTS.PROJECT[keyof typeof SOCKET_EVENTS.PROJECT]
   | typeof SOCKET_EVENTS.WORKFLOW[keyof typeof SOCKET_EVENTS.WORKFLOW]
-  | typeof SOCKET_EVENTS.GITHUB[keyof typeof SOCKET_EVENTS.GITHUB];
+  | typeof SOCKET_EVENTS.GITHUB[keyof typeof SOCKET_EVENTS.GITHUB]
+  | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER];
 
 /**
  * Type helper to get all server → client event names
@@ -179,7 +194,8 @@ export type ServerEventName =
   | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR]
   | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP]
   | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER]
-  | typeof SOCKET_EVENTS.SYSTEM[keyof typeof SOCKET_EVENTS.SYSTEM];
+  | typeof SOCKET_EVENTS.SYSTEM[keyof typeof SOCKET_EVENTS.SYSTEM]
+  | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER];
 
 /**
  * Maintenance mode information sent to clients

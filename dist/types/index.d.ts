@@ -12,4 +12,6 @@ export * from './elementor';
 export * from './github-sync';
 export * from './complex-hierarchy';
 export * from './outside-elements';
+export * from './editable-tree';
+export * from './edit-operations';
 //# sourceMappingURL=index.d.ts.map

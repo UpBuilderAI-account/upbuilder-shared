@@ -94,8 +94,8 @@ function requiresUserActionAfter(status) {
  */
 exports.SKIPPED_STAGES = {
     webflow: [],
-    bricks: ['generate_styles'],
-    elementor: ['generate_styles'],
+    // bricks: ['generate_styles'],
+    // elementor: ['generate_styles'],
 };
 /**
  * Stages to skip in Quick mode (faster export with defaults)
@@ -108,8 +108,8 @@ exports.QUICK_MODE_SKIPPED_STAGES = [];
  */
 exports.USES_SECTION_CSS = {
     webflow: true,
-    bricks: true,
-    elementor: true,
+    // bricks: true,
+    // elementor: true,
 };
 /**
  * Check if a stage should be skipped for a given platform

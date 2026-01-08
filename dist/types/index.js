@@ -72,3 +72,7 @@ __exportStar(require("./github-sync"), exports);
 __exportStar(require("./complex-hierarchy"), exports);
 // Outside elements detection types
 __exportStar(require("./outside-elements"), exports);
+// Editable tree types (customizer - safe format for frontend)
+__exportStar(require("./editable-tree"), exports);
+// Edit operations types (customizer - operations sent from frontend)
+__exportStar(require("./edit-operations"), exports);

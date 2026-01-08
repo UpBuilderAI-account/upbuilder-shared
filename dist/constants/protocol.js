@@ -145,6 +145,19 @@ exports.SOCKET_EVENTS = {
         MAINTENANCE: 'system:maintenance',
         MAINTENANCE_END: 'system:maintenance_end',
     },
+    /**
+     * Customizer events (client ↔ server)
+     * For editing Webflow structure before export
+     */
+    CUSTOMIZER: {
+        REQUEST_TREE: 'customizer:request_tree', // Client → Server: Request editable tree data
+        TREE_DATA: 'customizer:tree_data', // Server → Client: Tree data response
+        APPLY_EDITS: 'customizer:apply_edits', // Client → Server: Apply edit operations
+        EDITS_APPLIED: 'customizer:edits_applied', // Server → Client: Edits applied response
+        REQUEST_EXPORT: 'customizer:request_export', // Client → Server: Request export (Pro only)
+        EXPORT_READY: 'customizer:export_ready', // Server → Client: Export ready response
+        ERROR: 'customizer:error', // Server → Client: Error event
+    },
 };
 // ============================================================================
 // ERROR CODES

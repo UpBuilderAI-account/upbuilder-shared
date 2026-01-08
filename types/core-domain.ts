@@ -171,7 +171,8 @@ export function requiresUserActionAfter(status: ProjectStatus): boolean {
   return status === 'export_config' || status === 'customize';
 }
 
-export type Platform = 'webflow' | 'bricks' | 'elementor';
+// Bricks and Elementor commented out - only Webflow available for now
+export type Platform = 'webflow'; // | 'bricks' | 'elementor';
 export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap' | 'vanilla' | 'inline';
 
 // =============================================================================
@@ -184,8 +185,8 @@ export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap
  */
 export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
   webflow: [],
-  bricks: ['generate_styles'],
-  elementor: ['generate_styles'],
+  // bricks: ['generate_styles'],
+  // elementor: ['generate_styles'],
 };
 
 /**
@@ -200,8 +201,8 @@ export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [];
  */
 export const USES_SECTION_CSS: Partial<Record<Platform, boolean>> = {
   webflow: true,
-  bricks: true,
-  elementor: true,
+  // bricks: true,
+  // elementor: true,
 };
 
 /**
@@ -492,7 +493,7 @@ export interface Project {
  * Export type/format
  * Only includes currently implemented export types
  */
-export type ExportType = 'zip' | 'webflow' | 'bricks';
+export type ExportType = 'zip' | 'webflow'; // | 'bricks';
 
 /**
  * Export options for code generation

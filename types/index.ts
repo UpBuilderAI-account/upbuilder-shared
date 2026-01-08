@@ -132,3 +132,9 @@ export * from './complex-hierarchy';
 
 // Outside elements detection types
 export * from './outside-elements';
+
+// Editable tree types (customizer - safe format for frontend)
+export * from './editable-tree';
+
+// Edit operations types (customizer - operations sent from frontend)
+export * from './edit-operations';
