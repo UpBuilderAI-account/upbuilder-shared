@@ -2,6 +2,8 @@
 // PRICING CONSTANTS
 // Centralized pricing plan and feature definitions
 // ============================================================================
+// NOTE: Plus tier has been removed - only Basic (free) and Pro tiers exist
+// ============================================================================
 
 /**
  * Basic (Free) plan feature list
@@ -10,16 +12,6 @@ export const BASIC_FEATURES = [
   '1 design per project',
   '2 projects per month',
   'Community support',
-] as const;
-
-/**
- * Plus plan feature list
- */
-export const PLUS_FEATURES = [
-  'Up to 5 designs per project',
-  '20 projects per month',
-  'All platforms supported',
-  'Email support',
 ] as const;
 
 /**
@@ -39,7 +31,6 @@ export const PRO_FEATURES = [
  */
 export const MAX_DESIGNS_PER_PROJECT = {
   free: 1,
-  plus: 5,
   pro: 10,
 } as const;
 
@@ -56,15 +47,6 @@ export const PRICING_CONFIG = {
     features: BASIC_FEATURES,
     exportsPerMonth: 2,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.free,
-  },
-  plus: {
-    name: 'Plus',
-    price: 4.99,
-    displayPrice: '4.99',
-    description: 'For active creators',
-    features: PLUS_FEATURES,
-    exportsPerMonth: 20,
-    maxDesigns: MAX_DESIGNS_PER_PROJECT.plus,
   },
   pro: {
     name: 'Pro',

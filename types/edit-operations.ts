@@ -222,7 +222,8 @@ export interface ApplyEditsResponse {
   /** Any errors that occurred */
   errors?: Array<{
     operationIndex: number;
-    operationType: EditOperationType;
+    /** Operation type or 'unknown' for general errors */
+    operationType: EditOperationType | 'unknown';
     message: string;
   }>;
 }

@@ -3,8 +3,10 @@
 // PRICING CONSTANTS
 // Centralized pricing plan and feature definitions
 // ============================================================================
+// NOTE: Plus tier has been removed - only Basic (free) and Pro tiers exist
+// ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.PRO_FEATURES = exports.PLUS_FEATURES = exports.BASIC_FEATURES = void 0;
+exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;
 /**
  * Basic (Free) plan feature list
  */
@@ -12,15 +14,6 @@ exports.BASIC_FEATURES = [
     '1 design per project',
     '2 projects per month',
     'Community support',
-];
-/**
- * Plus plan feature list
- */
-exports.PLUS_FEATURES = [
-    'Up to 5 designs per project',
-    '20 projects per month',
-    'All platforms supported',
-    'Email support',
 ];
 /**
  * Pro plan feature list
@@ -38,7 +31,6 @@ exports.PRO_FEATURES = [
  */
 exports.MAX_DESIGNS_PER_PROJECT = {
     free: 1,
-    plus: 5,
     pro: 10,
 };
 /**
@@ -54,15 +46,6 @@ exports.PRICING_CONFIG = {
         features: exports.BASIC_FEATURES,
         exportsPerMonth: 2,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.free,
-    },
-    plus: {
-        name: 'Plus',
-        price: 4.99,
-        displayPrice: '4.99',
-        description: 'For active creators',
-        features: exports.PLUS_FEATURES,
-        exportsPerMonth: 20,
-        maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.plus,
     },
     pro: {
         name: 'Pro',

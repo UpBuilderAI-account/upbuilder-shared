@@ -35,6 +35,16 @@ import type {
 } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
+import type {
+  RequestTreePayload,
+  TreeDataResponse,
+} from './editable-tree';
+import type {
+  ApplyEditsRequest,
+  ApplyEditsResponse,
+  RequestExportRequest,
+  RequestExportResponse,
+} from './edit-operations';
 
 // Re-export export types for use in socket events
 export type { ExportOptions, ExportPayload };
@@ -449,6 +459,22 @@ export interface ClientToServerEvents {
       trialEnd?: number | null;
       currentPeriodEnd?: number;
     }>
+  ) => void;
+
+  // Customizer events
+  'customizer:request_tree': (
+    data: RequestTreePayload,
+    callback: (response: TreeDataResponse) => void
+  ) => void;
+
+  'customizer:apply_edits': (
+    data: ApplyEditsRequest,
+    callback: (response: ApplyEditsResponse) => void
+  ) => void;
+
+  'customizer:request_export': (
+    data: RequestExportRequest,
+    callback: (response: RequestExportResponse) => void
   ) => void;
 }
 
