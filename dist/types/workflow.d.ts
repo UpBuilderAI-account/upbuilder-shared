@@ -63,12 +63,10 @@ export interface WorkflowStages {
     generateStylesCSS?: string;
     /** Original CSS from generate_styles stage (for reset functionality) */
     generateStylesOriginalCSS?: string;
-    /** Preview HTML from generate_styles stage (demonstrates all utility classes) */
-    generateStylesPreviewHtml?: string;
 }
 export interface WorkflowStream {
     stage: 'generate_styles';
-    type: 'css' | 'preview_html';
+    type: 'css';
     chunk: string;
     done?: boolean;
     /** If true, frontend should clear accumulated code before appending chunk (used for retries) */
