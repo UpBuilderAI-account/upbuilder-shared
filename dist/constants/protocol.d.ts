@@ -116,14 +116,6 @@ export declare const SOCKET_EVENTS: {
         readonly CHECK_SUBSCRIPTION: "user:check_subscription";
     };
     /**
-     * System events (server → client)
-     * For system-wide notifications like maintenance mode
-     */
-    readonly SYSTEM: {
-        readonly MAINTENANCE: "system:maintenance";
-        readonly MAINTENANCE_END: "system:maintenance_end";
-    };
-    /**
      * Customizer events (client ↔ server)
      * For editing Webflow structure before export
      */
@@ -134,6 +126,7 @@ export declare const SOCKET_EVENTS: {
         readonly EDITS_APPLIED: "customizer:edits_applied";
         readonly REQUEST_EXPORT: "customizer:request_export";
         readonly EXPORT_READY: "customizer:export_ready";
+        readonly REQUEST_PREVIEW: "customizer:request_preview";
         readonly ERROR: "customizer:error";
     };
 };
@@ -144,13 +137,5 @@ export type ClientEventName = typeof SOCKET_EVENTS.AUTH[keyof typeof SOCKET_EVEN
 /**
  * Type helper to get all server → client event names
  */
-export type ServerEventName = typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE] | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS] | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE] | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR] | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP] | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER] | typeof SOCKET_EVENTS.SYSTEM[keyof typeof SOCKET_EVENTS.SYSTEM] | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER];
-/**
- * Maintenance mode information sent to clients
- */
-export interface MaintenanceInfo {
-    enabled: boolean;
-    message: string;
-    estimatedEndTime?: string;
-}
+export type ServerEventName = typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE] | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS] | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE] | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR] | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP] | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER] | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER];
 //# sourceMappingURL=protocol.d.ts.map

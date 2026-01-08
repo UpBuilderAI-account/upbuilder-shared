@@ -249,3 +249,35 @@ export interface RequestExportResponse {
   /** True if user needs to upgrade to Pro */
   requiresUpgrade?: boolean;
 }
+
+// ============================================================================
+// PREVIEW REQUEST/RESPONSE TYPES
+// ============================================================================
+
+/**
+ * Request to generate HTML preview
+ */
+export interface RequestPreviewPayload {
+  projectId: string;
+  designId: string;
+}
+
+/**
+ * Response with preview HTML
+ */
+export interface RequestPreviewResponse {
+  success: boolean;
+  designId: string;
+  /** Complete HTML document for preview */
+  html?: string;
+  /** CSS styles (extracted separately if needed) */
+  css?: string;
+  /** Preview statistics */
+  stats?: {
+    nodeCount: number;
+    styleCount: number;
+    assetCount: number;
+  };
+  /** Error message if failed */
+  error?: string;
+}

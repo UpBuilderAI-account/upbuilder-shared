@@ -43,6 +43,8 @@ import type {
   ApplyEditsResponse,
   RequestExportRequest,
   RequestExportResponse,
+  RequestPreviewPayload,
+  RequestPreviewResponse,
 } from './edit-operations';
 
 // Re-export export types for use in socket events
@@ -410,6 +412,11 @@ export interface ClientToServerEvents {
     data: RequestExportRequest,
     callback: (response: RequestExportResponse) => void
   ) => void;
+
+  'customizer:request_preview': (
+    data: RequestPreviewPayload,
+    callback: (response: RequestPreviewResponse) => void
+  ) => void;
 }
 
 /**
@@ -477,11 +484,6 @@ export interface ServerToClientEvents {
     trialEnd?: number | null;
     currentPeriodEnd?: number;
   }) => void;
-
-
-  // System events (maintenance mode)
-  'system:maintenance': (data: { enabled: boolean; message: string; estimatedEndTime?: string }) => void;
-  'system:maintenance_end': (data: Record<string, never>) => void;
 }
 
 /**

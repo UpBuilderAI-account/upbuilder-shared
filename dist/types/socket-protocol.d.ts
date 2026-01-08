@@ -3,7 +3,7 @@ import type { Element } from './element';
 import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType, StylesheetSaveRequest, StylesheetResetRequest, StylesheetCleanRequest, StylesheetSaveResult, StylesheetCleanResult } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { RequestTreePayload, TreeDataResponse } from './editable-tree';
-import type { ApplyEditsRequest, ApplyEditsResponse, RequestExportRequest, RequestExportResponse } from './edit-operations';
+import type { ApplyEditsRequest, ApplyEditsResponse, RequestExportRequest, RequestExportResponse, RequestPreviewPayload, RequestPreviewResponse } from './edit-operations';
 export type { ExportOptions, ExportPayload };
 export declare const ERROR_CODES: {
     readonly AUTH_INVALID_CREDENTIALS: "AUTH_INVALID_CREDENTIALS";
@@ -238,6 +238,7 @@ export interface ClientToServerEvents {
     'customizer:request_tree': (data: RequestTreePayload, callback: (response: TreeDataResponse) => void) => void;
     'customizer:apply_edits': (data: ApplyEditsRequest, callback: (response: ApplyEditsResponse) => void) => void;
     'customizer:request_export': (data: RequestExportRequest, callback: (response: RequestExportResponse) => void) => void;
+    'customizer:request_preview': (data: RequestPreviewPayload, callback: (response: RequestPreviewResponse) => void) => void;
 }
 /**
  * Events sent from server to client
@@ -303,12 +304,6 @@ export interface ServerToClientEvents {
         trialEnd?: number | null;
         currentPeriodEnd?: number;
     }) => void;
-    'system:maintenance': (data: {
-        enabled: boolean;
-        message: string;
-        estimatedEndTime?: string;
-    }) => void;
-    'system:maintenance_end': (data: Record<string, never>) => void;
 }
 /**
  * Socket data attached to each connection

@@ -138,14 +138,6 @@ exports.SOCKET_EVENTS = {
         CHECK_SUBSCRIPTION: 'user:check_subscription',
     },
     /**
-     * System events (server → client)
-     * For system-wide notifications like maintenance mode
-     */
-    SYSTEM: {
-        MAINTENANCE: 'system:maintenance',
-        MAINTENANCE_END: 'system:maintenance_end',
-    },
-    /**
      * Customizer events (client ↔ server)
      * For editing Webflow structure before export
      */
@@ -156,6 +148,7 @@ exports.SOCKET_EVENTS = {
         EDITS_APPLIED: 'customizer:edits_applied', // Server → Client: Edits applied response
         REQUEST_EXPORT: 'customizer:request_export', // Client → Server: Request export (Pro only)
         EXPORT_READY: 'customizer:export_ready', // Server → Client: Export ready response
+        REQUEST_PREVIEW: 'customizer:request_preview', // Client → Server: Request HTML preview
         ERROR: 'customizer:error', // Server → Client: Error event
     },
 };
