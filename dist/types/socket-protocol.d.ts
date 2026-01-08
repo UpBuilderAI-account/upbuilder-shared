@@ -2,7 +2,6 @@ import type { ImagePair, PreviewData, FramePreview } from './plugin';
 import type { Element } from './element';
 import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType, StylesheetSaveRequest, StylesheetResetRequest, StylesheetCleanRequest, StylesheetSaveResult, StylesheetCleanResult } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
-import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 import type { RequestTreePayload, TreeDataResponse } from './editable-tree';
 import type { ApplyEditsRequest, ApplyEditsResponse, RequestExportRequest, RequestExportResponse } from './edit-operations';
 export type { ExportOptions, ExportPayload };
@@ -134,52 +133,6 @@ export interface PluginPayloads {
     };
 }
 /**
- * GitHub integration payloads
- * Note: Either accessToken OR userId must be provided.
- * If userId is provided, the backend looks up the token from database.
- */
-export interface GitHubPayloads {
-    /**
-     * Get user's repositories
-     */
-    get_repos: {
-        accessToken?: string;
-        userId?: string;
-        page?: number;
-    };
-    /**
-     * Push project code to GitHub repository
-     */
-    push_code: {
-        accessToken?: string;
-        userId?: string;
-        projectId: string;
-        repository: string;
-        branch: string;
-        message: string;
-        createRepo?: boolean;
-        isPrivate?: boolean;
-    };
-}
-/**
- * GitHub repository info returned from API
- */
-export interface GitHubRepository {
-    id: number;
-    name: string;
-    full_name: string;
-    default_branch: string;
-    private: boolean;
-}
-/**
- * GitHub push result
- */
-export interface GitHubPushResult {
-    url: string;
-    sha: string;
-    repository?: string;
-}
-/**
  * Project update event (Standard)
  */
 export interface ProjectUpdate {
@@ -276,9 +229,6 @@ export interface ClientToServerEvents {
     delete_project: (data: {
         projectId: string;
     }, callback: CallbackResponse) => void;
-    github_get_repos: (data: GitHubPayloads['get_repos'], callback: CallbackResponse<GitHubRepository[]>) => void;
-    github_push_code: (data: GitHubPayloads['push_code'], callback: CallbackResponse<GitHubPushResult>) => void;
-    github_sync_start: (data: GitHubSyncStartPayload, callback: CallbackResponse<void>) => void;
     'user:check_subscription': (data: void, callback: CallbackResponse<{
         tier: SubscriptionTier;
         isTrialing?: boolean;
@@ -353,8 +303,6 @@ export interface ServerToClientEvents {
         trialEnd?: number | null;
         currentPeriodEnd?: number;
     }) => void;
-    github_sync_progress: (data: GitHubSyncProgress) => void;
-    github_sync_complete: (data: GitHubSyncResult) => void;
     'system:maintenance': (data: {
         enabled: boolean;
         message: string;

@@ -34,7 +34,6 @@ import type {
   StylesheetCleanResult,
 } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
-import type { GitHubSyncProgress, GitHubSyncResult, GitHubSyncStartPayload } from './github-sync';
 import type {
   RequestTreePayload,
   TreeDataResponse,
@@ -230,55 +229,6 @@ export interface PluginPayloads {
 }
 
 
-/**
- * GitHub integration payloads
- * Note: Either accessToken OR userId must be provided.
- * If userId is provided, the backend looks up the token from database.
- */
-export interface GitHubPayloads {
-  /**
-   * Get user's repositories
-   */
-  get_repos: {
-    accessToken?: string;
-    userId?: string;
-    page?: number;
-  };
-
-  /**
-   * Push project code to GitHub repository
-   */
-  push_code: {
-    accessToken?: string;
-    userId?: string;
-    projectId: string;
-    repository: string; // Format: "owner/repo"
-    branch: string;
-    message: string;
-    createRepo?: boolean;
-    isPrivate?: boolean;
-  };
-}
-
-/**
- * GitHub repository info returned from API
- */
-export interface GitHubRepository {
-  id: number;
-  name: string;
-  full_name: string;
-  default_branch: string;
-  private: boolean;
-}
-
-/**
- * GitHub push result
- */
-export interface GitHubPushResult {
-  url: string;
-  sha: string;
-  repository?: string; // Full name: owner/repo
-}
 
 // ============================================================================
 // EVENT TYPES
@@ -433,22 +383,6 @@ export interface ClientToServerEvents {
     callback: CallbackResponse
   ) => void;
 
-  // GitHub integration
-  github_get_repos: (
-    data: GitHubPayloads['get_repos'],
-    callback: CallbackResponse<GitHubRepository[]>
-  ) => void;
-
-  github_push_code: (
-    data: GitHubPayloads['push_code'],
-    callback: CallbackResponse<GitHubPushResult>
-  ) => void;
-
-  // GitHub sync (pull from repository)
-  github_sync_start: (
-    data: GitHubSyncStartPayload,
-    callback: CallbackResponse<void>
-  ) => void;
 
   // Check subscription status
   'user:check_subscription': (
@@ -544,9 +478,6 @@ export interface ServerToClientEvents {
     currentPeriodEnd?: number;
   }) => void;
 
-  // GitHub sync events
-  github_sync_progress: (data: GitHubSyncProgress) => void;
-  github_sync_complete: (data: GitHubSyncResult) => void;
 
   // System events (maintenance mode)
   'system:maintenance': (data: { enabled: boolean; message: string; estimatedEndTime?: string }) => void;

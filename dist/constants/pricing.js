@@ -17,12 +17,12 @@ exports.BASIC_FEATURES = [
 ];
 /**
  * Pro plan feature list
+ * NOTE: GitHub sync feature removed
  */
 exports.PRO_FEATURES = [
     'Up to 10 designs per project',
     '50 projects per month',
     'All platforms supported',
-    'GitHub sync',
     'Priority support + early access',
 ];
 /**

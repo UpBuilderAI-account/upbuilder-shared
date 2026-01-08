@@ -124,8 +124,6 @@ export * from './bricks';
 // Elementor Builder export types
 export * from './elementor';
 
-// GitHub sync types
-export * from './github-sync';
 
 // Complex hierarchy detection types
 export * from './complex-hierarchy';

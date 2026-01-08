@@ -9,7 +9,6 @@ export * from './element';
 export * from './webflow';
 export * from './bricks';
 export * from './elementor';
-export * from './github-sync';
 export * from './complex-hierarchy';
 export * from './outside-elements';
 export * from './editable-tree';
