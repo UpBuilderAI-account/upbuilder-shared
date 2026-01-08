@@ -104,6 +104,24 @@ export interface EditableFontInfo {
     styles: string[];
 }
 /**
+ * Asset info (images, etc.)
+ */
+export interface EditableAsset {
+    /** Unique ID */
+    id: string;
+    /** File name */
+    name: string;
+    /** URL (S3 or relative path) */
+    url: string;
+    /** Asset type */
+    type: 'image' | 'video' | 'other';
+    /** Dimensions if known */
+    size?: {
+        width: number;
+        height: number;
+    };
+}
+/**
  * Full payload sent from backend to frontend
  */
 export interface EditableTreePayload {
@@ -115,6 +133,8 @@ export interface EditableTreePayload {
     globalClasses: Record<string, EditableClass>;
     /** Custom fonts that need manual setup */
     customFonts: EditableFontInfo[];
+    /** Assets (images, etc.) */
+    assets: EditableAsset[];
     /** Whether project has global JavaScript */
     hasGlobalScripts: boolean;
     /** Version for conflict detection */
