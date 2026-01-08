@@ -55,7 +55,7 @@ export interface PluginAuthTokenResponse {
     user?: User;
     error?: string;
 }
-export type ProjectStatus = 'idle' | 'export_config' | 'load' | 'detect_sections' | 'generate_styles' | 'review_stylesheet' | 'prepare_build' | 'convert_to_platform' | 'customize' | 'complete' | 'failed';
+export type ProjectStatus = 'idle' | 'export_config' | 'load' | 'detect_sections' | 'generate_styles' | 'prepare_build' | 'convert_to_platform' | 'customize' | 'complete' | 'failed';
 /**
  * Type-safe constants for ProjectStatus
  */
@@ -65,7 +65,6 @@ export declare const PROJECT_STATUS: {
     readonly LOAD: ProjectStatus;
     readonly DETECT_SECTIONS: ProjectStatus;
     readonly GENERATE_STYLES: ProjectStatus;
-    readonly REVIEW_STYLESHEET: ProjectStatus;
     readonly PREPARE_BUILD: ProjectStatus;
     readonly CONVERT_TO_PLATFORM: ProjectStatus;
     readonly CUSTOMIZE: ProjectStatus;
@@ -80,7 +79,7 @@ export declare function isProcessingStage(status: ProjectStatus): boolean;
  * Get the next status in the workflow sequence
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
- * @param quickMode Optional - if true, skips review_stylesheet and customize (but NOT generate_styles)
+ * @param quickMode Optional - if true, skips customize stage
  */
 export declare function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean): ProjectStatus | null;
 /**
@@ -96,7 +95,7 @@ export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap
 export declare const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>>;
 /**
  * Stages to skip in Quick mode (faster export with defaults)
- * Only skips REVIEW stages - generation still runs, users just don't see the review UI
+ * Currently empty - all stages run, customize is always shown
  */
 export declare const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[];
 /**

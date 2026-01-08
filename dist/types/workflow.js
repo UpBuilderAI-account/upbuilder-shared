@@ -89,7 +89,6 @@ exports.STAGE_ORDER = [
     'load',
     'detect_sections',
     'generate_styles',
-    'review_stylesheet',
     'prepare_build',
     'convert_to_platform',
     'customize',
@@ -99,7 +98,6 @@ exports.STAGE_LABELS = {
     load: 'Loading Data',
     detect_sections: 'Detecting Sections',
     generate_styles: 'Generating Base Styles',
-    review_stylesheet: 'Review Stylesheet',
     prepare_build: 'Preparing Build',
     convert_to_platform: 'Converting to Webflow',
     customize: 'Preview & Export',
@@ -110,7 +108,6 @@ exports.STAGE_LABELS = {
  */
 exports.INLINE_PLATFORM_SKIPPED_STAGES = [
     'generate_styles',
-    'review_stylesheet',
 ];
 /**
  * Check if a platform uses inline CSS (skips global stylesheet stages)

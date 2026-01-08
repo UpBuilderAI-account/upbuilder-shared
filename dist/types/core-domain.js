@@ -23,7 +23,6 @@ exports.PROJECT_STATUS = {
     LOAD: 'load',
     DETECT_SECTIONS: 'detect_sections',
     GENERATE_STYLES: 'generate_styles',
-    REVIEW_STYLESHEET: 'review_stylesheet',
     PREPARE_BUILD: 'prepare_build',
     CONVERT_TO_PLATFORM: 'convert_to_platform',
     CUSTOMIZE: 'customize',
@@ -47,7 +46,7 @@ function isProcessingStage(status) {
  * Get the next status in the workflow sequence
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
- * @param quickMode Optional - if true, skips review_stylesheet and customize (but NOT generate_styles)
+ * @param quickMode Optional - if true, skips customize stage
  */
 function getNextStatus(status, platform, quickMode) {
     var _a;
@@ -56,8 +55,7 @@ function getNextStatus(status, platform, quickMode) {
         export_config: 'load',
         load: 'detect_sections',
         detect_sections: 'generate_styles',
-        generate_styles: 'review_stylesheet',
-        review_stylesheet: 'prepare_build',
+        generate_styles: 'prepare_build',
         prepare_build: 'convert_to_platform',
         convert_to_platform: 'customize',
         customize: 'complete',
@@ -85,7 +83,7 @@ function getNextStatus(status, platform, quickMode) {
  */
 function requiresUserActionAfter(status) {
     // These stages require user action to proceed
-    return status === 'export_config' || status === 'review_stylesheet' || status === 'customize';
+    return status === 'export_config' || status === 'customize';
 }
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION
@@ -96,16 +94,14 @@ function requiresUserActionAfter(status) {
  */
 exports.SKIPPED_STAGES = {
     webflow: [],
-    bricks: ['generate_styles', 'review_stylesheet'],
-    elementor: ['generate_styles', 'review_stylesheet'],
+    bricks: ['generate_styles'],
+    elementor: ['generate_styles'],
 };
 /**
  * Stages to skip in Quick mode (faster export with defaults)
- * Only skips REVIEW stages - generation still runs, users just don't see the review UI
+ * Currently empty - all stages run, customize is always shown
  */
-exports.QUICK_MODE_SKIPPED_STAGES = [
-    'review_stylesheet',
-];
+exports.QUICK_MODE_SKIPPED_STAGES = [];
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)
  * All platforms now show section CSS in the customizer

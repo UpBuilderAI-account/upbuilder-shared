@@ -674,7 +674,6 @@ export const STAGE_ORDER: Stage[] = [
   'load',
   'detect_sections',
   'generate_styles',
-  'review_stylesheet',
   'prepare_build',
   'convert_to_platform',
   'customize',
@@ -685,7 +684,6 @@ export const STAGE_LABELS: Record<Stage, string> = {
   load: 'Loading Data',
   detect_sections: 'Detecting Sections',
   generate_styles: 'Generating Base Styles',
-  review_stylesheet: 'Review Stylesheet',
   prepare_build: 'Preparing Build',
   convert_to_platform: 'Converting to Webflow',
   customize: 'Preview & Export',
@@ -697,7 +695,6 @@ export const STAGE_LABELS: Record<Stage, string> = {
  */
 export const INLINE_PLATFORM_SKIPPED_STAGES: Stage[] = [
   'generate_styles',
-  'review_stylesheet',
 ];
 
 /**

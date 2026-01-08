@@ -87,7 +87,6 @@ export type ProjectStatus =
   | 'load'
   | 'detect_sections'
   | 'generate_styles'
-  | 'review_stylesheet'
   | 'prepare_build'
   | 'convert_to_platform' // Combines: build sections + convert styles + assemble + convert JS
   | 'customize'          // Preview Webflow structure + export modal
@@ -103,7 +102,6 @@ export const PROJECT_STATUS = {
   LOAD: 'load' as ProjectStatus,
   DETECT_SECTIONS: 'detect_sections' as ProjectStatus,
   GENERATE_STYLES: 'generate_styles' as ProjectStatus,
-  REVIEW_STYLESHEET: 'review_stylesheet' as ProjectStatus,
   PREPARE_BUILD: 'prepare_build' as ProjectStatus,
   CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
@@ -129,7 +127,7 @@ export function isProcessingStage(status: ProjectStatus): boolean {
  * Get the next status in the workflow sequence
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
- * @param quickMode Optional - if true, skips review_stylesheet and customize (but NOT generate_styles)
+ * @param quickMode Optional - if true, skips customize stage
  */
 export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean): ProjectStatus | null {
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
@@ -137,8 +135,7 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
     export_config: 'load',
     load: 'detect_sections',
     detect_sections: 'generate_styles',
-    generate_styles: 'review_stylesheet',
-    review_stylesheet: 'prepare_build',
+    generate_styles: 'prepare_build',
     prepare_build: 'convert_to_platform',
     convert_to_platform: 'customize',
     customize: 'complete',
@@ -171,7 +168,7 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
  */
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
   // These stages require user action to proceed
-  return status === 'export_config' || status === 'review_stylesheet' || status === 'customize';
+  return status === 'export_config' || status === 'customize';
 }
 
 export type Platform = 'webflow' | 'bricks' | 'elementor';
@@ -187,17 +184,15 @@ export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap
  */
 export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
   webflow: [],
-  bricks: ['generate_styles', 'review_stylesheet'],
-  elementor: ['generate_styles', 'review_stylesheet'],
+  bricks: ['generate_styles'],
+  elementor: ['generate_styles'],
 };
 
 /**
  * Stages to skip in Quick mode (faster export with defaults)
- * Only skips REVIEW stages - generation still runs, users just don't see the review UI
+ * Currently empty - all stages run, customize is always shown
  */
-export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [
-  'review_stylesheet',
-];
+export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [];
 
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)
