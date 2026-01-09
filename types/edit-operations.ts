@@ -4,6 +4,8 @@
  * This prevents exposing the full Webflow structure
  */
 
+import type { Breakpoint, PseudoState } from './editable-tree';
+
 // ============================================================================
 // OPERATION TYPES
 // ============================================================================
@@ -19,7 +21,8 @@ export type EditOperationType =
   | 'createClass'
   | 'updateClassProperty'
   | 'removeClassProperty'
-  | 'renameClass';
+  | 'renameClass'
+  | 'createOverride'; // New: create override on selected class instead of editing source
 
 // ============================================================================
 // BASE OPERATION
@@ -138,17 +141,39 @@ export interface CreateClassOp extends BaseEditOperation {
 
 /**
  * Update a CSS property on a class
+ * KEY: Uses sourceClassName - the class that OWNS the property
  */
 export interface UpdateClassPropertyOp extends BaseEditOperation {
   type: 'updateClassProperty';
-  /** Class to update */
-  className: string;
-  /** Breakpoint to update */
-  breakpoint: 'desktop' | 'tablet' | 'mobileLandscape' | 'mobile';
+
+  /**
+   * The class that OWNS the property (source class)
+   * This is the class that will be modified
+   */
+  sourceClassName: string;
+
+  /**
+   * The class currently selected in UI (for context)
+   * May differ from sourceClassName when editing inherited property
+   */
+  selectedClassName?: string;
+
   /** CSS property name */
   property: string;
+
   /** New CSS value */
   value: string;
+
+  /** Breakpoint to update */
+  breakpoint: Breakpoint;
+
+  /** Pseudo-state to update */
+  state: PseudoState;
+
+  /**
+   * @deprecated Use sourceClassName instead
+   */
+  className?: string;
 }
 
 /**
@@ -156,12 +181,46 @@ export interface UpdateClassPropertyOp extends BaseEditOperation {
  */
 export interface RemoveClassPropertyOp extends BaseEditOperation {
   type: 'removeClassProperty';
-  /** Class to update */
-  className: string;
-  /** Breakpoint to update */
-  breakpoint: 'desktop' | 'tablet' | 'mobileLandscape' | 'mobile';
+
+  /** The class that owns the property (source class) */
+  sourceClassName: string;
+
   /** CSS property to remove */
   property: string;
+
+  /** Breakpoint */
+  breakpoint: Breakpoint;
+
+  /** Pseudo-state */
+  state: PseudoState;
+
+  /**
+   * @deprecated Use sourceClassName instead
+   */
+  className?: string;
+}
+
+/**
+ * Create an override on the selected class instead of editing the source
+ * Use when user wants to override an inherited property
+ */
+export interface CreateOverrideOp extends BaseEditOperation {
+  type: 'createOverride';
+
+  /** The class to add the override to */
+  className: string;
+
+  /** CSS property name */
+  property: string;
+
+  /** New CSS value */
+  value: string;
+
+  /** Breakpoint */
+  breakpoint: Breakpoint;
+
+  /** Pseudo-state */
+  state: PseudoState;
 }
 
 /**
@@ -193,7 +252,8 @@ export type EditOperation =
   | CreateClassOp
   | UpdateClassPropertyOp
   | RemoveClassPropertyOp
-  | RenameClassOp;
+  | RenameClassOp
+  | CreateOverrideOp;
 
 // ============================================================================
 // REQUEST/RESPONSE TYPES
