@@ -279,6 +279,9 @@ export interface ProjectState {
     sectionCount: number;
     createdAt: string;
   }>;
+
+  // Export config (set from plugin, skips export_config stage in workflow)
+  exportConfig?: import('./workflow').ExportConfig;
 }
 
 export interface SectionCode {

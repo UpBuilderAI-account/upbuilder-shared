@@ -160,6 +160,7 @@ export interface ProjectState {
         sectionCount: number;
         createdAt: string;
     }>;
+    exportConfig?: import('./workflow').ExportConfig;
 }
 export interface SectionCode {
     html: string;
