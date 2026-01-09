@@ -2,6 +2,7 @@ import type { ImagePair, PreviewData, FramePreview } from './plugin';
 import type { Element } from './element';
 import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType, StylesheetSaveRequest, StylesheetResetRequest, StylesheetCleanRequest, StylesheetSaveResult, StylesheetCleanResult } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
+import type { ExportConfig } from './workflow';
 import type { RequestTreePayload, TreeDataResponse } from './editable-tree';
 import type { ApplyEditsRequest, ApplyEditsResponse, RequestExportRequest, RequestExportResponse, RequestPreviewPayload, RequestPreviewResponse } from './edit-operations';
 export type { ExportOptions, ExportPayload };
@@ -106,6 +107,7 @@ export interface PluginPayloads {
         gradients?: any[];
         preview?: PreviewData;
         framePreview?: FramePreview;
+        exportConfig?: ExportConfig;
         selectedProjectData?: {
             type: 'existing';
             project: {

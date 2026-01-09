@@ -34,6 +34,7 @@ import type {
   StylesheetCleanResult,
 } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
+import type { ExportConfig } from './workflow';
 import type {
   RequestTreePayload,
   TreeDataResponse,
@@ -201,6 +202,7 @@ export interface PluginPayloads {
     gradients?: any[];
     preview?: PreviewData; // Small preview for UI
     framePreview?: FramePreview; // Bigger preview (720px JPG) for featured image
+    exportConfig?: ExportConfig; // Full export config from plugin (skips export_config stage)
     selectedProjectData?: {
       type: 'existing';
       project: {

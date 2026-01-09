@@ -120,6 +120,8 @@ export interface EditableNode {
     id: string;
     /** HTML tag name (div, section, img, etc.) */
     tag: string;
+    /** Webflow component type (Block, Section, NavbarWrapper, FormTextInput, etc.) */
+    componentType?: string;
     /** Display name for UI (e.g., "div.hero-section" or "Hero Image") */
     displayName: string;
     /** Class names applied to this node */
