@@ -68,4 +68,10 @@ export {
   HTML_EMBED_DOCS,
   generateAllHierarchyDocs,
   generateValidationChecklist,
+
+  // Breakpoint and style documentation for prompts
+  BREAKPOINT_DOCS,
+  STATE_DOCS,
+  STYLE_REGISTRY_FORMAT_DOCS,
+  DESKTOP_ONLY_WARNING,
 } from '../webflow';
