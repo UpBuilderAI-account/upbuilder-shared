@@ -83,21 +83,44 @@ export interface ComputedPropertyFull {
 }
 /**
  * An item in the inheritance chain (for "Inheriting X selectors" menu)
+ * Webflow shows: Body → All Tags → Base Class → Combo Stack levels
  */
 export interface InheritanceChainItem {
     /** Type of selector */
     type: 'class' | 'combo' | 'tag' | 'body';
     /** Display name */
     displayName: string;
-    /** Actual class name (for classes) */
+    /** Actual class name (for single classes) */
     className?: string;
+    /** Full class stack for combo selectors (e.g., ['button', 'is-primary']) */
+    classStack?: string[];
+    /** Compound CSS selector (e.g., ".button.is-primary") */
+    compoundSelector?: string;
     /** HTML tag name (for tags) */
     tagName?: string;
     /** Properties defined on this selector */
     definedProperties: string[];
+    /** Number of properties on this selector */
+    propertyCount: number;
     /** Number of elements using this selector */
     usageCount: number;
+    /** Element IDs for highlighting */
+    elementIds?: string[];
 }
+/**
+ * Generate compound CSS selector from class stack
+ * e.g., ['button', 'is-primary'] → '.button.is-primary'
+ */
+export declare function getCompoundSelector(classStack: string[]): string;
+/**
+ * Parse compound selector back to class stack
+ * e.g., '.button.is-primary' → ['button', 'is-primary']
+ */
+export declare function parseCompoundSelector(selector: string): string[];
+/**
+ * Check if a selector is a compound (has multiple classes)
+ */
+export declare function isCompoundSelector(selector: string): boolean;
 /**
  * Information about elements affected by editing a class
  */
@@ -172,16 +195,41 @@ export type BreakpointStateProperties = {
 };
 /**
  * Single class/style definition - FULL version with all breakpoints and states
+ *
+ * For compound selectors (Webflow combo classes):
+ * - name: "button.is-primary" (the full compound selector without leading dot)
+ * - isCombo: true
+ * - baseClassName: "button"
+ * - classStack: ["button", "is-primary"]
  */
 export interface EditableClass {
     /** Internal ID - format: "class-{index}" */
     id: string;
-    /** Class name as displayed in Webflow (e.g., "hero-section") */
+    /**
+     * Class name as displayed/stored
+     * For single classes: "hero-section"
+     * For compound selectors: "button.is-primary" (no leading dot)
+     */
     name: string;
-    /** Whether this is a combo class (e.g., "button is-primary") */
+    /** Whether this is a combo class (compound selector with multiple classes) */
     isCombo: boolean;
     /** Base class name if this is a combo class */
     baseClassName?: string;
+    /**
+     * Full class stack for compound selectors
+     * e.g., ["text-size-regular", "text-weight-semibold", "text-color-primary"]
+     */
+    classStack?: string[];
+    /**
+     * Parent compound selector (for chain navigation)
+     * e.g., for "a.b.c", parent is "a.b"
+     */
+    parentCompound?: string;
+    /**
+     * Child compound selectors that extend this one
+     * e.g., for "a.b", children might be ["a.b.c", "a.b.d"]
+     */
+    childCompounds?: string[];
     /** Available combo classes that can follow this base */
     availableCombos?: string[];
     /**
@@ -189,7 +237,7 @@ export interface EditableClass {
      * Example: properties.desktop.none, properties.tablet.hover
      */
     properties: BreakpointStateProperties;
-    /** Number of nodes using this class */
+    /** Number of nodes using this exact class/compound */
     usageCount: number;
     /** IDs of elements using this class (for highlighting) */
     elementIds?: string[];

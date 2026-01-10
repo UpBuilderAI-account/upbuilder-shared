@@ -4,7 +4,7 @@
  * This prevents exposing the full Webflow structure
  */
 import type { Breakpoint, PseudoState } from './editable-tree';
-export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'createClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride';
+export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride';
 interface BaseEditOperation {
     /** Operation type */
     type: EditOperationType;
@@ -99,16 +99,49 @@ export interface CreateClassOp extends BaseEditOperation {
     copyFrom?: string;
 }
 /**
- * Update a CSS property on a class
- * KEY: Uses sourceClassName - the class that OWNS the property
+ * Create a compound class from a class stack (Webflow combo class behavior)
+ * This creates an entry like ".button.is-primary" that only applies when both classes are present
+ */
+export interface CreateCompoundClassOp extends BaseEditOperation {
+    type: 'createCompoundClass';
+    /**
+     * The class stack that forms this compound
+     * e.g., ["text-size-regular", "text-weight-semibold"]
+     */
+    classStack: string[];
+    /**
+     * The compound selector name (derived from classStack)
+     * e.g., "text-size-regular.text-weight-semibold"
+     */
+    compoundSelector: string;
+    /** Initial CSS properties for this compound */
+    properties?: Array<{
+        name: string;
+        value: string;
+    }>;
+}
+/**
+ * Update a CSS property on a class or compound selector
+ * KEY: Uses sourceClassName - the class/compound that OWNS the property
+ *
+ * For compound selectors (Webflow combo class behavior):
+ * - sourceClassName is the compound selector: "button.is-primary"
+ * - This creates/updates the style for .button.is-primary { }
  */
 export interface UpdateClassPropertyOp extends BaseEditOperation {
     type: 'updateClassProperty';
     /**
-     * The class that OWNS the property (source class)
-     * This is the class that will be modified
+     * The class or compound selector that OWNS the property
+     * - Single class: "button"
+     * - Compound selector: "button.is-primary" (no leading dot)
+     * This is the selector that will be modified
      */
     sourceClassName: string;
+    /**
+     * For compound selectors, the class stack
+     * e.g., ["button", "is-primary"]
+     */
+    classStack?: string[];
     /**
      * The class currently selected in UI (for context)
      * May differ from sourceClassName when editing inherited property
@@ -175,7 +208,7 @@ export interface RenameClassOp extends BaseEditOperation {
 /**
  * Any edit operation
  */
-export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | CreateClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp;
+export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp;
 /**
  * Request to apply edit operations
  */

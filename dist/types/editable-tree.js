@@ -5,6 +5,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.STATE_DISPLAY_ORDER = exports.STATE_CONFIG = exports.BREAKPOINT_CASCADE_ORDER = exports.BREAKPOINT_CONFIG = void 0;
+exports.getCompoundSelector = getCompoundSelector;
+exports.parseCompoundSelector = parseCompoundSelector;
+exports.isCompoundSelector = isCompoundSelector;
 exports.migrateEditableClass = migrateEditableClass;
 /**
  * All breakpoint configurations
@@ -138,6 +141,35 @@ exports.STATE_DISPLAY_ORDER = [
     'none', 'hover', 'pressed', 'focused', 'focusVisible',
     'visited', 'current', 'placeholder', 'checked', 'disabled'
 ];
+// ============================================================================
+// COMPOUND SELECTOR UTILITIES
+// ============================================================================
+/**
+ * Generate compound CSS selector from class stack
+ * e.g., ['button', 'is-primary'] → '.button.is-primary'
+ */
+function getCompoundSelector(classStack) {
+    if (!classStack || classStack.length === 0)
+        return '';
+    return '.' + classStack.join('.');
+}
+/**
+ * Parse compound selector back to class stack
+ * e.g., '.button.is-primary' → ['button', 'is-primary']
+ */
+function parseCompoundSelector(selector) {
+    if (!selector)
+        return [];
+    // Remove leading dot and split
+    return selector.replace(/^\./, '').split('.');
+}
+/**
+ * Check if a selector is a compound (has multiple classes)
+ */
+function isCompoundSelector(selector) {
+    const parts = parseCompoundSelector(selector);
+    return parts.length > 1;
+}
 /**
  * Convert legacy class format to new format
  */
