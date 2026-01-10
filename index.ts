@@ -6,9 +6,11 @@
 // Export all types
 export * from './types';
 
-
 // Export all constants
 export * from './constants';
 
 // Export all utilities
 export * from './utils';
+
+// Export Webflow module (components, constraints, data fields, breakpoints, mappings, docs)
+export * as webflow from './webflow';
