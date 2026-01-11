@@ -3,8 +3,8 @@
  * Only changes are sent from frontend to backend - not full data
  * This prevents exposing the full Webflow structure
  */
-import type { Breakpoint, PseudoState } from './editable-tree';
-export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride';
+import type { Breakpoint, PseudoState, EditableAsset } from './editable-tree';
+export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'updateNodeImage' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride';
 interface BaseEditOperation {
     /** Operation type */
     type: EditOperationType;
@@ -82,6 +82,18 @@ export interface UpdateTextOp extends BaseEditOperation {
     nodeId: string;
     /** New text content */
     newText: string;
+}
+/**
+ * Update image source/alt on a node
+ */
+export interface UpdateNodeImageOp extends BaseEditOperation {
+    type: 'updateNodeImage';
+    /** Node to update */
+    nodeId: string;
+    /** New image source URL */
+    src: string;
+    /** Optional alt text */
+    alt?: string;
 }
 /**
  * Create a new class/style
@@ -208,7 +220,7 @@ export interface RenameClassOp extends BaseEditOperation {
 /**
  * Any edit operation
  */
-export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp;
+export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | UpdateNodeImageOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp;
 /**
  * Request to apply edit operations
  */
@@ -279,6 +291,31 @@ export interface RequestPreviewResponse {
         styleCount: number;
         assetCount: number;
     };
+    /** Error message if failed */
+    error?: string;
+}
+/**
+ * Request to upload an image from customizer
+ */
+export interface UploadImageRequest {
+    projectId: string;
+    designId: string;
+    /** Base64 encoded file content */
+    fileBase64: string;
+    /** Original filename */
+    fileName: string;
+    /** MIME type */
+    contentType: string;
+}
+/**
+ * Response after image upload
+ */
+export interface UploadImageResponse {
+    success: boolean;
+    /** Created asset entry */
+    asset?: EditableAsset;
+    /** S3 key for the uploaded image */
+    s3Key?: string;
     /** Error message if failed */
     error?: string;
 }

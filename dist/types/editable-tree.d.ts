@@ -153,14 +153,53 @@ export interface EditableNode {
     textContent?: string;
     /** Image info if this is an img element */
     image?: {
+        /** Image source URL */
+        src?: string;
+        /** Alt text for accessibility */
         alt: string;
-        /** Blurred placeholder data URL - NOT actual image URL */
+        /** Object fit */
+        objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
+        /** Object position */
+        objectPosition?: string;
+        /** Blurred placeholder data URL */
         placeholder?: string;
     };
     /** Link info if this is an anchor element */
     link?: {
+        /** Link text content */
         text: string;
+        /** Link URL/href */
+        href?: string;
+        /** Link target (_blank, _self, etc.) */
+        target?: '_blank' | '_self' | '_parent' | '_top';
+        /** Link type */
         type: 'external' | 'page' | 'section' | 'email' | 'phone';
+    };
+    /** Form input properties */
+    formProps?: {
+        /** Input type (text, email, password, etc.) */
+        type?: string;
+        /** Placeholder text */
+        placeholder?: string;
+        /** Whether input is required */
+        required?: boolean;
+        /** Input name attribute */
+        name?: string;
+    };
+    /** Video properties */
+    videoProps?: {
+        /** Video source URL */
+        src?: string;
+        /** Whether video autoplays */
+        autoplay?: boolean;
+        /** Whether video loops */
+        loop?: boolean;
+        /** Whether video is muted */
+        muted?: boolean;
+        /** Whether to show controls */
+        controls?: boolean;
+        /** Poster image URL */
+        poster?: string;
     };
     /** Child node IDs in order */
     children: string[];

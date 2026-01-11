@@ -149,6 +149,7 @@ exports.SOCKET_EVENTS = {
         REQUEST_EXPORT: 'customizer:request_export', // Client → Server: Request export (Pro only)
         EXPORT_READY: 'customizer:export_ready', // Server → Client: Export ready response
         REQUEST_PREVIEW: 'customizer:request_preview', // Client → Server: Request HTML preview
+        UPLOAD_IMAGE: 'customizer:upload_image', // Client → Server: Upload image asset
         ERROR: 'customizer:error', // Server → Client: Error event
     },
 };

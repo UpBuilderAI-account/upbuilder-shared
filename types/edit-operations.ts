@@ -4,7 +4,7 @@
  * This prevents exposing the full Webflow structure
  */
 
-import type { Breakpoint, PseudoState } from './editable-tree';
+import type { Breakpoint, PseudoState, EditableAsset } from './editable-tree';
 
 // ============================================================================
 // OPERATION TYPES
@@ -18,6 +18,7 @@ export type EditOperationType =
   | 'deleteNode'
   | 'duplicateNode'
   | 'updateText'
+  | 'updateNodeImage'  // Update image source/alt on a node
   | 'createClass'
   | 'createCompoundClass'  // New: create compound class from class stack
   | 'updateClassProperty'
@@ -121,6 +122,19 @@ export interface UpdateTextOp extends BaseEditOperation {
   nodeId: string;
   /** New text content */
   newText: string;
+}
+
+/**
+ * Update image source/alt on a node
+ */
+export interface UpdateNodeImageOp extends BaseEditOperation {
+  type: 'updateNodeImage';
+  /** Node to update */
+  nodeId: string;
+  /** New image source URL */
+  src: string;
+  /** Optional alt text */
+  alt?: string;
 }
 
 // ============================================================================
@@ -285,6 +299,7 @@ export type EditOperation =
   | DeleteNodeOp
   | DuplicateNodeOp
   | UpdateTextOp
+  | UpdateNodeImageOp
   | CreateClassOp
   | CreateCompoundClassOp
   | UpdateClassPropertyOp
@@ -375,6 +390,37 @@ export interface RequestPreviewResponse {
     styleCount: number;
     assetCount: number;
   };
+  /** Error message if failed */
+  error?: string;
+}
+
+// ============================================================================
+// IMAGE UPLOAD TYPES
+// ============================================================================
+
+/**
+ * Request to upload an image from customizer
+ */
+export interface UploadImageRequest {
+  projectId: string;
+  designId: string;
+  /** Base64 encoded file content */
+  fileBase64: string;
+  /** Original filename */
+  fileName: string;
+  /** MIME type */
+  contentType: string;
+}
+
+/**
+ * Response after image upload
+ */
+export interface UploadImageResponse {
+  success: boolean;
+  /** Created asset entry */
+  asset?: EditableAsset;
+  /** S3 key for the uploaded image */
+  s3Key?: string;
   /** Error message if failed */
   error?: string;
 }
