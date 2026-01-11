@@ -46,6 +46,8 @@ import type {
   RequestExportResponse,
   RequestPreviewPayload,
   RequestPreviewResponse,
+  UploadImageRequest,
+  UploadImageResponse,
 } from './edit-operations';
 
 // Re-export export types for use in socket events
@@ -418,6 +420,11 @@ export interface ClientToServerEvents {
   'customizer:request_preview': (
     data: RequestPreviewPayload,
     callback: (response: RequestPreviewResponse) => void
+  ) => void;
+
+  'customizer:upload_image': (
+    data: UploadImageRequest,
+    callback: (response: UploadImageResponse) => void
   ) => void;
 }
 

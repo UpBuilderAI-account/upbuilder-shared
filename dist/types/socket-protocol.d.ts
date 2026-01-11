@@ -4,7 +4,7 @@ import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, Work
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { ExportConfig } from './workflow';
 import type { RequestTreePayload, TreeDataResponse } from './editable-tree';
-import type { ApplyEditsRequest, ApplyEditsResponse, RequestExportRequest, RequestExportResponse, RequestPreviewPayload, RequestPreviewResponse } from './edit-operations';
+import type { ApplyEditsRequest, ApplyEditsResponse, RequestExportRequest, RequestExportResponse, RequestPreviewPayload, RequestPreviewResponse, UploadImageRequest, UploadImageResponse } from './edit-operations';
 export type { ExportOptions, ExportPayload };
 export declare const ERROR_CODES: {
     readonly AUTH_INVALID_CREDENTIALS: "AUTH_INVALID_CREDENTIALS";
@@ -241,6 +241,7 @@ export interface ClientToServerEvents {
     'customizer:apply_edits': (data: ApplyEditsRequest, callback: (response: ApplyEditsResponse) => void) => void;
     'customizer:request_export': (data: RequestExportRequest, callback: (response: RequestExportResponse) => void) => void;
     'customizer:request_preview': (data: RequestPreviewPayload, callback: (response: RequestPreviewResponse) => void) => void;
+    'customizer:upload_image': (data: UploadImageRequest, callback: (response: UploadImageResponse) => void) => void;
 }
 /**
  * Events sent from server to client
