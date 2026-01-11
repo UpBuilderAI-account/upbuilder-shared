@@ -43,19 +43,23 @@ export const INTERACTIVE_PATTERNS: InteractivePattern[] = [
   // ---------------------------------------------------------------------------
   {
     name: 'Slider',
-    description: 'Carousel or slideshow with navigation arrows and/or pagination dots',
+    description: 'Carousel or slideshow - use when content appears designed to slide/rotate through items',
     indicators: [
-      'Left/right navigation arrows',
-      'Multiple similar content items in a row',
-      'Pagination dots below content',
-      'Overflow hidden container with slides',
-      'Content that appears to slide or rotate',
+      'ANY navigation arrows (left, right, or both)',
+      'Pagination dots or indicators',
+      'Multiple similar content items that look like slides',
+      'Testimonials, reviews, or quotes with navigation',
+      'Image gallery with prev/next controls',
+      'Content cards that appear to be part of a rotating set',
+      'Single arrow with "next" or "previous" functionality',
+      'Numbered pagination (1/5, 2/5, etc.)',
     ],
     keywords: [
       'carousel', 'slider', 'slideshow', 'rotator',
       'previous', 'next', 'prev', 'arrow', 'caret',
-      'slide', 'swipe', 'pagination', 'dots',
-      'gallery', 'testimonial slider', 'image slider',
+      'chevron', 'slide', 'swipe', 'pagination', 'dots',
+      'gallery', 'testimonial', 'review', 'quote',
+      'featured', 'rotating', 'cycle',
     ],
     structure: {
       root: 'SliderWrapper',
@@ -67,9 +71,8 @@ export const INTERACTIVE_PATTERNS: InteractivePattern[] = [
             { type: 'SliderSlide', role: 'Each content item becomes a slide' },
           ],
         },
-        { type: 'SliderArrow', role: 'Left arrow navigation', optional: false },
-        { type: 'SliderArrow', role: 'Right arrow navigation', optional: false },
-        { type: 'SliderNav', role: 'Pagination dots', optional: true },
+        { type: 'SliderArrow', role: 'Navigation arrow (include if arrows exist)', optional: true },
+        { type: 'SliderNav', role: 'Pagination dots (include if dots/indicators exist)', optional: true },
       ],
     },
   },
@@ -383,19 +386,25 @@ export const INTERACTIVE_PATTERN_DOCS = generateInteractivePatternDocs();
 export const INTERACTIVE_PATTERN_DOCS_COMPACT = `
 ## Interactive Component Detection
 
-**Slider/Carousel** - Use when you see: left/right arrows + multiple similar items + pagination dots
-→ SliderWrapper > SliderMask > SliderSlide + SliderArrow (x2) + SliderNav
+**IMPORTANT**: When you recognize these patterns, use the Webflow interactive components - NOT static divs with images!
 
-**Tabs** - Use when you see: clickable headers + content that switches
+**Slider/Carousel** - Use when you see ANY of these:
+- Navigation arrows (left/right, one or both)
+- Pagination dots or indicators
+- Multiple similar items (testimonials, cards, images) that look like slides
+- Content that appears designed to rotate/cycle
+→ SliderWrapper > SliderMask > SliderSlide(s) + SliderArrow (if arrows) + SliderNav (if dots)
+
+**Tabs** - Use when you see: clickable headers/buttons that switch content panels
 → TabsWrapper > TabsMenu > TabsLink + TabsContent > TabsPane
 
-**Dropdown** - Use when you see: trigger button + hidden menu list
+**Dropdown** - Use when you see: trigger button/link with expandable menu
 → DropdownWrapper > DropdownToggle + DropdownList > DropdownLink
 
-**Navbar** - Use when you see: logo + nav links + hamburger menu
+**Navbar** - Use when you see: header with logo + navigation links (+ mobile menu)
 → NavbarWrapper > NavbarContainer > NavbarBrand + NavbarMenu > NavbarLink
 
-**Lightbox** - Use when you see: thumbnails that enlarge on click
+**Lightbox** - Use when you see: images that should enlarge/popup on click
 → LightboxWrapper > Image
 
 **Form** - Use when you see: input fields + submit button

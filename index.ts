@@ -26,3 +26,14 @@ export {
   type DesignNode,
   type TreeValidationResult,
 } from './webflow/hierarchy-helpers';
+
+// Re-export interactive component detection for prompts
+export {
+  INTERACTIVE_PATTERNS,
+  INTERACTIVE_PATTERN_DOCS,
+  INTERACTIVE_PATTERN_DOCS_COMPACT,
+  detectInteractivePattern,
+  getInteractivePattern,
+  type InteractivePattern,
+  type InteractiveStructure,
+} from './webflow/interactive-detection';

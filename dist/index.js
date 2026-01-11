@@ -40,7 +40,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getConstraintErrorMessage = exports.validateDesignTree = exports.canContainChild = exports.canPlaceElement = exports.webflow = void 0;
+exports.getInteractivePattern = exports.detectInteractivePattern = exports.INTERACTIVE_PATTERN_DOCS_COMPACT = exports.INTERACTIVE_PATTERN_DOCS = exports.INTERACTIVE_PATTERNS = exports.getConstraintErrorMessage = exports.validateDesignTree = exports.canContainChild = exports.canPlaceElement = exports.webflow = void 0;
 // Export all types
 __exportStar(require("./types"), exports);
 // Export all constants
@@ -55,3 +55,10 @@ Object.defineProperty(exports, "canPlaceElement", { enumerable: true, get: funct
 Object.defineProperty(exports, "canContainChild", { enumerable: true, get: function () { return hierarchy_helpers_1.canContainChild; } });
 Object.defineProperty(exports, "validateDesignTree", { enumerable: true, get: function () { return hierarchy_helpers_1.validateDesignTree; } });
 Object.defineProperty(exports, "getConstraintErrorMessage", { enumerable: true, get: function () { return hierarchy_helpers_1.getConstraintErrorMessage; } });
+// Re-export interactive component detection for prompts
+var interactive_detection_1 = require("./webflow/interactive-detection");
+Object.defineProperty(exports, "INTERACTIVE_PATTERNS", { enumerable: true, get: function () { return interactive_detection_1.INTERACTIVE_PATTERNS; } });
+Object.defineProperty(exports, "INTERACTIVE_PATTERN_DOCS", { enumerable: true, get: function () { return interactive_detection_1.INTERACTIVE_PATTERN_DOCS; } });
+Object.defineProperty(exports, "INTERACTIVE_PATTERN_DOCS_COMPACT", { enumerable: true, get: function () { return interactive_detection_1.INTERACTIVE_PATTERN_DOCS_COMPACT; } });
+Object.defineProperty(exports, "detectInteractivePattern", { enumerable: true, get: function () { return interactive_detection_1.detectInteractivePattern; } });
+Object.defineProperty(exports, "getInteractivePattern", { enumerable: true, get: function () { return interactive_detection_1.getInteractivePattern; } });
