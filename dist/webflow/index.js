@@ -6,7 +6,7 @@
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HTML_TAG_TO_COMPONENT = exports.DESKTOP_ONLY_WARNING = exports.STYLE_REGISTRY_FORMAT_DOCS = exports.STATE_DOCS = exports.BREAKPOINT_DOCS = exports.generateStateDocsForPrompt = exports.generateBreakpointDocsForPrompt = exports.getMediaQuery = exports.getBreakpointsCascadeOrder = exports.isSmallerBreakpoint = exports.isLargerBreakpoint = exports.getVariantKey = exports.stateToVariantSuffix = exports.breakpointToVariantKey = exports.getState = exports.getBreakpoint = exports.STYLE_REGISTRY_FIELDS = exports.STATE_VARIANT_SUFFIXES = exports.LINK_STATES = exports.FORM_STATES = exports.INTERACTIVE_STATES = exports.STATE_KEYS = exports.PSEUDO_STATES = exports.BREAKPOINT_VARIANT_KEYS = exports.RESPONSIVE_BREAKPOINTS = exports.SMALLER_BREAKPOINTS = exports.LARGER_BREAKPOINTS = exports.BREAKPOINT_KEYS = exports.BREAKPOINTS = exports.createEmbedData = exports.createFormTextareaData = exports.createFormInputData = exports.createLinkData = exports.DEFAULT_DATA_FIELDS = exports.isPinnedToParent = exports.getAllowedChildren = exports.hasStrictChildren = exports.forbidsDescendant = exports.requiresAncestor = exports.getDisplayName = exports.getConstraints = exports.HIERARCHY_CHAINS = exports.WEBFLOW_CONSTRAINTS = exports.getComponentsByCategory = exports.isValidComponentType = exports.getComponentDef = exports.COMPONENT_COUNT = exports.COMPONENTS_BY_CATEGORY = exports.ALL_COMPONENT_TYPES = exports.WEBFLOW_COMPONENTS = void 0;
-exports.HTML_EMBED_DOCS = exports.LAYOUT_HIERARCHY_DOCS = exports.FORM_HIERARCHY_DOCS = exports.SLIDER_HIERARCHY_DOCS = exports.TABS_HIERARCHY_DOCS = exports.DROPDOWN_HIERARCHY_DOCS = exports.NAVBAR_HIERARCHY_DOCS = exports.VALIDATION_CHECKLIST = exports.COMPONENT_TABLE = exports.COMPONENT_LIST = exports.COMPACT_HIERARCHY_RULES = exports.ALL_HIERARCHY_DOCS = exports.COMPLETE_PROMPT_DOCS = exports.generateMinimalComponentList = exports.generateCompactHierarchyRules = exports.generateCompletePromptDocs = exports.generateAllHierarchyDocs = exports.generateValidationChecklist = exports.generateHtmlEmbedDocs = exports.generateLayoutHierarchyDocs = exports.generateFormHierarchyDocs = exports.generateSliderHierarchyDocs = exports.generateTabsHierarchyDocs = exports.generateDropdownHierarchyDocs = exports.generateNavbarHierarchyDocs = exports.generateComponentTableForPrompt = exports.generateComponentListForPrompt = exports.matchesClassPattern = exports.getXSCPType = exports.getDefaultTag = exports.getComponentType = exports.CLASS_PATTERNS = void 0;
+exports.INTERACTIVE_PATTERN_DOCS_COMPACT = exports.INTERACTIVE_PATTERN_DOCS = exports.generateInteractivePatternDocs = exports.getInteractivePattern = exports.detectInteractivePattern = exports.INTERACTIVE_PATTERNS = exports.getConstraintErrorMessage = exports.validateDesignTree = exports.getValidChildTypes = exports.getValidParentTypes = exports.canContainChild = exports.canPlaceElement = exports.HTML_EMBED_DOCS = exports.LAYOUT_HIERARCHY_DOCS = exports.FORM_HIERARCHY_DOCS = exports.SLIDER_HIERARCHY_DOCS = exports.TABS_HIERARCHY_DOCS = exports.DROPDOWN_HIERARCHY_DOCS = exports.NAVBAR_HIERARCHY_DOCS = exports.VALIDATION_CHECKLIST = exports.COMPONENT_TABLE = exports.COMPONENT_LIST = exports.COMPACT_HIERARCHY_RULES = exports.ALL_HIERARCHY_DOCS = exports.COMPLETE_PROMPT_DOCS = exports.generateMinimalComponentList = exports.generateCompactHierarchyRules = exports.generateCompletePromptDocs = exports.generateAllHierarchyDocs = exports.generateValidationChecklist = exports.generateHtmlEmbedDocs = exports.generateLayoutHierarchyDocs = exports.generateFormHierarchyDocs = exports.generateSliderHierarchyDocs = exports.generateTabsHierarchyDocs = exports.generateDropdownHierarchyDocs = exports.generateNavbarHierarchyDocs = exports.generateComponentTableForPrompt = exports.generateComponentListForPrompt = exports.matchesClassPattern = exports.getXSCPType = exports.getDefaultTag = exports.getComponentType = exports.CLASS_PATTERNS = void 0;
 // -----------------------------------------------------------------------------
 // Components
 // All 55+ Webflow component type definitions
@@ -135,3 +135,30 @@ Object.defineProperty(exports, "SLIDER_HIERARCHY_DOCS", { enumerable: true, get:
 Object.defineProperty(exports, "FORM_HIERARCHY_DOCS", { enumerable: true, get: function () { return prompt_docs_1.FORM_HIERARCHY_DOCS; } });
 Object.defineProperty(exports, "LAYOUT_HIERARCHY_DOCS", { enumerable: true, get: function () { return prompt_docs_1.LAYOUT_HIERARCHY_DOCS; } });
 Object.defineProperty(exports, "HTML_EMBED_DOCS", { enumerable: true, get: function () { return prompt_docs_1.HTML_EMBED_DOCS; } });
+// -----------------------------------------------------------------------------
+// Hierarchy Helpers
+// Frontend-friendly validation functions for drag/drop
+// -----------------------------------------------------------------------------
+var hierarchy_helpers_1 = require("./hierarchy-helpers");
+// Quick validation (for drag/drop pre-check)
+Object.defineProperty(exports, "canPlaceElement", { enumerable: true, get: function () { return hierarchy_helpers_1.canPlaceElement; } });
+Object.defineProperty(exports, "canContainChild", { enumerable: true, get: function () { return hierarchy_helpers_1.canContainChild; } });
+Object.defineProperty(exports, "getValidParentTypes", { enumerable: true, get: function () { return hierarchy_helpers_1.getValidParentTypes; } });
+Object.defineProperty(exports, "getValidChildTypes", { enumerable: true, get: function () { return hierarchy_helpers_1.getValidChildTypes; } });
+// Full tree validation (for post-operation check)
+Object.defineProperty(exports, "validateDesignTree", { enumerable: true, get: function () { return hierarchy_helpers_1.validateDesignTree; } });
+Object.defineProperty(exports, "getConstraintErrorMessage", { enumerable: true, get: function () { return hierarchy_helpers_1.getConstraintErrorMessage; } });
+// -----------------------------------------------------------------------------
+// Interactive Component Detection
+// Pattern recognition for converting designs to interactive Webflow components
+// -----------------------------------------------------------------------------
+var interactive_detection_1 = require("./interactive-detection");
+// Pattern definitions
+Object.defineProperty(exports, "INTERACTIVE_PATTERNS", { enumerable: true, get: function () { return interactive_detection_1.INTERACTIVE_PATTERNS; } });
+// Detection helpers
+Object.defineProperty(exports, "detectInteractivePattern", { enumerable: true, get: function () { return interactive_detection_1.detectInteractivePattern; } });
+Object.defineProperty(exports, "getInteractivePattern", { enumerable: true, get: function () { return interactive_detection_1.getInteractivePattern; } });
+Object.defineProperty(exports, "generateInteractivePatternDocs", { enumerable: true, get: function () { return interactive_detection_1.generateInteractivePatternDocs; } });
+// Pre-built documentation
+Object.defineProperty(exports, "INTERACTIVE_PATTERN_DOCS", { enumerable: true, get: function () { return interactive_detection_1.INTERACTIVE_PATTERN_DOCS; } });
+Object.defineProperty(exports, "INTERACTIVE_PATTERN_DOCS_COMPACT", { enumerable: true, get: function () { return interactive_detection_1.INTERACTIVE_PATTERN_DOCS_COMPACT; } });

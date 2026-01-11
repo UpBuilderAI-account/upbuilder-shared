@@ -1,0 +1,39 @@
+export interface InteractivePattern {
+    /** Name of the pattern */
+    name: string;
+    /** Description for AI prompts */
+    description: string;
+    /** Visual indicators that suggest this pattern */
+    indicators: string[];
+    /** Keywords in element names/alt text that suggest this pattern */
+    keywords: string[];
+    /** The Webflow component structure to use */
+    structure: InteractiveStructure;
+}
+export interface InteractiveStructure {
+    /** Root component type */
+    root: string;
+    /** Required children with their roles */
+    children: Array<{
+        type: string;
+        role: string;
+        optional?: boolean;
+        children?: InteractiveStructure['children'];
+    }>;
+}
+export declare const INTERACTIVE_PATTERNS: InteractivePattern[];
+/**
+ * Check if element names/alt text suggest an interactive pattern
+ */
+export declare function detectInteractivePattern(elementNames: string[], altTexts: string[]): InteractivePattern | null;
+/**
+ * Get pattern by name
+ */
+export declare function getInteractivePattern(name: string): InteractivePattern | null;
+/**
+ * Generate prompt documentation for all interactive patterns
+ */
+export declare function generateInteractivePatternDocs(): string;
+export declare const INTERACTIVE_PATTERN_DOCS: string;
+export declare const INTERACTIVE_PATTERN_DOCS_COMPACT = "\n## Interactive Component Detection\n\n**Slider/Carousel** - Use when you see: left/right arrows + multiple similar items + pagination dots\n\u2192 SliderWrapper > SliderMask > SliderSlide + SliderArrow (x2) + SliderNav\n\n**Tabs** - Use when you see: clickable headers + content that switches\n\u2192 TabsWrapper > TabsMenu > TabsLink + TabsContent > TabsPane\n\n**Dropdown** - Use when you see: trigger button + hidden menu list\n\u2192 DropdownWrapper > DropdownToggle + DropdownList > DropdownLink\n\n**Navbar** - Use when you see: logo + nav links + hamburger menu\n\u2192 NavbarWrapper > NavbarContainer > NavbarBrand + NavbarMenu > NavbarLink\n\n**Lightbox** - Use when you see: thumbnails that enlarge on click\n\u2192 LightboxWrapper > Image\n\n**Form** - Use when you see: input fields + submit button\n\u2192 FormWrapper > FormForm > FormTextInput/Textarea/Select + FormButton\n";
+//# sourceMappingURL=interactive-detection.d.ts.map

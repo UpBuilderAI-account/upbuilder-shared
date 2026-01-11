@@ -40,7 +40,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.webflow = void 0;
+exports.getConstraintErrorMessage = exports.validateDesignTree = exports.canContainChild = exports.canPlaceElement = exports.webflow = void 0;
 // Export all types
 __exportStar(require("./types"), exports);
 // Export all constants
@@ -49,3 +49,9 @@ __exportStar(require("./constants"), exports);
 __exportStar(require("./utils"), exports);
 // Export Webflow module (components, constraints, data fields, breakpoints, mappings, docs)
 exports.webflow = __importStar(require("./webflow"));
+// Re-export commonly used validation functions directly for convenience
+var hierarchy_helpers_1 = require("./webflow/hierarchy-helpers");
+Object.defineProperty(exports, "canPlaceElement", { enumerable: true, get: function () { return hierarchy_helpers_1.canPlaceElement; } });
+Object.defineProperty(exports, "canContainChild", { enumerable: true, get: function () { return hierarchy_helpers_1.canContainChild; } });
+Object.defineProperty(exports, "validateDesignTree", { enumerable: true, get: function () { return hierarchy_helpers_1.validateDesignTree; } });
+Object.defineProperty(exports, "getConstraintErrorMessage", { enumerable: true, get: function () { return hierarchy_helpers_1.getConstraintErrorMessage; } });

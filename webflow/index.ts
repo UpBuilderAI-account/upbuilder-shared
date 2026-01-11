@@ -239,3 +239,47 @@ export {
   LAYOUT_HIERARCHY_DOCS,
   HTML_EMBED_DOCS,
 } from './prompt-docs';
+
+// -----------------------------------------------------------------------------
+// Hierarchy Helpers
+// Frontend-friendly validation functions for drag/drop
+// -----------------------------------------------------------------------------
+export {
+  // Types
+  type PlacementCheckResult,
+  type DropPosition,
+  type DesignNode,
+  type TreeValidationResult,
+
+  // Quick validation (for drag/drop pre-check)
+  canPlaceElement,
+  canContainChild,
+  getValidParentTypes,
+  getValidChildTypes,
+
+  // Full tree validation (for post-operation check)
+  validateDesignTree,
+  getConstraintErrorMessage,
+} from './hierarchy-helpers';
+
+// -----------------------------------------------------------------------------
+// Interactive Component Detection
+// Pattern recognition for converting designs to interactive Webflow components
+// -----------------------------------------------------------------------------
+export {
+  // Types
+  type InteractivePattern,
+  type InteractiveStructure,
+
+  // Pattern definitions
+  INTERACTIVE_PATTERNS,
+
+  // Detection helpers
+  detectInteractivePattern,
+  getInteractivePattern,
+  generateInteractivePatternDocs,
+
+  // Pre-built documentation
+  INTERACTIVE_PATTERN_DOCS,
+  INTERACTIVE_PATTERN_DOCS_COMPACT,
+} from './interactive-detection';

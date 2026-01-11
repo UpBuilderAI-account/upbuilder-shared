@@ -242,6 +242,14 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
       ancestors: [{ is: 'Row', rule: 'AtLeastOne' }]
     }
   },
+  VFlex: {
+    displayName: 'VFlex',
+    constraints: {}
+  },
+  HFlex: {
+    displayName: 'HFlex',
+    constraints: {}
+  },
 
   // ===========================================================================
   // NAVBAR COMPONENTS

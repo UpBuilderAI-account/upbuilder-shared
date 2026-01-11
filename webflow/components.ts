@@ -253,6 +253,26 @@ export const WEBFLOW_COMPONENTS = {
   },
 
   // ===========================================================================
+  // FLEX COMPONENTS (2)
+  // ===========================================================================
+  VFlex: {
+    displayName: 'VFlex',
+    tags: ['div'],
+    isContainer: true,
+    category: 'layout',
+    specialDataFields: [],
+    description: 'Vertical flex container'
+  },
+  HFlex: {
+    displayName: 'HFlex',
+    tags: ['div'],
+    isContainer: true,
+    category: 'layout',
+    specialDataFields: [],
+    description: 'Horizontal flex container'
+  },
+
+  // ===========================================================================
   // LAYOUT COMPONENTS (5)
   // ===========================================================================
   Layout: {

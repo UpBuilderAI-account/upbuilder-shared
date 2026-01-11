@@ -14,3 +14,15 @@ export * from './utils';
 
 // Export Webflow module (components, constraints, data fields, breakpoints, mappings, docs)
 export * as webflow from './webflow';
+
+// Re-export commonly used validation functions directly for convenience
+export {
+  canPlaceElement,
+  canContainChild,
+  validateDesignTree,
+  getConstraintErrorMessage,
+  type PlacementCheckResult,
+  type DropPosition,
+  type DesignNode,
+  type TreeValidationResult,
+} from './webflow/hierarchy-helpers';

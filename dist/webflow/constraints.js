@@ -206,6 +206,14 @@ exports.WEBFLOW_CONSTRAINTS = {
             ancestors: [{ is: 'Row', rule: 'AtLeastOne' }]
         }
     },
+    VFlex: {
+        displayName: 'VFlex',
+        constraints: {}
+    },
+    HFlex: {
+        displayName: 'HFlex',
+        constraints: {}
+    },
     // ===========================================================================
     // NAVBAR COMPONENTS
     // ===========================================================================
