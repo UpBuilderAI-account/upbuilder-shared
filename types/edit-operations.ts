@@ -19,6 +19,9 @@ export type EditOperationType =
   | 'duplicateNode'
   | 'updateText'
   | 'updateNodeImage'  // Update image source/alt on a node
+  | 'updateNodeLink'   // Update link href/target on a node
+  | 'updateNodeFormProps' // Update form input properties
+  | 'updateNodeVideoProps' // Update video properties
   | 'createClass'
   | 'createCompoundClass'  // New: create compound class from class stack
   | 'updateClassProperty'
@@ -135,6 +138,57 @@ export interface UpdateNodeImageOp extends BaseEditOperation {
   src: string;
   /** Optional alt text */
   alt?: string;
+}
+
+/**
+ * Update link href/target on a node
+ */
+export interface UpdateNodeLinkOp extends BaseEditOperation {
+  type: 'updateNodeLink';
+  /** Node to update */
+  nodeId: string;
+  /** Link URL */
+  href?: string;
+  /** Link target */
+  target?: '_blank' | '_self' | '_parent' | '_top';
+}
+
+/**
+ * Update form input properties on a node
+ */
+export interface UpdateNodeFormPropsOp extends BaseEditOperation {
+  type: 'updateNodeFormProps';
+  /** Node to update */
+  nodeId: string;
+  /** Input type */
+  inputType?: string;
+  /** Placeholder text */
+  placeholder?: string;
+  /** Required flag */
+  required?: boolean;
+  /** Input name */
+  name?: string;
+}
+
+/**
+ * Update video properties on a node
+ */
+export interface UpdateNodeVideoPropsOp extends BaseEditOperation {
+  type: 'updateNodeVideoProps';
+  /** Node to update */
+  nodeId: string;
+  /** Video source URL */
+  src?: string;
+  /** Autoplay flag */
+  autoplay?: boolean;
+  /** Loop flag */
+  loop?: boolean;
+  /** Muted flag */
+  muted?: boolean;
+  /** Controls flag */
+  controls?: boolean;
+  /** Poster image URL */
+  poster?: string;
 }
 
 // ============================================================================
@@ -300,6 +354,9 @@ export type EditOperation =
   | DuplicateNodeOp
   | UpdateTextOp
   | UpdateNodeImageOp
+  | UpdateNodeLinkOp
+  | UpdateNodeFormPropsOp
+  | UpdateNodeVideoPropsOp
   | CreateClassOp
   | CreateCompoundClassOp
   | UpdateClassPropertyOp

@@ -4,7 +4,7 @@
  * This prevents exposing the full Webflow structure
  */
 import type { Breakpoint, PseudoState, EditableAsset } from './editable-tree';
-export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'updateNodeImage' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride';
+export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'updateNodeImage' | 'updateNodeLink' | 'updateNodeFormProps' | 'updateNodeVideoProps' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride';
 interface BaseEditOperation {
     /** Operation type */
     type: EditOperationType;
@@ -94,6 +94,54 @@ export interface UpdateNodeImageOp extends BaseEditOperation {
     src: string;
     /** Optional alt text */
     alt?: string;
+}
+/**
+ * Update link href/target on a node
+ */
+export interface UpdateNodeLinkOp extends BaseEditOperation {
+    type: 'updateNodeLink';
+    /** Node to update */
+    nodeId: string;
+    /** Link URL */
+    href?: string;
+    /** Link target */
+    target?: '_blank' | '_self' | '_parent' | '_top';
+}
+/**
+ * Update form input properties on a node
+ */
+export interface UpdateNodeFormPropsOp extends BaseEditOperation {
+    type: 'updateNodeFormProps';
+    /** Node to update */
+    nodeId: string;
+    /** Input type */
+    inputType?: string;
+    /** Placeholder text */
+    placeholder?: string;
+    /** Required flag */
+    required?: boolean;
+    /** Input name */
+    name?: string;
+}
+/**
+ * Update video properties on a node
+ */
+export interface UpdateNodeVideoPropsOp extends BaseEditOperation {
+    type: 'updateNodeVideoProps';
+    /** Node to update */
+    nodeId: string;
+    /** Video source URL */
+    src?: string;
+    /** Autoplay flag */
+    autoplay?: boolean;
+    /** Loop flag */
+    loop?: boolean;
+    /** Muted flag */
+    muted?: boolean;
+    /** Controls flag */
+    controls?: boolean;
+    /** Poster image URL */
+    poster?: string;
 }
 /**
  * Create a new class/style
@@ -220,7 +268,7 @@ export interface RenameClassOp extends BaseEditOperation {
 /**
  * Any edit operation
  */
-export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | UpdateNodeImageOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp;
+export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | UpdateNodeImageOp | UpdateNodeLinkOp | UpdateNodeFormPropsOp | UpdateNodeVideoPropsOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp;
 /**
  * Request to apply edit operations
  */
