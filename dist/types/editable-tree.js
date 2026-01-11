@@ -9,6 +9,13 @@ exports.getCompoundSelector = getCompoundSelector;
 exports.parseCompoundSelector = parseCompoundSelector;
 exports.isCompoundSelector = isCompoundSelector;
 exports.migrateEditableClass = migrateEditableClass;
+exports.getChainSignature = getChainSignature;
+exports.parseChainSignature = parseChainSignature;
+exports.buildSelectorFromChain = buildSelectorFromChain;
+exports.parseStyleLess = parseStyleLess;
+exports.toStyleLess = toStyleLess;
+exports.styleLessToProperties = styleLessToProperties;
+exports.propertiesToStyleLess = propertiesToStyleLess;
 /**
  * All breakpoint configurations
  */
@@ -198,4 +205,77 @@ function migrateEditableClass(legacy) {
         properties,
         usageCount: legacy.usageCount,
     };
+}
+/**
+ * Get chain signature from class stack
+ * Uses + delimiter to avoid confusion with CSS selectors (which use .)
+ */
+function getChainSignature(classStack) {
+    return classStack.join('+');
+}
+/**
+ * Parse chain signature back to class stack
+ */
+function parseChainSignature(signature) {
+    return signature.split('+').filter(Boolean);
+}
+/**
+ * Build CSS selector from chain context
+ * ['button', 'is-primary'] → '.button.is-primary'
+ */
+function buildSelectorFromChain(chainContext) {
+    if (!chainContext || chainContext.length === 0)
+        return '';
+    return '.' + chainContext.join('.');
+}
+/**
+ * Parse CSS string to property map
+ * "padding: 20px; color: #fff;" → Map { 'padding' => '20px', 'color' => '#fff' }
+ */
+function parseStyleLess(styleLess) {
+    const map = new Map();
+    if (!styleLess)
+        return map;
+    styleLess.split(';').forEach(decl => {
+        const colonIndex = decl.indexOf(':');
+        if (colonIndex === -1)
+            return;
+        const prop = decl.slice(0, colonIndex).trim();
+        const val = decl.slice(colonIndex + 1).trim();
+        if (prop && val) {
+            map.set(prop, val);
+        }
+    });
+    return map;
+}
+/**
+ * Convert property map to CSS string
+ * Map { 'padding' => '20px', 'color' => '#fff' } → "padding: 20px; color: #fff"
+ */
+function toStyleLess(props) {
+    return Array.from(props.entries())
+        .map(([prop, val]) => `${prop}: ${val}`)
+        .join('; ');
+}
+/**
+ * Convert WebflowStyleObject's styleLess to EditableProperty array
+ * For compatibility with existing UI components
+ */
+function styleLessToProperties(styleLess, categorizer) {
+    const props = parseStyleLess(styleLess);
+    const defaultCategory = 'other';
+    return Array.from(props.entries()).map(([name, value]) => ({
+        name,
+        value,
+        category: categorizer ? categorizer(name) : defaultCategory,
+    }));
+}
+/**
+ * Convert EditableProperty array to styleLess string
+ * For compatibility with existing data
+ */
+function propertiesToStyleLess(properties) {
+    if (!properties || properties.length === 0)
+        return '';
+    return properties.map(p => `${p.name}: ${p.value}`).join('; ');
 }

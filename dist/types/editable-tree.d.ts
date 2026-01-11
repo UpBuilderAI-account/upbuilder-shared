@@ -403,4 +403,133 @@ export interface IdMapping {
     /** Version this mapping was created for */
     version: string;
 }
+/**
+ * CSS properties stored as a string per breakpoint+state
+ * This matches Webflow's actual `styleLess` format
+ * Example: "padding: 20px; color: #fff; display: flex;"
+ */
+export type StyleLessMap = {
+    [K in Breakpoint]?: {
+        [S in PseudoState]?: string;
+    };
+};
+/**
+ * Webflow-aligned style object
+ * Each class (base or combo modifier) is a SEPARATE object with its own _id
+ *
+ * KEY DIFFERENCE FROM EditableClass:
+ * - EditableClass uses compound keys like "button.is-primary"
+ * - WebflowStyleObject uses separate objects with `comb` marker
+ *
+ * For combo chain [button, is-primary, is-large]:
+ * - Object 1: { name: "button", comb: "", ... }
+ * - Object 2: { name: "is-primary", comb: "&", ... }
+ * - Object 3: { name: "is-large", comb: "&", ... }
+ * - Object 1's children: [Object 2's _id]
+ * - Object 2's children: [Object 3's _id]
+ */
+export interface WebflowStyleObject {
+    /** Unique ID - deterministic hash based on chain position */
+    _id: string;
+    /**
+     * Class name - just the single class, NOT compound
+     * Base class: "button"
+     * Modifier: "is-primary" (NOT "button.is-primary")
+     */
+    name: string;
+    /**
+     * Combo marker - matches Webflow's internal format
+     * '' = base class (first in chain, or standalone)
+     * '&' = modifier (requires preceding class in chain)
+     */
+    comb: '' | '&';
+    /**
+     * CSS properties per breakpoint and state
+     * Uses styleLess string format: "prop1: val1; prop2: val2;"
+     * Desktop + none is the base, others are overrides
+     */
+    styleLess: StyleLessMap;
+    /**
+     * IDs of style objects that can follow this one in a chain
+     * For LINEAR chains: typically just one child
+     * For branching: multiple children for different combo paths
+     */
+    children: string[];
+    /**
+     * Chain context - the full stack of class names leading to this style
+     * Examples:
+     * - Base "button": ["button"]
+     * - Combo "button.is-primary": ["button", "is-primary"]
+     * - Triple "button.is-primary.is-large": ["button", "is-primary", "is-large"]
+     *
+     * Used to generate CSS selectors: "." + chainContext.join(".")
+     */
+    chainContext: string[];
+    /** Number of elements using this exact style chain */
+    usageCount: number;
+    /** Element IDs for highlighting in preview */
+    elementIds?: string[];
+}
+/**
+ * Index for O(1) lookup of style objects by chain signature
+ * Key: chain signature using + delimiter (e.g., "button+is-primary")
+ * Value: style object _id
+ *
+ * Usage:
+ *   const sig = classStack.join('+');  // "button+is-primary"
+ *   const styleId = chainIndex[sig];    // "abc123..."
+ *   const style = styleObjects[styleId];
+ */
+export type ChainIndex = Record<string, string>;
+/**
+ * Get chain signature from class stack
+ * Uses + delimiter to avoid confusion with CSS selectors (which use .)
+ */
+export declare function getChainSignature(classStack: string[]): string;
+/**
+ * Parse chain signature back to class stack
+ */
+export declare function parseChainSignature(signature: string): string[];
+/**
+ * Build CSS selector from chain context
+ * ['button', 'is-primary'] → '.button.is-primary'
+ */
+export declare function buildSelectorFromChain(chainContext: string[]): string;
+/**
+ * Parse CSS string to property map
+ * "padding: 20px; color: #fff;" → Map { 'padding' => '20px', 'color' => '#fff' }
+ */
+export declare function parseStyleLess(styleLess: string): Map<string, string>;
+/**
+ * Convert property map to CSS string
+ * Map { 'padding' => '20px', 'color' => '#fff' } → "padding: 20px; color: #fff"
+ */
+export declare function toStyleLess(props: Map<string, string>): string;
+/**
+ * Convert WebflowStyleObject's styleLess to EditableProperty array
+ * For compatibility with existing UI components
+ */
+export declare function styleLessToProperties(styleLess: string, categorizer?: (prop: string) => PropertyCategory): EditableProperty[];
+/**
+ * Convert EditableProperty array to styleLess string
+ * For compatibility with existing data
+ */
+export declare function propertiesToStyleLess(properties: EditableProperty[]): string;
+/**
+ * Extended payload that includes both legacy and new style formats
+ * Backend sends both for gradual migration
+ */
+export interface EditableTreePayloadV2 extends EditableTreePayload {
+    /**
+     * NEW: Style objects indexed by _id
+     * This is the Webflow-aligned format
+     */
+    styleObjects: Record<string, WebflowStyleObject>;
+    /**
+     * NEW: Index for O(1) chain → style ID lookups
+     * Key: chain signature (e.g., "button+is-primary")
+     * Value: style object _id
+     */
+    chainIndex: ChainIndex;
+}
 //# sourceMappingURL=editable-tree.d.ts.map

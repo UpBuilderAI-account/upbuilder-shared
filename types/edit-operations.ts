@@ -27,7 +27,10 @@ export type EditOperationType =
   | 'updateClassProperty'
   | 'removeClassProperty'
   | 'renameClass'
-  | 'createOverride'; // New: create override on selected class instead of editing source
+  | 'createOverride' // New: create override on selected class instead of editing source
+  // Webflow style model operations (new)
+  | 'updateStyleObjectProperty'  // Update property using style object ID
+  | 'createStyleObject';         // Create new style object (combo class)
 
 // ============================================================================
 // BASE OPERATION
@@ -339,6 +342,88 @@ export interface RenameClassOp extends BaseEditOperation {
 }
 
 // ============================================================================
+// WEBFLOW STYLE MODEL OPERATIONS (New - aligned with correct Webflow format)
+// ============================================================================
+
+/**
+ * Update a style property using the Webflow-aligned style object model
+ *
+ * KEY DIFFERENCE FROM UpdateClassPropertyOp:
+ * - Uses styleId (the _id of a WebflowStyleObject)
+ * - chainContext provides the full class chain for context
+ * - Targets a specific style object, not a compound selector string
+ */
+export interface UpdateStyleObjectPropertyOp extends BaseEditOperation {
+  type: 'updateStyleObjectProperty';
+
+  /**
+   * The style object _id to update
+   * This is the unique identifier of the WebflowStyleObject
+   */
+  styleId: string;
+
+  /**
+   * The chain context (class stack) for this style
+   * Used for CSS selector generation and debugging
+   * e.g., ['button', 'is-primary']
+   */
+  chainContext: string[];
+
+  /** CSS property name to update */
+  property: string;
+
+  /** New CSS value (empty string to remove) */
+  value: string;
+
+  /** Target breakpoint */
+  breakpoint: Breakpoint;
+
+  /** Target pseudo-state */
+  state: PseudoState;
+}
+
+/**
+ * Create a new style object (for new combo class)
+ */
+export interface CreateStyleObjectOp extends BaseEditOperation {
+  type: 'createStyleObject';
+
+  /**
+   * The style object _id (generated deterministically on frontend)
+   */
+  styleId: string;
+
+  /**
+   * The class name - just the single class, not compound
+   * e.g., "is-primary" (NOT "button.is-primary")
+   */
+  name: string;
+
+  /**
+   * Position marker
+   * '' = base class (first in chain)
+   * '&' = modifier (requires preceding class)
+   */
+  comb: '' | '&';
+
+  /**
+   * The full chain context
+   * e.g., ['button', 'is-primary']
+   */
+  chainContext: string[];
+
+  /**
+   * Parent style object _id (to update its children array)
+   */
+  parentStyleId?: string;
+
+  /**
+   * Initial CSS properties (optional)
+   */
+  initialStyleLess?: string;
+}
+
+// ============================================================================
 // UNION TYPE
 // ============================================================================
 
@@ -362,7 +447,10 @@ export type EditOperation =
   | UpdateClassPropertyOp
   | RemoveClassPropertyOp
   | RenameClassOp
-  | CreateOverrideOp;
+  | CreateOverrideOp
+  // Webflow style model operations (new)
+  | UpdateStyleObjectPropertyOp
+  | CreateStyleObjectOp;
 
 // ============================================================================
 // REQUEST/RESPONSE TYPES

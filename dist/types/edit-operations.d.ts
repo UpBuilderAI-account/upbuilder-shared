@@ -4,7 +4,7 @@
  * This prevents exposing the full Webflow structure
  */
 import type { Breakpoint, PseudoState, EditableAsset } from './editable-tree';
-export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'updateNodeImage' | 'updateNodeLink' | 'updateNodeFormProps' | 'updateNodeVideoProps' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride';
+export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'updateNodeImage' | 'updateNodeLink' | 'updateNodeFormProps' | 'updateNodeVideoProps' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride' | 'updateStyleObjectProperty' | 'createStyleObject';
 interface BaseEditOperation {
     /** Operation type */
     type: EditOperationType;
@@ -266,9 +266,73 @@ export interface RenameClassOp extends BaseEditOperation {
     newName: string;
 }
 /**
+ * Update a style property using the Webflow-aligned style object model
+ *
+ * KEY DIFFERENCE FROM UpdateClassPropertyOp:
+ * - Uses styleId (the _id of a WebflowStyleObject)
+ * - chainContext provides the full class chain for context
+ * - Targets a specific style object, not a compound selector string
+ */
+export interface UpdateStyleObjectPropertyOp extends BaseEditOperation {
+    type: 'updateStyleObjectProperty';
+    /**
+     * The style object _id to update
+     * This is the unique identifier of the WebflowStyleObject
+     */
+    styleId: string;
+    /**
+     * The chain context (class stack) for this style
+     * Used for CSS selector generation and debugging
+     * e.g., ['button', 'is-primary']
+     */
+    chainContext: string[];
+    /** CSS property name to update */
+    property: string;
+    /** New CSS value (empty string to remove) */
+    value: string;
+    /** Target breakpoint */
+    breakpoint: Breakpoint;
+    /** Target pseudo-state */
+    state: PseudoState;
+}
+/**
+ * Create a new style object (for new combo class)
+ */
+export interface CreateStyleObjectOp extends BaseEditOperation {
+    type: 'createStyleObject';
+    /**
+     * The style object _id (generated deterministically on frontend)
+     */
+    styleId: string;
+    /**
+     * The class name - just the single class, not compound
+     * e.g., "is-primary" (NOT "button.is-primary")
+     */
+    name: string;
+    /**
+     * Position marker
+     * '' = base class (first in chain)
+     * '&' = modifier (requires preceding class)
+     */
+    comb: '' | '&';
+    /**
+     * The full chain context
+     * e.g., ['button', 'is-primary']
+     */
+    chainContext: string[];
+    /**
+     * Parent style object _id (to update its children array)
+     */
+    parentStyleId?: string;
+    /**
+     * Initial CSS properties (optional)
+     */
+    initialStyleLess?: string;
+}
+/**
  * Any edit operation
  */
-export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | UpdateNodeImageOp | UpdateNodeLinkOp | UpdateNodeFormPropsOp | UpdateNodeVideoPropsOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp;
+export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | UpdateNodeImageOp | UpdateNodeLinkOp | UpdateNodeFormPropsOp | UpdateNodeVideoPropsOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp | UpdateStyleObjectPropertyOp | CreateStyleObjectOp;
 /**
  * Request to apply edit operations
  */
