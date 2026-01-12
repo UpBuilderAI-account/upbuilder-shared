@@ -505,6 +505,30 @@ export interface RequestExportResponse {
   error?: string;
   /** True if user needs to upgrade to Pro */
   requiresUpgrade?: boolean;
+  /** True if assets are still uploading to Webflow CDN */
+  assetsUploading?: boolean;
+  /** Progress of asset upload (when assetsUploading is true) */
+  assetProgress?: {
+    uploaded: number;
+    total: number;
+  };
+}
+
+/**
+ * Asset upload status request
+ */
+export interface AssetUploadStatusRequest {
+  projectId: string;
+}
+
+/**
+ * Asset upload status response
+ */
+export interface AssetUploadStatusResponse {
+  complete: boolean;
+  uploaded: number;
+  total: number;
+  failed: number;
 }
 
 // ============================================================================

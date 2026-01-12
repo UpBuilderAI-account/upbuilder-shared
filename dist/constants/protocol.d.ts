@@ -124,6 +124,7 @@ export declare const SOCKET_EVENTS: {
         readonly EXPORT_READY: "customizer:export_ready";
         readonly REQUEST_PREVIEW: "customizer:request_preview";
         readonly UPLOAD_IMAGE: "customizer:upload_image";
+        readonly ASSET_UPLOAD_STATUS: "customizer:asset_upload_status";
         readonly ERROR: "customizer:error";
     };
 };
