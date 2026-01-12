@@ -31,8 +31,9 @@ exports.GUEST_USER_ID = '00000000-0000-0000-0000-000000000000';
 exports.DEFAULT_PLATFORM = 'webflow';
 /**
  * Default style framework
+ * Must match DEFAULT_STYLESHEET_CONFIG.framework in types/workflow.ts
  */
-exports.DEFAULT_STYLE_FRAMEWORK = 'client-first';
+exports.DEFAULT_STYLE_FRAMEWORK = 'simple';
 /**
  * Default breakpoint values (in pixels)
  */

@@ -87,19 +87,15 @@ exports.isFailed = isFailed;
 exports.STAGE_ORDER = [
     'export_config',
     'load',
-    'detect_sections',
     'generate_styles',
-    'prepare_build',
     'convert_to_platform',
     'customize',
 ];
 exports.STAGE_LABELS = {
     export_config: 'Configure Export',
     load: 'Loading Data',
-    detect_sections: 'Detecting Sections',
     generate_styles: 'Generating Base Styles',
-    prepare_build: 'Preparing Build',
-    convert_to_platform: 'Converting to Webflow',
+    convert_to_platform: 'Building Design',
     customize: 'Preview & Export',
 };
 /**

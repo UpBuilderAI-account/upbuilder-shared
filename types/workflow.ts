@@ -440,7 +440,7 @@ export interface WorkflowExportComplete {
 
 export interface WorkflowCommand {
   projectId: string;
-  action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_detect_sections' | 'reprocess_generate_styles' | 'reprocess_prepare_build' | 'reprocess_convert_to_platform' | 'reprocess_customize' | 'reprocess_customize_fast';
+  action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_generate_styles' | 'reprocess_convert_to_platform' | 'reprocess_customize' | 'reprocess_customize_fast';
   retry?: boolean;
   /** Export configuration from export_config stage */
   exportConfig?: ExportConfig;
@@ -562,16 +562,13 @@ export type BackgroundJobStatus = 'pending' | 'running' | 'complete' | 'failed';
 
 /**
  * Background job progress during export_config stage
- * load + detect_sections run in background while user configures
+ * load runs in background while user configures
  */
 export interface WorkflowBackgroundProgress {
   projectId: string;
   load: BackgroundJobStatus;
-  detectSections: BackgroundJobStatus;
   /** Number of designs loaded (after load completes) */
   designCount?: number;
-  /** Number of sections detected (after detectSections completes) */
-  sectionCount?: number;
   /** Error message if any job failed */
   error?: string;
 }
@@ -682,9 +679,7 @@ export const isFailed = (p: Progress): boolean => p === -1;
 export const STAGE_ORDER: Stage[] = [
   'export_config',
   'load',
-  'detect_sections',
   'generate_styles',
-  'prepare_build',
   'convert_to_platform',
   'customize',
 ];
@@ -692,10 +687,8 @@ export const STAGE_ORDER: Stage[] = [
 export const STAGE_LABELS: Record<Stage, string> = {
   export_config: 'Configure Export',
   load: 'Loading Data',
-  detect_sections: 'Detecting Sections',
   generate_styles: 'Generating Base Styles',
-  prepare_build: 'Preparing Build',
-  convert_to_platform: 'Converting to Webflow',
+  convert_to_platform: 'Building Design',
   customize: 'Preview & Export',
 };
 

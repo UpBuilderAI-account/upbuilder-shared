@@ -85,10 +85,8 @@ export type ProjectStatus =
   | 'idle'
   | 'export_config'      // First stage - configure export options
   | 'load'
-  | 'detect_sections'
-  | 'generate_styles'
-  | 'prepare_build'
-  | 'convert_to_platform' // Combines: build sections + convert styles + assemble + convert JS
+  | 'generate_styles'    // Generate global style registry
+  | 'convert_to_platform' // Unified build: AI generates consolidated styles + structure per design
   | 'customize'          // Preview Webflow structure + export modal
   | 'complete'
   | 'failed';
@@ -100,9 +98,7 @@ export const PROJECT_STATUS = {
   IDLE: 'idle' as ProjectStatus,
   EXPORT_CONFIG: 'export_config' as ProjectStatus,
   LOAD: 'load' as ProjectStatus,
-  DETECT_SECTIONS: 'detect_sections' as ProjectStatus,
   GENERATE_STYLES: 'generate_styles' as ProjectStatus,
-  PREPARE_BUILD: 'prepare_build' as ProjectStatus,
   CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
@@ -115,9 +111,7 @@ export const PROJECT_STATUS = {
 export function isProcessingStage(status: ProjectStatus): boolean {
   const processingStages: ProjectStatus[] = [
     'load',
-    'detect_sections',
     'generate_styles',
-    'prepare_build',
     'convert_to_platform',
   ];
   return processingStages.includes(status);
@@ -133,10 +127,8 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
     idle: 'export_config',
     export_config: 'load',
-    load: 'detect_sections',
-    detect_sections: 'generate_styles',
-    generate_styles: 'prepare_build',
-    prepare_build: 'convert_to_platform',
+    load: 'generate_styles',
+    generate_styles: 'convert_to_platform',
     convert_to_platform: 'customize',
     customize: 'complete',
     complete: null,

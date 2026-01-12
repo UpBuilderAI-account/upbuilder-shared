@@ -10,8 +10,9 @@ export declare const GUEST_USER_ID = "00000000-0000-0000-0000-000000000000";
 export declare const DEFAULT_PLATFORM = "webflow";
 /**
  * Default style framework
+ * Must match DEFAULT_STYLESHEET_CONFIG.framework in types/workflow.ts
  */
-export declare const DEFAULT_STYLE_FRAMEWORK = "client-first";
+export declare const DEFAULT_STYLE_FRAMEWORK = "simple";
 /**
  * Default breakpoint values (in pixels)
  */
