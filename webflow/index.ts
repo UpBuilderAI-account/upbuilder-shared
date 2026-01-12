@@ -216,7 +216,6 @@ export {
   generateTabsHierarchyDocs,
   generateSliderHierarchyDocs,
   generateFormHierarchyDocs,
-  generateLayoutHierarchyDocs,
   generateHtmlEmbedDocs,
   generateValidationChecklist,
   generateAllHierarchyDocs,
@@ -236,7 +235,6 @@ export {
   TABS_HIERARCHY_DOCS,
   SLIDER_HIERARCHY_DOCS,
   FORM_HIERARCHY_DOCS,
-  LAYOUT_HIERARCHY_DOCS,
   HTML_EMBED_DOCS,
 } from './prompt-docs';
 

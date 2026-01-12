@@ -25,7 +25,6 @@ export interface WebflowComponentDef {
 export type ComponentCategory =
   | 'basic'
   | 'typography'
-  | 'layout'
   | 'navigation'
   | 'dropdown'
   | 'tabs'
@@ -250,70 +249,6 @@ export const WEBFLOW_COMPONENTS = {
     category: 'text-formatting',
     specialDataFields: [],
     description: 'Subscript text, must be inside Paragraph'
-  },
-
-  // ===========================================================================
-  // FLEX COMPONENTS (2)
-  // ===========================================================================
-  VFlex: {
-    displayName: 'VFlex',
-    tags: ['div'],
-    isContainer: true,
-    category: 'layout',
-    specialDataFields: [],
-    description: 'Vertical flex container'
-  },
-  HFlex: {
-    displayName: 'HFlex',
-    tags: ['div'],
-    isContainer: true,
-    category: 'layout',
-    specialDataFields: [],
-    description: 'Horizontal flex container'
-  },
-
-  // ===========================================================================
-  // LAYOUT COMPONENTS (5)
-  // ===========================================================================
-  Layout: {
-    displayName: 'Layout',
-    tags: ['div'],
-    isContainer: true,
-    category: 'layout',
-    specialDataFields: ['grid'],
-    description: 'CSS Grid layout container, can only contain Cell children'
-  },
-  Cell: {
-    displayName: 'Cell',
-    tags: ['div'],
-    isContainer: true,
-    category: 'layout',
-    specialDataFields: ['grid'],
-    description: 'CSS Grid cell, must be direct child of Layout'
-  },
-  Grid: {
-    displayName: 'Grid',
-    tags: ['div'],
-    isContainer: true,
-    category: 'layout',
-    specialDataFields: ['grid'],
-    description: 'Legacy grid component'
-  },
-  Row: {
-    displayName: 'Columns',
-    tags: ['div'],
-    isContainer: true,
-    category: 'layout',
-    specialDataFields: ['grid'],
-    description: 'Row/columns container, can only contain Column children'
-  },
-  Column: {
-    displayName: 'Column',
-    tags: ['div'],
-    isContainer: true,
-    category: 'layout',
-    specialDataFields: ['grid'],
-    description: 'Column element, must be direct child of Row'
   },
 
   // ===========================================================================
@@ -779,7 +714,6 @@ export const COMPONENTS_BY_CATEGORY = {
   basic: getComponentsByCategory('basic'),
   typography: getComponentsByCategory('typography'),
   'text-formatting': getComponentsByCategory('text-formatting'),
-  layout: getComponentsByCategory('layout'),
   navigation: getComponentsByCategory('navigation'),
   dropdown: getComponentsByCategory('dropdown'),
   tabs: getComponentsByCategory('tabs'),

@@ -191,10 +191,6 @@ function mapAnchorElement(context) {
  * Map div element based on context and styling
  */
 function mapDivElement(context) {
-    // Check for CSS Grid
-    if ((context === null || context === void 0 ? void 0 : context.display) === 'grid') {
-        return 'Layout';
-    }
     // Check classes for common patterns
     if (context === null || context === void 0 ? void 0 : context.classes) {
         const classStr = context.classes.join(' ').toLowerCase();
@@ -263,14 +259,6 @@ function mapDivElement(context) {
         // Rich text
         if (classStr.includes('rich-text') || classStr.includes('w-richtext')) {
             return 'RichText';
-        }
-        // Grid cell
-        if (context.parentType === 'Layout') {
-            return 'Cell';
-        }
-        // Column
-        if (context.parentType === 'Row') {
-            return 'Column';
         }
     }
     // Default to Block
@@ -354,12 +342,6 @@ function getDefaultTag(componentType) {
         SearchForm: 'form',
         SearchInput: 'input',
         SearchButton: 'input',
-        // Layout
-        Layout: 'div',
-        Cell: 'div',
-        Grid: 'div',
-        Row: 'div',
-        Column: 'div',
         // Media
         HtmlEmbed: 'div',
         Icon: 'div',

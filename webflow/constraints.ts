@@ -210,48 +210,6 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
   },
 
   // ===========================================================================
-  // LAYOUT COMPONENTS
-  // ===========================================================================
-  Layout: {
-    displayName: 'Layout',
-    constraints: {
-      children: [{ is: 'Cell', name: 'Non-Cell Item', rule: 'RequireOnly' }]
-    }
-  },
-  Cell: {
-    displayName: 'Cell',
-    constraints: {
-      pinToParent: true,
-      parent: [{ is: 'Layout', rule: 'ExactlyOne' }],
-      ancestors: [{ is: 'Layout', rule: 'AtLeastOne' }]
-    }
-  },
-  Grid: {
-    displayName: 'Grid',
-    constraints: {}
-  },
-  Row: {
-    displayName: 'Columns',
-    constraints: {
-      children: [{ is: 'Column', name: 'Non-Column Item', rule: 'RequireOnly' }]
-    }
-  },
-  Column: {
-    displayName: 'Column',
-    constraints: {
-      ancestors: [{ is: 'Row', rule: 'AtLeastOne' }]
-    }
-  },
-  VFlex: {
-    displayName: 'VFlex',
-    constraints: {}
-  },
-  HFlex: {
-    displayName: 'HFlex',
-    constraints: {}
-  },
-
-  // ===========================================================================
   // NAVBAR COMPONENTS
   // ===========================================================================
   NavbarWrapper: {
@@ -692,7 +650,5 @@ export const HIERARCHY_CHAINS = {
   radio: ['FormRadioWrapper', ['FormRadioInput', 'FormInlineLabel']],
   fileUpload: ['FormFileUploadWrapper', ['FormFileUploadDefault', 'FormFileUploadUploading', 'FormFileUploadSuccess', 'FormFileUploadError']],
   list: ['List', 'ListItem'],
-  layout: ['Layout', 'Cell'],
-  row: ['Row', 'Column'],
   search: ['SearchForm', ['SearchInput', 'SearchButton', 'FormBlockLabel']],
 } as const;

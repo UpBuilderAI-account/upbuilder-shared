@@ -241,11 +241,6 @@ function mapAnchorElement(context?: MappingContext): WebflowComponentType {
  * Map div element based on context and styling
  */
 function mapDivElement(context?: MappingContext): WebflowComponentType {
-  // Check for CSS Grid
-  if (context?.display === 'grid') {
-    return 'Layout';
-  }
-
   // Check classes for common patterns
   if (context?.classes) {
     const classStr = context.classes.join(' ').toLowerCase();
@@ -320,16 +315,6 @@ function mapDivElement(context?: MappingContext): WebflowComponentType {
     // Rich text
     if (classStr.includes('rich-text') || classStr.includes('w-richtext')) {
       return 'RichText';
-    }
-
-    // Grid cell
-    if (context.parentType === 'Layout') {
-      return 'Cell';
-    }
-
-    // Column
-    if (context.parentType === 'Row') {
-      return 'Column';
     }
   }
 
@@ -422,13 +407,6 @@ export function getDefaultTag(componentType: WebflowComponentType): string {
     SearchForm: 'form',
     SearchInput: 'input',
     SearchButton: 'input',
-
-    // Layout
-    Layout: 'div',
-    Cell: 'div',
-    Grid: 'div',
-    Row: 'div',
-    Column: 'div',
 
     // Media
     HtmlEmbed: 'div',

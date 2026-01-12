@@ -5,7 +5,7 @@
 // Single source of truth - all prompts import from here
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HTML_EMBED_DOCS = exports.LAYOUT_HIERARCHY_DOCS = exports.FORM_HIERARCHY_DOCS = exports.SLIDER_HIERARCHY_DOCS = exports.TABS_HIERARCHY_DOCS = exports.DROPDOWN_HIERARCHY_DOCS = exports.NAVBAR_HIERARCHY_DOCS = exports.VALIDATION_CHECKLIST = exports.COMPONENT_TABLE = exports.COMPONENT_LIST = exports.COMPACT_HIERARCHY_RULES = exports.ALL_HIERARCHY_DOCS = exports.COMPLETE_PROMPT_DOCS = void 0;
+exports.HTML_EMBED_DOCS = exports.FORM_HIERARCHY_DOCS = exports.SLIDER_HIERARCHY_DOCS = exports.TABS_HIERARCHY_DOCS = exports.DROPDOWN_HIERARCHY_DOCS = exports.NAVBAR_HIERARCHY_DOCS = exports.VALIDATION_CHECKLIST = exports.COMPONENT_TABLE = exports.COMPONENT_LIST = exports.COMPACT_HIERARCHY_RULES = exports.ALL_HIERARCHY_DOCS = exports.COMPLETE_PROMPT_DOCS = void 0;
 exports.generateComponentListForPrompt = generateComponentListForPrompt;
 exports.generateComponentTableForPrompt = generateComponentTableForPrompt;
 exports.generateNavbarHierarchyDocs = generateNavbarHierarchyDocs;
@@ -13,7 +13,6 @@ exports.generateDropdownHierarchyDocs = generateDropdownHierarchyDocs;
 exports.generateTabsHierarchyDocs = generateTabsHierarchyDocs;
 exports.generateSliderHierarchyDocs = generateSliderHierarchyDocs;
 exports.generateFormHierarchyDocs = generateFormHierarchyDocs;
-exports.generateLayoutHierarchyDocs = generateLayoutHierarchyDocs;
 exports.generateHtmlEmbedDocs = generateHtmlEmbedDocs;
 exports.generateValidationChecklist = generateValidationChecklist;
 exports.generateAllHierarchyDocs = generateAllHierarchyDocs;
@@ -33,7 +32,6 @@ function generateComponentListForPrompt() {
         { key: 'basic', name: 'Basic' },
         { key: 'typography', name: 'Typography' },
         { key: 'text-formatting', name: 'Text Formatting' },
-        { key: 'layout', name: 'Layout' },
         { key: 'navigation', name: 'Navigation' },
         { key: 'dropdown', name: 'Dropdown' },
         { key: 'tabs', name: 'Tabs' },
@@ -272,48 +270,6 @@ id: "input_1" | compType: "FormTextInput" | parent: "field_group" ← WRONG
 6. Skip field-group wrapper divs`;
 }
 /**
- * Generate layout hierarchy documentation
- */
-function generateLayoutHierarchyDocs() {
-    return `## CRITICAL: LAYOUT (CSS GRID) HIERARCHY
-
-### Required Structure:
-\`\`\`
-Layout (CSS Grid container)
-└── Cell (ONLY allowed children, pinned)
-    └── [any content goes INSIDE Cell]
-\`\`\`
-
-### CORRECT Example:
-\`\`\`
-id: "grid" | compType: "Layout" | parent: "section"
-id: "cell_1" | compType: "Cell" | parent: "grid"
-id: "cell_1_content" | compType: "Block" | parent: "cell_1"
-id: "cell_2" | compType: "Cell" | parent: "grid"
-id: "cell_2_content" | compType: "Image" | parent: "cell_2"
-\`\`\`
-
-### WRONG:
-\`\`\`
-id: "grid" | compType: "Layout" | parent: "section"
-id: "content" | compType: "Block" | parent: "grid"  ← WRONG: must use Cell!
-\`\`\`
-
-### Row/Column Alternative:
-\`\`\`
-Row
-└── Column (ONLY allowed children)
-    └── [any content]
-\`\`\`
-
-### Key Rules:
-1. **Layout** → can ONLY contain **Cell** children
-2. **Cell** → MUST be direct child of **Layout**
-3. **Row** → can ONLY contain **Column** children
-4. **Column** → MUST be direct child of **Row**
-5. Put content INSIDE Cell/Column, not directly in Layout/Row`;
-}
-/**
  * Generate HTML embed documentation
  */
 function generateHtmlEmbedDocs() {
@@ -374,11 +330,6 @@ function generateValidationChecklist() {
 - [ ] FormRadioInput is inside FormRadioWrapper
 - [ ] FormSuccessMessage/ErrorMessage are in FormWrapper (NOT in FormForm)
 
-### Layout:
-- [ ] Layout only contains Cell children
-- [ ] Row only contains Column children
-- [ ] Content goes INSIDE Cell/Column
-
 ### Lists:
 - [ ] List only contains ListItem children
 - [ ] ListItem is inside List`;
@@ -399,8 +350,6 @@ function generateAllHierarchyDocs() {
         generateSliderHierarchyDocs(),
         '',
         generateFormHierarchyDocs(),
-        '',
-        generateLayoutHierarchyDocs(),
         '',
         generateHtmlEmbedDocs(),
         '',
@@ -446,9 +395,6 @@ function generateCompactHierarchyRules() {
 - Inputs MUST be DIRECT children of FormForm (NOT in Blocks!)
 - FormSuccessMessage/ErrorMessage in FormWrapper (NOT FormForm)
 
-**Layout:** Layout → Cell only | Row → Column only
-- Content goes INSIDE Cell/Column
-
 **List:** List → ListItem only`;
 }
 /**
@@ -459,7 +405,6 @@ function generateMinimalComponentList() {
 
 **Basic:** Block, Section, Link, Button, Image, List, ListItem, HtmlEmbed
 **Typography:** Heading, Paragraph, Span, Blockquote
-**Layout:** Layout, Cell, Row, Column
 **Navbar:** NavbarWrapper, NavbarContainer, NavbarBrand, NavbarMenu, NavbarLink, NavbarButton
 **Dropdown:** DropdownWrapper, DropdownToggle, DropdownList, DropdownLink
 **Tabs:** TabsWrapper, TabsMenu, TabsContent, TabsLink, TabsPane
@@ -487,5 +432,4 @@ exports.DROPDOWN_HIERARCHY_DOCS = generateDropdownHierarchyDocs();
 exports.TABS_HIERARCHY_DOCS = generateTabsHierarchyDocs();
 exports.SLIDER_HIERARCHY_DOCS = generateSliderHierarchyDocs();
 exports.FORM_HIERARCHY_DOCS = generateFormHierarchyDocs();
-exports.LAYOUT_HIERARCHY_DOCS = generateLayoutHierarchyDocs();
 exports.HTML_EMBED_DOCS = generateHtmlEmbedDocs();

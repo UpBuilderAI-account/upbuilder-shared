@@ -27,10 +27,6 @@ export declare function generateSliderHierarchyDocs(): string;
  */
 export declare function generateFormHierarchyDocs(): string;
 /**
- * Generate layout hierarchy documentation
- */
-export declare function generateLayoutHierarchyDocs(): string;
-/**
  * Generate HTML embed documentation
  */
 export declare function generateHtmlEmbedDocs(): string;
@@ -71,6 +67,5 @@ export declare const DROPDOWN_HIERARCHY_DOCS: string;
 export declare const TABS_HIERARCHY_DOCS: string;
 export declare const SLIDER_HIERARCHY_DOCS: string;
 export declare const FORM_HIERARCHY_DOCS: string;
-export declare const LAYOUT_HIERARCHY_DOCS: string;
 export declare const HTML_EMBED_DOCS: string;
 //# sourceMappingURL=prompt-docs.d.ts.map

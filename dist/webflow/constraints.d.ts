@@ -51,8 +51,6 @@ export declare const HIERARCHY_CHAINS: {
     readonly radio: readonly ["FormRadioWrapper", readonly ["FormRadioInput", "FormInlineLabel"]];
     readonly fileUpload: readonly ["FormFileUploadWrapper", readonly ["FormFileUploadDefault", "FormFileUploadUploading", "FormFileUploadSuccess", "FormFileUploadError"]];
     readonly list: readonly ["List", "ListItem"];
-    readonly layout: readonly ["Layout", "Cell"];
-    readonly row: readonly ["Row", "Column"];
     readonly search: readonly ["SearchForm", readonly ["SearchInput", "SearchButton", "FormBlockLabel"]];
 };
 //# sourceMappingURL=constraints.d.ts.map

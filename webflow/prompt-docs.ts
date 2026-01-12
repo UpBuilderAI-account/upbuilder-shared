@@ -19,7 +19,6 @@ export function generateComponentListForPrompt(): string {
     { key: 'basic', name: 'Basic' },
     { key: 'typography', name: 'Typography' },
     { key: 'text-formatting', name: 'Text Formatting' },
-    { key: 'layout', name: 'Layout' },
     { key: 'navigation', name: 'Navigation' },
     { key: 'dropdown', name: 'Dropdown' },
     { key: 'tabs', name: 'Tabs' },
@@ -270,48 +269,6 @@ id: "input_1" | compType: "FormTextInput" | parent: "field_group" ← WRONG
 6. Skip field-group wrapper divs`;
 }
 
-/**
- * Generate layout hierarchy documentation
- */
-export function generateLayoutHierarchyDocs(): string {
-  return `## CRITICAL: LAYOUT (CSS GRID) HIERARCHY
-
-### Required Structure:
-\`\`\`
-Layout (CSS Grid container)
-└── Cell (ONLY allowed children, pinned)
-    └── [any content goes INSIDE Cell]
-\`\`\`
-
-### CORRECT Example:
-\`\`\`
-id: "grid" | compType: "Layout" | parent: "section"
-id: "cell_1" | compType: "Cell" | parent: "grid"
-id: "cell_1_content" | compType: "Block" | parent: "cell_1"
-id: "cell_2" | compType: "Cell" | parent: "grid"
-id: "cell_2_content" | compType: "Image" | parent: "cell_2"
-\`\`\`
-
-### WRONG:
-\`\`\`
-id: "grid" | compType: "Layout" | parent: "section"
-id: "content" | compType: "Block" | parent: "grid"  ← WRONG: must use Cell!
-\`\`\`
-
-### Row/Column Alternative:
-\`\`\`
-Row
-└── Column (ONLY allowed children)
-    └── [any content]
-\`\`\`
-
-### Key Rules:
-1. **Layout** → can ONLY contain **Cell** children
-2. **Cell** → MUST be direct child of **Layout**
-3. **Row** → can ONLY contain **Column** children
-4. **Column** → MUST be direct child of **Row**
-5. Put content INSIDE Cell/Column, not directly in Layout/Row`;
-}
 
 /**
  * Generate HTML embed documentation
@@ -376,11 +333,6 @@ export function generateValidationChecklist(): string {
 - [ ] FormRadioInput is inside FormRadioWrapper
 - [ ] FormSuccessMessage/ErrorMessage are in FormWrapper (NOT in FormForm)
 
-### Layout:
-- [ ] Layout only contains Cell children
-- [ ] Row only contains Column children
-- [ ] Content goes INSIDE Cell/Column
-
 ### Lists:
 - [ ] List only contains ListItem children
 - [ ] ListItem is inside List`;
@@ -402,8 +354,6 @@ export function generateAllHierarchyDocs(): string {
     generateSliderHierarchyDocs(),
     '',
     generateFormHierarchyDocs(),
-    '',
-    generateLayoutHierarchyDocs(),
     '',
     generateHtmlEmbedDocs(),
     '',
@@ -452,9 +402,6 @@ export function generateCompactHierarchyRules(): string {
 - Inputs MUST be DIRECT children of FormForm (NOT in Blocks!)
 - FormSuccessMessage/ErrorMessage in FormWrapper (NOT FormForm)
 
-**Layout:** Layout → Cell only | Row → Column only
-- Content goes INSIDE Cell/Column
-
 **List:** List → ListItem only`;
 }
 
@@ -466,7 +413,6 @@ export function generateMinimalComponentList(): string {
 
 **Basic:** Block, Section, Link, Button, Image, List, ListItem, HtmlEmbed
 **Typography:** Heading, Paragraph, Span, Blockquote
-**Layout:** Layout, Cell, Row, Column
 **Navbar:** NavbarWrapper, NavbarContainer, NavbarBrand, NavbarMenu, NavbarLink, NavbarButton
 **Dropdown:** DropdownWrapper, DropdownToggle, DropdownList, DropdownLink
 **Tabs:** TabsWrapper, TabsMenu, TabsContent, TabsLink, TabsPane
@@ -502,5 +448,4 @@ export const DROPDOWN_HIERARCHY_DOCS = generateDropdownHierarchyDocs();
 export const TABS_HIERARCHY_DOCS = generateTabsHierarchyDocs();
 export const SLIDER_HIERARCHY_DOCS = generateSliderHierarchyDocs();
 export const FORM_HIERARCHY_DOCS = generateFormHierarchyDocs();
-export const LAYOUT_HIERARCHY_DOCS = generateLayoutHierarchyDocs();
 export const HTML_EMBED_DOCS = generateHtmlEmbedDocs();
