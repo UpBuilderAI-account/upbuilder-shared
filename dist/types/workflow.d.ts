@@ -423,24 +423,16 @@ export interface ClientToServerWorkflowEvents {
     'workflow:clean_stylesheet': (data: StylesheetCleanRequest, cb: (result: StylesheetCleanResult) => void) => void;
 }
 /**
- * Consolidation step status (CSS or JS consolidation)
- */
-export interface ConsolidationStep {
-    type: 'css' | 'js';
-    status: 'pending' | 'running' | 'complete' | 'failed';
-    progress: Progress;
-    message?: string;
-}
-/**
- * Design assembly status with validation step
+ * Design build status with validation step (streamlined workflow)
+ * Each design goes through: Build (unified AI) -> XSCP -> Validate
  */
 export interface AssemblyDesign {
     id: string;
     name: string;
-    /** Assembly step: building the design HTML */
+    /** Build step: unified AI call that outputs styles + structure */
     status: 'pending' | 'running' | 'complete' | 'failed';
     progress: Progress;
-    /** Validation step: runs after assembly completes */
+    /** Validation step: runs after build completes */
     validation?: {
         status: 'pending' | 'running' | 'complete' | 'failed';
         progress: Progress;
@@ -457,16 +449,12 @@ export interface AssetUploadProgress {
     total: number;
 }
 /**
- * Assembly progress tracking (consolidation + design assembly)
+ * Assembly progress tracking (streamlined: just designs + asset upload)
  */
 export interface AssemblyProgress {
     /** Asset upload runs in background during entire conversion */
     assetUpload?: AssetUploadProgress;
-    consolidation: {
-        css: ConsolidationStep;
-        js: ConsolidationStep;
-        jsEnabled: boolean;
-    };
+    /** Designs being built (unified build -> XSCP -> validate) */
     designs: AssemblyDesign[];
 }
 /**

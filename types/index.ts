@@ -90,8 +90,7 @@ export {
   // Socket event interfaces
   type ServerToClientWorkflowEvents,
   type ClientToServerWorkflowEvents,
-  // Assembly types (build stage consolidation)
-  type ConsolidationStep,
+  // Assembly types (streamlined build stage)
   type AssemblyDesign,
   type AssemblyProgress,
   type AssetUploadProgress,
