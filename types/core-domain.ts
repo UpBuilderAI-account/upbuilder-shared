@@ -85,8 +85,7 @@ export type ProjectStatus =
   | 'idle'
   | 'export_config'      // First stage - configure export options
   | 'load'
-  | 'generate_styles'    // Generate global style registry
-  | 'convert_to_platform' // Unified build: AI generates consolidated styles + structure per design
+  | 'convert_to_platform' // Unified build: AI generates ALL styles + structure per design
   | 'customize'          // Preview Webflow structure + export modal
   | 'complete'
   | 'failed';
@@ -98,7 +97,6 @@ export const PROJECT_STATUS = {
   IDLE: 'idle' as ProjectStatus,
   EXPORT_CONFIG: 'export_config' as ProjectStatus,
   LOAD: 'load' as ProjectStatus,
-  GENERATE_STYLES: 'generate_styles' as ProjectStatus,
   CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
@@ -111,7 +109,6 @@ export const PROJECT_STATUS = {
 export function isProcessingStage(status: ProjectStatus): boolean {
   const processingStages: ProjectStatus[] = [
     'load',
-    'generate_styles',
     'convert_to_platform',
   ];
   return processingStages.includes(status);
@@ -127,8 +124,7 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
     idle: 'export_config',
     export_config: 'load',
-    load: 'generate_styles',
-    generate_styles: 'convert_to_platform',
+    load: 'convert_to_platform',
     convert_to_platform: 'customize',
     customize: 'complete',
     complete: null,

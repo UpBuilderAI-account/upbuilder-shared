@@ -40,7 +40,6 @@ export {
   type WorkflowStage,
   type WorkflowStages,
   // Server events
-  type WorkflowStream,
   type WorkflowError,
   // Editor types
   type EditorSection,
@@ -78,12 +77,6 @@ export {
   type RenameTargetType,
   type RenameRequest,
   type RenameResult,
-  // Stylesheet review types (generate_styles stage)
-  type StylesheetSaveRequest,
-  type StylesheetResetRequest,
-  type StylesheetCleanRequest,
-  type StylesheetSaveResult,
-  type StylesheetCleanResult,
   // Background progress types (export_config stage)
   type BackgroundJobStatus,
   type WorkflowBackgroundProgress,
@@ -95,19 +88,17 @@ export {
   type AssemblyProgress,
   type AssetUploadProgress,
   type AssembledDesign,
-  // Early asset upload (runs in background during Stages 2-4)
+  // Early asset upload (runs in background during load stage)
   type EarlyAssetUploadProgress,
   // Helpers
   isPending,
   isRunning,
   isComplete,
   isFailed,
-  isInlineCSSPlatform,
   getStageOrderForPlatform,
   // Constants
   STAGE_ORDER,
   STAGE_LABELS,
-  INLINE_PLATFORM_SKIPPED_STAGES,
 } from './workflow';
 
 // Plugin types

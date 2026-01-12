@@ -68,20 +68,8 @@ export interface WorkflowStages {
     platform: Platform;
     currentStage: number;
     stages: WorkflowStage[];
-    /** CSS from generate_styles stage (global stylesheet) */
-    generateStylesCSS?: string;
-    /** Original CSS from generate_styles stage (for reset functionality) */
-    generateStylesOriginalCSS?: string;
-    /** Early asset upload progress (runs in background during Stages 2-4) */
+    /** Early asset upload progress (runs in background during load stage) */
     earlyAssetUpload?: EarlyAssetUploadProgress;
-}
-export interface WorkflowStream {
-    stage: 'generate_styles';
-    type: 'css';
-    chunk: string;
-    done?: boolean;
-    /** If true, frontend should clear accumulated code before appending chunk (used for retries) */
-    reset?: boolean;
 }
 export interface WorkflowError {
     stage: Stage;
@@ -297,7 +285,7 @@ export interface WorkflowExportComplete {
 }
 export interface WorkflowCommand {
     projectId: string;
-    action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_generate_styles' | 'reprocess_convert_to_platform' | 'reprocess_customize' | 'reprocess_customize_fast';
+    action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_convert_to_platform' | 'reprocess_customize' | 'reprocess_customize_fast';
     retry?: boolean;
     /** Export configuration from export_config stage */
     exportConfig?: ExportConfig;
@@ -338,44 +326,6 @@ export interface CodeSaveResult {
         message: string;
     }>;
 }
-/**
- * Request to save edited stylesheet during generate_styles review
- */
-export interface StylesheetSaveRequest {
-    projectId: string;
-    css: string;
-}
-/**
- * Request to reset stylesheet to original generated version
- */
-export interface StylesheetResetRequest {
-    projectId: string;
-}
-/**
- * Request to clean unused CSS classes from stylesheet
- */
-export interface StylesheetCleanRequest {
-    projectId: string;
-}
-/**
- * Result of stylesheet save/reset operation
- */
-export interface StylesheetSaveResult {
-    success: boolean;
-    css?: string;
-    error?: string;
-}
-/**
- * Result of stylesheet clean operation
- */
-export interface StylesheetCleanResult {
-    success: boolean;
-    css?: string;
-    removedClasses?: string[];
-    originalSize?: number;
-    cleanedSize?: number;
-    error?: string;
-}
 export type RenameTargetType = 'design' | 'section' | 'globalSection';
 export interface RenameRequest {
     projectId: string;
@@ -403,7 +353,6 @@ export interface WorkflowBackgroundProgress {
 export interface ServerToClientWorkflowEvents {
     'workflow:stage': (data: WorkflowStage) => void;
     'workflow:stages': (data: WorkflowStages) => void;
-    'workflow:stream': (data: WorkflowStream) => void;
     'workflow:error': (data: WorkflowError) => void;
     'workflow:editor': (data: WorkflowEditor) => void;
     'workflow:export_complete': (data: WorkflowExportComplete) => void;
@@ -418,9 +367,6 @@ export interface ClientToServerWorkflowEvents {
     'workflow:command': (data: WorkflowCommand, cb: (ok: boolean) => void) => void;
     'workflow:save_code': (data: CodeSaveRequest, cb: (result: CodeSaveResult) => void) => void;
     'workflow:rename': (data: RenameRequest, cb: (result: RenameResult) => void) => void;
-    'workflow:save_stylesheet': (data: StylesheetSaveRequest, cb: (result: StylesheetSaveResult) => void) => void;
-    'workflow:reset_stylesheet': (data: StylesheetResetRequest, cb: (result: StylesheetSaveResult) => void) => void;
-    'workflow:clean_stylesheet': (data: StylesheetCleanRequest, cb: (result: StylesheetCleanResult) => void) => void;
 }
 /**
  * Design build status with validation step (streamlined workflow)
@@ -477,17 +423,8 @@ export declare const isFailed: (p: Progress) => boolean;
 export declare const STAGE_ORDER: Stage[];
 export declare const STAGE_LABELS: Record<Stage, string>;
 /**
- * Stages to skip for inline CSS platforms (Bricks, Elementor)
- * These platforms use inline styles per section instead of global stylesheets
- */
-export declare const INLINE_PLATFORM_SKIPPED_STAGES: Stage[];
-/**
- * Check if a platform uses inline CSS (skips global stylesheet stages)
- */
-export declare function isInlineCSSPlatform(platform: string): boolean;
-/**
  * Get the stage order for a specific platform
- * Filters out stages that should be skipped for inline CSS platforms
+ * Currently all platforms use the same stage order
  */
-export declare function getStageOrderForPlatform(platform: string): Stage[];
+export declare function getStageOrderForPlatform(_platform: string): Stage[];
 //# sourceMappingURL=workflow.d.ts.map

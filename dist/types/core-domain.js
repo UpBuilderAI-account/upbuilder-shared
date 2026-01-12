@@ -21,7 +21,6 @@ exports.PROJECT_STATUS = {
     IDLE: 'idle',
     EXPORT_CONFIG: 'export_config',
     LOAD: 'load',
-    GENERATE_STYLES: 'generate_styles',
     CONVERT_TO_PLATFORM: 'convert_to_platform',
     CUSTOMIZE: 'customize',
     COMPLETE: 'complete',
@@ -33,7 +32,6 @@ exports.PROJECT_STATUS = {
 function isProcessingStage(status) {
     const processingStages = [
         'load',
-        'generate_styles',
         'convert_to_platform',
     ];
     return processingStages.includes(status);
@@ -49,8 +47,7 @@ function getNextStatus(status, platform, quickMode) {
     const transitions = {
         idle: 'export_config',
         export_config: 'load',
-        load: 'generate_styles',
-        generate_styles: 'convert_to_platform',
+        load: 'convert_to_platform',
         convert_to_platform: 'customize',
         customize: 'complete',
         complete: null,

@@ -6,8 +6,7 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = void 0;
-exports.isInlineCSSPlatform = isInlineCSSPlatform;
+exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = void 0;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
 /**
  * Default stylesheet configuration
@@ -87,37 +86,19 @@ exports.isFailed = isFailed;
 exports.STAGE_ORDER = [
     'export_config',
     'load',
-    'generate_styles',
     'convert_to_platform',
     'customize',
 ];
 exports.STAGE_LABELS = {
     export_config: 'Configure Export',
     load: 'Loading Data',
-    generate_styles: 'Generating Base Styles',
     convert_to_platform: 'Building Design',
     customize: 'Preview & Export',
 };
 /**
- * Stages to skip for inline CSS platforms (Bricks, Elementor)
- * These platforms use inline styles per section instead of global stylesheets
- */
-exports.INLINE_PLATFORM_SKIPPED_STAGES = [
-    'generate_styles',
-];
-/**
- * Check if a platform uses inline CSS (skips global stylesheet stages)
- */
-function isInlineCSSPlatform(platform) {
-    return platform === 'bricks' || platform === 'elementor';
-}
-/**
  * Get the stage order for a specific platform
- * Filters out stages that should be skipped for inline CSS platforms
+ * Currently all platforms use the same stage order
  */
-function getStageOrderForPlatform(platform) {
-    if (isInlineCSSPlatform(platform)) {
-        return exports.STAGE_ORDER.filter(stage => !exports.INLINE_PLATFORM_SKIPPED_STAGES.includes(stage));
-    }
+function getStageOrderForPlatform(_platform) {
     return exports.STAGE_ORDER;
 }

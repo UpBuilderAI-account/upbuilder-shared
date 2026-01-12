@@ -18,7 +18,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.INLINE_PLATFORM_SKIPPED_STAGES = exports.STAGE_LABELS = exports.STAGE_ORDER = exports.getStageOrderForPlatform = exports.isInlineCSSPlatform = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.QUICK_EXPORT_CONFIG = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.USES_SECTION_CSS = exports.QUICK_MODE_SKIPPED_STAGES = exports.SKIPPED_STAGES = exports.shouldSkipStage = exports.requiresUserActionAfter = exports.getNextStatus = exports.isProcessingStage = void 0;
+exports.STAGE_LABELS = exports.STAGE_ORDER = exports.getStageOrderForPlatform = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.QUICK_EXPORT_CONFIG = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.USES_SECTION_CSS = exports.QUICK_MODE_SKIPPED_STAGES = exports.SKIPPED_STAGES = exports.shouldSkipStage = exports.requiresUserActionAfter = exports.getNextStatus = exports.isProcessingStage = void 0;
 // Core domain types (business logic & database entities)
 __exportStar(require("./core-domain"), exports);
 // Re-export workflow helpers from core-domain for convenience
@@ -50,12 +50,10 @@ Object.defineProperty(exports, "isPending", { enumerable: true, get: function ()
 Object.defineProperty(exports, "isRunning", { enumerable: true, get: function () { return workflow_1.isRunning; } });
 Object.defineProperty(exports, "isComplete", { enumerable: true, get: function () { return workflow_1.isComplete; } });
 Object.defineProperty(exports, "isFailed", { enumerable: true, get: function () { return workflow_1.isFailed; } });
-Object.defineProperty(exports, "isInlineCSSPlatform", { enumerable: true, get: function () { return workflow_1.isInlineCSSPlatform; } });
 Object.defineProperty(exports, "getStageOrderForPlatform", { enumerable: true, get: function () { return workflow_1.getStageOrderForPlatform; } });
 // Constants
 Object.defineProperty(exports, "STAGE_ORDER", { enumerable: true, get: function () { return workflow_1.STAGE_ORDER; } });
 Object.defineProperty(exports, "STAGE_LABELS", { enumerable: true, get: function () { return workflow_1.STAGE_LABELS; } });
-Object.defineProperty(exports, "INLINE_PLATFORM_SKIPPED_STAGES", { enumerable: true, get: function () { return workflow_1.INLINE_PLATFORM_SKIPPED_STAGES; } });
 // Plugin types
 __exportStar(require("./plugin"), exports);
 // Element types

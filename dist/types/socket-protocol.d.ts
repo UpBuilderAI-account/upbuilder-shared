@@ -1,6 +1,6 @@
 import type { ImagePair, PreviewData, FramePreview } from './plugin';
 import type { Element } from './element';
-import type { WorkflowStage, WorkflowStages, WorkflowStream, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType, StylesheetSaveRequest, StylesheetResetRequest, StylesheetCleanRequest, StylesheetSaveResult, StylesheetCleanResult } from './workflow';
+import type { WorkflowStage, WorkflowStages, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { ExportConfig } from './workflow';
 import type { RequestTreePayload, TreeDataResponse } from './editable-tree';
@@ -215,9 +215,6 @@ export interface ClientToServerEvents {
     'workflow:command': (data: WorkflowCommand, callback: (ok: boolean) => void) => void;
     'workflow:save_code': (data: CodeSaveRequest, callback: (result: CodeSaveResult) => void) => void;
     'workflow:rename': (data: RenameRequest, callback: (result: RenameResult) => void) => void;
-    'workflow:save_stylesheet': (data: StylesheetSaveRequest, callback: (result: StylesheetSaveResult) => void) => void;
-    'workflow:reset_stylesheet': (data: StylesheetResetRequest, callback: (result: StylesheetSaveResult) => void) => void;
-    'workflow:clean_stylesheet': (data: StylesheetCleanRequest, callback: (result: StylesheetCleanResult) => void) => void;
     'workflow:process_pending': (data: {
         projectId: string;
     }, callback: (result: {
@@ -270,7 +267,6 @@ export interface ServerToClientEvents {
     error: (data: ErrorPayload) => void;
     'workflow:stage': (data: WorkflowStage) => void;
     'workflow:stages': (data: WorkflowStages) => void;
-    'workflow:stream': (data: WorkflowStream) => void;
     'workflow:error': (data: WorkflowError) => void;
     'workflow:editor': (data: WorkflowEditor) => void;
     'workflow:export_complete': (data: WorkflowExportComplete) => void;

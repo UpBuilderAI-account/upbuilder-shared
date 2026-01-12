@@ -44,16 +44,12 @@ export declare const SOCKET_EVENTS: {
         readonly COMMAND: "workflow:command";
         readonly STAGE: "workflow:stage";
         readonly STAGES: "workflow:stages";
-        readonly STREAM: "workflow:stream";
         readonly ERROR: "workflow:error";
         readonly EDITOR: "workflow:editor";
         readonly EXPORT_COMPLETE: "workflow:export_complete";
         readonly SAVE_CODE: "workflow:save_code";
         readonly RENAME: "workflow:rename";
         readonly RENAMED: "workflow:renamed";
-        readonly SAVE_STYLESHEET: "workflow:save_stylesheet";
-        readonly RESET_STYLESHEET: "workflow:reset_stylesheet";
-        readonly CLEAN_STYLESHEET: "workflow:clean_stylesheet";
         readonly EXPORT_LIMIT_REACHED: "workflow:export_limit_reached";
         readonly PROCESS_PENDING: "workflow:process_pending";
         readonly BACKGROUND_PROGRESS: "workflow:background_progress";

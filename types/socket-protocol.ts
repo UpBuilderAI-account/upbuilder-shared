@@ -16,7 +16,6 @@ import type { Element } from './element';
 import type {
   WorkflowStage,
   WorkflowStages,
-  WorkflowStream,
   WorkflowError,
   WorkflowEditor,
   WorkflowCommand,
@@ -27,11 +26,6 @@ import type {
   RenameRequest,
   RenameResult,
   RenameTargetType,
-  StylesheetSaveRequest,
-  StylesheetResetRequest,
-  StylesheetCleanRequest,
-  StylesheetSaveResult,
-  StylesheetCleanResult,
 } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { ExportConfig } from './workflow';
@@ -355,22 +349,6 @@ export interface ClientToServerEvents {
     callback: (result: RenameResult) => void
   ) => void;
 
-  // Workflow stylesheet review (save/reset/clean)
-  'workflow:save_stylesheet': (
-    data: StylesheetSaveRequest,
-    callback: (result: StylesheetSaveResult) => void
-  ) => void;
-
-  'workflow:reset_stylesheet': (
-    data: StylesheetResetRequest,
-    callback: (result: StylesheetSaveResult) => void
-  ) => void;
-
-  'workflow:clean_stylesheet': (
-    data: StylesheetCleanRequest,
-    callback: (result: StylesheetCleanResult) => void
-  ) => void;
-
   // Process pending designs after upgrade to Pro
   'workflow:process_pending': (
     data: { projectId: string },
@@ -461,10 +439,9 @@ export interface ServerToClientEvents {
   // Error events
   error: (data: ErrorPayload) => void;
 
-  // Workflow events (9 events total)
+  // Workflow events
   'workflow:stage': (data: WorkflowStage) => void;
   'workflow:stages': (data: WorkflowStages) => void;
-  'workflow:stream': (data: WorkflowStream) => void;
   'workflow:error': (data: WorkflowError) => void;
   'workflow:editor': (data: WorkflowEditor) => void;
   'workflow:export_complete': (data: WorkflowExportComplete) => void;
