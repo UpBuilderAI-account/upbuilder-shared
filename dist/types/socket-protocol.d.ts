@@ -239,6 +239,14 @@ export interface ClientToServerEvents {
     'customizer:request_export': (data: RequestExportRequest, callback: (response: RequestExportResponse) => void) => void;
     'customizer:request_preview': (data: RequestPreviewPayload, callback: (response: RequestPreviewResponse) => void) => void;
     'customizer:upload_image': (data: UploadImageRequest, callback: (response: UploadImageResponse) => void) => void;
+    'customizer:asset_upload_status': (data: {
+        projectId: string;
+    }, callback: (response: {
+        complete: boolean;
+        uploaded: number;
+        total: number;
+        failed: number;
+    }) => void) => void;
 }
 /**
  * Events sent from server to client

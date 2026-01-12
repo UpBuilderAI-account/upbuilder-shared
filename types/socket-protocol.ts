@@ -404,6 +404,11 @@ export interface ClientToServerEvents {
     data: UploadImageRequest,
     callback: (response: UploadImageResponse) => void
   ) => void;
+
+  'customizer:asset_upload_status': (
+    data: { projectId: string },
+    callback: (response: { complete: boolean; uploaded: number; total: number; failed: number }) => void
+  ) => void;
 }
 
 /**
