@@ -53,6 +53,15 @@ export interface WorkflowStage {
     /** Assembly progress tracking (build stage only) */
     assemblyProgress?: AssemblyProgress;
 }
+/**
+ * Early asset upload progress (runs in background during Stages 2-4)
+ * Separate from assemblyProgress because it spans multiple stages
+ */
+export interface EarlyAssetUploadProgress {
+    status: 'pending' | 'running' | 'complete' | 'failed';
+    uploaded: number;
+    total: number;
+}
 export interface WorkflowStages {
     projectId: string;
     projectName: string;
@@ -63,6 +72,8 @@ export interface WorkflowStages {
     generateStylesCSS?: string;
     /** Original CSS from generate_styles stage (for reset functionality) */
     generateStylesOriginalCSS?: string;
+    /** Early asset upload progress (runs in background during Stages 2-4) */
+    earlyAssetUpload?: EarlyAssetUploadProgress;
 }
 export interface WorkflowStream {
     stage: 'generate_styles';

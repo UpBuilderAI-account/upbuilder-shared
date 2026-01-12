@@ -96,6 +96,8 @@ export {
   type AssemblyProgress,
   type AssetUploadProgress,
   type AssembledDesign,
+  // Early asset upload (runs in background during Stages 2-4)
+  type EarlyAssetUploadProgress,
   // Helpers
   isPending,
   isRunning,
