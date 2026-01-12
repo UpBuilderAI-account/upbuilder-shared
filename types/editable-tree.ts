@@ -420,6 +420,9 @@ export interface EditableNode {
     poster?: string;
   };
 
+  /** Data attributes (e.g., data-collapse, data-animation for navbar) */
+  attributes?: Record<string, string>;
+
   /** Child node IDs in order */
   children: string[];
 

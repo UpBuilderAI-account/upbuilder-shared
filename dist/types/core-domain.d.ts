@@ -158,6 +158,12 @@ export interface ProjectState {
         createdAt: string;
     }>;
     exportConfig?: import('./workflow').ExportConfig;
+    assetUploadStatus?: {
+        complete: boolean;
+        uploaded: number;
+        total: number;
+        failed: number;
+    };
 }
 export interface SectionCode {
     html: string;

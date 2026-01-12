@@ -270,6 +270,14 @@ export interface ProjectState {
 
   // Export config (set from plugin, skips export_config stage in workflow)
   exportConfig?: import('./workflow').ExportConfig;
+
+  // Asset upload status (for Webflow CDN upload progress)
+  assetUploadStatus?: {
+    complete: boolean;
+    uploaded: number;
+    total: number;
+    failed: number;
+  };
 }
 
 export interface SectionCode {

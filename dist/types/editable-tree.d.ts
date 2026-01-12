@@ -201,6 +201,8 @@ export interface EditableNode {
         /** Poster image URL */
         poster?: string;
     };
+    /** Data attributes (e.g., data-collapse, data-animation for navbar) */
+    attributes?: Record<string, string>;
     /** Child node IDs in order */
     children: string[];
     /** Parent node ID (null for root nodes) */
