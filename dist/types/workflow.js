@@ -43,16 +43,12 @@ exports.DEFAULT_RESPONSIVE_CONFIG = {
  */
 exports.DEFAULT_INTERACTIVITY_CONFIG = {
     enableTransitions: true, // CSS hover effects enabled by default
-    enableJavaScript: true, // JS components enabled by default
-    enableAnimations: false, // Scroll animations disabled (coming soon)
 };
 /**
- * Quick mode interactivity - no JS/animations for faster export
+ * Quick mode interactivity
  */
 exports.QUICK_INTERACTIVITY_CONFIG = {
     enableTransitions: true, // Keep CSS transitions even in quick mode
-    enableJavaScript: false,
-    enableAnimations: false,
 };
 /**
  * Quick export config - uses defaults, skips stylesheet review, no animations

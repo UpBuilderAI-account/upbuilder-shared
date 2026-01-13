@@ -257,7 +257,7 @@ export interface ResponsiveConfig {
 
 /**
  * Interactivity configuration (part of ExportConfig)
- * Controls CSS transitions, JavaScript components, and animations
+ * Controls CSS transitions and hover effects
  */
 export interface InteractivityConfig {
   /**
@@ -267,21 +267,6 @@ export interface InteractivityConfig {
    * - :hover, :focus, :active state changes
    */
   enableTransitions: boolean;
-
-  /**
-   * Enable JavaScript in the export:
-   * - Required for interactive elements (sliders, tabs, accordions, modals, filters)
-   * - Required for scroll animations to work
-   */
-  enableJavaScript: boolean;
-
-  /**
-   * Enable scroll animations (requires enableJavaScript):
-   * - Scroll reveals (AOS fade-up on sections, zoom on images)
-   * - Infinite marquees (auto-detected logo strips)
-   * - Entrance animations
-   */
-  enableAnimations: boolean;
 }
 
 /**
@@ -335,17 +320,13 @@ export const DEFAULT_RESPONSIVE_CONFIG: ResponsiveConfig = {
  */
 export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: true,   // CSS hover effects enabled by default
-  enableJavaScript: true,    // JS components enabled by default
-  enableAnimations: false,   // Scroll animations disabled (coming soon)
 };
 
 /**
- * Quick mode interactivity - no JS/animations for faster export
+ * Quick mode interactivity
  */
 export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: true,   // Keep CSS transitions even in quick mode
-  enableJavaScript: false,
-  enableAnimations: false,
 };
 
 /**

@@ -533,5 +533,11 @@ export interface EditableTreePayloadV2 extends EditableTreePayload {
      * Value: style object _id
      */
     chainIndex: ChainIndex;
+    /**
+     * Initial breakpoint based on original Figma design dimensions
+     * Calculated from design width + 15% padding on each side
+     * Frontend uses this to set the default canvas/preview breakpoint
+     */
+    initialBreakpoint?: Breakpoint;
 }
 //# sourceMappingURL=editable-tree.d.ts.map
