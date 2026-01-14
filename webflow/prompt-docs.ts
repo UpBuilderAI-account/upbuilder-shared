@@ -335,7 +335,12 @@ export function generateValidationChecklist(): string {
 
 ### Lists:
 - [ ] List only contains ListItem children
-- [ ] ListItem is inside List`;
+- [ ] ListItem is inside List
+
+### Typography (CRITICAL - Webflow does NOT inherit fonts!):
+- [ ] EVERY style used by Heading/Paragraph/Span/Link/Button has font-family declared
+- [ ] font-family includes fallback (e.g., 'Roboto', sans-serif)
+- [ ] No text style relies on body inheritance - each must be self-contained`;
 }
 
 /**
