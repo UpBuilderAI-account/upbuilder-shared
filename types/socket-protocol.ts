@@ -11,7 +11,7 @@
 // - socket.ts: Full Socket.IO type definitions
 // ============================================================================
 
-import type { ImagePair, PreviewData, FramePreview } from './plugin';
+import type { ImagePair, PreviewData, SmallPreview, BigPreview, FramePreview } from './plugin';
 import type { Element } from './element';
 import type {
   WorkflowStage,
@@ -197,7 +197,10 @@ export interface PluginPayloads {
     colors?: string[];
     gradients?: any[];
     preview?: PreviewData; // Small preview for UI
-    framePreview?: FramePreview; // Bigger preview (720px JPG) for featured image
+    smallPreview?: SmallPreview; // 720px JPG for featured image/thumbnails (S3)
+    bigPreview?: BigPreview; // 8K max JPG for AI analysis (Google AI Files)
+    /** @deprecated Use smallPreview instead */
+    framePreview?: FramePreview;
     exportConfig?: ExportConfig; // Full export config from plugin (skips export_config stage)
     selectedProjectData?: {
       type: 'existing';

@@ -1,4 +1,4 @@
-import type { ImagePair, PreviewData, FramePreview } from './plugin';
+import type { ImagePair, PreviewData, SmallPreview, BigPreview, FramePreview } from './plugin';
 import type { Element } from './element';
 import type { WorkflowStage, WorkflowStages, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
@@ -106,6 +106,9 @@ export interface PluginPayloads {
         colors?: string[];
         gradients?: any[];
         preview?: PreviewData;
+        smallPreview?: SmallPreview;
+        bigPreview?: BigPreview;
+        /** @deprecated Use smallPreview instead */
         framePreview?: FramePreview;
         exportConfig?: ExportConfig;
         selectedProjectData?: {

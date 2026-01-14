@@ -48,16 +48,35 @@ export interface PreviewData {
 }
 
 /**
- * Frame preview with scaling info
+ * Small preview (720px max) for thumbnails/featured images
+ * Stored in S3 for dashboard display
  */
-export interface FramePreview {
-  data: string; // base64
+export interface SmallPreview {
+  data: string; // base64 JPG
   previewWidth: number;
   previewHeight: number;
   scale: number;
   originalWidth: number;
   originalHeight: number;
 }
+
+/**
+ * Big preview (8K max) for AI analysis
+ * Uploaded to Google AI Files API for use in prompts
+ */
+export interface BigPreview {
+  data: string; // base64 JPG
+  width: number;
+  height: number;
+  originalWidth: number;
+  originalHeight: number;
+  scale: number;
+}
+
+/**
+ * @deprecated Use SmallPreview instead. Kept for backward compatibility.
+ */
+export type FramePreview = SmallPreview;
 
 /**
  * Node that owns an image
@@ -187,8 +206,12 @@ export interface PluginNodesData {
   // Multi-design support
   frames?: FrameData[];
   totalFrames?: number;
-  // Frame previews by frame index (sent with send_nodes for immediate upload)
-  framePreviews?: Record<number, FramePreview>;
+  // Small previews (720px) by frame index - for thumbnails/featured images
+  smallPreviews?: Record<number, SmallPreview>;
+  // Big previews (8K max) by frame index - for AI analysis
+  bigPreviews?: Record<number, BigPreview>;
+  // @deprecated Use smallPreviews instead
+  framePreviews?: Record<number, SmallPreview>;
 }
 
 /**
@@ -197,7 +220,9 @@ export interface PluginNodesData {
 export interface PluginImagesData {
   images: ImagePair[];
   frameId: string;
-  framePreview?: FramePreview;
+  smallPreview?: SmallPreview;
+  /** @deprecated Use smallPreview instead */
+  framePreview?: SmallPreview;
 }
 
 /**

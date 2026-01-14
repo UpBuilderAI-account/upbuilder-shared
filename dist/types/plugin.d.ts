@@ -34,9 +34,10 @@ export interface PreviewData {
     height: number;
 }
 /**
- * Frame preview with scaling info
+ * Small preview (720px max) for thumbnails/featured images
+ * Stored in S3 for dashboard display
  */
-export interface FramePreview {
+export interface SmallPreview {
     data: string;
     previewWidth: number;
     previewHeight: number;
@@ -44,6 +45,22 @@ export interface FramePreview {
     originalWidth: number;
     originalHeight: number;
 }
+/**
+ * Big preview (8K max) for AI analysis
+ * Uploaded to Google AI Files API for use in prompts
+ */
+export interface BigPreview {
+    data: string;
+    width: number;
+    height: number;
+    originalWidth: number;
+    originalHeight: number;
+    scale: number;
+}
+/**
+ * @deprecated Use SmallPreview instead. Kept for backward compatibility.
+ */
+export type FramePreview = SmallPreview;
 /**
  * Node that owns an image
  */
@@ -265,7 +282,9 @@ export interface PluginNodesData {
     frameId: string;
     frames?: FrameData[];
     totalFrames?: number;
-    framePreviews?: Record<number, FramePreview>;
+    smallPreviews?: Record<number, SmallPreview>;
+    bigPreviews?: Record<number, BigPreview>;
+    framePreviews?: Record<number, SmallPreview>;
 }
 /**
  * Image extraction result (plugin UI wrapper)
@@ -273,7 +292,9 @@ export interface PluginNodesData {
 export interface PluginImagesData {
     images: ImagePair[];
     frameId: string;
-    framePreview?: FramePreview;
+    smallPreview?: SmallPreview;
+    /** @deprecated Use smallPreview instead */
+    framePreview?: SmallPreview;
 }
 /**
  * Image batch data for chunked transfer (plugin → frontend)

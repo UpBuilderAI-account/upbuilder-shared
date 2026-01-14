@@ -149,8 +149,7 @@ export function generateTabsHierarchyDocs(): string {
 \`\`\`
 TabsWrapper
 ├── TabsMenu (DIRECT child, pinned, exactly one)
-│   └── TabsLink (tab buttons)
-│       └── Block (optional content)
+│   └── TabsLink (tab buttons) - MUST have text attribute!
 └── TabsContent (DIRECT child, pinned, exactly one)
     └── TabsPane (tab panels, one per TabsLink)
         └── [any content]
@@ -159,20 +158,30 @@ TabsWrapper
 ### CORRECT Example:
 \`\`\`
 id: "tabs" | compType: "TabsWrapper" | parent: "section"
-id: "tabs_menu" | compType: "TabsMenu" | parent: "tabs"
-id: "tab_link_1" | compType: "TabsLink" | parent: "tabs_menu"
-id: "tab_link_2" | compType: "TabsLink" | parent: "tabs_menu"
+id: "tabs_menu" | compType: "TabsMenu" | parent: "tabs" | styles: [".tabs_menu"]
+id: "tab_1" | compType: "TabsLink" | parent: "tabs_menu" | styles: [".tab_link"] | text: "Tab One"
+id: "tab_2" | compType: "TabsLink" | parent: "tabs_menu" | styles: [".tab_link"] | text: "Tab Two"
 id: "tabs_content" | compType: "TabsContent" | parent: "tabs"
-id: "tab_pane_1" | compType: "TabsPane" | parent: "tabs_content"
-id: "tab_pane_2" | compType: "TabsPane" | parent: "tabs_content"
+id: "pane_1" | compType: "TabsPane" | parent: "tabs_content"
+id: "pane_2" | compType: "TabsPane" | parent: "tabs_content"
 \`\`\`
 
 ### Key Rules:
 1. **TabsMenu** → exactly ONE, DIRECT child of **TabsWrapper** (pinned)
 2. **TabsContent** → exactly ONE, DIRECT child of **TabsWrapper** (pinned)
-3. **TabsLink** → children of **TabsMenu**
+3. **TabsLink** → MUST have \`text\` attribute (do NOT nest Blocks inside!)
 4. **TabsPane** → children of **TabsContent**
-5. Number of TabsPane MUST match number of TabsLink`;
+5. Number of TabsPane MUST match number of TabsLink
+6. Use \`current:\` in style for active/selected tab state
+
+### TabsLink Styling:
+Use \`current:\` pseudo-state for the active tab appearance. For example:
+\`\`\`yaml
+- id: ".tab_link"
+  main: "[base styles: padding, font, color, etc.]"
+  current: "[active state: different color, border, background, font-weight, etc.]"
+  hover: "[hover state if needed]"
+\`\`\``;
 }
 
 /**
@@ -320,6 +329,8 @@ export function generateValidationChecklist(): string {
 - [ ] TabsMenu is DIRECT child of TabsWrapper (exactly one)
 - [ ] TabsContent is DIRECT child of TabsWrapper (exactly one)
 - [ ] TabsLink count matches TabsPane count
+- [ ] TabsLink has \`text\` attribute (NOT nested Blocks!)
+- [ ] TabsLink style uses \`current:\` for active state
 
 ### Slider:
 - [ ] SliderMask is DIRECT child of SliderWrapper (exactly one)
