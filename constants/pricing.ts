@@ -9,9 +9,9 @@
  * Basic (Free) plan feature list
  */
 export const BASIC_FEATURES = [
-  '1 design per project',
-  '2 projects per month',
-  'Community support',
+  '2 designs/month',
+  'Preview Webflow Export',
+  'Basic support',
 ] as const;
 
 /**
@@ -19,10 +19,9 @@ export const BASIC_FEATURES = [
  * NOTE: GitHub sync feature removed
  */
 export const PRO_FEATURES = [
-  'Up to 10 designs per project',
-  '50 projects per month',
-  'All platforms supported',
-  'Priority support + early access',
+  '200 designs/month',
+  'Export to Webflow',
+  'Priority support',
 ] as const;
 
 /**
@@ -54,7 +53,7 @@ export const PRICING_CONFIG = {
     displayPrice: '9.99',
     description: 'For power users',
     features: PRO_FEATURES,
-    exportsPerMonth: 50,
+    exportsPerMonth: 200,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
     popular: true,
   },

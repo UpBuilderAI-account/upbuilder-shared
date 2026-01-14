@@ -1,12 +1,12 @@
 /**
  * Basic (Free) plan feature list
  */
-export declare const BASIC_FEATURES: readonly ["1 design per project", "2 projects per month", "Community support"];
+export declare const BASIC_FEATURES: readonly ["2 designs/month", "Preview Webflow Export", "Basic support"];
 /**
  * Pro plan feature list
  * NOTE: GitHub sync feature removed
  */
-export declare const PRO_FEATURES: readonly ["Up to 10 designs per project", "50 projects per month", "All platforms supported", "Priority support + early access"];
+export declare const PRO_FEATURES: readonly ["200 designs/month", "Export to Webflow", "Priority support"];
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
@@ -25,7 +25,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 0;
         readonly displayPrice: "Free";
         readonly description: "Try UpBuilder for free";
-        readonly features: readonly ["1 design per project", "2 projects per month", "Community support"];
+        readonly features: readonly ["2 designs/month", "Preview Webflow Export", "Basic support"];
         readonly exportsPerMonth: 2;
         readonly maxDesigns: 1;
     };
@@ -34,8 +34,8 @@ export declare const PRICING_CONFIG: {
         readonly price: 9.99;
         readonly displayPrice: "9.99";
         readonly description: "For power users";
-        readonly features: readonly ["Up to 10 designs per project", "50 projects per month", "All platforms supported", "Priority support + early access"];
-        readonly exportsPerMonth: 50;
+        readonly features: readonly ["200 designs/month", "Export to Webflow", "Priority support"];
+        readonly exportsPerMonth: 200;
         readonly maxDesigns: 10;
         readonly popular: true;
     };
