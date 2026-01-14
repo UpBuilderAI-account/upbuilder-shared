@@ -42,13 +42,13 @@ exports.DEFAULT_RESPONSIVE_CONFIG = {
  * Default interactivity configuration
  */
 exports.DEFAULT_INTERACTIVITY_CONFIG = {
-    enableTransitions: true, // CSS hover effects enabled by default
+    enableTransitions: false, // CSS hover effects disabled by default
 };
 /**
  * Quick mode interactivity
  */
 exports.QUICK_INTERACTIVITY_CONFIG = {
-    enableTransitions: true, // Keep CSS transitions even in quick mode
+    enableTransitions: false, // CSS hover effects disabled by default
 };
 /**
  * Quick export config - uses defaults, skips stylesheet review, no animations

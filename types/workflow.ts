@@ -319,14 +319,14 @@ export const DEFAULT_RESPONSIVE_CONFIG: ResponsiveConfig = {
  * Default interactivity configuration
  */
 export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
-  enableTransitions: true,   // CSS hover effects enabled by default
+  enableTransitions: false,   // CSS hover effects disabled by default
 };
 
 /**
  * Quick mode interactivity
  */
 export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
-  enableTransitions: true,   // Keep CSS transitions even in quick mode
+  enableTransitions: false,   // CSS hover effects disabled by default
 };
 
 /**
