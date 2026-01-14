@@ -278,6 +278,8 @@ export interface ExportConfig {
   stylesheet: StylesheetConfig;
   responsive: ResponsiveConfig;
   interactivity: InteractivityConfig;
+  /** Custom AI instructions for guiding design decisions (optional) */
+  customInstructions?: string;
 }
 
 /**
