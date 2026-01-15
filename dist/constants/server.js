@@ -4,7 +4,7 @@
 // Backend-only configuration constants
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WEBFLOW_IMAGE_UPLOAD_DELAY = exports.STAGE_PROCESSING_DELAY_MS = exports.BACKGROUND_UPLOAD_TIMEOUT_MS = exports.BORDER_WIDTH_THRESHOLD = exports.SHAPE_MIN_DIMENSION_PX = exports.IMAGE_BRIGHTNESS_THRESHOLD = exports.IMAGE_LIGHTNESS_FACTOR = exports.TEXT_MIN_FONT_SIZE_PX = exports.IMAGE_LABEL_FONT_SIZE = exports.IMAGE_SEPARATOR_HEIGHT = exports.IMAGE_CONTAINER_PADDING = exports.IMAGE_LABEL_HEIGHT = exports.IMAGE_CONTAINER_SIZE = exports.STREAMING_RETRY_DELAY_MS = exports.STREAMING_MAX_RETRIES = exports.STREAMING_CHUNK_TIMEOUT_MS = exports.SERVER_STARTUP_RETRY_DELAY_MS = exports.BROWSER_SCREENSHOT_RETRY_MAX_MS = exports.BROWSER_SCREENSHOT_RETRY_BASE_MS = exports.SCREENSHOT_MAX_RETRIES = exports.DEFAULT_SCREENSHOT_FORMAT = exports.DEFAULT_SCREENSHOT_QUALITY = exports.DEFAULT_VIEWPORT = exports.BROWSER_RENDERER_PROCESS_LIMIT = exports.BROWSER_MAX_OLD_SPACE_SIZE_MB = exports.BROWSER_HEADLESS_MODE = exports.CHROME_PATHS = exports.BROWSER_RETRY_MULTIPLIER = exports.BROWSER_RETRY_INTERVAL = exports.BROWSER_MAX_WAIT_TIME = exports.BROWSER_INITIAL_TIMEOUT = exports.MAX_SCREENSHOT_DIMENSION = exports.STREAMING_SIMPLE_RETRY_DELAY_MS = exports.STREAMING_SIMPLE_TIMEOUT_MS = exports.SIMPLE_MAX_RETRIES = exports.DEFAULT_MAX_RETRIES = exports.MIN_CHUNKS_BEFORE_CHECK = exports.CHUNK_WINDOW_SIZE = exports.MAX_CHUNKS = exports.MAX_AI_RESPONSE_LENGTH = exports.AI_THINKING_BUDGET = exports.CLAUDE_MAX_OUTPUT_TOKENS = exports.AI_MAX_OUTPUT_TOKENS = exports.CLAUDE_TEMPERATURE = exports.AI_TEMPERATURE = exports.CLAUDE_MODELS = void 0;
+exports.WEBFLOW_IMAGE_UPLOAD_DELAY = exports.STAGE_PROCESSING_DELAY_MS = exports.BACKGROUND_UPLOAD_TIMEOUT_MS = exports.BORDER_WIDTH_THRESHOLD = exports.SHAPE_MIN_DIMENSION_PX = exports.IMAGE_BRIGHTNESS_THRESHOLD = exports.IMAGE_LIGHTNESS_FACTOR = exports.TEXT_MIN_FONT_SIZE_PX = exports.IMAGE_LABEL_FONT_SIZE = exports.IMAGE_SEPARATOR_HEIGHT = exports.IMAGE_CONTAINER_PADDING = exports.IMAGE_LABEL_HEIGHT = exports.IMAGE_CONTAINER_SIZE = exports.STREAMING_RETRY_DELAY_MS = exports.STREAMING_MAX_RETRIES = exports.STREAMING_CHUNK_TIMEOUT_MS = exports.SERVER_STARTUP_RETRY_DELAY_MS = exports.MAX_SCREENSHOT_DIMENSION = exports.STREAMING_SIMPLE_RETRY_DELAY_MS = exports.STREAMING_SIMPLE_TIMEOUT_MS = exports.SIMPLE_MAX_RETRIES = exports.DEFAULT_MAX_RETRIES = exports.MIN_CHUNKS_BEFORE_CHECK = exports.CHUNK_WINDOW_SIZE = exports.MAX_CHUNKS = exports.MAX_AI_RESPONSE_LENGTH = exports.AI_THINKING_BUDGET = exports.CLAUDE_MAX_OUTPUT_TOKENS = exports.AI_MAX_OUTPUT_TOKENS = exports.CLAUDE_TEMPERATURE = exports.AI_TEMPERATURE = exports.CLAUDE_MODELS = void 0;
 // ============================================
 // AI & MODEL CONFIGURATION
 // ============================================
@@ -67,83 +67,14 @@ exports.STREAMING_SIMPLE_TIMEOUT_MS = 300000;
  */
 exports.STREAMING_SIMPLE_RETRY_DELAY_MS = 5000;
 // ============================================
-// BROWSER & SCREENSHOTS
+// SCREENSHOTS
 // ============================================
 /**
- * Maximum dimension for browser screenshots (width or height)
- * 8192 = very high quality for detailed designs
+ * Maximum dimension for screenshots (width or height)
+ * 8192 = 8K resolution, very high quality for detailed designs
+ * Used by Figma plugin for bigPreview generation
  */
 exports.MAX_SCREENSHOT_DIMENSION = 8192;
-/**
- * Initial timeout for browser operations in milliseconds (updated from 60000)
- */
-exports.BROWSER_INITIAL_TIMEOUT = 30000;
-/**
- * Maximum wait time for browser operations in milliseconds
- */
-exports.BROWSER_MAX_WAIT_TIME = 60000;
-/**
- * Retry interval for browser operations in milliseconds
- */
-exports.BROWSER_RETRY_INTERVAL = 1000;
-/**
- * Base retry multiplier for exponential backoff
- */
-exports.BROWSER_RETRY_MULTIPLIER = 1.5;
-/**
- * Chrome/Chromium executable paths by platform
- */
-exports.CHROME_PATHS = {
-    win32: [
-        'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-        'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-    ],
-    darwin: [
-        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    ],
-    linux: [
-        '/usr/bin/chromium-browser',
-        '/usr/bin/chromium',
-        '/usr/bin/google-chrome',
-        '/usr/bin/google-chrome-stable',
-    ],
-};
-/**
- * Whether to run browser in headless mode
- */
-exports.BROWSER_HEADLESS_MODE = true;
-/**
- * Maximum memory for browser process
- */
-exports.BROWSER_MAX_OLD_SPACE_SIZE_MB = 4096;
-/**
- * Maximum renderer processes
- */
-exports.BROWSER_RENDERER_PROCESS_LIMIT = 10;
-/**
- * Browser viewport dimensions
- */
-exports.DEFAULT_VIEWPORT = { width: 1920, height: 1080 };
-/**
- * Screenshot quality (0-100)
- */
-exports.DEFAULT_SCREENSHOT_QUALITY = 90;
-/**
- * Screenshot format
- */
-exports.DEFAULT_SCREENSHOT_FORMAT = 'jpeg';
-/**
- * Maximum retries for screenshot capture
- */
-exports.SCREENSHOT_MAX_RETRIES = 3;
-/**
- * Browser screenshot retry delay base (1 second)
- */
-exports.BROWSER_SCREENSHOT_RETRY_BASE_MS = 1000;
-/**
- * Browser screenshot retry delay max (10 seconds)
- */
-exports.BROWSER_SCREENSHOT_RETRY_MAX_MS = 10000;
 // ============================================
 // NETWORK & WEBSOCKET (Backend-specific)
 // ============================================

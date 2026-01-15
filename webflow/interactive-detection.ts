@@ -393,7 +393,13 @@ export const INTERACTIVE_PATTERN_DOCS_COMPACT = `
 - Pagination dots or indicators
 - Multiple similar items (testimonials, cards, images) that look like slides
 - Content that appears designed to rotate/cycle
-→ SliderWrapper > SliderMask > SliderSlide(s) + SliderArrow (if arrows) + SliderNav (if dots)
+
+**⚠️ SLIDER CRITICAL RULE: ONE ITEM PER SLIDE!**
+Each card/testimonial/image = its own SliderSlide. NEVER put multiple items in one slide with a grid!
+- 4 team cards = 4 SliderSlides (one card each)
+- 3 testimonials = 3 SliderSlides (one testimonial each)
+
+→ SliderWrapper > SliderMask > SliderSlide (one per item!) + SliderArrow (if arrows) + SliderNav (if dots)
 
 **Tabs** - Use when you see: clickable headers/buttons that switch content panels
 → TabsWrapper > TabsMenu > TabsLink + TabsContent > TabsPane

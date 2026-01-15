@@ -57,73 +57,11 @@ export declare const STREAMING_SIMPLE_TIMEOUT_MS = 300000;
  */
 export declare const STREAMING_SIMPLE_RETRY_DELAY_MS = 5000;
 /**
- * Maximum dimension for browser screenshots (width or height)
- * 8192 = very high quality for detailed designs
+ * Maximum dimension for screenshots (width or height)
+ * 8192 = 8K resolution, very high quality for detailed designs
+ * Used by Figma plugin for bigPreview generation
  */
 export declare const MAX_SCREENSHOT_DIMENSION = 8192;
-/**
- * Initial timeout for browser operations in milliseconds (updated from 60000)
- */
-export declare const BROWSER_INITIAL_TIMEOUT = 30000;
-/**
- * Maximum wait time for browser operations in milliseconds
- */
-export declare const BROWSER_MAX_WAIT_TIME = 60000;
-/**
- * Retry interval for browser operations in milliseconds
- */
-export declare const BROWSER_RETRY_INTERVAL = 1000;
-/**
- * Base retry multiplier for exponential backoff
- */
-export declare const BROWSER_RETRY_MULTIPLIER = 1.5;
-/**
- * Chrome/Chromium executable paths by platform
- */
-export declare const CHROME_PATHS: {
-    readonly win32: readonly ["C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"];
-    readonly darwin: readonly ["/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"];
-    readonly linux: readonly ["/usr/bin/chromium-browser", "/usr/bin/chromium", "/usr/bin/google-chrome", "/usr/bin/google-chrome-stable"];
-};
-/**
- * Whether to run browser in headless mode
- */
-export declare const BROWSER_HEADLESS_MODE = true;
-/**
- * Maximum memory for browser process
- */
-export declare const BROWSER_MAX_OLD_SPACE_SIZE_MB = 4096;
-/**
- * Maximum renderer processes
- */
-export declare const BROWSER_RENDERER_PROCESS_LIMIT = 10;
-/**
- * Browser viewport dimensions
- */
-export declare const DEFAULT_VIEWPORT: {
-    readonly width: 1920;
-    readonly height: 1080;
-};
-/**
- * Screenshot quality (0-100)
- */
-export declare const DEFAULT_SCREENSHOT_QUALITY = 90;
-/**
- * Screenshot format
- */
-export declare const DEFAULT_SCREENSHOT_FORMAT: "jpeg";
-/**
- * Maximum retries for screenshot capture
- */
-export declare const SCREENSHOT_MAX_RETRIES = 3;
-/**
- * Browser screenshot retry delay base (1 second)
- */
-export declare const BROWSER_SCREENSHOT_RETRY_BASE_MS = 1000;
-/**
- * Browser screenshot retry delay max (10 seconds)
- */
-export declare const BROWSER_SCREENSHOT_RETRY_MAX_MS = 10000;
 /**
  * Server startup retry delay (3 seconds)
  */

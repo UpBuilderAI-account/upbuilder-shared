@@ -196,8 +196,8 @@ function generateSliderHierarchyDocs() {
 \`\`\`
 SliderWrapper
 ├── SliderMask (DIRECT child, pinned, exactly one)
-│   └── SliderSlide (slides, pinned)
-│       └── [any content]
+│   └── SliderSlide (ONE per item - each card/testimonial/image is its own slide!)
+│       └── [content for ONE item only]
 ├── SliderArrow (DIRECT child, pinned) [slider.dir: "left"]
 │   └── Icon or Block
 ├── SliderArrow (DIRECT child, pinned) [slider.dir: "right"]
@@ -205,22 +205,43 @@ SliderWrapper
 └── SliderNav (DIRECT child, pinned, exactly one)
 \`\`\`
 
-### CORRECT Example:
+### ⚠️ CRITICAL: ONE ITEM PER SLIDE!
+**Each repeating item (card, testimonial, team member, etc.) MUST be its own SliderSlide!**
+- If you have 4 team member cards → create 4 SliderSlides (one card per slide)
+- If you have 3 testimonials → create 3 SliderSlides (one testimonial per slide)
+- NEVER put multiple cards/items into ONE SliderSlide with a grid!
+
+### CORRECT Example (4 team member cards):
 \`\`\`
 id: "slider" | compType: "SliderWrapper" | parent: "section"
 id: "slider_mask" | compType: "SliderMask" | parent: "slider"
 id: "slide_1" | compType: "SliderSlide" | parent: "slider_mask"
+id: "card_1" | compType: "Block" | parent: "slide_1" | styles: [".card"]
 id: "slide_2" | compType: "SliderSlide" | parent: "slider_mask"
-id: "slider_arrow_left" | compType: "SliderArrow" | parent: "slider"
-id: "slider_arrow_right" | compType: "SliderArrow" | parent: "slider"
+id: "card_2" | compType: "Block" | parent: "slide_2" | styles: [".card"]
+id: "slide_3" | compType: "SliderSlide" | parent: "slider_mask"
+id: "card_3" | compType: "Block" | parent: "slide_3" | styles: [".card"]
+id: "slide_4" | compType: "SliderSlide" | parent: "slider_mask"
+id: "card_4" | compType: "Block" | parent: "slide_4" | styles: [".card"]
+id: "slider_arrow_left" | compType: "SliderArrow" | parent: "slider" | styles: [".slider_arrow_left"]
+id: "slider_arrow_right" | compType: "SliderArrow" | parent: "slider" | styles: [".slider_arrow_right"]
 id: "slider_nav" | compType: "SliderNav" | parent: "slider"
+\`\`\`
+
+### ❌ WRONG (multiple cards in one slide):
+\`\`\`
+id: "slide_1" | compType: "SliderSlide" | parent: "slider_mask"
+id: "cards_grid" | compType: "Block" | parent: "slide_1"  ← WRONG!
+id: "card_1" | compType: "Block" | parent: "cards_grid"   ← WRONG!
+id: "card_2" | compType: "Block" | parent: "cards_grid"   ← WRONG!
 \`\`\`
 
 ### Key Rules:
 1. **SliderMask** → exactly ONE, DIRECT child of **SliderWrapper** (pinned)
-2. **SliderSlide** → children of **SliderMask** (pinned)
+2. **SliderSlide** → children of **SliderMask** (pinned) - ONE per item!
 3. **SliderArrow** → DIRECT children of **SliderWrapper** (pinned)
-4. **SliderNav** → exactly ONE, DIRECT child of **SliderWrapper** (pinned)`;
+4. **SliderNav** → exactly ONE, DIRECT child of **SliderWrapper** (pinned)
+5. **Arrow direction** → Use styles like \`.slider_arrow_left\` and \`.slider_arrow_right\` to differentiate`;
 }
 /**
  * Generate form hierarchy documentation
