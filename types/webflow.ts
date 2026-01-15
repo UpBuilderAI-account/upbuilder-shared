@@ -53,24 +53,11 @@ export {
   getDefaultTag,
   getXSCPType,
 
-  // Prompt documentation
-  COMPLETE_PROMPT_DOCS,
-  ALL_HIERARCHY_DOCS,
-  COMPACT_HIERARCHY_RULES,
-  COMPONENT_LIST,
-  VALIDATION_CHECKLIST,
-  NAVBAR_HIERARCHY_DOCS,
-  DROPDOWN_HIERARCHY_DOCS,
-  TABS_HIERARCHY_DOCS,
-  SLIDER_HIERARCHY_DOCS,
-  FORM_HIERARCHY_DOCS,
-  HTML_EMBED_DOCS,
-  generateAllHierarchyDocs,
-  generateValidationChecklist,
-
   // Breakpoint and style documentation for prompts
   BREAKPOINT_DOCS,
   STATE_DOCS,
   STYLE_REGISTRY_FORMAT_DOCS,
   DESKTOP_ONLY_WARNING,
 } from '../webflow';
+
+// NOTE: Prompt documentation (SLIDER_HIERARCHY_DOCS, etc.) moved to backend-new/prompts/webflow/docs

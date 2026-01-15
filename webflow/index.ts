@@ -205,38 +205,10 @@ export {
 
 // -----------------------------------------------------------------------------
 // Prompt Documentation
-// Pre-built documentation strings for AI prompts
+// NOTE: Most prompt docs moved to backend-new/prompts/webflow/docs
+// Only keeping generateBreakpointDocsForPrompt and generateStateDocsForPrompt
+// which are re-exported from breakpoints.ts
 // -----------------------------------------------------------------------------
-export {
-  // Generators
-  generateComponentListForPrompt,
-  generateComponentTableForPrompt,
-  generateNavbarHierarchyDocs,
-  generateDropdownHierarchyDocs,
-  generateTabsHierarchyDocs,
-  generateSliderHierarchyDocs,
-  generateFormHierarchyDocs,
-  generateHtmlEmbedDocs,
-  generateValidationChecklist,
-  generateAllHierarchyDocs,
-  generateCompletePromptDocs,
-  generateCompactHierarchyRules,
-  generateMinimalComponentList,
-
-  // Pre-built strings
-  COMPLETE_PROMPT_DOCS,
-  ALL_HIERARCHY_DOCS,
-  COMPACT_HIERARCHY_RULES,
-  COMPONENT_LIST,
-  COMPONENT_TABLE,
-  VALIDATION_CHECKLIST,
-  NAVBAR_HIERARCHY_DOCS,
-  DROPDOWN_HIERARCHY_DOCS,
-  TABS_HIERARCHY_DOCS,
-  SLIDER_HIERARCHY_DOCS,
-  FORM_HIERARCHY_DOCS,
-  HTML_EMBED_DOCS,
-} from './prompt-docs';
 
 // -----------------------------------------------------------------------------
 // Hierarchy Helpers
@@ -262,22 +234,6 @@ export {
 
 // -----------------------------------------------------------------------------
 // Interactive Component Detection
-// Pattern recognition for converting designs to interactive Webflow components
+// NOTE: Moved to backend-new/prompts/webflow/docs/interactive-detection.ts
+// Only used by backend AI prompts
 // -----------------------------------------------------------------------------
-export {
-  // Types
-  type InteractivePattern,
-  type InteractiveStructure,
-
-  // Pattern definitions
-  INTERACTIVE_PATTERNS,
-
-  // Detection helpers
-  detectInteractivePattern,
-  getInteractivePattern,
-  generateInteractivePatternDocs,
-
-  // Pre-built documentation
-  INTERACTIVE_PATTERN_DOCS,
-  INTERACTIVE_PATTERN_DOCS_COMPACT,
-} from './interactive-detection';
