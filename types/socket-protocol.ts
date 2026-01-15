@@ -478,6 +478,15 @@ export interface ServerToClientEvents {
     trialEnd?: number | null;
     currentPeriodEnd?: number;
   }) => void;
+
+  // Customizer events (broadcast from server)
+  'customizer:asset_upload_progress': (data: {
+    projectId: string;
+    complete: boolean;
+    uploaded: number;
+    total: number;
+    failed: number;
+  }) => void;
 }
 
 /**

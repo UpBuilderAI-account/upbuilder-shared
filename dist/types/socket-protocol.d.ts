@@ -314,6 +314,13 @@ export interface ServerToClientEvents {
         trialEnd?: number | null;
         currentPeriodEnd?: number;
     }) => void;
+    'customizer:asset_upload_progress': (data: {
+        projectId: string;
+        complete: boolean;
+        uploaded: number;
+        total: number;
+        failed: number;
+    }) => void;
 }
 /**
  * Socket data attached to each connection
