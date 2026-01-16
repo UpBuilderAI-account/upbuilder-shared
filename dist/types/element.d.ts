@@ -198,6 +198,74 @@ export interface Element {
     layoutPositioning?: 'AUTO' | 'ABSOLUTE';
     overflow?: boolean;
     itemReverseZIndex?: boolean;
+    /**
+     * How the frame sizes itself along the primary axis
+     * - 'FIXED': explicit width/height
+     * - 'AUTO': hug contents
+     */
+    primaryAxisSizingMode?: 'FIXED' | 'AUTO';
+    /**
+     * How the frame sizes itself along the counter axis
+     * - 'FIXED': explicit width/height
+     * - 'AUTO': hug contents
+     */
+    counterAxisSizingMode?: 'FIXED' | 'AUTO';
+    /**
+     * Alignment of children along primary axis (justify-content)
+     * - 'MIN': flex-start
+     * - 'CENTER': center
+     * - 'MAX': flex-end
+     * - 'SPACE_BETWEEN': space-between
+     */
+    primaryAxisAlignItems?: 'MIN' | 'CENTER' | 'MAX' | 'SPACE_BETWEEN';
+    /**
+     * Alignment of children along counter axis (align-items)
+     * - 'MIN': flex-start
+     * - 'CENTER': center
+     * - 'MAX': flex-end
+     * - 'BASELINE': baseline
+     */
+    counterAxisAlignItems?: 'MIN' | 'CENTER' | 'MAX' | 'BASELINE';
+    /** Padding - top */
+    paddingTop?: number;
+    /** Padding - right */
+    paddingRight?: number;
+    /** Padding - bottom */
+    paddingBottom?: number;
+    /** Padding - left */
+    paddingLeft?: number;
+    /** Gap between items (itemSpacing in Figma) */
+    itemSpacing?: number;
+    /** Flex wrap behavior */
+    layoutWrap?: 'NO_WRAP' | 'WRAP';
+    /** Gap between wrapped rows/columns (only when layoutWrap is 'WRAP') */
+    counterAxisSpacing?: number;
+    /**
+     * How child sizes horizontally in auto-layout parent
+     * - 'FIXED': explicit width
+     * - 'HUG': hug contents
+     * - 'FILL': fill available space (flex-grow)
+     */
+    layoutSizingHorizontal?: 'FIXED' | 'HUG' | 'FILL';
+    /**
+     * How child sizes vertically in auto-layout parent
+     * - 'FIXED': explicit height
+     * - 'HUG': hug contents
+     * - 'FILL': fill available space (flex-grow)
+     */
+    layoutSizingVertical?: 'FIXED' | 'HUG' | 'FILL';
+    /**
+     * Cross-axis alignment override for this child
+     * - 'INHERIT': use parent's counterAxisAlignItems
+     * - 'STRETCH': stretch to fill cross-axis
+     */
+    layoutAlign?: 'INHERIT' | 'STRETCH';
+    /**
+     * Whether child should grow to fill remaining space
+     * - 0: don't grow
+     * - 1: grow to fill
+     */
+    layoutGrow?: number;
     frameId?: string;
     frameIndex?: number;
     imgMetadata?: ImageMetadata;
