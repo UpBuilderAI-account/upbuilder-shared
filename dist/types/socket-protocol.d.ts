@@ -250,6 +250,92 @@ export interface ClientToServerEvents {
         total: number;
         failed: number;
     }) => void) => void;
+    'webflow:get_auth_url': (data: Record<string, never>, callback: (response: {
+        success: boolean;
+        data?: {
+            authUrl: string;
+        };
+        error?: string;
+    }) => void) => void;
+    'webflow:auth_status': (data: Record<string, never>, callback: (response: {
+        success: boolean;
+        data?: {
+            connected: boolean;
+            webflowEmail?: string;
+            scopes?: string[];
+            connectedAt?: string;
+        };
+        error?: string;
+    }) => void) => void;
+    'webflow:disconnect': (data: Record<string, never>, callback: (response: {
+        success: boolean;
+        error?: string;
+    }) => void) => void;
+    'webflow:get_sites': (data: Record<string, never>, callback: (response: {
+        success: boolean;
+        data?: {
+            sites: Array<{
+                id: string;
+                displayName: string;
+                shortName: string;
+                previewUrl?: string;
+            }>;
+        };
+        error?: string;
+    }) => void) => void;
+    'webflow:connect_site': (data: {
+        projectId: string;
+        siteId: string;
+        siteName: string;
+        siteShortName?: string;
+        sitePreviewUrl?: string;
+    }, callback: (response: {
+        success: boolean;
+        error?: string;
+    }) => void) => void;
+    'webflow:connection_status': (data: {
+        projectId: string;
+    }, callback: (response: {
+        success: boolean;
+        data?: {
+            connected: boolean;
+            siteId?: string;
+            siteName?: string;
+            siteShortName?: string;
+            sitePreviewUrl?: string;
+            syncState?: Record<string, unknown>;
+        };
+        error?: string;
+    }) => void) => void;
+    'webflow:disconnect_site': (data: {
+        projectId: string;
+    }, callback: (response: {
+        success: boolean;
+        error?: string;
+    }) => void) => void;
+    'webflow:sync_assets': (data: {
+        projectId: string;
+        designId?: string;
+    }, callback: (response: {
+        success: boolean;
+        data?: {
+            total: number;
+        };
+        error?: string;
+    }) => void) => void;
+    'webflow:push_design': (data: {
+        projectId: string;
+        designId: string;
+    }, callback: (response: {
+        success: boolean;
+        data?: {
+            xscpData: unknown;
+            assetMap: Record<string, string>;
+            siteId: string;
+            siteName: string;
+        };
+        error?: string;
+    }) => void) => void;
 }
 /**
  * Events sent from server to client
@@ -320,6 +406,25 @@ export interface ServerToClientEvents {
         uploaded: number;
         total: number;
         failed: number;
+    }) => void;
+    'webflow:connection_status': (data: {
+        projectId: string;
+        connected: boolean;
+        siteId?: string;
+        siteName?: string;
+    }) => void;
+    'webflow:asset_progress': (data: {
+        projectId: string;
+        uploaded: number;
+        failed: number;
+        total: number;
+        currentAsset?: string;
+    }) => void;
+    'webflow:asset_complete': (data: {
+        projectId: string;
+        uploaded: number;
+        failed: number;
+        total: number;
     }) => void;
 }
 /**
