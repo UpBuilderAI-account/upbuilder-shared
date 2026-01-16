@@ -128,13 +128,37 @@ export declare const SOCKET_EVENTS: {
         readonly ASSET_UPLOAD_PROGRESS: "customizer:asset_upload_progress";
         readonly ERROR: "customizer:error";
     };
+    /**
+     * Webflow integration events (client ↔ server)
+     * For OAuth, site connection, and asset sync
+     */
+    readonly WEBFLOW: {
+        readonly GET_AUTH_URL: "webflow:get_auth_url";
+        readonly AUTH_STATUS: "webflow:auth_status";
+        readonly DISCONNECT: "webflow:disconnect";
+        readonly GET_SITES: "webflow:get_sites";
+        readonly SITES_LIST: "webflow:sites_list";
+        readonly CONNECT_SITE: "webflow:connect_site";
+        readonly DISCONNECT_SITE: "webflow:disconnect_site";
+        readonly CONNECTION_STATUS: "webflow:connection_status";
+        readonly SYNC_ASSETS: "webflow:sync_assets";
+        readonly ASSET_PROGRESS: "webflow:asset_progress";
+        readonly ASSET_COMPLETE: "webflow:asset_complete";
+        readonly PUSH_DESIGN: "webflow:push_design";
+        readonly PUSH_PROGRESS: "webflow:push_progress";
+        readonly PUSH_COMPLETE: "webflow:push_complete";
+        readonly GET_COLLECTIONS: "webflow:get_collections";
+        readonly CREATE_COLLECTION: "webflow:create_collection";
+        readonly SYNC_CMS_ITEMS: "webflow:sync_cms_items";
+        readonly CMS_PROGRESS: "webflow:cms_progress";
+    };
 };
 /**
  * Type helper to get all client → server event names
  */
-export type ClientEventName = typeof SOCKET_EVENTS.AUTH[keyof typeof SOCKET_EVENTS.AUTH] | typeof SOCKET_EVENTS.PLUGIN[keyof typeof SOCKET_EVENTS.PLUGIN] | typeof SOCKET_EVENTS.PLUGIN_ROOM[keyof typeof SOCKET_EVENTS.PLUGIN_ROOM] | typeof SOCKET_EVENTS.PROJECT[keyof typeof SOCKET_EVENTS.PROJECT] | typeof SOCKET_EVENTS.WORKFLOW[keyof typeof SOCKET_EVENTS.WORKFLOW] | typeof SOCKET_EVENTS.GITHUB[keyof typeof SOCKET_EVENTS.GITHUB] | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER];
+export type ClientEventName = typeof SOCKET_EVENTS.AUTH[keyof typeof SOCKET_EVENTS.AUTH] | typeof SOCKET_EVENTS.PLUGIN[keyof typeof SOCKET_EVENTS.PLUGIN] | typeof SOCKET_EVENTS.PLUGIN_ROOM[keyof typeof SOCKET_EVENTS.PLUGIN_ROOM] | typeof SOCKET_EVENTS.PROJECT[keyof typeof SOCKET_EVENTS.PROJECT] | typeof SOCKET_EVENTS.WORKFLOW[keyof typeof SOCKET_EVENTS.WORKFLOW] | typeof SOCKET_EVENTS.GITHUB[keyof typeof SOCKET_EVENTS.GITHUB] | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER] | typeof SOCKET_EVENTS.WEBFLOW[keyof typeof SOCKET_EVENTS.WEBFLOW];
 /**
  * Type helper to get all server → client event names
  */
-export type ServerEventName = typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE] | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS] | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE] | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR] | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP] | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER] | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER];
+export type ServerEventName = typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE] | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS] | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE] | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR] | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP] | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER] | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER] | typeof SOCKET_EVENTS.WEBFLOW[keyof typeof SOCKET_EVENTS.WEBFLOW];
 //# sourceMappingURL=protocol.d.ts.map

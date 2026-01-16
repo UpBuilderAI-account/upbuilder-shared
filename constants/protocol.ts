@@ -161,6 +161,42 @@ export const SOCKET_EVENTS = {
     ASSET_UPLOAD_PROGRESS: 'customizer:asset_upload_progress', // Server → Client: Broadcast upload progress/completion
     ERROR: 'customizer:error',                   // Server → Client: Error event
   },
+
+  /**
+   * Webflow integration events (client ↔ server)
+   * For OAuth, site connection, and asset sync
+   */
+  WEBFLOW: {
+    // OAuth
+    GET_AUTH_URL: 'webflow:get_auth_url',        // Client → Server: Get OAuth authorization URL
+    AUTH_STATUS: 'webflow:auth_status',          // Client → Server: Check if user has Webflow connected
+    DISCONNECT: 'webflow:disconnect',            // Client → Server: Disconnect Webflow account
+
+    // Sites
+    GET_SITES: 'webflow:get_sites',              // Client → Server: Get list of authorized sites
+    SITES_LIST: 'webflow:sites_list',            // Server → Client: List of authorized sites
+
+    // Project connection
+    CONNECT_SITE: 'webflow:connect_site',        // Client → Server: Connect project to Webflow site
+    DISCONNECT_SITE: 'webflow:disconnect_site',  // Client → Server: Disconnect project from site
+    CONNECTION_STATUS: 'webflow:connection_status', // Client ↔ Server: Get/broadcast connection status
+
+    // Asset sync
+    SYNC_ASSETS: 'webflow:sync_assets',          // Client → Server: Start asset upload to Webflow
+    ASSET_PROGRESS: 'webflow:asset_progress',    // Server → Client: Asset upload progress
+    ASSET_COMPLETE: 'webflow:asset_complete',    // Server → Client: All assets uploaded
+
+    // Push to Webflow
+    PUSH_DESIGN: 'webflow:push_design',          // Client → Server: Get Designer-ready payload
+    PUSH_PROGRESS: 'webflow:push_progress',      // Server → Client: Push progress
+    PUSH_COMPLETE: 'webflow:push_complete',      // Server → Client: Push complete
+
+    // CMS
+    GET_COLLECTIONS: 'webflow:get_collections',  // Client → Server: Get CMS collections
+    CREATE_COLLECTION: 'webflow:create_collection', // Client → Server: Create CMS collection
+    SYNC_CMS_ITEMS: 'webflow:sync_cms_items',    // Client → Server: Sync CMS items
+    CMS_PROGRESS: 'webflow:cms_progress',        // Server → Client: CMS sync progress
+  },
 } as const;
 
 /**
@@ -173,7 +209,8 @@ export type ClientEventName =
   | typeof SOCKET_EVENTS.PROJECT[keyof typeof SOCKET_EVENTS.PROJECT]
   | typeof SOCKET_EVENTS.WORKFLOW[keyof typeof SOCKET_EVENTS.WORKFLOW]
   | typeof SOCKET_EVENTS.GITHUB[keyof typeof SOCKET_EVENTS.GITHUB]
-  | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER];
+  | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER]
+  | typeof SOCKET_EVENTS.WEBFLOW[keyof typeof SOCKET_EVENTS.WEBFLOW];
 
 /**
  * Type helper to get all server → client event names
@@ -185,7 +222,8 @@ export type ServerEventName =
   | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR]
   | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP]
   | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER]
-  | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER];
+  | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER]
+  | typeof SOCKET_EVENTS.WEBFLOW[keyof typeof SOCKET_EVENTS.WEBFLOW];
 
 // ============================================================================
 // ERROR CODES
