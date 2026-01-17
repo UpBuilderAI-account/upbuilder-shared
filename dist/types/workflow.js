@@ -12,7 +12,7 @@ exports.getStageOrderForPlatform = getStageOrderForPlatform;
  * Default stylesheet configuration
  */
 exports.DEFAULT_STYLESHEET_CONFIG = {
-    framework: 'simple',
+    framework: 'bem-lite',
     // Core (locked)
     useRemFontSizes: true,
     useUnitlessLineHeight: true,

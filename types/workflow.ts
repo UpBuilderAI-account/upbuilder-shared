@@ -286,7 +286,7 @@ export interface ExportConfig {
  * Default stylesheet configuration
  */
 export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
-  framework: 'simple',
+  framework: 'bem-lite',
 
   // Core (locked)
   useRemFontSizes: true,

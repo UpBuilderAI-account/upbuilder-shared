@@ -161,7 +161,7 @@ export function requiresUserActionAfter(status: ProjectStatus): boolean {
 
 // Bricks and Elementor commented out - only Webflow available for now
 export type Platform = 'webflow'; // | 'bricks' | 'elementor';
-export type StyleFramework = 'client-first' | 'simple' | 'tailwind' | 'bootstrap' | 'vanilla' | 'inline';
+export type StyleFramework = 'client-first' | 'bem-lite' | 'tailwind' | 'bootstrap' | 'vanilla' | 'inline';
 
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION
