@@ -586,6 +586,7 @@ export interface ServerToClientEvents {
  */
 export interface SocketData {
   userId?: string;
+  userEmail?: string; // User email from JWT token (for tracking/notifications)
   sessionId?: string;
   isAuthenticated?: boolean;
   isGuest?: boolean;

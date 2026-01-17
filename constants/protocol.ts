@@ -159,6 +159,8 @@ export const SOCKET_EVENTS = {
     UPLOAD_IMAGE: 'customizer:upload_image',     // Client → Server: Upload image asset
     ASSET_UPLOAD_STATUS: 'customizer:asset_upload_status', // Client → Server: Get asset upload status
     ASSET_UPLOAD_PROGRESS: 'customizer:asset_upload_progress', // Server → Client: Broadcast upload progress/completion
+    AI_REQUEST: 'customizer:ai:request',         // Client → Server: AI assistant request
+    AI_RESPONSE: 'customizer:ai:response',       // Server → Client: AI assistant response
     ERROR: 'customizer:error',                   // Server → Client: Error event
   },
 

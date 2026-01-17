@@ -432,6 +432,7 @@ export interface ServerToClientEvents {
  */
 export interface SocketData {
     userId?: string;
+    userEmail?: string;
     sessionId?: string;
     isAuthenticated?: boolean;
     isGuest?: boolean;
