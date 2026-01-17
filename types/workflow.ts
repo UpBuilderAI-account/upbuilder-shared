@@ -238,6 +238,17 @@ export interface StylesheetConfig {
 
   /** Custom spacing scale (overrides defaults) */
   spacingScale?: SpacingScale;
+
+  // ===========================================
+  // UNITS
+  // ===========================================
+
+  /**
+   * Allow flexible CSS units (rem, em, %, vh, vw)
+   * If false, only px is allowed
+   * Default: true for client-first, false for bem-lite
+   */
+  allowFlexibleUnits: boolean;
 }
 
 /**
@@ -267,6 +278,12 @@ export interface InteractivityConfig {
    * - :hover, :focus, :active state changes
    */
   enableTransitions: boolean;
+
+  /**
+   * Enable interactive components (tabs, sliders, dropdowns, carousels)
+   * If false, forces static layouts only - no interactive patterns
+   */
+  enableInteractiveComponents: boolean;
 }
 
 /**
@@ -308,6 +325,9 @@ export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
   generateOverflow: false,
   generateZIndex: false,
   generatePointerEvents: false,
+
+  // Units (off for bem-lite = px only)
+  allowFlexibleUnits: false,
 };
 
 /**
@@ -322,6 +342,7 @@ export const DEFAULT_RESPONSIVE_CONFIG: ResponsiveConfig = {
  */
 export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: false,   // CSS hover effects disabled by default
+  enableInteractiveComponents: true,  // Tabs, sliders, dropdowns enabled by default
 };
 
 /**
@@ -329,6 +350,7 @@ export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
  */
 export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: false,   // CSS hover effects disabled by default
+  enableInteractiveComponents: true,  // Tabs, sliders, dropdowns enabled by default
 };
 
 /**

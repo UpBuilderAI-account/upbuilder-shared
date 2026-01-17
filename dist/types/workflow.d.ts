@@ -163,6 +163,12 @@ export interface StylesheetConfig {
     generatePointerEvents: boolean;
     /** Custom spacing scale (overrides defaults) */
     spacingScale?: SpacingScale;
+    /**
+     * Allow flexible CSS units (rem, em, %, vh, vw)
+     * If false, only px is allowed
+     * Default: true for client-first, false for bem-lite
+     */
+    allowFlexibleUnits: boolean;
 }
 /**
  * Responsive configuration (part of ExportConfig)
@@ -190,6 +196,11 @@ export interface InteractivityConfig {
      * - :hover, :focus, :active state changes
      */
     enableTransitions: boolean;
+    /**
+     * Enable interactive components (tabs, sliders, dropdowns, carousels)
+     * If false, forces static layouts only - no interactive patterns
+     */
+    enableInteractiveComponents: boolean;
 }
 /**
  * Complete export configuration

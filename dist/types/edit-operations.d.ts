@@ -4,7 +4,7 @@
  * This prevents exposing the full Webflow structure
  */
 import type { Breakpoint, PseudoState, EditableAsset } from './editable-tree';
-export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'updateNodeImage' | 'updateNodeLink' | 'updateNodeFormProps' | 'updateNodeVideoProps' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride' | 'updateStyleObjectProperty' | 'createStyleObject';
+export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'updateNodeImage' | 'updateNodeLink' | 'updateNodeFormProps' | 'updateNodeVideoProps' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride' | 'updateStyleObjectProperty' | 'createStyleObject' | 'deleteStyleObject';
 interface BaseEditOperation {
     /** Operation type */
     type: EditOperationType;
@@ -330,9 +330,24 @@ export interface CreateStyleObjectOp extends BaseEditOperation {
     initialStyleLess?: string;
 }
 /**
+ * DELETE STYLE OBJECT OPERATION
+ * Removes a style object (class) from the system
+ */
+export interface DeleteStyleObjectOp extends BaseEditOperation {
+    type: 'deleteStyleObject';
+    /**
+     * The style object _id to delete
+     */
+    styleId: string;
+    /**
+     * The class name being deleted (for reference)
+     */
+    className: string;
+}
+/**
  * Any edit operation
  */
-export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | UpdateNodeImageOp | UpdateNodeLinkOp | UpdateNodeFormPropsOp | UpdateNodeVideoPropsOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp | UpdateStyleObjectPropertyOp | CreateStyleObjectOp;
+export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | UpdateNodeImageOp | UpdateNodeLinkOp | UpdateNodeFormPropsOp | UpdateNodeVideoPropsOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp | UpdateStyleObjectPropertyOp | CreateStyleObjectOp | DeleteStyleObjectOp;
 /**
  * Request to apply edit operations
  */

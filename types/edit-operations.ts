@@ -30,7 +30,8 @@ export type EditOperationType =
   | 'createOverride' // New: create override on selected class instead of editing source
   // Webflow style model operations (new)
   | 'updateStyleObjectProperty'  // Update property using style object ID
-  | 'createStyleObject';         // Create new style object (combo class)
+  | 'createStyleObject'          // Create new style object (combo class)
+  | 'deleteStyleObject';         // Delete a style object
 
 // ============================================================================
 // BASE OPERATION
@@ -423,6 +424,24 @@ export interface CreateStyleObjectOp extends BaseEditOperation {
   initialStyleLess?: string;
 }
 
+/**
+ * DELETE STYLE OBJECT OPERATION
+ * Removes a style object (class) from the system
+ */
+export interface DeleteStyleObjectOp extends BaseEditOperation {
+  type: 'deleteStyleObject';
+
+  /**
+   * The style object _id to delete
+   */
+  styleId: string;
+
+  /**
+   * The class name being deleted (for reference)
+   */
+  className: string;
+}
+
 // ============================================================================
 // UNION TYPE
 // ============================================================================
@@ -450,7 +469,8 @@ export type EditOperation =
   | CreateOverrideOp
   // Webflow style model operations (new)
   | UpdateStyleObjectPropertyOp
-  | CreateStyleObjectOp;
+  | CreateStyleObjectOp
+  | DeleteStyleObjectOp;
 
 // ============================================================================
 // REQUEST/RESPONSE TYPES

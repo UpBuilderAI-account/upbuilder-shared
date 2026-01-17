@@ -31,6 +31,8 @@ exports.DEFAULT_STYLESHEET_CONFIG = {
     generateOverflow: false,
     generateZIndex: false,
     generatePointerEvents: false,
+    // Units (off for bem-lite = px only)
+    allowFlexibleUnits: false,
 };
 /**
  * Default responsive configuration
@@ -43,12 +45,14 @@ exports.DEFAULT_RESPONSIVE_CONFIG = {
  */
 exports.DEFAULT_INTERACTIVITY_CONFIG = {
     enableTransitions: false, // CSS hover effects disabled by default
+    enableInteractiveComponents: true, // Tabs, sliders, dropdowns enabled by default
 };
 /**
  * Quick mode interactivity
  */
 exports.QUICK_INTERACTIVITY_CONFIG = {
     enableTransitions: false, // CSS hover effects disabled by default
+    enableInteractiveComponents: true, // Tabs, sliders, dropdowns enabled by default
 };
 /**
  * Quick export config - uses defaults, skips stylesheet review, no animations
