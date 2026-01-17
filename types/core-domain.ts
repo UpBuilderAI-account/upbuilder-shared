@@ -203,8 +203,7 @@ export function shouldSkipStage(platform: Platform, status: ProjectStatus): bool
 
 export interface Breakpoints {
   tablet: number;
-  mobileLandscape: number;
-  mobilePortrait: number;
+  mobile: number;
 }
 
 /**

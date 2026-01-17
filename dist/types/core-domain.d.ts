@@ -106,8 +106,7 @@ export declare const USES_SECTION_CSS: Partial<Record<Platform, boolean>>;
 export declare function shouldSkipStage(platform: Platform, status: ProjectStatus): boolean;
 export interface Breakpoints {
     tablet: number;
-    mobileLandscape: number;
-    mobilePortrait: number;
+    mobile: number;
 }
 /**
  * CSS generation options for professional styling

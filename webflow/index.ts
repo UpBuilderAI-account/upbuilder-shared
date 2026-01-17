@@ -146,7 +146,6 @@ export {
   // Breakpoint definitions
   BREAKPOINTS,
   BREAKPOINT_KEYS,
-  LARGER_BREAKPOINTS,
   SMALLER_BREAKPOINTS,
   RESPONSIVE_BREAKPOINTS,
   BREAKPOINT_VARIANT_KEYS,
@@ -168,7 +167,6 @@ export {
   breakpointToVariantKey,
   stateToVariantSuffix,
   getVariantKey,
-  isLargerBreakpoint,
   isSmallerBreakpoint,
   getBreakpointsCascadeOrder,
   getMediaQuery,

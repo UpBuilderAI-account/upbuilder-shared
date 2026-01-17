@@ -4,7 +4,7 @@
 // Re-exports from shared/webflow/ module for convenient imports
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DESKTOP_ONLY_WARNING = exports.STYLE_REGISTRY_FORMAT_DOCS = exports.STATE_DOCS = exports.BREAKPOINT_DOCS = exports.getXSCPType = exports.getDefaultTag = exports.getComponentType = exports.HTML_TAG_TO_COMPONENT = exports.getVariantKey = exports.getState = exports.getBreakpoint = exports.STATE_KEYS = exports.PSEUDO_STATES = exports.RESPONSIVE_BREAKPOINTS = exports.SMALLER_BREAKPOINTS = exports.LARGER_BREAKPOINTS = exports.BREAKPOINT_KEYS = exports.BREAKPOINTS = exports.isPinnedToParent = exports.getAllowedChildren = exports.hasStrictChildren = exports.forbidsDescendant = exports.requiresAncestor = exports.getDisplayName = exports.getConstraints = exports.HIERARCHY_CHAINS = exports.WEBFLOW_CONSTRAINTS = exports.getComponentsByCategory = exports.isValidComponentType = exports.getComponentDef = exports.COMPONENT_COUNT = exports.COMPONENTS_BY_CATEGORY = exports.ALL_COMPONENT_TYPES = exports.WEBFLOW_COMPONENTS = void 0;
+exports.DESKTOP_ONLY_WARNING = exports.STYLE_REGISTRY_FORMAT_DOCS = exports.STATE_DOCS = exports.BREAKPOINT_DOCS = exports.getXSCPType = exports.getDefaultTag = exports.getComponentType = exports.HTML_TAG_TO_COMPONENT = exports.getVariantKey = exports.getState = exports.getBreakpoint = exports.STATE_KEYS = exports.PSEUDO_STATES = exports.RESPONSIVE_BREAKPOINTS = exports.SMALLER_BREAKPOINTS = exports.BREAKPOINT_KEYS = exports.BREAKPOINTS = exports.isPinnedToParent = exports.getAllowedChildren = exports.hasStrictChildren = exports.forbidsDescendant = exports.requiresAncestor = exports.getDisplayName = exports.getConstraints = exports.HIERARCHY_CHAINS = exports.WEBFLOW_CONSTRAINTS = exports.getComponentsByCategory = exports.isValidComponentType = exports.getComponentDef = exports.COMPONENT_COUNT = exports.COMPONENTS_BY_CATEGORY = exports.ALL_COMPONENT_TYPES = exports.WEBFLOW_COMPONENTS = void 0;
 // Re-export everything from the webflow module
 var webflow_1 = require("../webflow");
 Object.defineProperty(exports, "WEBFLOW_COMPONENTS", { enumerable: true, get: function () { return webflow_1.WEBFLOW_COMPONENTS; } });
@@ -25,7 +25,6 @@ Object.defineProperty(exports, "getAllowedChildren", { enumerable: true, get: fu
 Object.defineProperty(exports, "isPinnedToParent", { enumerable: true, get: function () { return webflow_1.isPinnedToParent; } });
 Object.defineProperty(exports, "BREAKPOINTS", { enumerable: true, get: function () { return webflow_1.BREAKPOINTS; } });
 Object.defineProperty(exports, "BREAKPOINT_KEYS", { enumerable: true, get: function () { return webflow_1.BREAKPOINT_KEYS; } });
-Object.defineProperty(exports, "LARGER_BREAKPOINTS", { enumerable: true, get: function () { return webflow_1.LARGER_BREAKPOINTS; } });
 Object.defineProperty(exports, "SMALLER_BREAKPOINTS", { enumerable: true, get: function () { return webflow_1.SMALLER_BREAKPOINTS; } });
 Object.defineProperty(exports, "RESPONSIVE_BREAKPOINTS", { enumerable: true, get: function () { return webflow_1.RESPONSIVE_BREAKPOINTS; } });
 Object.defineProperty(exports, "PSEUDO_STATES", { enumerable: true, get: function () { return webflow_1.PSEUDO_STATES; } });

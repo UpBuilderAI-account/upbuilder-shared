@@ -2,57 +2,27 @@
 // ============================================================================
 // WEBFLOW BREAKPOINTS & STATES
 // Single source of truth for all responsive breakpoints and pseudo-states
+// Simplified: desktop > tablet > mobile only
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DESKTOP_ONLY_WARNING = exports.STYLE_REGISTRY_FORMAT_DOCS = exports.STATE_DOCS = exports.BREAKPOINT_DOCS = exports.STYLE_REGISTRY_FIELDS = exports.STATE_VARIANT_SUFFIXES = exports.LINK_STATES = exports.FORM_STATES = exports.INTERACTIVE_STATES = exports.STATE_KEYS = exports.PSEUDO_STATES = exports.BREAKPOINT_VARIANT_KEYS = exports.RESPONSIVE_BREAKPOINTS = exports.SMALLER_BREAKPOINTS = exports.LARGER_BREAKPOINTS = exports.BREAKPOINT_KEYS = exports.BREAKPOINTS = void 0;
+exports.DESKTOP_ONLY_WARNING = exports.STYLE_REGISTRY_FORMAT_DOCS = exports.STATE_DOCS = exports.BREAKPOINT_DOCS = exports.STYLE_REGISTRY_FIELDS = exports.STATE_VARIANT_SUFFIXES = exports.LINK_STATES = exports.FORM_STATES = exports.INTERACTIVE_STATES = exports.STATE_KEYS = exports.PSEUDO_STATES = exports.BREAKPOINT_VARIANT_KEYS = exports.RESPONSIVE_BREAKPOINTS = exports.SMALLER_BREAKPOINTS = exports.BREAKPOINT_KEYS = exports.BREAKPOINTS = void 0;
 exports.getBreakpoint = getBreakpoint;
 exports.getState = getState;
 exports.breakpointToVariantKey = breakpointToVariantKey;
 exports.stateToVariantSuffix = stateToVariantSuffix;
 exports.getVariantKey = getVariantKey;
-exports.isLargerBreakpoint = isLargerBreakpoint;
 exports.isSmallerBreakpoint = isSmallerBreakpoint;
 exports.getBreakpointsCascadeOrder = getBreakpointsCascadeOrder;
 exports.getMediaQuery = getMediaQuery;
 exports.generateBreakpointDocsForPrompt = generateBreakpointDocsForPrompt;
 exports.generateStateDocsForPrompt = generateStateDocsForPrompt;
 /**
- * All Webflow breakpoints in cascade order
+ * All Webflow breakpoints in cascade order (simplified)
  *
- * Webflow uses a hybrid cascade:
- * - Desktop (main) is the BASE - no media query
- * - Larger screens cascade UP with min-width
- * - Smaller screens cascade DOWN with max-width
+ * Desktop is the BASE - no media query
+ * Smaller screens cascade DOWN with max-width
  */
 exports.BREAKPOINTS = {
-    // Larger breakpoints (cascade UP from Desktop - min-width)
-    xxl: {
-        key: 'xxl',
-        name: '1920+',
-        mediaQuery: '@media screen and (min-width: 1920px)',
-        width: 1920,
-        direction: 'up',
-        order: 1,
-        variantKey: 'xxl',
-    },
-    xl: {
-        key: 'xl',
-        name: '1440+',
-        mediaQuery: '@media screen and (min-width: 1440px)',
-        width: 1440,
-        direction: 'up',
-        order: 2,
-        variantKey: 'xl',
-    },
-    large: {
-        key: 'large',
-        name: '1280+',
-        mediaQuery: '@media screen and (min-width: 1280px)',
-        width: 1280,
-        direction: 'up',
-        order: 3,
-        variantKey: 'large',
-    },
     // Desktop (BASE - no media query)
     desktop: {
         key: 'desktop',
@@ -60,7 +30,7 @@ exports.BREAKPOINTS = {
         mediaQuery: null,
         width: null,
         direction: 'base',
-        order: 4,
+        order: 1,
         variantKey: null, // Uses styleLess directly
     },
     // Smaller breakpoints (cascade DOWN from Desktop - max-width)
@@ -70,35 +40,25 @@ exports.BREAKPOINTS = {
         mediaQuery: '@media screen and (max-width: 991px)',
         width: 991,
         direction: 'down',
-        order: 5,
+        order: 2,
         variantKey: 'medium',
-    },
-    mobileLandscape: {
-        key: 'mobileLandscape',
-        name: 'Mobile Landscape',
-        mediaQuery: '@media screen and (max-width: 767px)',
-        width: 767,
-        direction: 'down',
-        order: 6,
-        variantKey: 'small',
     },
     mobile: {
         key: 'mobile',
-        name: 'Mobile Portrait',
+        name: 'Mobile',
         mediaQuery: '@media screen and (max-width: 478px)',
         width: 478,
         direction: 'down',
-        order: 7,
+        order: 3,
         variantKey: 'tiny',
     },
 };
 // Arrays for iteration
-exports.BREAKPOINT_KEYS = ['xxl', 'xl', 'large', 'desktop', 'tablet', 'mobileLandscape', 'mobile'];
-exports.LARGER_BREAKPOINTS = ['xxl', 'xl', 'large'];
-exports.SMALLER_BREAKPOINTS = ['tablet', 'mobileLandscape', 'mobile'];
-exports.RESPONSIVE_BREAKPOINTS = [...exports.LARGER_BREAKPOINTS, ...exports.SMALLER_BREAKPOINTS];
+exports.BREAKPOINT_KEYS = ['desktop', 'tablet', 'mobile'];
+exports.SMALLER_BREAKPOINTS = ['tablet', 'mobile'];
+exports.RESPONSIVE_BREAKPOINTS = ['tablet', 'mobile'];
 // Webflow variant keys (for styles)
-exports.BREAKPOINT_VARIANT_KEYS = ['xxl', 'xl', 'large', 'medium', 'small', 'tiny'];
+exports.BREAKPOINT_VARIANT_KEYS = ['medium', 'tiny'];
 /**
  * All Webflow pseudo-states
  */
@@ -224,11 +184,6 @@ function getVariantKey(breakpoint, state) {
     // Breakpoint + state = breakpoint_state
     return `${bpKey}${stSuffix}`;
 }
-/** Check if a breakpoint uses min-width (larger screens) */
-function isLargerBreakpoint(breakpoint) {
-    var _a;
-    return ((_a = exports.BREAKPOINTS[breakpoint]) === null || _a === void 0 ? void 0 : _a.direction) === 'up';
-}
 /** Check if a breakpoint uses max-width (smaller screens) */
 function isSmallerBreakpoint(breakpoint) {
     var _a;
@@ -250,19 +205,13 @@ function getMediaQuery(breakpoint) {
 /**
  * Style registry field names used in prompts
  * Maps to styleLess (desktop) and variants (responsive)
- * Uses actual Webflow variant keys: xl, xxl (not xlarge, xxlarge)
  */
 exports.STYLE_REGISTRY_FIELDS = {
     // Desktop (no breakpoint)
     main: 'main',
-    // Larger breakpoints (min-width)
-    large: 'large', // ≥1280px
-    xl: 'xl', // ≥1440px
-    xxl: 'xxl', // ≥1920px
     // Smaller breakpoints (max-width)
-    medium: 'medium', // ≤991px
-    small: 'small', // ≤767px
-    tiny: 'tiny', // ≤478px
+    medium: 'medium', // ≤991px (tablet)
+    tiny: 'tiny', // ≤478px (mobile)
     // Desktop states
     hover: 'hover',
     focus: 'focus',
@@ -281,17 +230,12 @@ function generateBreakpointDocsForPrompt() {
 | Field | Media Query | Direction | Description |
 |-------|-------------|-----------|-------------|
 | main | (none) | Base | Desktop styles (default) |
-| large | min-width: 1280px | ↑ UP | Large desktop (≥1280px) |
-| xl | min-width: 1440px | ↑ UP | Extra large desktop (≥1440px) |
-| xxl | min-width: 1920px | ↑ UP | Ultra wide desktop (≥1920px) |
-| medium | max-width: 991px | ↓ DOWN | Tablet (≤991px) |
-| small | max-width: 767px | ↓ DOWN | Mobile landscape (≤767px) |
-| tiny | max-width: 478px | ↓ DOWN | Mobile portrait (≤478px) |
+| medium | max-width: 991px | DOWN | Tablet (≤991px) |
+| tiny | max-width: 478px | DOWN | Mobile (≤478px) |
 
 **Cascade Rules:**
 - \`main\` (Desktop) is the BASE - always required
-- Larger breakpoints (large, xl, xxl) cascade UP from Desktop
-- Smaller breakpoints (medium, small, tiny) cascade DOWN from Desktop
+- Smaller breakpoints (medium, tiny) cascade DOWN from Desktop
 - Only include breakpoint fields when styles DIFFER from the base`;
 }
 /** Generate prompt documentation for states */
@@ -334,12 +278,8 @@ Each style entry uses this format:
 - id: "[CSS Selector]"
   comb: "" | "&"
   main: "[desktop CSS properties]"
-  large: "[≥1280px properties]"    # optional
-  xl: "[≥1440px properties]"       # optional
-  xxl: "[≥1920px properties]"      # optional
-  medium: "[≤991px properties]"    # optional
-  small: "[≤767px properties]"     # optional
-  tiny: "[≤478px properties]"      # optional
+  medium: "[≤991px properties]"    # optional (tablet)
+  tiny: "[≤478px properties]"      # optional (mobile)
   hover: "[hover state]"           # optional
   focus: "[focus state]"           # optional
 \`\`\`
@@ -351,12 +291,8 @@ Each style entry uses this format:
 | id | YES | CSS selector (e.g., ".button", ".button.is-primary") |
 | comb | YES | "" for base class, "&" for combo modifier |
 | main | YES | Desktop styles (BASE) |
-| large | NO | Large screens (≥1280px, min-width) |
-| xl | NO | Extra large screens (≥1440px, min-width) |
-| xxl | NO | Ultra wide screens (≥1920px, min-width) |
 | medium | NO | Tablet (≤991px, max-width) |
-| small | NO | Mobile landscape (≤767px, max-width) |
-| tiny | NO | Mobile portrait (≤478px, max-width) |
+| tiny | NO | Mobile (≤478px, max-width) |
 | hover | NO | Hover state styles |
 | focus | NO | Focus state styles |
 
@@ -366,6 +302,6 @@ Each style entry uses this format:
 - \`comb: "&"\` = combo modifier that requires base class (e.g., \`.button.is-primary\`)
 `;
 /** Desktop-only mode warning for prompts */
-exports.DESKTOP_ONLY_WARNING = `**⚠️ DESKTOP ONLY MODE**
-- Do NOT include \`large\`, \`xl\`, \`xxl\`, \`medium\`, \`small\`, or \`tiny\` fields
+exports.DESKTOP_ONLY_WARNING = `**DESKTOP ONLY MODE**
+- Do NOT include \`medium\` or \`tiny\` fields
 - Only generate \`main\` (desktop) styles`;

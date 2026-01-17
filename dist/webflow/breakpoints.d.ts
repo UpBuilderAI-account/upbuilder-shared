@@ -7,28 +7,25 @@ export interface BreakpointDef {
     mediaQuery: string | null;
     /** Breakpoint width in pixels (null for desktop) */
     width: number | null;
-    /** Direction: 'up' for min-width, 'down' for max-width */
-    direction: 'up' | 'down' | 'base';
+    /** Direction: 'down' for max-width, 'base' for desktop */
+    direction: 'down' | 'base';
     /** Order in cascade (lower = earlier in stylesheet) */
     order: number;
     /** Variant key used in Webflow styles */
     variantKey: string | null;
 }
 /**
- * All Webflow breakpoints in cascade order
+ * All Webflow breakpoints in cascade order (simplified)
  *
- * Webflow uses a hybrid cascade:
- * - Desktop (main) is the BASE - no media query
- * - Larger screens cascade UP with min-width
- * - Smaller screens cascade DOWN with max-width
+ * Desktop is the BASE - no media query
+ * Smaller screens cascade DOWN with max-width
  */
 export declare const BREAKPOINTS: Record<string, BreakpointDef>;
 export type BreakpointKey = keyof typeof BREAKPOINTS;
 export declare const BREAKPOINT_KEYS: BreakpointKey[];
-export declare const LARGER_BREAKPOINTS: BreakpointKey[];
 export declare const SMALLER_BREAKPOINTS: BreakpointKey[];
 export declare const RESPONSIVE_BREAKPOINTS: BreakpointKey[];
-export declare const BREAKPOINT_VARIANT_KEYS: readonly ["xxl", "xl", "large", "medium", "small", "tiny"];
+export declare const BREAKPOINT_VARIANT_KEYS: readonly ["medium", "tiny"];
 export type BreakpointVariantKey = typeof BREAKPOINT_VARIANT_KEYS[number];
 export interface StateDef {
     /** Internal Webflow key */
@@ -57,7 +54,7 @@ export type StateVariantSuffix = typeof STATE_VARIANT_SUFFIXES[number];
  * All possible Webflow style variant keys
  * Format: breakpoint OR breakpoint_state OR main_state
  */
-export type WebflowStyleVariantKey = 'large' | 'xl' | 'xxl' | 'medium' | 'small' | 'tiny' | 'main_hover' | 'main_pressed' | 'main_focus' | 'main_focusVisible' | 'main_visited' | 'main_current' | 'main_placeholder' | 'main_checked' | 'main_disabled' | 'large_hover' | 'large_pressed' | 'large_focus' | 'large_focusVisible' | 'xl_hover' | 'xl_pressed' | 'xl_focus' | 'xl_focusVisible' | 'xxl_hover' | 'xxl_pressed' | 'xxl_focus' | 'xxl_focusVisible' | 'medium_hover' | 'medium_pressed' | 'medium_focus' | 'medium_focusVisible' | 'small_hover' | 'small_pressed' | 'small_focus' | 'small_focusVisible' | 'tiny_hover' | 'tiny_pressed' | 'tiny_focus' | 'tiny_focusVisible';
+export type WebflowStyleVariantKey = 'medium' | 'tiny' | 'main_hover' | 'main_pressed' | 'main_focus' | 'main_focusVisible' | 'main_visited' | 'main_current' | 'main_placeholder' | 'main_checked' | 'main_disabled' | 'medium_hover' | 'medium_pressed' | 'medium_focus' | 'medium_focusVisible' | 'tiny_hover' | 'tiny_pressed' | 'tiny_focus' | 'tiny_focusVisible';
 /** Get breakpoint definition */
 export declare function getBreakpoint(key: BreakpointKey): BreakpointDef;
 /** Get state definition */
@@ -71,8 +68,6 @@ export declare function stateToVariantSuffix(state: StateKey): string;
  * Returns 'main' for desktop+none (which means use styleLess directly, not a variant)
  */
 export declare function getVariantKey(breakpoint: BreakpointKey, state: StateKey): string;
-/** Check if a breakpoint uses min-width (larger screens) */
-export declare function isLargerBreakpoint(breakpoint: BreakpointKey): boolean;
 /** Check if a breakpoint uses max-width (smaller screens) */
 export declare function isSmallerBreakpoint(breakpoint: BreakpointKey): boolean;
 /** Get breakpoints sorted by cascade order */
@@ -82,15 +77,10 @@ export declare function getMediaQuery(breakpoint: BreakpointKey): string | null;
 /**
  * Style registry field names used in prompts
  * Maps to styleLess (desktop) and variants (responsive)
- * Uses actual Webflow variant keys: xl, xxl (not xlarge, xxlarge)
  */
 export declare const STYLE_REGISTRY_FIELDS: {
     readonly main: "main";
-    readonly large: "large";
-    readonly xl: "xl";
-    readonly xxl: "xxl";
     readonly medium: "medium";
-    readonly small: "small";
     readonly tiny: "tiny";
     readonly hover: "hover";
     readonly focus: "focus";
@@ -114,7 +104,7 @@ export declare const STATE_DOCS: string;
  * Style registry format documentation for prompts
  * Includes both breakpoints and example format
  */
-export declare const STYLE_REGISTRY_FORMAT_DOCS = "## Style Registry Format\n\nEach style entry uses this format:\n\n```\n- id: \"[CSS Selector]\"\n  comb: \"\" | \"&\"\n  main: \"[desktop CSS properties]\"\n  large: \"[\u22651280px properties]\"    # optional\n  xl: \"[\u22651440px properties]\"       # optional\n  xxl: \"[\u22651920px properties]\"      # optional\n  medium: \"[\u2264991px properties]\"    # optional\n  small: \"[\u2264767px properties]\"     # optional\n  tiny: \"[\u2264478px properties]\"      # optional\n  hover: \"[hover state]\"           # optional\n  focus: \"[focus state]\"           # optional\n```\n\n### Field Definitions\n\n| Field | Required | Description |\n|-------|----------|-------------|\n| id | YES | CSS selector (e.g., \".button\", \".button.is-primary\") |\n| comb | YES | \"\" for base class, \"&\" for combo modifier |\n| main | YES | Desktop styles (BASE) |\n| large | NO | Large screens (\u22651280px, min-width) |\n| xl | NO | Extra large screens (\u22651440px, min-width) |\n| xxl | NO | Ultra wide screens (\u22651920px, min-width) |\n| medium | NO | Tablet (\u2264991px, max-width) |\n| small | NO | Mobile landscape (\u2264767px, max-width) |\n| tiny | NO | Mobile portrait (\u2264478px, max-width) |\n| hover | NO | Hover state styles |\n| focus | NO | Focus state styles |\n\n### Combo Classes\n\n- `comb: \"\"` = standalone class (e.g., `.button`)\n- `comb: \"&\"` = combo modifier that requires base class (e.g., `.button.is-primary`)\n";
+export declare const STYLE_REGISTRY_FORMAT_DOCS = "## Style Registry Format\n\nEach style entry uses this format:\n\n```\n- id: \"[CSS Selector]\"\n  comb: \"\" | \"&\"\n  main: \"[desktop CSS properties]\"\n  medium: \"[\u2264991px properties]\"    # optional (tablet)\n  tiny: \"[\u2264478px properties]\"      # optional (mobile)\n  hover: \"[hover state]\"           # optional\n  focus: \"[focus state]\"           # optional\n```\n\n### Field Definitions\n\n| Field | Required | Description |\n|-------|----------|-------------|\n| id | YES | CSS selector (e.g., \".button\", \".button.is-primary\") |\n| comb | YES | \"\" for base class, \"&\" for combo modifier |\n| main | YES | Desktop styles (BASE) |\n| medium | NO | Tablet (\u2264991px, max-width) |\n| tiny | NO | Mobile (\u2264478px, max-width) |\n| hover | NO | Hover state styles |\n| focus | NO | Focus state styles |\n\n### Combo Classes\n\n- `comb: \"\"` = standalone class (e.g., `.button`)\n- `comb: \"&\"` = combo modifier that requires base class (e.g., `.button.is-primary`)\n";
 /** Desktop-only mode warning for prompts */
-export declare const DESKTOP_ONLY_WARNING = "**\u26A0\uFE0F DESKTOP ONLY MODE**\n- Do NOT include `large`, `xl`, `xxl`, `medium`, `small`, or `tiny` fields\n- Only generate `main` (desktop) styles";
+export declare const DESKTOP_ONLY_WARNING = "**DESKTOP ONLY MODE**\n- Do NOT include `medium` or `tiny` fields\n- Only generate `main` (desktop) styles";
 //# sourceMappingURL=breakpoints.d.ts.map

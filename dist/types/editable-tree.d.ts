@@ -3,10 +3,10 @@
  * Safe format for frontend customizer - no Webflow internals exposed
  */
 /**
- * All supported breakpoints
- * Desktop is the base - styles cascade UP (min-width) and DOWN (max-width)
+ * All supported breakpoints (simplified: desktop > tablet > mobile)
+ * Desktop is the base - styles cascade DOWN only (max-width)
  */
-export type Breakpoint = 'xxl' | 'xl' | 'large' | 'desktop' | 'tablet' | 'mobileLandscape' | 'mobile';
+export type Breakpoint = 'desktop' | 'tablet' | 'mobile';
 /**
  * Breakpoint configuration metadata
  */
@@ -14,7 +14,7 @@ export interface BreakpointConfig {
     label: string;
     query: string | null;
     width: number | null;
-    cascadeDirection: 'up' | 'down' | 'none';
+    cascadeDirection: 'down' | 'none';
     cascadeSource: Breakpoint | null;
 }
 /**
@@ -297,7 +297,6 @@ export interface EditableClassLegacy {
     /** Responsive variants (no state support) */
     variants: {
         tablet?: EditableProperty[];
-        mobileLandscape?: EditableProperty[];
         mobile?: EditableProperty[];
     };
     usageCount: number;

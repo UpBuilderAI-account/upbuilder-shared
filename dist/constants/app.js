@@ -36,11 +36,11 @@ exports.DEFAULT_PLATFORM = 'webflow';
 exports.DEFAULT_STYLE_FRAMEWORK = 'simple';
 /**
  * Default breakpoint values (in pixels)
+ * Simplified: desktop > tablet > mobile only
  */
 exports.DEFAULT_BREAKPOINTS = {
     tablet: 991,
-    mobileLandscape: 767,
-    mobilePortrait: 479,
+    mobile: 478,
 };
 // ============================================================================
 // NETWORK

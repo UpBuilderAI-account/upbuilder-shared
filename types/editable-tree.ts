@@ -4,21 +4,17 @@
  */
 
 // ============================================================================
-// BREAKPOINTS - Webflow's bidirectional cascade from Desktop
+// BREAKPOINTS - Simplified cascade from Desktop
 // ============================================================================
 
 /**
- * All supported breakpoints
- * Desktop is the base - styles cascade UP (min-width) and DOWN (max-width)
+ * All supported breakpoints (simplified: desktop > tablet > mobile)
+ * Desktop is the base - styles cascade DOWN only (max-width)
  */
 export type Breakpoint =
-  | 'xxl'             // 1920px+ (min-width: 1920px) - cascades UP from xl
-  | 'xl'              // 1440px+ (min-width: 1440px) - cascades UP from large
-  | 'large'           // 1280px+ (min-width: 1280px) - cascades UP from desktop
   | 'desktop'         // Base (no media query)
   | 'tablet'          // ≤991px (max-width: 991px) - cascades DOWN from desktop
-  | 'mobileLandscape' // ≤767px (max-width: 767px) - cascades DOWN from tablet
-  | 'mobile';         // ≤478px (max-width: 478px) - cascades DOWN from mobileLandscape
+  | 'mobile';         // ≤478px (max-width: 478px) - cascades DOWN from tablet
 
 /**
  * Breakpoint configuration metadata
@@ -27,7 +23,7 @@ export interface BreakpointConfig {
   label: string;
   query: string | null;
   width: number | null;
-  cascadeDirection: 'up' | 'down' | 'none';
+  cascadeDirection: 'down' | 'none';
   cascadeSource: Breakpoint | null;
 }
 
@@ -35,27 +31,6 @@ export interface BreakpointConfig {
  * All breakpoint configurations
  */
 export const BREAKPOINT_CONFIG: Record<Breakpoint, BreakpointConfig> = {
-  xxl: {
-    label: '1920px',
-    query: '@media (min-width: 1920px)',
-    width: 1920,
-    cascadeDirection: 'up',
-    cascadeSource: 'xl',
-  },
-  xl: {
-    label: '1440px',
-    query: '@media (min-width: 1440px)',
-    width: 1440,
-    cascadeDirection: 'up',
-    cascadeSource: 'large',
-  },
-  large: {
-    label: '1280px',
-    query: '@media (min-width: 1280px)',
-    width: 1280,
-    cascadeDirection: 'up',
-    cascadeSource: 'desktop',
-  },
   desktop: {
     label: 'Desktop',
     query: null,
@@ -70,19 +45,12 @@ export const BREAKPOINT_CONFIG: Record<Breakpoint, BreakpointConfig> = {
     cascadeDirection: 'down',
     cascadeSource: 'desktop',
   },
-  mobileLandscape: {
-    label: 'Landscape',
-    query: '@media (max-width: 767px)',
-    width: 767,
-    cascadeDirection: 'down',
-    cascadeSource: 'tablet',
-  },
   mobile: {
     label: 'Mobile',
     query: '@media (max-width: 478px)',
     width: 478,
     cascadeDirection: 'down',
-    cascadeSource: 'mobileLandscape',
+    cascadeSource: 'tablet',
   },
 };
 
@@ -90,7 +58,7 @@ export const BREAKPOINT_CONFIG: Record<Breakpoint, BreakpointConfig> = {
  * Breakpoints in cascade order (larger to smaller)
  */
 export const BREAKPOINT_CASCADE_ORDER: Breakpoint[] = [
-  'xxl', 'xl', 'large', 'desktop', 'tablet', 'mobileLandscape', 'mobile'
+  'desktop', 'tablet', 'mobile'
 ];
 
 // ============================================================================
@@ -550,7 +518,6 @@ export interface EditableClassLegacy {
   /** Responsive variants (no state support) */
   variants: {
     tablet?: EditableProperty[];
-    mobileLandscape?: EditableProperty[];
     mobile?: EditableProperty[];
   };
   usageCount: number;
@@ -570,9 +537,6 @@ export function migrateEditableClass(legacy: EditableClassLegacy): EditableClass
   // Variants → breakpoint.none
   if (legacy.variants?.tablet?.length) {
     properties.tablet = { none: legacy.variants.tablet };
-  }
-  if (legacy.variants?.mobileLandscape?.length) {
-    properties.mobileLandscape = { none: legacy.variants.mobileLandscape };
   }
   if (legacy.variants?.mobile?.length) {
     properties.mobile = { none: legacy.variants.mobile };

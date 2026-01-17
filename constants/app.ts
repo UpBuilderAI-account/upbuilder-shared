@@ -38,11 +38,11 @@ export const DEFAULT_STYLE_FRAMEWORK = 'simple';
 
 /**
  * Default breakpoint values (in pixels)
+ * Simplified: desktop > tablet > mobile only
  */
 export const DEFAULT_BREAKPOINTS = {
   tablet: 991,
-  mobileLandscape: 767,
-  mobilePortrait: 479,
+  mobile: 478,
 } as const;
 
 // ============================================================================

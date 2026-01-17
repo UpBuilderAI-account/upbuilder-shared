@@ -15,11 +15,11 @@ export declare const DEFAULT_PLATFORM = "webflow";
 export declare const DEFAULT_STYLE_FRAMEWORK = "simple";
 /**
  * Default breakpoint values (in pixels)
+ * Simplified: desktop > tablet > mobile only
  */
 export declare const DEFAULT_BREAKPOINTS: {
     readonly tablet: 991;
-    readonly mobileLandscape: 767;
-    readonly mobilePortrait: 479;
+    readonly mobile: 478;
 };
 /**
  * JSON/URL-encoded payload limit (30MB)
