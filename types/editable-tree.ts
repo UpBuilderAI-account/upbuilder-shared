@@ -557,6 +557,18 @@ export function migrateEditableClass(legacy: EditableClassLegacy): EditableClass
 // ============================================================================
 
 /**
+ * Design dimensions from original Figma frame
+ */
+export interface DesignDimensions {
+  /** Original Figma frame width in pixels */
+  width: number;
+  /** Original Figma frame height in pixels */
+  height: number;
+  /** Padded width (width * 1.30) for breakpoint calculation */
+  paddedWidth: number;
+}
+
+/**
  * Single design in editable format
  */
 export interface EditableDesign {
@@ -565,6 +577,9 @@ export interface EditableDesign {
 
   /** Design name */
   name: string;
+
+  /** Original Figma frame dimensions */
+  dimensions?: DesignDimensions;
 
   /** All nodes as flat map for O(1) lookup */
   nodes: Record<string, EditableNode>;

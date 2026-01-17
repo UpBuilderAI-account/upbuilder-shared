@@ -128,6 +128,7 @@ export declare const SOCKET_EVENTS: {
         readonly ASSET_UPLOAD_PROGRESS: "customizer:asset_upload_progress";
         readonly AI_REQUEST: "customizer:ai:request";
         readonly AI_RESPONSE: "customizer:ai:response";
+        readonly AI_STREAM: "customizer:ai:stream";
         readonly ERROR: "customizer:error";
     };
     /**

@@ -149,6 +149,7 @@ exports.SOCKET_EVENTS = {
         ASSET_UPLOAD_PROGRESS: 'customizer:asset_upload_progress', // Server → Client: Broadcast upload progress/completion
         AI_REQUEST: 'customizer:ai:request', // Client → Server: AI assistant request
         AI_RESPONSE: 'customizer:ai:response', // Server → Client: AI assistant response
+        AI_STREAM: 'customizer:ai:stream', // Server → Client: AI assistant streaming chunk
         ERROR: 'customizer:error', // Server → Client: Error event
     },
     /**
