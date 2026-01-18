@@ -132,6 +132,32 @@ export declare const SOCKET_EVENTS: {
         readonly ERROR: "customizer:error";
     };
     /**
+     * Plan stage events (client ↔ server)
+     * For AI-powered design planning before build
+     */
+    readonly PLAN: {
+        readonly START: "plan:start";
+        readonly STREAM: "plan:stream";
+        readonly MESSAGE: "plan:message";
+        readonly REPLY: "plan:reply";
+        readonly CONFIRM: "plan:confirm";
+        readonly CONFIRMED: "plan:confirmed";
+        readonly ERROR: "plan:error";
+    };
+    /**
+     * Fixing stage events (client ↔ server)
+     * For AI-powered auto-fixing after build
+     */
+    readonly FIXING: {
+        readonly START: "fixing:start";
+        readonly SECTIONS: "fixing:sections";
+        readonly REQUEST_FIX: "fixing:request_fix";
+        readonly COMMANDS: "fixing:commands";
+        readonly SECTION_COMPLETE: "fixing:section_complete";
+        readonly COMPLETE: "fixing:complete";
+        readonly ERROR: "fixing:error";
+    };
+    /**
      * Webflow integration events (client ↔ server)
      * For OAuth, site connection, and asset sync
      */

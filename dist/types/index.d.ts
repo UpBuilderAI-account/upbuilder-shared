@@ -13,4 +13,6 @@ export * from './complex-hierarchy';
 export * from './outside-elements';
 export * from './editable-tree';
 export * from './edit-operations';
+export * from './plan';
+export * from './fixing';
 //# sourceMappingURL=index.d.ts.map

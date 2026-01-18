@@ -72,3 +72,7 @@ __exportStar(require("./outside-elements"), exports);
 __exportStar(require("./editable-tree"), exports);
 // Edit operations types (customizer - operations sent from frontend)
 __exportStar(require("./edit-operations"), exports);
+// Plan stage types (workflow v2 - AI planning phase)
+__exportStar(require("./plan"), exports);
+// Fixing stage types (workflow v2 - AI auto-fix phase)
+__exportStar(require("./fixing"), exports);

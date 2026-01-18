@@ -468,6 +468,13 @@ export interface DesignEntity {
     fonts?: DesignFonts | null;
     /** Processing status - tracks if design is queued, pending upgrade, or processed */
     processing_status?: DesignProcessingStatus;
+    /** Big preview URL (8K max) stored in S3 for frontend access during auto-fix phase */
+    big_preview_url?: string;
+    /** Big preview dimensions for coordinate scaling */
+    big_preview_dimensions?: {
+        width: number;
+        height: number;
+    };
     status?: string;
     width?: number;
     height?: number;

@@ -128,3 +128,9 @@ export * from './editable-tree';
 
 // Edit operations types (customizer - operations sent from frontend)
 export * from './edit-operations';
+
+// Plan stage types (workflow v2 - AI planning phase)
+export * from './plan';
+
+// Fixing stage types (workflow v2 - AI auto-fix phase)
+export * from './fixing';

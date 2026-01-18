@@ -166,6 +166,34 @@ export const SOCKET_EVENTS = {
   },
 
   /**
+   * Plan stage events (client ↔ server)
+   * For AI-powered design planning before build
+   */
+  PLAN: {
+    START: 'plan:start',                 // Client → Server: Start plan generation
+    STREAM: 'plan:stream',               // Server → Client: Stream plan analysis chunks
+    MESSAGE: 'plan:message',             // Client → Server: User sends message in conversation
+    REPLY: 'plan:reply',                 // Server → Client: Stream AI reply
+    CONFIRM: 'plan:confirm',             // Client → Server: Confirm plan and save
+    CONFIRMED: 'plan:confirmed',         // Server → Client: Plan saved, ready to build
+    ERROR: 'plan:error',                 // Server → Client: Plan error
+  },
+
+  /**
+   * Fixing stage events (client ↔ server)
+   * For AI-powered auto-fixing after build
+   */
+  FIXING: {
+    START: 'fixing:start',               // Client → Server: Start fixing process
+    SECTIONS: 'fixing:sections',         // Server → Client: List of sections to fix
+    REQUEST_FIX: 'fixing:request_fix',   // Client → Server: Request fix for a section
+    COMMANDS: 'fixing:commands',         // Server → Client: Commands to execute
+    SECTION_COMPLETE: 'fixing:section_complete', // Server → Client: Section fixing complete
+    COMPLETE: 'fixing:complete',         // Server → Client: All sections fixed
+    ERROR: 'fixing:error',               // Server → Client: Fixing error
+  },
+
+  /**
    * Webflow integration events (client ↔ server)
    * For OAuth, site connection, and asset sync
    */
