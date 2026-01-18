@@ -4,7 +4,7 @@
  * This prevents exposing the full Webflow structure
  */
 import type { Breakpoint, PseudoState, EditableAsset } from './editable-tree';
-export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'updateText' | 'updateNodeImage' | 'updateNodeLink' | 'updateNodeFormProps' | 'updateNodeVideoProps' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride' | 'updateStyleObjectProperty' | 'createStyleObject' | 'deleteStyleObject';
+export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'addNode' | 'wrapNode' | 'unwrapNode' | 'renameNode' | 'updateText' | 'updateNodeImage' | 'updateNodeLink' | 'updateNodeFormProps' | 'updateNodeVideoProps' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride' | 'updateStyleObjectProperty' | 'createStyleObject' | 'deleteStyleObject';
 interface BaseEditOperation {
     /** Operation type */
     type: EditOperationType;
@@ -72,6 +72,64 @@ export interface DuplicateNodeOp extends BaseEditOperation {
     nodeId: string;
     /** New node ID (generated on frontend for optimistic update) */
     newNodeId: string;
+}
+/**
+ * Add a new node to the tree
+ */
+export interface AddNodeOp extends BaseEditOperation {
+    type: 'addNode';
+    /** New node ID */
+    nodeId: string;
+    /** Parent node ID (null for root level) */
+    parentNodeId: string | null;
+    /** Index within parent's children */
+    index: number;
+    /** Node tag (div, section, etc.) */
+    tag: string;
+    /** Component type (Block, Section, Text, etc.) */
+    componentType: string;
+    /** Display name */
+    displayName: string;
+    /** Initial classes */
+    classes: string[];
+    /** Initial text content */
+    textContent?: string;
+}
+/**
+ * Wrap a node with a container element
+ */
+export interface WrapNodeOp extends BaseEditOperation {
+    type: 'wrapNode';
+    /** Node to wrap */
+    nodeId: string;
+    /** New wrapper node ID */
+    wrapperId: string;
+    /** Wrapper type (div, section) */
+    wrapperType: 'div' | 'section';
+    /** Wrapper tag */
+    tag: string;
+    /** Wrapper component type */
+    componentType: string;
+}
+/**
+ * Unwrap a node (remove wrapper, promote children)
+ */
+export interface UnwrapNodeOp extends BaseEditOperation {
+    type: 'unwrapNode';
+    /** Node (wrapper) to remove */
+    nodeId: string;
+    /** Children that will be promoted */
+    childIds: string[];
+}
+/**
+ * Rename a node's display name
+ */
+export interface RenameNodeOp extends BaseEditOperation {
+    type: 'renameNode';
+    /** Node to rename */
+    nodeId: string;
+    /** New display name */
+    newName: string;
 }
 /**
  * Update text content of a node
@@ -347,7 +405,7 @@ export interface DeleteStyleObjectOp extends BaseEditOperation {
 /**
  * Any edit operation
  */
-export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | UpdateTextOp | UpdateNodeImageOp | UpdateNodeLinkOp | UpdateNodeFormPropsOp | UpdateNodeVideoPropsOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp | UpdateStyleObjectPropertyOp | CreateStyleObjectOp | DeleteStyleObjectOp;
+export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | AddNodeOp | WrapNodeOp | UnwrapNodeOp | RenameNodeOp | UpdateTextOp | UpdateNodeImageOp | UpdateNodeLinkOp | UpdateNodeFormPropsOp | UpdateNodeVideoPropsOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp | UpdateStyleObjectPropertyOp | CreateStyleObjectOp | DeleteStyleObjectOp;
 /**
  * Request to apply edit operations
  */

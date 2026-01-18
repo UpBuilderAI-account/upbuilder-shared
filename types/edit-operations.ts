@@ -17,6 +17,10 @@ export type EditOperationType =
   | 'moveNode'
   | 'deleteNode'
   | 'duplicateNode'
+  | 'addNode'           // Add new node to tree
+  | 'wrapNode'          // Wrap node with container
+  | 'unwrapNode'        // Unwrap node (remove wrapper, keep children)
+  | 'renameNode'        // Rename node displayName
   | 'updateText'
   | 'updateNodeImage'  // Update image source/alt on a node
   | 'updateNodeLink'   // Update link href/target on a node
@@ -118,6 +122,68 @@ export interface DuplicateNodeOp extends BaseEditOperation {
   nodeId: string;
   /** New node ID (generated on frontend for optimistic update) */
   newNodeId: string;
+}
+
+/**
+ * Add a new node to the tree
+ */
+export interface AddNodeOp extends BaseEditOperation {
+  type: 'addNode';
+  /** New node ID */
+  nodeId: string;
+  /** Parent node ID (null for root level) */
+  parentNodeId: string | null;
+  /** Index within parent's children */
+  index: number;
+  /** Node tag (div, section, etc.) */
+  tag: string;
+  /** Component type (Block, Section, Text, etc.) */
+  componentType: string;
+  /** Display name */
+  displayName: string;
+  /** Initial classes */
+  classes: string[];
+  /** Initial text content */
+  textContent?: string;
+}
+
+/**
+ * Wrap a node with a container element
+ */
+export interface WrapNodeOp extends BaseEditOperation {
+  type: 'wrapNode';
+  /** Node to wrap */
+  nodeId: string;
+  /** New wrapper node ID */
+  wrapperId: string;
+  /** Wrapper type (div, section) */
+  wrapperType: 'div' | 'section';
+  /** Wrapper tag */
+  tag: string;
+  /** Wrapper component type */
+  componentType: string;
+}
+
+/**
+ * Unwrap a node (remove wrapper, promote children)
+ */
+export interface UnwrapNodeOp extends BaseEditOperation {
+  type: 'unwrapNode';
+  /** Node (wrapper) to remove */
+  nodeId: string;
+  /** Children that will be promoted */
+  childIds: string[];
+}
+
+/**
+ * Rename a node's display name
+ */
+export interface RenameNodeOp extends BaseEditOperation {
+  type: 'renameNode';
+  /** Node to rename */
+  nodeId: string;
+  /** New display name */
+  newName: string;
 }
 
 /**
@@ -456,6 +522,10 @@ export type EditOperation =
   | MoveNodeOp
   | DeleteNodeOp
   | DuplicateNodeOp
+  | AddNodeOp
+  | WrapNodeOp
+  | UnwrapNodeOp
+  | RenameNodeOp
   | UpdateTextOp
   | UpdateNodeImageOp
   | UpdateNodeLinkOp
