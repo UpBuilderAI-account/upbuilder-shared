@@ -64,6 +64,7 @@ export {
   type CustomSectionCode,
   type CustomizeData,
   // Export types
+  type ExportSectionData,
   type ExportDesignData,
   type CustomFontInfo,
   type WorkflowExportComplete,

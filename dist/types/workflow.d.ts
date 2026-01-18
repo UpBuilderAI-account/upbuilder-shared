@@ -249,13 +249,23 @@ export interface CustomizeData {
         code: CustomSectionCode;
     }>;
 }
+/** Section info from AI analysis with bounding box for screenshot cropping */
+export interface ExportSectionData {
+    id: string;
+    name: string;
+    type: string;
+    elementIds: string[];
+    bounds?: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    };
+}
 export interface ExportDesignData {
     id: string;
     name: string;
-    sections: {
-        id: string;
-        name: string;
-    }[];
+    sections: ExportSectionData[];
     xscpUrl: string;
     /** @deprecated Use WorkflowExportComplete.globalJsUrl instead */
     jsBodyUrl?: string;

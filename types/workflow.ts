@@ -392,10 +392,24 @@ export interface CustomizeData {
 // EXPORT COMPLETE EVENT (workflow:export_complete)
 // =============================================================================
 
+/** Section info from AI analysis with bounding box for screenshot cropping */
+export interface ExportSectionData {
+  id: string;
+  name: string;
+  type: string;           // "navbar", "hero", "features", etc.
+  elementIds: string[];   // Element IDs from HTML list for this section
+  bounds?: {              // Calculated bounding box from element IDs (original Figma coordinates)
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+}
+
 export interface ExportDesignData {
   id: string;
   name: string;
-  sections: { id: string; name: string }[];
+  sections: ExportSectionData[];
   xscpUrl: string;      // S3 URL to fetch XSCP JSON (Webflow) or Bricks template JSON
   /** @deprecated Use WorkflowExportComplete.globalJsUrl instead */
   jsBodyUrl?: string;   // S3 URL for JS body code (Webflow only) - DEPRECATED
