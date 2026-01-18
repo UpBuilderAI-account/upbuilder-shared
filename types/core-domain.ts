@@ -285,6 +285,13 @@ export interface ProjectState {
     total: number;
     failed: number;
   };
+
+  // Plan conversation cache (for page reload - avoid re-streaming)
+  planConversation?: {
+    content: string;
+    blocks: any;
+    generatedAt: number;
+  };
 }
 
 export interface SectionCode {
@@ -657,6 +664,12 @@ export interface DesignEntity {
 
   /** Big preview dimensions for coordinate scaling */
   big_preview_dimensions?: { width: number; height: number };
+
+  /** AI representation: Element list with extracted CSS values (font-size, colors, dimensions) */
+  html_list?: string | null;
+
+  /** AI representation: HTML-like hierarchy with auto-layout hints from Figma */
+  figma_mockup?: string | null;
 
   // Legacy fields - NOT stored in DB, exist only in Project.state.designs[]
   // These are here only for type compatibility during database queries

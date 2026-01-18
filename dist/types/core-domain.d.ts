@@ -165,6 +165,11 @@ export interface ProjectState {
         total: number;
         failed: number;
     };
+    planConversation?: {
+        content: string;
+        blocks: any;
+        generatedAt: number;
+    };
 }
 export interface SectionCode {
     html: string;
@@ -477,6 +482,10 @@ export interface DesignEntity {
         width: number;
         height: number;
     };
+    /** AI representation: Element list with extracted CSS values (font-size, colors, dimensions) */
+    html_list?: string | null;
+    /** AI representation: HTML-like hierarchy with auto-layout hints from Figma */
+    figma_mockup?: string | null;
     status?: string;
     width?: number;
     height?: number;
