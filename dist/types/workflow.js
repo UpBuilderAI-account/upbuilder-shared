@@ -86,13 +86,17 @@ exports.isFailed = isFailed;
 exports.STAGE_ORDER = [
     'export_config',
     'load',
+    'plan',
     'convert_to_platform',
+    'fixing',
     'customize',
 ];
 exports.STAGE_LABELS = {
     export_config: 'Configure Export',
     load: 'Loading Data',
+    plan: 'Planning Design',
     convert_to_platform: 'Building Design',
+    fixing: 'Auto-Fixing',
     customize: 'Preview & Export',
 };
 /**

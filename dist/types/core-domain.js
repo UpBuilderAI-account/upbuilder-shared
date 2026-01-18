@@ -21,7 +21,9 @@ exports.PROJECT_STATUS = {
     IDLE: 'idle',
     EXPORT_CONFIG: 'export_config',
     LOAD: 'load',
+    PLAN: 'plan',
     CONVERT_TO_PLATFORM: 'convert_to_platform',
+    FIXING: 'fixing',
     CUSTOMIZE: 'customize',
     COMPLETE: 'complete',
     FAILED: 'failed',
@@ -47,8 +49,10 @@ function getNextStatus(status, platform, quickMode) {
     const transitions = {
         idle: 'export_config',
         export_config: 'load',
-        load: 'convert_to_platform',
-        convert_to_platform: 'customize',
+        load: 'plan',
+        plan: 'convert_to_platform',
+        convert_to_platform: 'fixing',
+        fixing: 'customize',
         customize: 'complete',
         complete: null,
         failed: null,
@@ -74,7 +78,9 @@ function getNextStatus(status, platform, quickMode) {
  */
 function requiresUserActionAfter(status) {
     // These stages require user action to proceed
-    return status === 'export_config' || status === 'customize';
+    // plan: user reviews AI analysis, can ask questions, then confirms
+    // fixing: user watches auto-fixes, can pause/skip, then continues
+    return status === 'export_config' || status === 'plan' || status === 'fixing' || status === 'customize';
 }
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION

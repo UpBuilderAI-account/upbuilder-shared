@@ -85,7 +85,9 @@ export type ProjectStatus =
   | 'idle'
   | 'export_config'      // First stage - configure export options
   | 'load'
+  | 'plan'               // AI analyzes designs, user can ask questions, then confirms
   | 'convert_to_platform' // Unified build: AI generates ALL styles + structure per design
+  | 'fixing'             // AI auto-fixes sections by comparing screenshots
   | 'customize'          // Preview Webflow structure + export modal
   | 'complete'
   | 'failed';
@@ -97,7 +99,9 @@ export const PROJECT_STATUS = {
   IDLE: 'idle' as ProjectStatus,
   EXPORT_CONFIG: 'export_config' as ProjectStatus,
   LOAD: 'load' as ProjectStatus,
+  PLAN: 'plan' as ProjectStatus,
   CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
+  FIXING: 'fixing' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
   FAILED: 'failed' as ProjectStatus,
@@ -124,8 +128,10 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
     idle: 'export_config',
     export_config: 'load',
-    load: 'convert_to_platform',
-    convert_to_platform: 'customize',
+    load: 'plan',
+    plan: 'convert_to_platform',
+    convert_to_platform: 'fixing',
+    fixing: 'customize',
     customize: 'complete',
     complete: null,
     failed: null,
@@ -156,7 +162,9 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
  */
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
   // These stages require user action to proceed
-  return status === 'export_config' || status === 'customize';
+  // plan: user reviews AI analysis, can ask questions, then confirms
+  // fixing: user watches auto-fixes, can pause/skip, then continues
+  return status === 'export_config' || status === 'plan' || status === 'fixing' || status === 'customize';
 }
 
 // Bricks and Elementor commented out - only Webflow available for now

@@ -606,14 +606,18 @@ export const isFailed = (p: Progress): boolean => p === -1;
 export const STAGE_ORDER: Stage[] = [
   'export_config',
   'load',
+  'plan',
   'convert_to_platform',
+  'fixing',
   'customize',
 ];
 
 export const STAGE_LABELS: Record<Stage, string> = {
   export_config: 'Configure Export',
   load: 'Loading Data',
+  plan: 'Planning Design',
   convert_to_platform: 'Building Design',
+  fixing: 'Auto-Fixing',
   customize: 'Preview & Export',
 };
 
