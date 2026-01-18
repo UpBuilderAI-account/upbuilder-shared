@@ -581,6 +581,15 @@ export interface EditableDesign {
   /** Original Figma frame dimensions */
   dimensions?: DesignDimensions;
 
+  /** Big preview image URL (full design screenshot) */
+  bigPreviewUrl?: string;
+
+  /** Big preview image dimensions */
+  bigPreviewDimensions?: {
+    width: number;
+    height: number;
+  };
+
   /** All nodes as flat map for O(1) lookup */
   nodes: Record<string, EditableNode>;
 
