@@ -336,6 +336,78 @@ export interface ClientToServerEvents {
         };
         error?: string;
     }) => void) => void;
+    'plan:start': (data: {
+        projectId: string;
+        designIds: string[];
+    }, callback: (response: {
+        success: boolean;
+        error?: string;
+    }) => void) => void;
+    'plan:message': (data: {
+        projectId: string;
+        message: string;
+        history: Array<{
+            id: string;
+            role: 'assistant' | 'user';
+            content: string;
+            timestamp: number;
+        }>;
+    }, callback: (response: {
+        success: boolean;
+        error?: string;
+    }) => void) => void;
+    'plan:confirm': (data: {
+        projectId: string;
+        conversation: Array<{
+            id: string;
+            role: 'assistant' | 'user';
+            content: string;
+            timestamp: number;
+        }>;
+    }, callback: (response: {
+        success: boolean;
+        conversationId?: string;
+        error?: string;
+    }) => void) => void;
+    'fixing:start': (data: {
+        projectId: string;
+        designId: string;
+        sections: Array<{
+            id: string;
+            name: string;
+            bounds: {
+                x: number;
+                y: number;
+                width: number;
+                height: number;
+            };
+            isGlobal: boolean;
+        }>;
+    }, callback: (response: {
+        success: boolean;
+        error?: string;
+    }) => void) => void;
+    'fixing:request_fix': (data: {
+        projectId: string;
+        designId: string;
+        sectionId: string;
+        sectionName: string;
+        nodes: Array<{
+            id: string;
+            type: string;
+            classes: string[];
+            tag?: string;
+        }>;
+        styles: Array<{
+            name: string;
+            properties: Record<string, string>;
+        }>;
+        figmaScreenshot: string;
+        builtScreenshot: string;
+    }, callback: (response: {
+        success: boolean;
+        error?: string;
+    }) => void) => void;
 }
 /**
  * Events sent from server to client
@@ -425,6 +497,80 @@ export interface ServerToClientEvents {
         uploaded: number;
         failed: number;
         total: number;
+    }) => void;
+    'plan:stream': (data: {
+        projectId: string;
+        chunk: string;
+        blocks?: {
+            designAnalysis?: string;
+            sectionsAnalysis?: string;
+            colorSystem?: string;
+            typographySystem?: string;
+            componentsPlan?: string;
+            customInstructionsReview?: string;
+            questions?: string;
+            ready?: string;
+        };
+        done: boolean;
+    }) => void;
+    'plan:reply': (data: {
+        projectId: string;
+        chunk: string;
+        content?: string;
+        done: boolean;
+    }) => void;
+    'plan:confirmed': (data: {
+        projectId: string;
+        conversationId: string;
+    }) => void;
+    'plan:error': (data: {
+        projectId: string;
+        error: string;
+    }) => void;
+    'fixing:sections': (data: {
+        projectId: string;
+        designId: string;
+        sections: Array<{
+            id: string;
+            name: string;
+            bounds: {
+                x: number;
+                y: number;
+                width: number;
+                height: number;
+            };
+            isGlobal: boolean;
+        }>;
+    }) => void;
+    'fixing:commands': (data: {
+        projectId: string;
+        designId: string;
+        sectionId: string;
+        analysis: string;
+        commands: Array<{
+            action: 'selectNode' | 'setBreakpoint' | 'setProperty' | 'removeProperty' | 'comment';
+            displayMessage: string;
+            nodeId?: string;
+            className?: string;
+            property?: string;
+            value?: string;
+            breakpoint?: 'desktop' | 'tablet' | 'mobile';
+            message?: string;
+        }>;
+    }) => void;
+    'fixing:section_complete': (data: {
+        projectId: string;
+        designId: string;
+        sectionId: string;
+    }) => void;
+    'fixing:complete': (data: {
+        projectId: string;
+        designId: string;
+    }) => void;
+    'fixing:error': (data: {
+        projectId: string;
+        sectionId?: string;
+        error: string;
     }) => void;
 }
 /**
