@@ -55,10 +55,7 @@ exports.WEBFLOW_CONSTRAINTS = {
         displayName: 'Section',
         constraints: {}
     },
-    Container: {
-        displayName: 'Container',
-        constraints: {}
-    },
+    // Container removed - use Block with container-* utility classes instead
     Link: {
         displayName: 'Link',
         constraints: {

@@ -638,8 +638,11 @@ export interface EditableTreePayload {
   /** All designs in editable format */
   designs: EditableDesign[];
 
-  /** Global classes shared across all designs */
-  globalClasses: Record<string, EditableClass>;
+  /**
+   * @deprecated Use styleObjects from EditableTreePayloadV2 instead
+   * Legacy global classes - kept for backward compatibility
+   */
+  globalClasses?: Record<string, EditableClass>;
 
   /** Custom fonts that need manual setup */
   customFonts: EditableFontInfo[];

@@ -31,14 +31,15 @@ exports.WEBFLOW_COMPONENTS = {
         specialDataFields: ['grid'],
         description: 'Page section container, typically direct child of body'
     },
-    Container: {
-        displayName: 'Container',
-        tags: ['div'],
-        isContainer: true,
-        category: 'basic',
-        specialDataFields: [],
-        description: 'Centered container with max-width'
-    },
+    // Container removed - use Block with container-* utility classes instead
+    // Container: {
+    //   displayName: 'Container',
+    //   tags: ['div'],
+    //   isContainer: true,
+    //   category: 'basic',
+    //   specialDataFields: [],
+    //   description: 'Centered container with max-width'
+    // },
     Link: {
         displayName: 'Link',
         tags: ['a'],

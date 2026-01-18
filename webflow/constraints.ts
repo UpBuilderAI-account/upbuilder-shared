@@ -88,10 +88,7 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
     displayName: 'Section',
     constraints: {}
   },
-  Container: {
-    displayName: 'Container',
-    constraints: {}
-  },
+  // Container removed - use Block with container-* utility classes instead
   Link: {
     displayName: 'Link',
     constraints: {
