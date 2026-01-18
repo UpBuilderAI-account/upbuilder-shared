@@ -408,6 +408,13 @@ export interface ClientToServerEvents {
         success: boolean;
         error?: string;
     }) => void) => void;
+    'fixing:complete': (data: {
+        projectId: string;
+        designId?: string;
+    }, callback: (response: {
+        success: boolean;
+        error?: string;
+    }) => void) => void;
 }
 /**
  * Events sent from server to client

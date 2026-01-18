@@ -517,6 +517,11 @@ export interface ClientToServerEvents {
     },
     callback: (response: { success: boolean; error?: string }) => void
   ) => void;
+
+  'fixing:complete': (
+    data: { projectId: string; designId?: string },
+    callback: (response: { success: boolean; error?: string }) => void
+  ) => void;
 }
 
 /**
