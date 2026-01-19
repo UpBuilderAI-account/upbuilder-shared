@@ -297,6 +297,12 @@ export interface ExportConfig {
   interactivity: InteractivityConfig;
   /** Custom AI instructions for guiding design decisions (optional) */
   customInstructions?: string;
+  /**
+   * Enable AI planning phase before building
+   * When enabled, AI analyzes the design and creates a plan before generating code
+   * Default: true (enabled)
+   */
+  enablePlanning?: boolean;
 }
 
 /**
@@ -361,6 +367,7 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   stylesheet: DEFAULT_STYLESHEET_CONFIG,
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: QUICK_INTERACTIVITY_CONFIG,
+  enablePlanning: false,  // Quick mode skips planning
 };
 
 /**
@@ -371,6 +378,7 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   stylesheet: DEFAULT_STYLESHEET_CONFIG,
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
+  enablePlanning: true,  // AI planning phase enabled by default
 };
 
 // =============================================================================

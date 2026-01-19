@@ -213,6 +213,12 @@ export interface ExportConfig {
     interactivity: InteractivityConfig;
     /** Custom AI instructions for guiding design decisions (optional) */
     customInstructions?: string;
+    /**
+     * Enable AI planning phase before building
+     * When enabled, AI analyzes the design and creates a plan before generating code
+     * Default: true (enabled)
+     */
+    enablePlanning?: boolean;
 }
 /**
  * Default stylesheet configuration
