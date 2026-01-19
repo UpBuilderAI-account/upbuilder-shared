@@ -1,54 +1,12 @@
 /**
  * Fixing Stage Types
+ * Uses rebuild-only approach (full structure replacement)
+ *
+ * NOTE: RebuildStructureNode and RebuildStyleDefinition are defined in
+ * edit-operations.ts as they're used by the ReplaceSectionOp and
+ * AddStyleObjectsBatchOp operation types.
  */
-export type FixingCommandAction = 'setProperty' | 'removeProperty' | 'addClass' | 'removeClass' | 'setTextContent' | 'deleteElement' | 'hideElement' | 'showElement' | 'wrapElement' | 'moveElement' | 'comment';
-export interface FixingCommand {
-    action: FixingCommandAction;
-    displayMessage: string;
-    /** Node ID to identify which element (e.g., "node-4") */
-    nodeId: string;
-    /** Combo class in CSS selector format (e.g., ".container.nav-container") */
-    comboClass: string;
-    /** Breakpoint to apply the change to */
-    breakpoint: 'desktop' | 'tablet' | 'mobile';
-    /** CSS property in kebab-case - for setProperty/removeProperty */
-    property?: string;
-    /** CSS value with units - for setProperty */
-    value?: string;
-    /** Message for comment action */
-    message?: string;
-    /** Class name to add/remove - for addClass/removeClass */
-    className?: string;
-    /** Text content - for setTextContent */
-    text?: string;
-    /** Display value to restore - for showElement (e.g., "flex", "block", "grid") */
-    displayValue?: string;
-    /** For wrapElement: HTML tag for wrapper (default: "div") */
-    wrapperTag?: string;
-    /** For wrapElement: Class name for the new wrapper element */
-    wrapperClass?: string;
-    /** For wrapElement: Initial styles for the wrapper */
-    wrapperStyles?: Record<string, string>;
-    /** For wrapElement: Number of following siblings to include in wrap */
-    includeNextSiblings?: number;
-    /** For moveElement: Combo class of the target parent element */
-    targetParentClass?: string;
-    /** For moveElement: Position within target parent ("prepend" | "append") */
-    position?: 'prepend' | 'append';
-}
-/** Result of executing a fixing command */
-export interface FixingCommandResult {
-    command: FixingCommand;
-    status: 'success' | 'failed' | 'skipped';
-    reason?: string;
-}
-/** Context from a previous fixing pass */
-export interface PreviousPassContext {
-    passNumber: number;
-    analysis: string;
-    commands: FixingCommand[];
-    commandResults: FixingCommandResult[];
-}
+import type { RebuildStructureNode, RebuildStyleDefinition } from './edit-operations';
 export interface FixingSection {
     id: string;
     name: string;
@@ -67,46 +25,38 @@ export interface FixingStartRequest {
     designId: string;
     sections: FixingSection[];
 }
-export interface FixingSectionRequest {
+/** Request to rebuild a section */
+export interface SectionRebuildRequest {
     projectId: string;
     designId: string;
     sectionId: string;
     sectionName: string;
-    nodes: Array<{
+    /** Existing styles from the project (for reuse matching) */
+    existingStyles: Array<{
         id: string;
-        type: string;
-        classes: string[];
-        tag?: string;
-    }>;
-    styles: Array<{
-        name: string;
         combo: string;
-        properties?: Record<string, string>;
-        breakpoints?: {
-            desktop?: Record<string, string>;
-            tablet?: Record<string, string>;
-            mobile?: Record<string, string>;
-        };
+        mainCss: string;
     }>;
+    /** Screenshots for comparison */
     figmaScreenshot: string;
     builtScreenshot: string;
-    /** Current pass number (1 = initial, 2 = verification) */
-    passNumber?: 1 | 2;
-    /** Context from pass 1 (only for pass 2) */
-    previousPass?: PreviousPassContext;
 }
-export interface FixingCommandsResponse {
+/** Response from section rebuild */
+export interface SectionRebuildResponse {
     projectId: string;
     designId: string;
     sectionId: string;
+    /** AI's analysis of what was wrong */
     analysis: string;
-    commands: FixingCommand[];
-    /** Which pass this response is for */
-    passNumber?: 1 | 2;
-}
-export interface FixingResult {
-    section: string;
-    analysis: string;
-    commands: FixingCommand[];
+    /** Full structure for this section (replace existing nodes) */
+    structure: RebuildStructureNode[];
+    /** New styles to add (styles that don't exist yet) */
+    newStyles: RebuildStyleDefinition[];
+    /** Validation result */
+    validation: {
+        isValid: boolean;
+        errors: string[];
+        warnings: string[];
+    };
 }
 //# sourceMappingURL=fixing.d.ts.map

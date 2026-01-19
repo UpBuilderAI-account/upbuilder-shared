@@ -4,7 +4,7 @@
  * This prevents exposing the full Webflow structure
  */
 import type { Breakpoint, PseudoState, EditableAsset } from './editable-tree';
-export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'addNode' | 'wrapNode' | 'unwrapNode' | 'renameNode' | 'updateText' | 'updateNodeImage' | 'updateNodeLink' | 'updateNodeFormProps' | 'updateNodeVideoProps' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride' | 'updateStyleObjectProperty' | 'createStyleObject' | 'deleteStyleObject';
+export type EditOperationType = 'addClass' | 'removeClass' | 'reorderClasses' | 'moveNode' | 'deleteNode' | 'duplicateNode' | 'addNode' | 'wrapNode' | 'unwrapNode' | 'renameNode' | 'updateText' | 'updateNodeImage' | 'updateNodeLink' | 'updateNodeFormProps' | 'updateNodeVideoProps' | 'createClass' | 'createCompoundClass' | 'updateClassProperty' | 'removeClassProperty' | 'renameClass' | 'createOverride' | 'updateStyleObjectProperty' | 'createStyleObject' | 'deleteStyleObject' | 'replaceSection' | 'addStyleObjectsBatch';
 interface BaseEditOperation {
     /** Operation type */
     type: EditOperationType;
@@ -403,9 +403,89 @@ export interface DeleteStyleObjectOp extends BaseEditOperation {
     className: string;
 }
 /**
+ * Structure node for section rebuild
+ * Represents a single element in the rebuilt section tree
+ */
+export interface RebuildStructureNode {
+    /** Unique node ID */
+    id: string;
+    /** Component type (Block, Section, Heading, etc.) */
+    compType: string;
+    /** Parent node ID ('none' for section root) */
+    parent: string;
+    /** Array of class/style IDs to apply */
+    styles: string[];
+    /** HTML tag (for Heading, etc.) */
+    tag?: string;
+    /** Text content */
+    text?: string;
+    /** Image source URL */
+    src?: string;
+    /** Image alt text */
+    alt?: string;
+    /** Link href */
+    href?: string;
+    /** Collapse behavior for interactive elements */
+    collapse?: string;
+    /** Raw HTML for embeds */
+    html?: string;
+    /** Custom data attribute */
+    custom?: string;
+}
+/**
+ * Style definition for new styles in rebuild
+ */
+export interface RebuildStyleDefinition {
+    /** Style object ID */
+    id: string;
+    /** Combinator ('' for base, '&' for modifier) */
+    comb: string;
+    /** Main/desktop CSS */
+    main: string;
+    /** Medium breakpoint CSS */
+    medium?: string;
+    /** Tiny breakpoint CSS */
+    tiny?: string;
+    /** Hover state CSS */
+    hover?: string;
+    /** Current/active state CSS */
+    current?: string;
+}
+/**
+ * REPLACE SECTION OPERATION
+ * Replaces an entire section's node tree with new structure
+ * Used by AI rebuild mode for full section replacement
+ */
+export interface ReplaceSectionOp extends BaseEditOperation {
+    type: 'replaceSection';
+    /**
+     * The section node ID to replace
+     * All descendants will be removed and replaced with new structure
+     */
+    sectionId: string;
+    /**
+     * The new structure for this section
+     * First node with parent='none' becomes the new section root
+     */
+    structure: RebuildStructureNode[];
+}
+/**
+ * ADD STYLE OBJECTS BATCH OPERATION
+ * Adds multiple new style objects at once
+ * Used by AI rebuild mode to add new styles before structure
+ */
+export interface AddStyleObjectsBatchOp extends BaseEditOperation {
+    type: 'addStyleObjectsBatch';
+    /**
+     * Array of new styles to add
+     * Only styles that don't already exist should be included
+     */
+    styles: RebuildStyleDefinition[];
+}
+/**
  * Any edit operation
  */
-export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | AddNodeOp | WrapNodeOp | UnwrapNodeOp | RenameNodeOp | UpdateTextOp | UpdateNodeImageOp | UpdateNodeLinkOp | UpdateNodeFormPropsOp | UpdateNodeVideoPropsOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp | UpdateStyleObjectPropertyOp | CreateStyleObjectOp | DeleteStyleObjectOp;
+export type EditOperation = AddClassOp | RemoveClassOp | ReorderClassesOp | MoveNodeOp | DeleteNodeOp | DuplicateNodeOp | AddNodeOp | WrapNodeOp | UnwrapNodeOp | RenameNodeOp | UpdateTextOp | UpdateNodeImageOp | UpdateNodeLinkOp | UpdateNodeFormPropsOp | UpdateNodeVideoPropsOp | CreateClassOp | CreateCompoundClassOp | UpdateClassPropertyOp | RemoveClassPropertyOp | RenameClassOp | CreateOverrideOp | UpdateStyleObjectPropertyOp | CreateStyleObjectOp | DeleteStyleObjectOp | ReplaceSectionOp | AddStyleObjectsBatchOp;
 /**
  * Request to apply edit operations
  */
