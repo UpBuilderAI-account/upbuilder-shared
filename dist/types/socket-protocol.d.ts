@@ -451,6 +451,12 @@ export interface ClientToServerEvents {
         designId: string;
         sectionId: string;
         sectionName: string;
+        /** Existing styles from the project (for reuse matching) */
+        existingStyles: Array<{
+            id: string;
+            combo: string;
+            mainCss: string;
+        }>;
         figmaScreenshot: string;
         builtScreenshot: string;
     }, callback: (response: {
@@ -660,6 +666,12 @@ export interface ServerToClientEvents {
             hover?: string;
             current?: string;
         }>;
+        /** Validation result */
+        validation?: {
+            isValid: boolean;
+            errors: string[];
+            warnings: string[];
+        };
     }) => void;
 }
 /**
