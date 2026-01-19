@@ -400,10 +400,41 @@ export interface ClientToServerEvents {
         }>;
         styles: Array<{
             name: string;
-            properties: Record<string, string>;
+            combo: string;
+            properties?: Record<string, string>;
+            breakpoints?: {
+                desktop?: Record<string, string>;
+                tablet?: Record<string, string>;
+                mobile?: Record<string, string>;
+            };
         }>;
         figmaScreenshot: string;
         builtScreenshot: string;
+        /** Current pass number (1 = initial, 2 = verification) */
+        passNumber?: 1 | 2;
+        /** Context from pass 1 (only for pass 2) */
+        previousPass?: {
+            passNumber: number;
+            analysis: string;
+            commands: Array<{
+                action: string;
+                displayMessage: string;
+                nodeId: string;
+                comboClass: string;
+                breakpoint: 'desktop' | 'tablet' | 'mobile';
+                property?: string;
+                value?: string;
+                message?: string;
+                className?: string;
+                text?: string;
+                displayValue?: string;
+            }>;
+            commandResults: Array<{
+                command: any;
+                status: 'success' | 'failed' | 'skipped';
+                reason?: string;
+            }>;
+        };
     }, callback: (response: {
         success: boolean;
         error?: string;
@@ -555,15 +586,20 @@ export interface ServerToClientEvents {
         sectionId: string;
         analysis: string;
         commands: Array<{
-            action: 'selectNode' | 'setBreakpoint' | 'setProperty' | 'removeProperty' | 'comment';
+            action: 'setProperty' | 'removeProperty' | 'addClass' | 'removeClass' | 'setTextContent' | 'deleteElement' | 'hideElement' | 'showElement' | 'comment';
             displayMessage: string;
-            nodeId?: string;
-            className?: string;
+            nodeId: string;
+            comboClass: string;
+            breakpoint: 'desktop' | 'tablet' | 'mobile';
             property?: string;
             value?: string;
-            breakpoint?: 'desktop' | 'tablet' | 'mobile';
             message?: string;
+            className?: string;
+            text?: string;
+            displayValue?: string;
         }>;
+        /** Which pass this response is for */
+        passNumber?: 1 | 2;
     }) => void;
     'fixing:section_complete': (data: {
         projectId: string;
