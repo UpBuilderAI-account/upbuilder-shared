@@ -561,5 +561,16 @@ export interface EditableTreePayloadV2 extends EditableTreePayload {
      * Frontend uses this to set the default canvas/preview breakpoint
      */
     initialBreakpoint?: Breakpoint;
+    /**
+     * Font CSS for preview injection
+     * Contains Google Fonts link tags and @font-face rules for S3 fonts
+     * Frontend injects this into preview head as <style id="custom-fonts">
+     */
+    fontCss?: string;
+    /**
+     * Google Fonts URL for the link tag
+     * Separate from fontCss for easier handling
+     */
+    googleFontsUrl?: string;
 }
 //# sourceMappingURL=editable-tree.d.ts.map
