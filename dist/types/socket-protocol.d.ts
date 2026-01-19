@@ -685,12 +685,23 @@ export interface ServerToClientEvents {
             custom?: string;
         }>;
         newStyles: Array<{
-            id: string;
-            comb: string;
+            /** Class name (e.g., "nav-link", "btn-primary") */
+            name: string;
+            /** Combo marker: "" for base class, "&" for modifier */
+            comb: '' | '&';
+            /** Full combo chain for context */
+            chain?: string[];
+            /** Action: "edit" existing or "create" new */
+            action: 'edit' | 'create';
+            /** CSS for desktop */
             main: string;
+            /** CSS for tablet */
             medium?: string;
+            /** CSS for mobile */
             tiny?: string;
+            /** Hover state CSS */
             hover?: string;
+            /** Current/active state CSS */
             current?: string;
         }>;
         /** Validation result */
