@@ -79,8 +79,9 @@ export declare function isProcessingStage(status: ProjectStatus): boolean;
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
  * @param quickMode Optional - if true, skips customize stage
+ * @param enableAIAssistant Optional - if false, skips plan and fixing stages
  */
-export declare function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean): ProjectStatus | null;
+export declare function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, enableAIAssistant?: boolean): ProjectStatus | null;
 /**
  * Check if user action is required after this stage completes
  */
@@ -97,6 +98,11 @@ export declare const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>>;
  * Currently empty - all stages run, customize is always shown
  */
 export declare const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[];
+/**
+ * Stages to skip when AI assistant is disabled
+ * Skips plan (AI analysis) and fixing (AI auto-fix)
+ */
+export declare const AI_DISABLED_SKIPPED_STAGES: ProjectStatus[];
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)
  * All platforms now show section CSS in the customizer

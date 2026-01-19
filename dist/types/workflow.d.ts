@@ -214,9 +214,14 @@ export interface ExportConfig {
     /** Custom AI instructions for guiding design decisions (optional) */
     customInstructions?: string;
     /**
-     * Enable AI planning phase before building
-     * When enabled, AI analyzes the design and creates a plan before generating code
+     * Enable AI assistant (planning + auto-fixing phases)
+     * When enabled, AI analyzes the design, creates a plan, and auto-fixes visual issues
+     * When disabled, skips plan and fixing stages for faster export
      * Default: true (enabled)
+     */
+    enableAIAssistant?: boolean;
+    /**
+     * @deprecated Use enableAIAssistant instead
      */
     enablePlanning?: boolean;
 }

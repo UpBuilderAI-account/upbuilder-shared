@@ -123,8 +123,9 @@ export function isProcessingStage(status: ProjectStatus): boolean {
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
  * @param quickMode Optional - if true, skips customize stage
+ * @param enableAIAssistant Optional - if false, skips plan and fixing stages
  */
-export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean): ProjectStatus | null {
+export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, enableAIAssistant?: boolean): ProjectStatus | null {
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
     idle: 'export_config',
     export_config: 'load',
@@ -150,6 +151,13 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
   // Skip stages for quick mode
   if (quickMode && next) {
     while (next && QUICK_MODE_SKIPPED_STAGES.includes(next)) {
+      next = transitions[next];
+    }
+  }
+
+  // Skip AI stages when AI assistant is disabled (defaults to enabled)
+  if (enableAIAssistant === false && next) {
+    while (next && AI_DISABLED_SKIPPED_STAGES.includes(next)) {
       next = transitions[next];
     }
   }
@@ -190,6 +198,12 @@ export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
  * Currently empty - all stages run, customize is always shown
  */
 export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [];
+
+/**
+ * Stages to skip when AI assistant is disabled
+ * Skips plan (AI analysis) and fixing (AI auto-fix)
+ */
+export const AI_DISABLED_SKIPPED_STAGES: ProjectStatus[] = ['plan', 'fixing'];
 
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)

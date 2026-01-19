@@ -9,7 +9,7 @@
 // - export.ts: Export configuration and operation types
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DESIGN_PROCESSING_STATUS = exports.DESIGN_STATUS = exports.createDefaultStageStatus = exports.STAGE_STATUS = exports.SECTION_STAGE = exports.USES_SECTION_CSS = exports.QUICK_MODE_SKIPPED_STAGES = exports.SKIPPED_STAGES = exports.PROJECT_STATUS = void 0;
+exports.DESIGN_PROCESSING_STATUS = exports.DESIGN_STATUS = exports.createDefaultStageStatus = exports.STAGE_STATUS = exports.SECTION_STAGE = exports.USES_SECTION_CSS = exports.AI_DISABLED_SKIPPED_STAGES = exports.QUICK_MODE_SKIPPED_STAGES = exports.SKIPPED_STAGES = exports.PROJECT_STATUS = void 0;
 exports.isProcessingStage = isProcessingStage;
 exports.getNextStatus = getNextStatus;
 exports.requiresUserActionAfter = requiresUserActionAfter;
@@ -43,8 +43,9 @@ function isProcessingStage(status) {
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
  * @param quickMode Optional - if true, skips customize stage
+ * @param enableAIAssistant Optional - if false, skips plan and fixing stages
  */
-function getNextStatus(status, platform, quickMode) {
+function getNextStatus(status, platform, quickMode, enableAIAssistant) {
     var _a;
     const transitions = {
         idle: 'export_config',
@@ -68,6 +69,12 @@ function getNextStatus(status, platform, quickMode) {
     // Skip stages for quick mode
     if (quickMode && next) {
         while (next && exports.QUICK_MODE_SKIPPED_STAGES.includes(next)) {
+            next = transitions[next];
+        }
+    }
+    // Skip AI stages when AI assistant is disabled (defaults to enabled)
+    if (enableAIAssistant === false && next) {
+        while (next && exports.AI_DISABLED_SKIPPED_STAGES.includes(next)) {
             next = transitions[next];
         }
     }
@@ -99,6 +106,11 @@ exports.SKIPPED_STAGES = {
  * Currently empty - all stages run, customize is always shown
  */
 exports.QUICK_MODE_SKIPPED_STAGES = [];
+/**
+ * Stages to skip when AI assistant is disabled
+ * Skips plan (AI analysis) and fixing (AI auto-fix)
+ */
+exports.AI_DISABLED_SKIPPED_STAGES = ['plan', 'fixing'];
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)
  * All platforms now show section CSS in the customizer
