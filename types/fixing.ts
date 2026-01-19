@@ -11,6 +11,8 @@ export type FixingCommandAction =
   | 'deleteElement'
   | 'hideElement'
   | 'showElement'
+  | 'wrapElement'
+  | 'moveElement'
   | 'comment';
 
 export interface FixingCommand {
@@ -34,6 +36,18 @@ export interface FixingCommand {
   text?: string;
   /** Display value to restore - for showElement (e.g., "flex", "block", "grid") */
   displayValue?: string;
+  /** For wrapElement: HTML tag for wrapper (default: "div") */
+  wrapperTag?: string;
+  /** For wrapElement: Class name for the new wrapper element */
+  wrapperClass?: string;
+  /** For wrapElement: Initial styles for the wrapper */
+  wrapperStyles?: Record<string, string>;
+  /** For wrapElement: Number of following siblings to include in wrap */
+  includeNextSiblings?: number;
+  /** For moveElement: Combo class of the target parent element */
+  targetParentClass?: string;
+  /** For moveElement: Position within target parent ("prepend" | "append") */
+  position?: 'prepend' | 'append';
 }
 
 /** Result of executing a fixing command */

@@ -702,7 +702,7 @@ export interface ServerToClientEvents {
     sectionId: string;
     analysis: string;
     commands: Array<{
-      action: 'setProperty' | 'removeProperty' | 'addClass' | 'removeClass' | 'setTextContent' | 'deleteElement' | 'hideElement' | 'showElement' | 'comment';
+      action: 'setProperty' | 'removeProperty' | 'addClass' | 'removeClass' | 'setTextContent' | 'deleteElement' | 'hideElement' | 'showElement' | 'wrapElement' | 'moveElement' | 'comment';
       displayMessage: string;
       nodeId: string;
       comboClass: string;
@@ -713,6 +713,12 @@ export interface ServerToClientEvents {
       className?: string;
       text?: string;
       displayValue?: string;
+      wrapperTag?: string;
+      wrapperClass?: string;
+      wrapperStyles?: Record<string, string>;
+      includeNextSiblings?: number;
+      targetParentClass?: string;
+      position?: 'prepend' | 'append';
     }>;
     /** Which pass this response is for */
     passNumber?: 1 | 2;
