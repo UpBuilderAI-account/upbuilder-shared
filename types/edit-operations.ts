@@ -547,18 +547,22 @@ export interface RebuildStructureNode {
 }
 
 /**
- * Style definition for new styles in rebuild
+ * Style definition for styles in rebuild
  */
 export interface RebuildStyleDefinition {
-  /** Style object ID */
-  id: string;
-  /** Combinator ('' for base, '&' for modifier) */
-  comb: string;
-  /** Main/desktop CSS */
+  /** Class name (e.g., "nav-link", "btn-primary") */
+  name: string;
+  /** Combo marker: "" for base class, "&" for modifier */
+  comb: '' | '&';
+  /** Full combo chain for context (e.g., ["button", "is-primary"]) */
+  chain?: string[];
+  /** Action: "edit" existing style or "create" new one */
+  action: 'edit' | 'create';
+  /** CSS for desktop (main breakpoint) */
   main: string;
-  /** Medium breakpoint CSS */
+  /** CSS overrides for tablet (≤991px) */
   medium?: string;
-  /** Tiny breakpoint CSS */
+  /** CSS overrides for mobile (≤478px) */
   tiny?: string;
   /** Hover state CSS */
   hover?: string;

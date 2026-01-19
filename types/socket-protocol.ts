@@ -564,12 +564,34 @@ export interface ClientToServerEvents {
       designId: string;
       sectionId: string;
       sectionName: string;
-      /** Existing styles from the project (for reuse matching) */
-      existingStyles: Array<{
+      /** Section bounds for Figma data filtering */
+      sectionBounds?: { x: number; y: number; width: number; height: number };
+      /** Whether this is a global section */
+      isGlobal?: boolean;
+      /** Full design structure from editable tree */
+      designStructure: Array<{
         id: string;
-        combo: string;
-        mainCss: string;
+        type: string;
+        tag?: string;
+        classes: string[];
+        text?: string;
+        src?: string;
+        alt?: string;
+        parentId: string | null;
+        childIds: string[];
       }>;
+      /** Full design styles with CSS per breakpoint */
+      designStyles: Array<{
+        name: string;
+        comb: '' | '&';
+        chain?: string[];
+        css: {
+          main: string;
+          medium?: string;
+          tiny?: string;
+        };
+      }>;
+      /** Screenshots for comparison */
       figmaScreenshot: string;
       builtScreenshot: string;
     },

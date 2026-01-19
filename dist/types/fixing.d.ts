@@ -25,18 +25,48 @@ export interface FixingStartRequest {
     designId: string;
     sections: FixingSection[];
 }
+/** Design node from the editable tree */
+export interface DesignNodeInput {
+    id: string;
+    type: string;
+    tag?: string;
+    classes: string[];
+    text?: string;
+    src?: string;
+    alt?: string;
+    parentId: string | null;
+    childIds: string[];
+}
+/** Design style with CSS per breakpoint */
+export interface DesignStyleInput {
+    name: string;
+    comb: '' | '&';
+    chain?: string[];
+    css: {
+        main: string;
+        medium?: string;
+        tiny?: string;
+    };
+}
 /** Request to rebuild a section */
 export interface SectionRebuildRequest {
     projectId: string;
     designId: string;
     sectionId: string;
     sectionName: string;
-    /** Existing styles from the project (for reuse matching) */
-    existingStyles: Array<{
-        id: string;
-        combo: string;
-        mainCss: string;
-    }>;
+    /** Section bounds for Figma data filtering */
+    sectionBounds?: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    };
+    /** Whether this is a global section */
+    isGlobal?: boolean;
+    /** Full design structure from editable tree */
+    designStructure: DesignNodeInput[];
+    /** Full design styles with CSS per breakpoint */
+    designStyles: DesignStyleInput[];
     /** Screenshots for comparison */
     figmaScreenshot: string;
     builtScreenshot: string;
@@ -50,10 +80,10 @@ export interface SectionRebuildResponse {
     analysis: string;
     /** Full structure for this section (replace existing nodes) */
     structure: RebuildStructureNode[];
-    /** New styles to add (styles that don't exist yet) */
+    /** Styles to edit or create */
     newStyles: RebuildStyleDefinition[];
-    /** Validation result */
-    validation: {
+    /** Validation result (optional) */
+    validation?: {
         isValid: boolean;
         errors: string[];
         warnings: string[];

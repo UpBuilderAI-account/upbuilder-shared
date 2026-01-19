@@ -37,18 +37,45 @@ export interface FixingStartRequest {
 // REBUILD REQUEST/RESPONSE TYPES
 // ============================================================================
 
+/** Design node from the editable tree */
+export interface DesignNodeInput {
+  id: string;
+  type: string;          // Block, Section, Heading, Image, etc.
+  tag?: string;          // div, h1, img, etc.
+  classes: string[];     // Class names applied (combo chain)
+  text?: string;         // Text content
+  src?: string;          // Image source
+  alt?: string;          // Image alt
+  parentId: string | null;
+  childIds: string[];
+}
+
+/** Design style with CSS per breakpoint */
+export interface DesignStyleInput {
+  name: string;          // Class name (e.g., "nav-link")
+  comb: '' | '&';        // "" for base, "&" for modifier
+  chain?: string[];      // Full combo chain
+  css: {
+    main: string;        // Desktop CSS
+    medium?: string;     // Tablet CSS
+    tiny?: string;       // Mobile CSS
+  };
+}
+
 /** Request to rebuild a section */
 export interface SectionRebuildRequest {
   projectId: string;
   designId: string;
   sectionId: string;
   sectionName: string;
-  /** Existing styles from the project (for reuse matching) */
-  existingStyles: Array<{
-    id: string;
-    combo: string;
-    mainCss: string;
-  }>;
+  /** Section bounds for Figma data filtering */
+  sectionBounds?: { x: number; y: number; width: number; height: number };
+  /** Whether this is a global section */
+  isGlobal?: boolean;
+  /** Full design structure from editable tree */
+  designStructure: DesignNodeInput[];
+  /** Full design styles with CSS per breakpoint */
+  designStyles: DesignStyleInput[];
   /** Screenshots for comparison */
   figmaScreenshot: string;
   builtScreenshot: string;
@@ -63,10 +90,10 @@ export interface SectionRebuildResponse {
   analysis: string;
   /** Full structure for this section (replace existing nodes) */
   structure: RebuildStructureNode[];
-  /** New styles to add (styles that don't exist yet) */
+  /** Styles to edit or create */
   newStyles: RebuildStyleDefinition[];
-  /** Validation result */
-  validation: {
+  /** Validation result (optional) */
+  validation?: {
     isValid: boolean;
     errors: string[];
     warnings: string[];
