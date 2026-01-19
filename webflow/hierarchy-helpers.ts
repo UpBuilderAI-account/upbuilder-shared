@@ -8,6 +8,7 @@ import {
   WEBFLOW_CONSTRAINTS,
   getDisplayName,
   getAllowedChildren,
+  isPinnedToParent,
 } from './constraints';
 
 // =============================================================================
@@ -46,11 +47,14 @@ export interface TreeValidationResult {
 /**
  * Quick check if an element type can be placed inside/near a target
  * Returns immediately - doesn't validate entire tree
+ *
+ * For 'inside' position: targetType is the container
+ * For 'before'/'after' position: targetType should be the PARENT (caller must provide this)
  */
 export function canPlaceElement(
   elementType: string,
   targetType: string,
-  position: DropPosition
+  _position: DropPosition
 ): PlacementCheckResult {
   const elementConstraints = WEBFLOW_CONSTRAINTS[elementType as WebflowComponentType];
 
@@ -61,70 +65,108 @@ export function canPlaceElement(
 
   const constraints = elementConstraints.constraints;
 
-  // For 'inside' position, check if target can be parent of element
-  if (position === 'inside') {
-    // 1. Check parent constraints (element requires specific direct parent)
-    const parentConstraints = constraints.parent || [];
+  // Check pinToParent constraint - these elements cannot be moved at all
+  if (isPinnedToParent(elementType as WebflowComponentType)) {
+    // Check if this would move the element to a different parent type
+    const parentConstraints = constraints.parent || constraints.ancestors || [];
     for (const constraint of parentConstraints) {
       if (constraint.rule === 'ExactlyOne' || constraint.rule === 'AtLeastOne') {
         const allowedParents = Array.isArray(constraint.is)
           ? constraint.is
           : [constraint.is as string];
 
+        // If target is not one of the allowed parents, this pinned element can't be moved there
         if (!allowedParents.includes(targetType)) {
           return {
             valid: false,
-            error: `${getDisplayName(elementType as WebflowComponentType)} must be placed inside ${getDisplayName(allowedParents[0] as WebflowComponentType)}`,
+            error: `${getDisplayName(elementType as WebflowComponentType)} is locked to its parent and cannot be moved`,
             errorCode: 'INVALID_PARENT',
-          };
-        }
-      }
-    }
-
-    // 2. Check if target has strict children requirements
-    const targetConstraints = WEBFLOW_CONSTRAINTS[targetType as WebflowComponentType];
-    if (targetConstraints?.constraints.children) {
-      for (const constraint of targetConstraints.constraints.children) {
-        if (constraint.rule === 'RequireOnly') {
-          const allowedChildren = Array.isArray(constraint.is)
-            ? constraint.is
-            : [constraint.is as string];
-
-          if (!allowedChildren.includes(elementType)) {
-            const allowedNames = allowedChildren
-              .map(t => getDisplayName(t as WebflowComponentType))
-              .join(', ');
-            return {
-              valid: false,
-              error: `${getDisplayName(targetType as WebflowComponentType)} can only contain: ${allowedNames}`,
-              errorCode: 'INVALID_CHILD',
-            };
-          }
-        }
-      }
-    }
-
-    // 3. Check if target forbids this element as descendant
-    const targetDescendantConstraints = targetConstraints?.constraints.descendants || [];
-    for (const constraint of targetDescendantConstraints) {
-      if (constraint.rule === 'Forbid') {
-        const forbiddenTypes = Array.isArray(constraint.is)
-          ? constraint.is
-          : [constraint.is as string];
-
-        if (forbiddenTypes.includes(elementType)) {
-          return {
-            valid: false,
-            error: `${getDisplayName(elementType as WebflowComponentType)} cannot be placed inside ${getDisplayName(targetType as WebflowComponentType)}`,
-            errorCode: 'FORBIDDEN_DESCENDANT',
           };
         }
       }
     }
   }
 
-  // For 'before'/'after' position, the element will be sibling
-  // Parent check should happen with the sibling's parent type (caller handles this)
+  // For all positions, we're checking if element can be a child of targetType
+  // (For before/after, caller passes the parent as targetType)
+
+  // 1. Check parent constraints (element requires specific direct parent)
+  const parentConstraints = constraints.parent || [];
+  for (const constraint of parentConstraints) {
+    if (constraint.rule === 'ExactlyOne' || constraint.rule === 'AtLeastOne') {
+      const allowedParents = Array.isArray(constraint.is)
+        ? constraint.is
+        : [constraint.is as string];
+
+      if (!allowedParents.includes(targetType)) {
+        return {
+          valid: false,
+          error: `${getDisplayName(elementType as WebflowComponentType)} must be placed inside ${getDisplayName(allowedParents[0] as WebflowComponentType)}`,
+          errorCode: 'INVALID_PARENT',
+        };
+      }
+    }
+  }
+
+  // 2. Check ancestor constraints when dropping at root level (Body)
+  // If element requires an ancestor, it can't be at root
+  if (targetType === 'Body' || targetType === 'body') {
+    const ancestorConstraints = constraints.ancestors || [];
+    for (const constraint of ancestorConstraints) {
+      if (constraint.rule === 'ExactlyOne' || constraint.rule === 'AtLeastOne') {
+        const requiredAncestors = Array.isArray(constraint.is)
+          ? constraint.is
+          : [constraint.is as string];
+        const ancestorName = getDisplayName(requiredAncestors[0] as WebflowComponentType);
+        return {
+          valid: false,
+          error: `${getDisplayName(elementType as WebflowComponentType)} must be inside ${ancestorName}`,
+          errorCode: 'MISSING_ANCESTOR',
+        };
+      }
+    }
+  }
+
+  // 3. Check if target has strict children requirements
+  const targetConstraints = WEBFLOW_CONSTRAINTS[targetType as WebflowComponentType];
+  if (targetConstraints?.constraints.children) {
+    for (const constraint of targetConstraints.constraints.children) {
+      if (constraint.rule === 'RequireOnly') {
+        const allowedChildren = Array.isArray(constraint.is)
+          ? constraint.is
+          : [constraint.is as string];
+
+        if (!allowedChildren.includes(elementType)) {
+          const allowedNames = allowedChildren
+            .map(t => getDisplayName(t as WebflowComponentType))
+            .join(', ');
+          return {
+            valid: false,
+            error: `${getDisplayName(targetType as WebflowComponentType)} can only contain: ${allowedNames}`,
+            errorCode: 'INVALID_CHILD',
+          };
+        }
+      }
+    }
+  }
+
+  // 4. Check if target forbids this element as descendant
+  const targetDescendantConstraints = targetConstraints?.constraints.descendants || [];
+  for (const constraint of targetDescendantConstraints) {
+    if (constraint.rule === 'Forbid') {
+      const forbiddenTypes = Array.isArray(constraint.is)
+        ? constraint.is
+        : [constraint.is as string];
+
+      if (forbiddenTypes.includes(elementType)) {
+        return {
+          valid: false,
+          error: `${getDisplayName(elementType as WebflowComponentType)} cannot be placed inside ${getDisplayName(targetType as WebflowComponentType)}`,
+          errorCode: 'FORBIDDEN_DESCENDANT',
+        };
+      }
+    }
+  }
 
   return { valid: true };
 }

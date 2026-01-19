@@ -21,8 +21,11 @@ export interface TreeValidationResult {
 /**
  * Quick check if an element type can be placed inside/near a target
  * Returns immediately - doesn't validate entire tree
+ *
+ * For 'inside' position: targetType is the container
+ * For 'before'/'after' position: targetType should be the PARENT (caller must provide this)
  */
-export declare function canPlaceElement(elementType: string, targetType: string, position: DropPosition): PlacementCheckResult;
+export declare function canPlaceElement(elementType: string, targetType: string, _position: DropPosition): PlacementCheckResult;
 /**
  * Check if an element type can contain children of a specific type
  */
