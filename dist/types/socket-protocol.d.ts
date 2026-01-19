@@ -446,6 +446,17 @@ export interface ClientToServerEvents {
         success: boolean;
         error?: string;
     }) => void) => void;
+    'fixing:request_rebuild': (data: {
+        projectId: string;
+        designId: string;
+        sectionId: string;
+        sectionName: string;
+        figmaScreenshot: string;
+        builtScreenshot: string;
+    }, callback: (response: {
+        success: boolean;
+        error?: string;
+    }) => void) => void;
 }
 /**
  * Events sent from server to client
@@ -620,6 +631,35 @@ export interface ServerToClientEvents {
         projectId: string;
         sectionId?: string;
         error: string;
+    }) => void;
+    'fixing:rebuild_result': (data: {
+        projectId: string;
+        designId: string;
+        sectionId: string;
+        analysis: string;
+        structure: Array<{
+            id: string;
+            compType: string;
+            parent: string;
+            styles: string[];
+            tag?: string;
+            text?: string;
+            src?: string;
+            alt?: string;
+            href?: string;
+            collapse?: string;
+            html?: string;
+            custom?: string;
+        }>;
+        newStyles: Array<{
+            id: string;
+            comb: string;
+            main: string;
+            medium?: string;
+            tiny?: string;
+            hover?: string;
+            current?: string;
+        }>;
     }) => void;
 }
 /**
