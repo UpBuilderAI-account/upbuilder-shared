@@ -303,8 +303,13 @@ export interface ProjectState {
   // Plan conversation cache (for page reload - avoid re-streaming)
   planConversation?: {
     content: string;
-    blocks: any;
+    chatHistory?: Array<{ role: 'assistant' | 'user'; content: string; timestamp?: number }>;
+    config?: any;
+    confirmed?: boolean;
+    confirmedAt?: number;
     generatedAt: number;
+    // Deprecated - kept for backwards compatibility
+    blocks?: any;
   };
 }
 

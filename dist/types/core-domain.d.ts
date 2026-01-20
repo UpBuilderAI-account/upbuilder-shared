@@ -173,8 +173,16 @@ export interface ProjectState {
     };
     planConversation?: {
         content: string;
-        blocks: any;
+        chatHistory?: Array<{
+            role: 'assistant' | 'user';
+            content: string;
+            timestamp?: number;
+        }>;
+        config?: any;
+        confirmed?: boolean;
+        confirmedAt?: number;
         generatedAt: number;
+        blocks?: any;
     };
 }
 export interface SectionCode {
