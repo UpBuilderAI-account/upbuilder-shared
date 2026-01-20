@@ -353,7 +353,7 @@ export const DEFAULT_RESPONSIVE_CONFIG: ResponsiveConfig = {
  */
 export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: false,   // CSS hover effects disabled by default
-  enableInteractiveComponents: true,  // Tabs, sliders, dropdowns enabled by default
+  enableInteractiveComponents: false,  // Tabs, sliders, dropdowns disabled by default (enable for specific sections)
 };
 
 /**
@@ -361,7 +361,7 @@ export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
  */
 export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: false,   // CSS hover effects disabled by default
-  enableInteractiveComponents: true,  // Tabs, sliders, dropdowns enabled by default
+  enableInteractiveComponents: false,  // Tabs, sliders, dropdowns disabled by default
 };
 
 /**

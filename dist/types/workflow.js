@@ -45,14 +45,14 @@ exports.DEFAULT_RESPONSIVE_CONFIG = {
  */
 exports.DEFAULT_INTERACTIVITY_CONFIG = {
     enableTransitions: false, // CSS hover effects disabled by default
-    enableInteractiveComponents: true, // Tabs, sliders, dropdowns enabled by default
+    enableInteractiveComponents: false, // Tabs, sliders, dropdowns disabled by default (enable for specific sections)
 };
 /**
  * Quick mode interactivity
  */
 exports.QUICK_INTERACTIVITY_CONFIG = {
     enableTransitions: false, // CSS hover effects disabled by default
-    enableInteractiveComponents: true, // Tabs, sliders, dropdowns enabled by default
+    enableInteractiveComponents: false, // Tabs, sliders, dropdowns disabled by default
 };
 /**
  * Quick export config - uses defaults, skips stylesheet review, no animations
