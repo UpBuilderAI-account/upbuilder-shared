@@ -597,8 +597,8 @@ export interface AssetUploadProgress {
   total: number;
 }
 
-/** Build phase for 3-step progress UI */
-export type BuildPhase = 'analyzing' | 'structures' | 'styles';
+/** Build phase for 2-step progress UI */
+export type BuildPhase = 'analyzing' | 'building';
 
 /**
  * Assembly progress tracking (streamlined: just designs + asset upload)
