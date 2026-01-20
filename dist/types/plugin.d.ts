@@ -119,6 +119,9 @@ export type PluginBackendMessage = {
     type: 'frame-selected';
     data: FrameData;
 } | {
+    type: 'current-selection-detected';
+    data: FrameData;
+} | {
     type: 'selection-error';
     data: {
         message: string;
@@ -178,6 +181,8 @@ export type PluginFrontendMessage = {
     type: 'check-auth';
 } | {
     type: 'get-plugin-info';
+} | {
+    type: 'check-current-selection';
 } | {
     type: 'login';
     data: {

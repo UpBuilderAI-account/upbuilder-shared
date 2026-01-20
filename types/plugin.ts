@@ -147,6 +147,7 @@ export type PluginBackendMessage =
   | { type: 'auth-status'; data: AuthStatus }
   | { type: 'session-expired'; data: { message: string } }
   | { type: 'frame-selected'; data: FrameData }
+  | { type: 'current-selection-detected'; data: FrameData }
   | { type: 'selection-error'; data: { message: string; nodeType?: string } }
   | { type: 'nodes-extracted'; data: PluginNodesData }
   | { type: 'images-extracted'; data: PluginImagesData }
@@ -170,6 +171,7 @@ export type PluginBackendMessage =
 export type PluginFrontendMessage =
   | { type: 'check-auth' }
   | { type: 'get-plugin-info' }
+  | { type: 'check-current-selection' }
   | { type: 'login'; data: { token: string; user: User } }
   | { type: 'logout' }
   | { type: 'open-external'; data: { url: string } }
