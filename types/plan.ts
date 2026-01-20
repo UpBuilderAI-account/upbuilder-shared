@@ -31,6 +31,9 @@ export interface PlanStreamChunk {
   chunk: string;
   blocks?: PlanBlocks;
   done: boolean;
+  needsConfirmation?: boolean;
+  cached?: boolean;
+  chatHistory?: Array<{ role: string; content: string }>;
 }
 
 export interface PlanMessageRequest {
