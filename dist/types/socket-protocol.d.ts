@@ -594,6 +594,12 @@ export interface ServerToClientEvents {
             ready?: string;
         };
         done: boolean;
+        needsConfirmation?: boolean;
+        cached?: boolean;
+        chatHistory?: Array<{
+            role: string;
+            content: string;
+        }>;
     }) => void;
     'plan:reply': (data: {
         projectId: string;
