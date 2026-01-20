@@ -188,7 +188,7 @@ export type StyleFramework = 'client-first' | 'bem-lite' | 'tailwind' | 'bootstr
  * Bricks/Elementor skip stylesheet generation (sections are self-contained)
  */
 export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
-  webflow: [],
+  webflow: ['fixing'], // Temporarily disabled - fixing stage is buggy
   // bricks: ['generate_styles'],
   // elementor: ['generate_styles'],
 };

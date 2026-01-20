@@ -97,7 +97,7 @@ function requiresUserActionAfter(status) {
  * Bricks/Elementor skip stylesheet generation (sections are self-contained)
  */
 exports.SKIPPED_STAGES = {
-    webflow: [],
+    webflow: ['fixing'], // Temporarily disabled - fixing stage is buggy
     // bricks: ['generate_styles'],
     // elementor: ['generate_styles'],
 };

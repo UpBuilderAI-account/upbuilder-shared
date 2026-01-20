@@ -11,7 +11,7 @@
 // - ui.ts: CSS validation limits and Webflow defaults
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DEFAULT_NAME_THRESHOLDS = exports.DEFAULT_ELEMENT_NAMES = exports.LOW_OPACITY_THRESHOLDS = exports.THIN_LINE_THRESHOLDS = exports.OVERLAPPING_THRESHOLDS = exports.SCATTERED_PATTERN_THRESHOLDS = exports.VECTORIZE_NAME_PATTERNS = exports.VECTORIZE_EXCLUSION_WORDS = exports.IMAGE_HEAVY_TYPES = exports.COMPLEXITY_THRESHOLDS = exports.DEPTH_LIMITS = exports.PROCESSING_LIMITS = exports.MAX_IMAGE_DIMENSION = exports.MAX_IMAGES = exports.MAX_NODES = exports.MAX_PARALLEL_DESIGNS = exports.IMAGE_EXTENSIONS = exports.CONTENT_TYPES = exports.WEBSOCKET_BUFFER_SIZE_MB = exports.HTTP_PAYLOAD_LIMIT_MB = exports.DEFAULT_BREAKPOINTS = exports.DEFAULT_STYLE_FRAMEWORK = exports.DEFAULT_PLATFORM = exports.GUEST_USER_ID = void 0;
+exports.DEFAULT_NAME_THRESHOLDS = exports.DEFAULT_ELEMENT_NAMES = exports.LOW_OPACITY_THRESHOLDS = exports.THIN_LINE_THRESHOLDS = exports.OVERLAPPING_THRESHOLDS = exports.SCATTERED_PATTERN_THRESHOLDS = exports.VECTORIZE_NAME_PATTERNS = exports.VECTORIZE_EXCLUSION_WORDS = exports.IMAGE_HEAVY_TYPES = exports.COMPLEXITY_THRESHOLDS = exports.DEPTH_LIMITS = exports.MAX_IMAGES = exports.MAX_NODES = exports.MAX_PARALLEL_DESIGNS = exports.IMAGE_EXTENSIONS = exports.CONTENT_TYPES = exports.WEBSOCKET_BUFFER_SIZE_MB = exports.HTTP_PAYLOAD_LIMIT_MB = exports.DEFAULT_BREAKPOINTS = exports.DEFAULT_STYLE_FRAMEWORK = exports.DEFAULT_PLATFORM = exports.GUEST_USER_ID = void 0;
 exports.isImageFile = isImageFile;
 // ============================================================================
 // AUTHENTICATION
@@ -108,29 +108,6 @@ exports.MAX_NODES = 5000;
  * Enforced in both plugin UI and backend
  */
 exports.MAX_IMAGES = 2000;
-/**
- * Maximum image dimension (width or height) in pixels
- */
-exports.MAX_IMAGE_DIMENSION = {
-    free: 1920,
-    pro: 7680,
-};
-/**
- * Processing limits grouped by tier
- * Currently free and pro have same node/image limits
- */
-exports.PROCESSING_LIMITS = {
-    free: {
-        maxNodes: exports.MAX_NODES,
-        maxImages: exports.MAX_IMAGES,
-        maxDimension: exports.MAX_IMAGE_DIMENSION.free,
-    },
-    pro: {
-        maxNodes: exports.MAX_NODES,
-        maxImages: exports.MAX_IMAGES,
-        maxDimension: exports.MAX_IMAGE_DIMENSION.pro,
-    },
-};
 // ============================================================================
 // HIERARCHY DEPTH LIMITS
 // ============================================================================

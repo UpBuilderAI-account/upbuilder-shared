@@ -73,29 +73,6 @@ export declare const MAX_NODES = 5000;
  */
 export declare const MAX_IMAGES = 2000;
 /**
- * Maximum image dimension (width or height) in pixels
- */
-export declare const MAX_IMAGE_DIMENSION: {
-    readonly free: 1920;
-    readonly pro: 7680;
-};
-/**
- * Processing limits grouped by tier
- * Currently free and pro have same node/image limits
- */
-export declare const PROCESSING_LIMITS: {
-    readonly free: {
-        readonly maxNodes: 5000;
-        readonly maxImages: 2000;
-        readonly maxDimension: 1920;
-    };
-    readonly pro: {
-        readonly maxNodes: 5000;
-        readonly maxImages: 2000;
-        readonly maxDimension: 7680;
-    };
-};
-/**
  * Depth thresholds for progressive complexity checks
  * Controls when nodes get vectorized (converted to images) based on nesting depth
  *

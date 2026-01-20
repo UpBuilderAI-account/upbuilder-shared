@@ -123,31 +123,6 @@ export const MAX_NODES = 5000;
  */
 export const MAX_IMAGES = 2000;
 
-/**
- * Maximum image dimension (width or height) in pixels
- */
-export const MAX_IMAGE_DIMENSION = {
-  free: 1920,
-  pro: 7680,
-} as const;
-
-/**
- * Processing limits grouped by tier
- * Currently free and pro have same node/image limits
- */
-export const PROCESSING_LIMITS = {
-  free: {
-    maxNodes: MAX_NODES,
-    maxImages: MAX_IMAGES,
-    maxDimension: MAX_IMAGE_DIMENSION.free,
-  },
-  pro: {
-    maxNodes: MAX_NODES,
-    maxImages: MAX_IMAGES,
-    maxDimension: MAX_IMAGE_DIMENSION.pro,
-  },
-} as const;
-
 // ============================================================================
 // HIERARCHY DEPTH LIMITS
 // ============================================================================
