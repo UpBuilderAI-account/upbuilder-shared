@@ -415,6 +415,8 @@ export interface AssetUploadProgress {
     uploaded: number;
     total: number;
 }
+/** Build phase for 3-step progress UI */
+export type BuildPhase = 'analyzing' | 'structures' | 'styles';
 /**
  * Assembly progress tracking (streamlined: just designs + asset upload)
  */
@@ -423,6 +425,8 @@ export interface AssemblyProgress {
     assetUpload?: AssetUploadProgress;
     /** Designs being built (unified build -> XSCP -> validate) */
     designs: AssemblyDesign[];
+    /** Current build phase for 3-step progress UI */
+    buildPhase?: BuildPhase;
 }
 /**
  * Assembled design output (result of build stage)
