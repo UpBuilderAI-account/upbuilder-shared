@@ -308,6 +308,30 @@ export interface ProjectState {
     confirmed?: boolean;
     confirmedAt?: number;
     generatedAt: number;
+    // Build data extracted from plan (technical analysis for build stage)
+    buildData?: {
+      designs: Array<{
+        id: string;
+        originalName: string;
+        name: string;
+        type: string;
+        sections: Array<{
+          name: string;
+          type: string;
+          elementIds: string[];
+        }>;
+      }>;
+      interactivePatterns: Array<{
+        type: string;
+        location: string;
+        details: string;
+      }>;
+      classStrategy: {
+        utilityClasses: string[];
+        componentClasses: string[];
+        modifierClasses: string[];
+      };
+    };
     // Deprecated - kept for backwards compatibility
     blocks?: any;
   };

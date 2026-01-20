@@ -182,6 +182,29 @@ export interface ProjectState {
         confirmed?: boolean;
         confirmedAt?: number;
         generatedAt: number;
+        buildData?: {
+            designs: Array<{
+                id: string;
+                originalName: string;
+                name: string;
+                type: string;
+                sections: Array<{
+                    name: string;
+                    type: string;
+                    elementIds: string[];
+                }>;
+            }>;
+            interactivePatterns: Array<{
+                type: string;
+                location: string;
+                details: string;
+            }>;
+            classStrategy: {
+                utilityClasses: string[];
+                componentClasses: string[];
+                modifierClasses: string[];
+            };
+        };
         blocks?: any;
     };
 }
