@@ -130,9 +130,9 @@ export function isProcessingStage(status: ProjectStatus): boolean {
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
  * @param quickMode Optional - if true, skips customize stage
- * @param enableAIAssistant Optional - if false, skips AI stages (plan, section_bounding, build_sections, assembly)
+ * @param _enableAIAssistant Deprecated - all stages always run now
  */
-export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, enableAIAssistant?: boolean): ProjectStatus | null {
+export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, _enableAIAssistant?: boolean): ProjectStatus | null {
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
     idle: 'export_config',
     export_config: 'load',
@@ -160,13 +160,6 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
   // Skip stages for quick mode
   if (quickMode && next) {
     while (next && QUICK_MODE_SKIPPED_STAGES.includes(next)) {
-      next = transitions[next];
-    }
-  }
-
-  // Skip AI stages when AI assistant is disabled (defaults to enabled)
-  if (enableAIAssistant === false && next) {
-    while (next && AI_DISABLED_SKIPPED_STAGES.includes(next)) {
       next = transitions[next];
     }
   }
@@ -211,10 +204,9 @@ export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [];
 
 /**
  * Stages to skip when AI assistant is disabled
- * Skips all AI-based stages: plan, section_bounding, build_sections, assembly
- * Goes directly from load to convert_to_platform (basic XSCP generation)
+ * NOTE: Disabled - all stages always run now
  */
-export const AI_DISABLED_SKIPPED_STAGES: ProjectStatus[] = ['plan', 'section_bounding', 'build_sections', 'assembly'];
+export const AI_DISABLED_SKIPPED_STAGES: ProjectStatus[] = [];
 
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)

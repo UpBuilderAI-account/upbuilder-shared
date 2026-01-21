@@ -81,9 +81,9 @@ export declare function isProcessingStage(status: ProjectStatus): boolean;
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
  * @param quickMode Optional - if true, skips customize stage
- * @param enableAIAssistant Optional - if false, skips AI stages (plan, section_bounding, build_sections, assembly)
+ * @param _enableAIAssistant Deprecated - all stages always run now
  */
-export declare function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, enableAIAssistant?: boolean): ProjectStatus | null;
+export declare function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, _enableAIAssistant?: boolean): ProjectStatus | null;
 /**
  * Check if user action is required after this stage completes
  */
@@ -102,8 +102,7 @@ export declare const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>>;
 export declare const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[];
 /**
  * Stages to skip when AI assistant is disabled
- * Skips all AI-based stages: plan, section_bounding, build_sections, assembly
- * Goes directly from load to convert_to_platform (basic XSCP generation)
+ * NOTE: Disabled - all stages always run now
  */
 export declare const AI_DISABLED_SKIPPED_STAGES: ProjectStatus[];
 /**
