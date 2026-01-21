@@ -89,16 +89,20 @@ exports.STAGE_ORDER = [
     'export_config',
     'load',
     'plan',
+    'section_bounding',
+    'build_sections',
+    'assembly',
     'convert_to_platform',
-    'fixing',
     'customize',
 ];
 exports.STAGE_LABELS = {
     export_config: 'Configure Export',
     load: 'Loading Data',
     plan: 'Planning Design',
+    section_bounding: 'Detecting Sections',
+    build_sections: 'Analyzing Sections',
+    assembly: 'Assembling Structure',
     convert_to_platform: 'Building Design',
-    fixing: 'Auto-Fixing',
     customize: 'Preview & Export',
 };
 /**

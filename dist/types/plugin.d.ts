@@ -184,6 +184,11 @@ export type PluginFrontendMessage = {
 } | {
     type: 'check-current-selection';
 } | {
+    type: 'accept-detected-frame';
+    data: {
+        frameId: string;
+    };
+} | {
     type: 'login';
     data: {
         token: string;

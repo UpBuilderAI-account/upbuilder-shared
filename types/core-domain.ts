@@ -86,8 +86,10 @@ export type ProjectStatus =
   | 'export_config'      // First stage - configure export options
   | 'load'
   | 'plan'               // AI analyzes designs, user can ask questions, then confirms
-  | 'convert_to_platform' // Unified build: AI generates ALL styles + structure per design
-  | 'fixing'             // AI auto-fixes sections by comparing screenshots
+  | 'section_bounding'   // Extract bounding boxes + section tree from designs
+  | 'build_sections'     // Per-section screenshot analysis (iterative)
+  | 'assembly'           // Combine section analyses into final STRUCTURE + ALL_STYLES
+  | 'convert_to_platform' // Generate XSCP from assembled structure
   | 'customize'          // Preview Webflow structure + export modal
   | 'complete'
   | 'failed';
@@ -100,8 +102,10 @@ export const PROJECT_STATUS = {
   EXPORT_CONFIG: 'export_config' as ProjectStatus,
   LOAD: 'load' as ProjectStatus,
   PLAN: 'plan' as ProjectStatus,
+  SECTION_BOUNDING: 'section_bounding' as ProjectStatus,
+  BUILD_SECTIONS: 'build_sections' as ProjectStatus,
+  ASSEMBLY: 'assembly' as ProjectStatus,
   CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
-  FIXING: 'fixing' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
   FAILED: 'failed' as ProjectStatus,
@@ -113,6 +117,9 @@ export const PROJECT_STATUS = {
 export function isProcessingStage(status: ProjectStatus): boolean {
   const processingStages: ProjectStatus[] = [
     'load',
+    'section_bounding',
+    'build_sections',
+    'assembly',
     'convert_to_platform',
   ];
   return processingStages.includes(status);
@@ -123,16 +130,18 @@ export function isProcessingStage(status: ProjectStatus): boolean {
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
  * @param quickMode Optional - if true, skips customize stage
- * @param enableAIAssistant Optional - if false, skips plan and fixing stages
+ * @param enableAIAssistant Optional - if false, skips AI stages (plan, section_bounding, build_sections, assembly)
  */
 export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, enableAIAssistant?: boolean): ProjectStatus | null {
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
     idle: 'export_config',
     export_config: 'load',
     load: 'plan',
-    plan: 'convert_to_platform',
-    convert_to_platform: 'fixing',
-    fixing: 'customize',
+    plan: 'section_bounding',
+    section_bounding: 'build_sections',
+    build_sections: 'assembly',
+    assembly: 'convert_to_platform',
+    convert_to_platform: 'customize',
     customize: 'complete',
     complete: null,
     failed: null,
@@ -170,9 +179,10 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
  */
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
   // These stages require user action to proceed
+  // export_config: user configures export options
   // plan: user reviews AI analysis, can ask questions, then confirms
-  // fixing: user watches auto-fixes, can pause/skip, then continues
-  return status === 'export_config' || status === 'plan' || status === 'fixing' || status === 'customize';
+  // customize: user reviews final output and triggers export
+  return status === 'export_config' || status === 'plan' || status === 'customize';
 }
 
 // Bricks and Elementor commented out - only Webflow available for now
@@ -188,7 +198,7 @@ export type StyleFramework = 'client-first' | 'bem-lite' | 'tailwind' | 'bootstr
  * Bricks/Elementor skip stylesheet generation (sections are self-contained)
  */
 export const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>> = {
-  webflow: ['fixing'], // Temporarily disabled - fixing stage is buggy
+  webflow: [], // All stages enabled for Webflow
   // bricks: ['generate_styles'],
   // elementor: ['generate_styles'],
 };
@@ -201,9 +211,10 @@ export const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[] = [];
 
 /**
  * Stages to skip when AI assistant is disabled
- * Skips plan (AI analysis) and fixing (AI auto-fix)
+ * Skips all AI-based stages: plan, section_bounding, build_sections, assembly
+ * Goes directly from load to convert_to_platform (basic XSCP generation)
  */
-export const AI_DISABLED_SKIPPED_STAGES: ProjectStatus[] = ['plan', 'fixing'];
+export const AI_DISABLED_SKIPPED_STAGES: ProjectStatus[] = ['plan', 'section_bounding', 'build_sections', 'assembly'];
 
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)
@@ -334,6 +345,16 @@ export interface ProjectState {
     };
     // Deprecated - kept for backwards compatibility
     blocks?: any;
+  };
+
+  // Build sections state (new section-by-section approach)
+  buildSectionsState?: import('./workflow').BuildSectionsState;
+
+  // Assembly result (combined structures + styles)
+  assemblyResult?: {
+    structures: Record<string, string>; // Design ID -> Structure tree
+    styles: string; // Combined ALL_STYLES
+    completedAt: number;
   };
 }
 

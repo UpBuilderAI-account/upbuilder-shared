@@ -22,8 +22,10 @@ exports.PROJECT_STATUS = {
     EXPORT_CONFIG: 'export_config',
     LOAD: 'load',
     PLAN: 'plan',
+    SECTION_BOUNDING: 'section_bounding',
+    BUILD_SECTIONS: 'build_sections',
+    ASSEMBLY: 'assembly',
     CONVERT_TO_PLATFORM: 'convert_to_platform',
-    FIXING: 'fixing',
     CUSTOMIZE: 'customize',
     COMPLETE: 'complete',
     FAILED: 'failed',
@@ -34,6 +36,9 @@ exports.PROJECT_STATUS = {
 function isProcessingStage(status) {
     const processingStages = [
         'load',
+        'section_bounding',
+        'build_sections',
+        'assembly',
         'convert_to_platform',
     ];
     return processingStages.includes(status);
@@ -43,7 +48,7 @@ function isProcessingStage(status) {
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
  * @param quickMode Optional - if true, skips customize stage
- * @param enableAIAssistant Optional - if false, skips plan and fixing stages
+ * @param enableAIAssistant Optional - if false, skips AI stages (plan, section_bounding, build_sections, assembly)
  */
 function getNextStatus(status, platform, quickMode, enableAIAssistant) {
     var _a;
@@ -51,9 +56,11 @@ function getNextStatus(status, platform, quickMode, enableAIAssistant) {
         idle: 'export_config',
         export_config: 'load',
         load: 'plan',
-        plan: 'convert_to_platform',
-        convert_to_platform: 'fixing',
-        fixing: 'customize',
+        plan: 'section_bounding',
+        section_bounding: 'build_sections',
+        build_sections: 'assembly',
+        assembly: 'convert_to_platform',
+        convert_to_platform: 'customize',
         customize: 'complete',
         complete: null,
         failed: null,
@@ -85,9 +92,10 @@ function getNextStatus(status, platform, quickMode, enableAIAssistant) {
  */
 function requiresUserActionAfter(status) {
     // These stages require user action to proceed
+    // export_config: user configures export options
     // plan: user reviews AI analysis, can ask questions, then confirms
-    // fixing: user watches auto-fixes, can pause/skip, then continues
-    return status === 'export_config' || status === 'plan' || status === 'fixing' || status === 'customize';
+    // customize: user reviews final output and triggers export
+    return status === 'export_config' || status === 'plan' || status === 'customize';
 }
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION
@@ -97,7 +105,7 @@ function requiresUserActionAfter(status) {
  * Bricks/Elementor skip stylesheet generation (sections are self-contained)
  */
 exports.SKIPPED_STAGES = {
-    webflow: ['fixing'], // Temporarily disabled - fixing stage is buggy
+    webflow: [], // All stages enabled for Webflow
     // bricks: ['generate_styles'],
     // elementor: ['generate_styles'],
 };
@@ -108,9 +116,10 @@ exports.SKIPPED_STAGES = {
 exports.QUICK_MODE_SKIPPED_STAGES = [];
 /**
  * Stages to skip when AI assistant is disabled
- * Skips plan (AI analysis) and fixing (AI auto-fix)
+ * Skips all AI-based stages: plan, section_bounding, build_sections, assembly
+ * Goes directly from load to convert_to_platform (basic XSCP generation)
  */
-exports.AI_DISABLED_SKIPPED_STAGES = ['plan', 'fixing'];
+exports.AI_DISABLED_SKIPPED_STAGES = ['plan', 'section_bounding', 'build_sections', 'assembly'];
 /**
  * Platforms that use per-section CSS (in addition to global stylesheet)
  * All platforms now show section CSS in the customizer

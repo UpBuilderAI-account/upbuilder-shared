@@ -627,6 +627,132 @@ export interface AssembledDesign {
 }
 
 // =============================================================================
+// SECTION BOUNDING & BUILD SECTIONS TYPES
+// =============================================================================
+
+/**
+ * Section type classification for bounding
+ */
+export type SectionType = 'navbar' | 'hero' | 'content' | 'footer' | 'other';
+
+/**
+ * Bounded section from AI analysis
+ * Contains bounding box + section tree from design
+ */
+export interface BoundedSection {
+  id: string;
+  name: string;
+  type: SectionType;
+  bounds: { x: number; y: number; width: number; height: number };
+  elementIds: string[];
+  isGlobal: boolean;
+  order: number;
+  /** Design ID this section belongs to */
+  designId: string;
+}
+
+/**
+ * Analysis result for a single section
+ */
+export interface SectionAnalysis {
+  sectionId: string;
+  sectionName: string;
+  designId: string;
+  analysis: {
+    layout: string;
+    colors: string[];
+    typography: string;
+    elements: string[];
+    suggestedClasses: string[];
+  };
+  /** Raw AI output in the specified format */
+  rawOutput: string;
+  /** Timestamp when analysis completed */
+  completedAt: number;
+}
+
+/**
+ * Build sections stage state stored in project
+ */
+export interface BuildSectionsState {
+  /** All bounded sections across all designs */
+  sections: BoundedSection[];
+  /** Completed section analyses */
+  analyses: SectionAnalysis[];
+  /** Index of current section being analyzed */
+  currentSectionIndex: number;
+  /** Whether the build sections stage is complete */
+  complete: boolean;
+}
+
+// =============================================================================
+// BUILD SECTIONS SOCKET EVENTS
+// =============================================================================
+
+export interface BuildSectionsEvents {
+  /** Backend → Frontend: Request screenshot for a section */
+  'build_sections:request_screenshot': {
+    projectId: string;
+    sectionId: string;
+    bounds: { x: number; y: number; width: number; height: number };
+    designId: string;
+  };
+  /** Frontend → Backend: Screenshot captured */
+  'build_sections:screenshot_ready': {
+    projectId: string;
+    sectionId: string;
+    screenshot: string; // base64 data URL
+  };
+  /** Backend → Frontend: AI analysis streaming */
+  'build_sections:analysis_stream': {
+    projectId: string;
+    sectionId: string;
+    chunk: string;
+    done: boolean;
+  };
+  /** Backend → Frontend: Section analysis complete */
+  'build_sections:section_complete': {
+    projectId: string;
+    sectionId: string;
+    analysis: SectionAnalysis;
+  };
+  /** Backend → Frontend: All sections analyzed */
+  'build_sections:all_complete': {
+    projectId: string;
+    sections: SectionAnalysis[];
+  };
+}
+
+// =============================================================================
+// SECTION BOUNDING SOCKET EVENTS
+// =============================================================================
+
+export interface SectionBoundingEvents {
+  'section_bounding:start': { projectId: string };
+  'section_bounding:progress': { projectId: string; percent: number; message: string };
+  'section_bounding:result': { projectId: string; sections: BoundedSection[] };
+  'section_bounding:error': { projectId: string; error: string };
+}
+
+// =============================================================================
+// ASSEMBLY SOCKET EVENTS
+// =============================================================================
+
+export interface AssemblyEvents {
+  'assembly:start': { projectId: string };
+  'assembly:progress': { projectId: string; percent: number; message: string };
+  'assembly:stream': { projectId: string; chunk: string; done: boolean };
+  'assembly:complete': {
+    projectId: string;
+    /** Structure blocks per design (D1, D2, etc.) */
+    structures: Record<string, string>;
+    /** Combined ALL_STYLES */
+    styles: string;
+  };
+  'assembly:error': { projectId: string; error: string };
+}
+
+// =============================================================================
 // HELPERS
 // =============================================================================
 
@@ -639,8 +765,10 @@ export const STAGE_ORDER: Stage[] = [
   'export_config',
   'load',
   'plan',
+  'section_bounding',
+  'build_sections',
+  'assembly',
   'convert_to_platform',
-  'fixing',
   'customize',
 ];
 
@@ -648,8 +776,10 @@ export const STAGE_LABELS: Record<Stage, string> = {
   export_config: 'Configure Export',
   load: 'Loading Data',
   plan: 'Planning Design',
+  section_bounding: 'Detecting Sections',
+  build_sections: 'Analyzing Sections',
+  assembly: 'Assembling Structure',
   convert_to_platform: 'Building Design',
-  fixing: 'Auto-Fixing',
   customize: 'Preview & Export',
 };
 

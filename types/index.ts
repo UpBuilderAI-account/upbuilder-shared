@@ -101,6 +101,14 @@ export {
   // Constants
   STAGE_ORDER,
   STAGE_LABELS,
+  // Section bounding & build sections types
+  type SectionType,
+  type BoundedSection,
+  type SectionAnalysis,
+  type BuildSectionsState,
+  type BuildSectionsEvents,
+  type SectionBoundingEvents,
+  type AssemblyEvents,
 } from './workflow';
 
 // Plugin types

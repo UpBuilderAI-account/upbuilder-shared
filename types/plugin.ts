@@ -172,6 +172,7 @@ export type PluginFrontendMessage =
   | { type: 'check-auth' }
   | { type: 'get-plugin-info' }
   | { type: 'check-current-selection' }
+  | { type: 'accept-detected-frame'; data: { frameId: string } }
   | { type: 'login'; data: { token: string; user: User } }
   | { type: 'logout' }
   | { type: 'open-external'; data: { url: string } }

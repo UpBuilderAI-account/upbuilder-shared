@@ -55,7 +55,7 @@ export interface PluginAuthTokenResponse {
     user?: User;
     error?: string;
 }
-export type ProjectStatus = 'idle' | 'export_config' | 'load' | 'plan' | 'convert_to_platform' | 'fixing' | 'customize' | 'complete' | 'failed';
+export type ProjectStatus = 'idle' | 'export_config' | 'load' | 'plan' | 'section_bounding' | 'build_sections' | 'assembly' | 'convert_to_platform' | 'customize' | 'complete' | 'failed';
 /**
  * Type-safe constants for ProjectStatus
  */
@@ -64,8 +64,10 @@ export declare const PROJECT_STATUS: {
     readonly EXPORT_CONFIG: ProjectStatus;
     readonly LOAD: ProjectStatus;
     readonly PLAN: ProjectStatus;
+    readonly SECTION_BOUNDING: ProjectStatus;
+    readonly BUILD_SECTIONS: ProjectStatus;
+    readonly ASSEMBLY: ProjectStatus;
     readonly CONVERT_TO_PLATFORM: ProjectStatus;
-    readonly FIXING: ProjectStatus;
     readonly CUSTOMIZE: ProjectStatus;
     readonly COMPLETE: ProjectStatus;
     readonly FAILED: ProjectStatus;
@@ -79,7 +81,7 @@ export declare function isProcessingStage(status: ProjectStatus): boolean;
  * @param status Current status
  * @param platform Optional platform - if provided, skips platform-specific stages
  * @param quickMode Optional - if true, skips customize stage
- * @param enableAIAssistant Optional - if false, skips plan and fixing stages
+ * @param enableAIAssistant Optional - if false, skips AI stages (plan, section_bounding, build_sections, assembly)
  */
 export declare function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, enableAIAssistant?: boolean): ProjectStatus | null;
 /**
@@ -100,7 +102,8 @@ export declare const SKIPPED_STAGES: Partial<Record<Platform, ProjectStatus[]>>;
 export declare const QUICK_MODE_SKIPPED_STAGES: ProjectStatus[];
 /**
  * Stages to skip when AI assistant is disabled
- * Skips plan (AI analysis) and fixing (AI auto-fix)
+ * Skips all AI-based stages: plan, section_bounding, build_sections, assembly
+ * Goes directly from load to convert_to_platform (basic XSCP generation)
  */
 export declare const AI_DISABLED_SKIPPED_STAGES: ProjectStatus[];
 /**
@@ -206,6 +209,12 @@ export interface ProjectState {
             };
         };
         blocks?: any;
+    };
+    buildSectionsState?: import('./workflow').BuildSectionsState;
+    assemblyResult?: {
+        structures: Record<string, string>;
+        styles: string;
+        completedAt: number;
     };
 }
 export interface SectionCode {
