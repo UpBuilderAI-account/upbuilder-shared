@@ -696,6 +696,12 @@ export interface BuildSectionsEvents {
     sectionId: string;
     bounds: { x: number; y: number; width: number; height: number };
     designId: string;
+    /** S3 URL for the big preview image (for frontend cropping) */
+    bigPreviewUrl?: string;
+    /** Dimensions of the big preview image */
+    bigPreviewDimensions?: { width: number; height: number };
+    /** Original Figma frame dimensions (bounds are relative to this) */
+    designDimensions?: { width: number; height: number };
   };
   /** Frontend → Backend: Screenshot captured */
   'build_sections:screenshot_ready': {
