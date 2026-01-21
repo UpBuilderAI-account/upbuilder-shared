@@ -173,9 +173,9 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
   // These stages require user action to proceed
   // export_config: user configures export options
-  // plan: user reviews AI analysis, can ask questions, then confirms
   // customize: user reviews final output and triggers export
-  return status === 'export_config' || status === 'plan' || status === 'customize';
+  // NOTE: 'plan' removed - now auto-continues to section_bounding
+  return status === 'export_config' || status === 'customize';
 }
 
 // Bricks and Elementor commented out - only Webflow available for now
