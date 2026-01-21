@@ -548,6 +548,10 @@ export interface ServerToClientEvents {
         styles: any[];
         totalCount: number;
     }) => void;
+    'workflow:output': (data: {
+        projectId: string;
+        text: string;
+    }) => void;
     project_ownership_transferred: (data: {
         projectId: string;
         projectName?: string;
