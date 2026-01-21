@@ -557,6 +557,12 @@ export interface ClientToServerEvents {
     callback: (response: { success: boolean; error?: string }) => void
   ) => void;
 
+  // Build sections stage - screenshot ready (frontend → backend)
+  'build_sections:screenshot_ready': (
+    data: { projectId: string; sectionId: string; screenshot: string },
+    callback?: (response: { success: boolean; error?: string }) => void
+  ) => void;
+
   // NEW: Rebuild-only fixing (no incremental commands)
   'fixing:request_rebuild': (
     data: {
@@ -832,6 +838,92 @@ export interface ServerToClientEvents {
       warnings: string[];
     };
   }) => void;
+
+  // Section bounding stage events (new workflow)
+  'section_bounding:start': (data: { projectId: string }) => void;
+  'section_bounding:progress': (data: { projectId: string; percent: number; message: string }) => void;
+  'section_bounding:result': (data: {
+    projectId: string;
+    sections: Array<{
+      id: string;
+      name: string;
+      type: 'navbar' | 'hero' | 'content' | 'footer' | 'other';
+      bounds: { x: number; y: number; width: number; height: number };
+      elementIds: string[];
+      isGlobal: boolean;
+      order: number;
+      designId: string;
+    }>;
+  }) => void;
+  'section_bounding:error': (data: { projectId: string; error: string }) => void;
+
+  // Build sections stage events (new workflow)
+  'build_sections:request_screenshot': (data: {
+    projectId: string;
+    sectionId: string;
+    bounds: { x: number; y: number; width: number; height: number };
+    designId: string;
+  }) => void;
+  'build_sections:progress': (data: {
+    projectId: string;
+    percent: number;
+    message: string;
+    currentSection?: number;
+    totalSections?: number;
+  }) => void;
+  'build_sections:analysis_stream': (data: {
+    projectId: string;
+    sectionId: string;
+    chunk: string;
+    done: boolean;
+  }) => void;
+  'build_sections:section_complete': (data: {
+    projectId: string;
+    sectionId: string;
+    analysis: {
+      sectionId: string;
+      sectionName: string;
+      designId: string;
+      analysis: {
+        layout: string;
+        colors: string[];
+        typography: string;
+        elements: string[];
+        suggestedClasses: string[];
+      };
+      rawOutput: string;
+      completedAt: number;
+    };
+  }) => void;
+  'build_sections:all_complete': (data: {
+    projectId: string;
+    sections: Array<{
+      sectionId: string;
+      sectionName: string;
+      designId: string;
+      analysis: {
+        layout: string;
+        colors: string[];
+        typography: string;
+        elements: string[];
+        suggestedClasses: string[];
+      };
+      rawOutput: string;
+      completedAt: number;
+    }>;
+  }) => void;
+  'build_sections:error': (data: { projectId: string; error: string }) => void;
+
+  // Assembly stage events (new workflow)
+  'assembly:start': (data: { projectId: string }) => void;
+  'assembly:progress': (data: { projectId: string; percent: number; message: string }) => void;
+  'assembly:stream': (data: { projectId: string; chunk: string; done: boolean }) => void;
+  'assembly:complete': (data: {
+    projectId: string;
+    structures: Record<string, string>;
+    styles: string;
+  }) => void;
+  'assembly:error': (data: { projectId: string; error: string }) => void;
 }
 
 /**
