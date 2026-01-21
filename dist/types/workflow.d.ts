@@ -464,6 +464,8 @@ export interface BoundedSection {
     order: number;
     /** Design ID this section belongs to */
     designId: string;
+    /** Google File Manager URI for section screenshot (set by section bounding stage) */
+    screenshotUri?: string;
 }
 /**
  * Analysis result for a single section
