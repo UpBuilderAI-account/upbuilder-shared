@@ -130,6 +130,7 @@ export declare const SOCKET_EVENTS: {
         readonly AI_RESPONSE: "customizer:ai:response";
         readonly AI_STREAM: "customizer:ai:stream";
         readonly ERROR: "customizer:error";
+        readonly DEV_FIX: "customizer:dev_fix";
     };
     /**
      * Plan stage events (client ↔ server)

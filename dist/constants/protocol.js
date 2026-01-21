@@ -151,6 +151,7 @@ exports.SOCKET_EVENTS = {
         AI_RESPONSE: 'customizer:ai:response', // Server → Client: AI assistant response
         AI_STREAM: 'customizer:ai:stream', // Server → Client: AI assistant streaming chunk
         ERROR: 'customizer:error', // Server → Client: Error event
+        DEV_FIX: 'customizer:dev_fix', // Client → Server: Dev-only structure fix
     },
     /**
      * Plan stage events (client ↔ server)
