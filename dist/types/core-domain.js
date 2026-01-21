@@ -36,6 +36,7 @@ exports.PROJECT_STATUS = {
 function isProcessingStage(status) {
     const processingStages = [
         'load',
+        'plan', // Added - plan now auto-continues to section_bounding
         'section_bounding',
         'build_sections',
         'assembly',

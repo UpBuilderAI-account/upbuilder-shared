@@ -117,6 +117,7 @@ export const PROJECT_STATUS = {
 export function isProcessingStage(status: ProjectStatus): boolean {
   const processingStages: ProjectStatus[] = [
     'load',
+    'plan', // Added - plan now auto-continues to section_bounding
     'section_bounding',
     'build_sections',
     'assembly',
