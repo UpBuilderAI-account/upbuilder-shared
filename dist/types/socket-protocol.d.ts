@@ -338,6 +338,15 @@ export interface ClientToServerEvents {
         };
         error?: string;
     }) => void) => void;
+    'webflow:download_assets_zip': (data: {
+        projectId: string;
+    }, callback: (response: {
+        success: boolean;
+        data?: {
+            url: string;
+        };
+        error?: string;
+    }) => void) => void;
     'plan:start': (data: {
         projectId: string;
         designIds: string[];

@@ -103,6 +103,7 @@ export {
   STAGE_LABELS,
   // Section bounding & build sections types
   type SectionType,
+  type GlobalVerdict,
   type BoundedSection,
   type SectionAnalysis,
   type BuildSectionsState,

@@ -485,6 +485,15 @@ export interface ClientToServerEvents {
     }) => void
   ) => void;
 
+  'webflow:download_assets_zip': (
+    data: { projectId: string },
+    callback: (response: {
+      success: boolean;
+      data?: { url: string };
+      error?: string;
+    }) => void
+  ) => void;
+
   // Plan stage events (Workflow V2)
   'plan:start': (
     data: { projectId: string; designIds: string[] },

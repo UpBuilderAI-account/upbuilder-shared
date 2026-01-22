@@ -446,6 +446,12 @@ export interface AssembledDesign {
  */
 export type SectionType = 'navbar' | 'hero' | 'content' | 'footer' | 'other';
 /**
+ * Global section verdict from plan stage analysis
+ * IDENTICAL = same across all designs (reuse one)
+ * HAS_VARIANTS = visual differences exist (build each variant once)
+ */
+export type GlobalVerdict = 'IDENTICAL' | 'HAS_VARIANTS';
+/**
  * Bounded section from AI analysis
  * Contains bounding box + section tree from design
  */
@@ -466,6 +472,30 @@ export interface BoundedSection {
     designId: string;
     /** Google File Manager URI for section screenshot (set by section bounding stage) */
     screenshotUri?: string;
+    /** Global verdict from plan stage (IDENTICAL or HAS_VARIANTS) */
+    globalVerdict?: GlobalVerdict;
+    /**
+     * Variant identifier for HAS_VARIANTS globals
+     * e.g., "navbar_light", "navbar_dark", "team_v1", "team_v2"
+     * Sections with same variant share one AI call in build_sections
+     */
+    variant?: string;
+    /**
+     * List of design IDs where this section (or its variant) is used
+     * For IDENTICAL globals: all designs using this exact section
+     * For HAS_VARIANTS: all designs using this specific variant
+     */
+    usedInDesigns?: string[];
+    /**
+     * If true, this is the "primary" instance that will be analyzed
+     * Other sections with same variant will copy from this one
+     */
+    isPrimaryInstance?: boolean;
+    /**
+     * Reference to the primary section ID if this is a duplicate
+     * Used to copy analysis results after build_sections
+     */
+    primarySectionId?: string;
 }
 /**
  * Analysis result for a single section
