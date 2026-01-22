@@ -77,6 +77,9 @@ export const SOCKET_EVENTS = {
     // Webflow structure preview (customize stage)
     WEBFLOW_STRUCTURE: 'workflow:webflow_structure', // Server → Client: XSCP data for tree view
     STYLE_REGISTRY: 'workflow:style_registry',       // Server → Client: Style registry for style panel
+    // Validation progress (convert_to_platform stage)
+    VALIDATION_PROGRESS: 'workflow:validation_progress', // Server → Client: Validation/fix progress for panel display
+    OUTPUT: 'workflow:output',         // Server → Client: Terminal text output
   },
 
   /**
