@@ -552,6 +552,26 @@ export interface ServerToClientEvents {
         projectId: string;
         text: string;
     }) => void;
+    'workflow:validation_progress': (data: {
+        projectId: string;
+        designId: string;
+        designName: string;
+        phase: 'idle' | 'parsing' | 'validating' | 'fixing' | 'rebuilding' | 'complete';
+        phaseMessage: string;
+        attempt: number;
+        maxAttempts: number;
+        errors: Array<{
+            nodeId: string;
+            componentType: string;
+            errorCode: string;
+            message: string;
+            lineNumber?: number;
+        }>;
+        totalElements: number;
+        fixedElements: number;
+        isComplete: boolean;
+        wasFixed: boolean;
+    }) => void;
     project_ownership_transferred: (data: {
         projectId: string;
         projectName?: string;

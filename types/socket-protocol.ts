@@ -650,6 +650,26 @@ export interface ServerToClientEvents {
   'workflow:webflow_structure': (data: { designId: string; designName: string; xscp: any }) => void;
   'workflow:style_registry': (data: { styles: any[]; totalCount: number }) => void;
   'workflow:output': (data: { projectId: string; text: string }) => void;
+  'workflow:validation_progress': (data: {
+    projectId: string;
+    designId: string;
+    designName: string;
+    phase: 'idle' | 'parsing' | 'validating' | 'fixing' | 'rebuilding' | 'complete';
+    phaseMessage: string;
+    attempt: number;
+    maxAttempts: number;
+    errors: Array<{
+      nodeId: string;
+      componentType: string;
+      errorCode: string;
+      message: string;
+      lineNumber?: number;
+    }>;
+    totalElements: number;
+    fixedElements: number;
+    isComplete: boolean;
+    wasFixed: boolean;
+  }) => void;
 
   // Ownership transfer events
   project_ownership_transferred: (data: {
