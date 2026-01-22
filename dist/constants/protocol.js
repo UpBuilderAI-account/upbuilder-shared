@@ -198,7 +198,8 @@ exports.SOCKET_EVENTS = {
         // Asset sync
         SYNC_ASSETS: 'webflow:sync_assets', // Client → Server: Start asset upload to Webflow
         ASSET_PROGRESS: 'webflow:asset_progress', // Server → Client: Asset upload progress
-        ASSET_COMPLETE: 'webflow:asset_complete', // Server → Client: All assets uploaded
+        ASSET_COMPLETE: 'webflow:asset_complete',
+        DOWNLOAD_ASSETS_ZIP: 'webflow:download_assets_zip', // Client -> Server: Build and download project assets ZIP    // Server → Client: All assets uploaded
         // Push to Webflow
         PUSH_DESIGN: 'webflow:push_design', // Client → Server: Get Designer-ready payload
         PUSH_PROGRESS: 'webflow:push_progress', // Server → Client: Push progress
