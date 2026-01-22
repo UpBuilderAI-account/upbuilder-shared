@@ -51,7 +51,9 @@
     }
   },
   "scripts": {
+    "prebuild": "node scripts/increment-version.js",
     "build": "tsc",
+    "build:no-version": "tsc",
     "dev": "tsc --watch",
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",

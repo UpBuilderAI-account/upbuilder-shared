@@ -16,6 +16,8 @@ const ERROR_MESSAGES = {
     [socket_protocol_1.ERROR_CODES.AUTH_TOKEN_EXPIRED]: 'Your session has expired. Please sign in again',
     [socket_protocol_1.ERROR_CODES.AUTH_UNAUTHORIZED]: 'You are not authorized to perform this action',
     [socket_protocol_1.ERROR_CODES.AUTH_REQUIRED]: 'Authentication is required',
+    // Version errors
+    [socket_protocol_1.ERROR_CODES.VERSION_OUTDATED]: 'Plugin version is outdated. Please close this Figma tab and open a new one to update.',
     // Project errors
     [socket_protocol_1.ERROR_CODES.PROJECT_NOT_FOUND]: 'Project not found',
     [socket_protocol_1.ERROR_CODES.PROJECT_INVALID_STATUS]: 'Invalid project status',

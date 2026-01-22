@@ -11,6 +11,7 @@ export declare const ERROR_CODES: {
     readonly AUTH_TOKEN_EXPIRED: "AUTH_TOKEN_EXPIRED";
     readonly AUTH_UNAUTHORIZED: "AUTH_UNAUTHORIZED";
     readonly AUTH_REQUIRED: "AUTH_REQUIRED";
+    readonly VERSION_OUTDATED: "VERSION_OUTDATED";
     readonly PROJECT_NOT_FOUND: "PROJECT_NOT_FOUND";
     readonly PROJECT_INVALID_STATUS: "PROJECT_INVALID_STATUS";
     readonly PROJECT_ACCESS_DENIED: "PROJECT_ACCESS_DENIED";
@@ -188,6 +189,7 @@ export interface ClientToServerEvents {
         token?: string;
         guest?: boolean;
         pluginToken?: string;
+        pluginVersion?: string;
     }, callback: CallbackResponse<{
         userId: string;
         isGuest: boolean;

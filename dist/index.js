@@ -41,6 +41,8 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getConstraintErrorMessage = exports.validateDesignTree = exports.canContainChild = exports.canPlaceElement = exports.webflow = void 0;
+// Export version (auto-incremented on build)
+__exportStar(require("./version"), exports);
 // Export all types
 __exportStar(require("./types"), exports);
 // Export all constants

@@ -3,6 +3,9 @@
 // Main export for @upbuilder/shared package
 // ============================================================================
 
+// Export version (auto-incremented on build)
+export * from './version';
+
 // Export all types
 export * from './types';
 

@@ -15,6 +15,9 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
   [ERROR_CODES.AUTH_UNAUTHORIZED]: 'You are not authorized to perform this action',
   [ERROR_CODES.AUTH_REQUIRED]: 'Authentication is required',
 
+  // Version errors
+  [ERROR_CODES.VERSION_OUTDATED]: 'Plugin version is outdated. Please close this Figma tab and open a new one to update.',
+
   // Project errors
   [ERROR_CODES.PROJECT_NOT_FOUND]: 'Project not found',
   [ERROR_CODES.PROJECT_INVALID_STATUS]: 'Invalid project status',

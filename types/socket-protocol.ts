@@ -59,6 +59,9 @@ export const ERROR_CODES = {
   AUTH_UNAUTHORIZED: 'AUTH_UNAUTHORIZED',
   AUTH_REQUIRED: 'AUTH_REQUIRED',
 
+  // Version errors
+  VERSION_OUTDATED: 'VERSION_OUTDATED',
+
   // Project errors
   PROJECT_NOT_FOUND: 'PROJECT_NOT_FOUND',
   PROJECT_INVALID_STATUS: 'PROJECT_INVALID_STATUS',
@@ -299,7 +302,7 @@ export interface ErrorPayload {
 export interface ClientToServerEvents {
   // Authentication
   authenticate: (
-    data: { token?: string; guest?: boolean; pluginToken?: string },
+    data: { token?: string; guest?: boolean; pluginToken?: string; pluginVersion?: string },
     callback: CallbackResponse<{ userId: string; isGuest: boolean }>
   ) => void;
 
