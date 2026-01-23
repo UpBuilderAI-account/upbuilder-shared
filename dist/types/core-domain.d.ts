@@ -167,6 +167,8 @@ export interface ProjectState {
         sectionCount: number;
         createdAt: string;
     }>;
+    consolidatedCSS?: string;
+    consolidatedJS?: string;
     exportConfig?: import('./workflow').ExportConfig;
     assetUploadStatus?: {
         complete: boolean;

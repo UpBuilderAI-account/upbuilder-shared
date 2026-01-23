@@ -290,11 +290,15 @@ export interface ProjectState {
     designId: string;
     name: string;
     html: string;
-    css: string;
-    js: string;
+    css: string;  // Deprecated: use consolidatedCSS at project level
+    js: string;   // Deprecated: use consolidatedJS at project level
     sectionCount: number;
     createdAt: string;
   }>;
+
+  // Consolidated CSS/JS stored once at project level (not duplicated per-design)
+  consolidatedCSS?: string;
+  consolidatedJS?: string;
 
   // Export config (set from plugin, skips export_config stage in workflow)
   exportConfig?: import('./workflow').ExportConfig;
