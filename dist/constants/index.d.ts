@@ -25,9 +25,9 @@ export { ERROR_CODES, type ErrorCode } from '../types/socket-protocol';
 export * from './ai-markers';
 /**
  * Server/Backend-only constants
- * Includes: AI models, browser config, streaming, image processing
+ * Only exports actively used by consumers
  */
-export * from './server';
+export { AI_TEMPERATURE, AI_MAX_OUTPUT_TOKENS, AI_THINKING_BUDGET, } from './server';
 /**
  * Plugin progress milestones
  * Shared between plugin frontend and backend for consistent progress tracking

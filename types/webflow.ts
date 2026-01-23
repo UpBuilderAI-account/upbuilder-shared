@@ -31,19 +31,10 @@ export {
   getAllowedChildren,
   isPinnedToParent,
 
-  // Breakpoints & States
+  // Breakpoints & States (only actively used exports)
   type BreakpointKey,
-  type BreakpointVariantKey,
   type StateKey,
   type WebflowStyleVariantKey,
-  BREAKPOINTS,
-  BREAKPOINT_KEYS,
-  SMALLER_BREAKPOINTS,
-  RESPONSIVE_BREAKPOINTS,
-  PSEUDO_STATES,
-  STATE_KEYS,
-  getBreakpoint,
-  getState,
   getVariantKey,
 
   // Mappings
@@ -51,12 +42,7 @@ export {
   getComponentType,
   getDefaultTag,
   getXSCPType,
-
-  // Breakpoint and style documentation for prompts
-  BREAKPOINT_DOCS,
-  STATE_DOCS,
-  STYLE_REGISTRY_FORMAT_DOCS,
-  DESKTOP_ONLY_WARNING,
 } from '../webflow';
 
+// NOTE: Breakpoint/state documentation (BREAKPOINT_DOCS, STATE_DOCS, etc.) moved to backend-new/prompts/workflow/breakpoints.ts
 // NOTE: Prompt documentation (SLIDER_HIERARCHY_DOCS, etc.) moved to backend-new/prompts/webflow/docs

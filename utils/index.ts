@@ -4,7 +4,6 @@
 // ============================================================================
 
 export * from './element-helpers';
-export * from './bounds';
 export * from './colors';
 // Note: html-generator moved to backend-new/utils - not needed in plugin/frontend
 export * from './paths';

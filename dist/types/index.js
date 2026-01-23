@@ -30,8 +30,6 @@ Object.defineProperty(exports, "shouldSkipStage", { enumerable: true, get: funct
 Object.defineProperty(exports, "SKIPPED_STAGES", { enumerable: true, get: function () { return core_domain_1.SKIPPED_STAGES; } });
 Object.defineProperty(exports, "QUICK_MODE_SKIPPED_STAGES", { enumerable: true, get: function () { return core_domain_1.QUICK_MODE_SKIPPED_STAGES; } });
 Object.defineProperty(exports, "USES_SECTION_CSS", { enumerable: true, get: function () { return core_domain_1.USES_SECTION_CSS; } });
-// API types (HTTP/REST responses)
-__exportStar(require("./api"), exports);
 // Billing types (subscriptions, pricing)
 __exportStar(require("./billing"), exports);
 // Socket protocol types (WebSocket communication)
@@ -60,10 +58,6 @@ __exportStar(require("./plugin"), exports);
 __exportStar(require("./element"), exports);
 // Webflow export types
 __exportStar(require("./webflow"), exports);
-// Bricks Builder export types
-__exportStar(require("./bricks"), exports);
-// Elementor Builder export types
-__exportStar(require("./elementor"), exports);
 // Complex hierarchy detection types
 __exportStar(require("./complex-hierarchy"), exports);
 // Outside elements detection types

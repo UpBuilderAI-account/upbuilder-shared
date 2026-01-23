@@ -17,9 +17,6 @@ export {
   USES_SECTION_CSS,
 } from './core-domain';
 
-// API types (HTTP/REST responses)
-export * from './api';
-
 // Billing types (subscriptions, pricing)
 export * from './billing';
 
@@ -123,13 +120,6 @@ export * from './element';
 
 // Webflow export types
 export * from './webflow';
-
-// Bricks Builder export types
-export * from './bricks';
-
-// Elementor Builder export types
-export * from './elementor';
-
 
 // Complex hierarchy detection types
 export * from './complex-hierarchy';
