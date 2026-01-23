@@ -18,7 +18,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AI_THINKING_BUDGET = exports.AI_MAX_OUTPUT_TOKENS = exports.AI_TEMPERATURE = exports.ERROR_CODES = void 0;
+exports.SERVER_STARTUP_RETRY_DELAY_MS = exports.DEFAULT_MAX_RETRIES = exports.AI_THINKING_BUDGET = exports.AI_MAX_OUTPUT_TOKENS = exports.AI_TEMPERATURE = exports.ERROR_CODES = void 0;
 // ============================================
 // CROSS-PLATFORM CONSTANTS (Frontend, Backend, Plugin)
 // ============================================
@@ -56,6 +56,8 @@ var server_1 = require("./server");
 Object.defineProperty(exports, "AI_TEMPERATURE", { enumerable: true, get: function () { return server_1.AI_TEMPERATURE; } });
 Object.defineProperty(exports, "AI_MAX_OUTPUT_TOKENS", { enumerable: true, get: function () { return server_1.AI_MAX_OUTPUT_TOKENS; } });
 Object.defineProperty(exports, "AI_THINKING_BUDGET", { enumerable: true, get: function () { return server_1.AI_THINKING_BUDGET; } });
+Object.defineProperty(exports, "DEFAULT_MAX_RETRIES", { enumerable: true, get: function () { return server_1.DEFAULT_MAX_RETRIES; } });
+Object.defineProperty(exports, "SERVER_STARTUP_RETRY_DELAY_MS", { enumerable: true, get: function () { return server_1.SERVER_STARTUP_RETRY_DELAY_MS; } });
 /**
  * Plugin progress milestones
  * Shared between plugin frontend and backend for consistent progress tracking

@@ -27,7 +27,7 @@ export * from './ai-markers';
  * Server/Backend-only constants
  * Only exports actively used by consumers
  */
-export { AI_TEMPERATURE, AI_MAX_OUTPUT_TOKENS, AI_THINKING_BUDGET, } from './server';
+export { AI_TEMPERATURE, AI_MAX_OUTPUT_TOKENS, AI_THINKING_BUDGET, DEFAULT_MAX_RETRIES, SERVER_STARTUP_RETRY_DELAY_MS, } from './server';
 /**
  * Plugin progress milestones
  * Shared between plugin frontend and backend for consistent progress tracking
