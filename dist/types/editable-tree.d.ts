@@ -211,6 +211,11 @@ export interface EditableNode {
     depth: number;
     /** Whether this node can be edited */
     editable: boolean;
+    /** Global section indicator (if this element is part of a global section) */
+    global?: {
+        name: string;
+        variant: string;
+    };
 }
 /** CSS property categories for UI grouping */
 export type PropertyCategory = 'layout' | 'spacing' | 'size' | 'typography' | 'background' | 'border' | 'effects' | 'position' | 'other';

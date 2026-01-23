@@ -402,6 +402,12 @@ export interface EditableNode {
 
   /** Whether this node can be edited */
   editable: boolean;
+
+  /** Global section indicator (if this element is part of a global section) */
+  global?: {
+    name: string;      // e.g., "Navbar"
+    variant: string;   // e.g., "navbar_default"
+  };
 }
 
 // ============================================================================
