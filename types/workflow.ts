@@ -627,6 +627,46 @@ export interface AssembledDesign {
 }
 
 // =============================================================================
+// BUILD STYLES TYPES (New build-styles stage)
+// =============================================================================
+
+/**
+ * Style definition for build-styles and build-sections output
+ * Represents a single CSS class with breakpoint and state variants
+ */
+export interface StyleDefinition {
+  /** Class ID/name (e.g., "padding-global", "button", "abc_hero_grid") */
+  id: string;
+  /** Combo indicator: "" = base class, "&" = combo modifier */
+  comb: '' | '&';
+  /** Desktop CSS properties */
+  main: string;
+  /** Tablet CSS (≤991px) */
+  medium?: string;
+  /** Mobile portrait CSS (≤478px) */
+  tiny?: string;
+  /** Hover state CSS */
+  hover?: string;
+  /** Focus state CSS */
+  focus?: string;
+  /** Active/pressed state CSS */
+  active?: string;
+}
+
+/**
+ * Build styles stage state
+ * Stores the base style system created before build-sections
+ */
+export interface BuildStylesState {
+  /** All base styles (utilities, typography, buttons, etc.) */
+  styles: StyleDefinition[];
+  /** Raw AI output for debugging */
+  rawOutput: string;
+  /** Timestamp when completed */
+  completedAt: number;
+}
+
+// =============================================================================
 // SECTION BOUNDING & BUILD SECTIONS TYPES
 // =============================================================================
 
@@ -707,8 +747,10 @@ export interface SectionAnalysis {
     elements: string[];
     suggestedClasses: string[];
   };
-  /** Raw AI output in the specified format */
+  /** Raw AI output in the specified format (STRUCTURE + NEW_STYLES) */
   rawOutput: string;
+  /** New styles created by this section (parsed from NEW_STYLES block) */
+  newStyles?: StyleDefinition[];
   /** Timestamp when analysis completed */
   completedAt: number;
 }
@@ -721,6 +763,8 @@ export interface BuildSectionsState {
   sections: BoundedSection[];
   /** Completed section analyses */
   analyses: SectionAnalysis[];
+  /** All new styles from all sections (merged from each section's newStyles) */
+  allNewStyles: StyleDefinition[];
   /** Index of current section being analyzed */
   currentSectionIndex: number;
   /** Whether the build sections stage is complete */
@@ -814,8 +858,8 @@ export const STAGE_ORDER: Stage[] = [
   'load',
   'plan',
   'section_bounding',
+  'build_styles',
   'build_sections',
-  'assembly',
   'convert_to_platform',
   'customize',
 ];
@@ -825,9 +869,9 @@ export const STAGE_LABELS: Record<Stage, string> = {
   load: 'Loading Data',
   plan: 'Planning Design',
   section_bounding: 'Detecting Sections',
-  build_sections: 'Analyzing Sections',
-  assembly: 'Assembling Structure',
-  convert_to_platform: 'Building Design',
+  build_styles: 'Building Styles',
+  build_sections: 'Building Sections',
+  convert_to_platform: 'Generating Export',
   customize: 'Preview & Export',
 };
 

@@ -23,8 +23,8 @@ exports.PROJECT_STATUS = {
     LOAD: 'load',
     PLAN: 'plan',
     SECTION_BOUNDING: 'section_bounding',
+    BUILD_STYLES: 'build_styles',
     BUILD_SECTIONS: 'build_sections',
-    ASSEMBLY: 'assembly',
     CONVERT_TO_PLATFORM: 'convert_to_platform',
     CUSTOMIZE: 'customize',
     COMPLETE: 'complete',
@@ -38,8 +38,8 @@ function isProcessingStage(status) {
         'load',
         'plan', // Added - plan now auto-continues to section_bounding
         'section_bounding',
+        'build_styles',
         'build_sections',
-        'assembly',
         'convert_to_platform',
     ];
     return processingStages.includes(status);
@@ -58,9 +58,9 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
         export_config: 'load',
         load: 'plan',
         plan: 'section_bounding',
-        section_bounding: 'build_sections',
-        build_sections: 'assembly',
-        assembly: 'convert_to_platform',
+        section_bounding: 'build_styles',
+        build_styles: 'build_sections',
+        build_sections: 'convert_to_platform',
         convert_to_platform: 'customize',
         customize: 'complete',
         complete: null,

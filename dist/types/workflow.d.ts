@@ -442,6 +442,40 @@ export interface AssembledDesign {
     createdAt: string;
 }
 /**
+ * Style definition for build-styles and build-sections output
+ * Represents a single CSS class with breakpoint and state variants
+ */
+export interface StyleDefinition {
+    /** Class ID/name (e.g., "padding-global", "button", "abc_hero_grid") */
+    id: string;
+    /** Combo indicator: "" = base class, "&" = combo modifier */
+    comb: '' | '&';
+    /** Desktop CSS properties */
+    main: string;
+    /** Tablet CSS (≤991px) */
+    medium?: string;
+    /** Mobile portrait CSS (≤478px) */
+    tiny?: string;
+    /** Hover state CSS */
+    hover?: string;
+    /** Focus state CSS */
+    focus?: string;
+    /** Active/pressed state CSS */
+    active?: string;
+}
+/**
+ * Build styles stage state
+ * Stores the base style system created before build-sections
+ */
+export interface BuildStylesState {
+    /** All base styles (utilities, typography, buttons, etc.) */
+    styles: StyleDefinition[];
+    /** Raw AI output for debugging */
+    rawOutput: string;
+    /** Timestamp when completed */
+    completedAt: number;
+}
+/**
  * Section type classification for bounding
  */
 export type SectionType = 'navbar' | 'hero' | 'content' | 'footer' | 'other';
@@ -511,8 +545,10 @@ export interface SectionAnalysis {
         elements: string[];
         suggestedClasses: string[];
     };
-    /** Raw AI output in the specified format */
+    /** Raw AI output in the specified format (STRUCTURE + NEW_STYLES) */
     rawOutput: string;
+    /** New styles created by this section (parsed from NEW_STYLES block) */
+    newStyles?: StyleDefinition[];
     /** Timestamp when analysis completed */
     completedAt: number;
 }
@@ -524,6 +560,8 @@ export interface BuildSectionsState {
     sections: BoundedSection[];
     /** Completed section analyses */
     analyses: SectionAnalysis[];
+    /** All new styles from all sections (merged from each section's newStyles) */
+    allNewStyles: StyleDefinition[];
     /** Index of current section being analyzed */
     currentSectionIndex: number;
     /** Whether the build sections stage is complete */

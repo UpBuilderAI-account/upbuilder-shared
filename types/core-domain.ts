@@ -87,9 +87,9 @@ export type ProjectStatus =
   | 'load'
   | 'plan'               // AI analyzes designs, user can ask questions, then confirms
   | 'section_bounding'   // Extract bounding boxes + section tree from designs
-  | 'build_sections'     // Per-section screenshot analysis (iterative)
-  | 'assembly'           // Combine section analyses into final STRUCTURE + ALL_STYLES
-  | 'convert_to_platform' // Generate XSCP from assembled structure
+  | 'build_styles'       // Build base style system (utilities, typography, buttons)
+  | 'build_sections'     // Per-section structure + new styles (references build_styles)
+  | 'convert_to_platform' // Merge styles + generate XSCP
   | 'customize'          // Preview Webflow structure + export modal
   | 'complete'
   | 'failed';
@@ -103,8 +103,8 @@ export const PROJECT_STATUS = {
   LOAD: 'load' as ProjectStatus,
   PLAN: 'plan' as ProjectStatus,
   SECTION_BOUNDING: 'section_bounding' as ProjectStatus,
+  BUILD_STYLES: 'build_styles' as ProjectStatus,
   BUILD_SECTIONS: 'build_sections' as ProjectStatus,
-  ASSEMBLY: 'assembly' as ProjectStatus,
   CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
@@ -119,8 +119,8 @@ export function isProcessingStage(status: ProjectStatus): boolean {
     'load',
     'plan', // Added - plan now auto-continues to section_bounding
     'section_bounding',
+    'build_styles',
     'build_sections',
-    'assembly',
     'convert_to_platform',
   ];
   return processingStages.includes(status);
@@ -139,9 +139,9 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
     export_config: 'load',
     load: 'plan',
     plan: 'section_bounding',
-    section_bounding: 'build_sections',
-    build_sections: 'assembly',
-    assembly: 'convert_to_platform',
+    section_bounding: 'build_styles',
+    build_styles: 'build_sections',
+    build_sections: 'convert_to_platform',
     convert_to_platform: 'customize',
     customize: 'complete',
     complete: null,

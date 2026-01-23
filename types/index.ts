@@ -101,6 +101,9 @@ export {
   // Constants
   STAGE_ORDER,
   STAGE_LABELS,
+  // Build styles types (new build-styles stage)
+  type StyleDefinition,
+  type BuildStylesState,
   // Section bounding & build sections types
   type SectionType,
   type GlobalVerdict,
