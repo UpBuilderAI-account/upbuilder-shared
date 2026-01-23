@@ -71,6 +71,8 @@ export interface WorkflowStage {
   exportStartedAt?: number;
   /** Assembly progress tracking (build stage only) */
   assemblyProgress?: AssemblyProgress;
+  /** Streaming output content for this stage (workflow terminal text) */
+  streamContent?: string;
 }
 
 /**
