@@ -25,6 +25,7 @@ exports.PROJECT_STATUS = {
     SECTION_BOUNDING: 'section_bounding',
     BUILD_STYLES: 'build_styles',
     BUILD_SECTIONS: 'build_sections',
+    ASSEMBLY: 'assembly', // @deprecated - kept for backwards compatibility
     CONVERT_TO_PLATFORM: 'convert_to_platform',
     CUSTOMIZE: 'customize',
     COMPLETE: 'complete',
@@ -61,6 +62,7 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
         section_bounding: 'build_styles',
         build_styles: 'build_sections',
         build_sections: 'convert_to_platform',
+        assembly: 'convert_to_platform', // @deprecated - old projects skip to convert
         convert_to_platform: 'customize',
         customize: 'complete',
         complete: null,

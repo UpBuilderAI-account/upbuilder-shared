@@ -102,6 +102,7 @@ exports.STAGE_LABELS = {
     section_bounding: 'Detecting Sections',
     build_styles: 'Building Styles',
     build_sections: 'Building Sections',
+    assembly: 'Assembling', // @deprecated - kept for backwards compatibility
     convert_to_platform: 'Generating Export',
     customize: 'Preview & Export',
 };

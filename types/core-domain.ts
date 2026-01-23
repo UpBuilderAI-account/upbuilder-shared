@@ -89,6 +89,7 @@ export type ProjectStatus =
   | 'section_bounding'   // Extract bounding boxes + section tree from designs
   | 'build_styles'       // Build base style system (utilities, typography, buttons)
   | 'build_sections'     // Per-section structure + new styles (references build_styles)
+  | 'assembly'           // @deprecated - kept for backwards compatibility
   | 'convert_to_platform' // Merge styles + generate XSCP
   | 'customize'          // Preview Webflow structure + export modal
   | 'complete'
@@ -105,6 +106,7 @@ export const PROJECT_STATUS = {
   SECTION_BOUNDING: 'section_bounding' as ProjectStatus,
   BUILD_STYLES: 'build_styles' as ProjectStatus,
   BUILD_SECTIONS: 'build_sections' as ProjectStatus,
+  ASSEMBLY: 'assembly' as ProjectStatus, // @deprecated - kept for backwards compatibility
   CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
@@ -142,6 +144,7 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
     section_bounding: 'build_styles',
     build_styles: 'build_sections',
     build_sections: 'convert_to_platform',
+    assembly: 'convert_to_platform', // @deprecated - old projects skip to convert
     convert_to_platform: 'customize',
     customize: 'complete',
     complete: null,
