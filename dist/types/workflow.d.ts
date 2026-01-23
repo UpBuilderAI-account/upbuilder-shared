@@ -70,6 +70,8 @@ export interface WorkflowStages {
     stages: WorkflowStage[];
     /** Early asset upload progress (runs in background during load stage) */
     earlyAssetUpload?: EarlyAssetUploadProgress;
+    /** Accumulated stream content for reconnection (workflow:output text) */
+    streamContent?: string;
 }
 export interface WorkflowError {
     stage: Stage;
