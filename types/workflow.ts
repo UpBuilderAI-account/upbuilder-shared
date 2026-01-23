@@ -672,8 +672,9 @@ export interface BuildStylesState {
 
 /**
  * Section type classification for bounding
+ * Flexible string - AI can use any descriptive type (navbar, hero, cta, pricing, testimonials, etc.)
  */
-export type SectionType = 'navbar' | 'hero' | 'content' | 'footer' | 'other';
+export type SectionType = string;
 
 /**
  * Global section verdict from plan stage analysis
