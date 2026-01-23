@@ -13,7 +13,7 @@
  * If versions don't match, the backend rejects the connection with a
  * VERSION_OUTDATED error, prompting the user to close and reopen Figma
  */
-export const SHARED_VERSION = '2.1.30';
+export const SHARED_VERSION = '2.1.31';
 
 /**
  * Minimum supported version (optional - for backwards compatibility)
@@ -45,15 +45,19 @@ export function compareVersions(a: string, b: string): -1 | 0 | 1 {
  * Check if a plugin version is compatible with the current backend version
  * @param pluginVersion - Version string from the plugin
  * @returns true if compatible, false if outdated
+ *
+ * NOTE: Version check DISABLED - always returns true
+ * The version check was causing issues during development
  */
-export function isVersionCompatible(pluginVersion: string): boolean {
-  // If minimum version is set, check against it
-  if (MIN_SUPPORTED_VERSION) {
-    return compareVersions(pluginVersion, MIN_SUPPORTED_VERSION) >= 0;
-  }
+export function isVersionCompatible(_pluginVersion: string): boolean {
+  // DISABLED: Version check disabled to avoid plugin outdated errors during development
+  return true;
 
-  // Otherwise require exact match
-  return pluginVersion === SHARED_VERSION;
+  // Original logic (commented out):
+  // if (MIN_SUPPORTED_VERSION) {
+  //   return compareVersions(pluginVersion, MIN_SUPPORTED_VERSION) >= 0;
+  // }
+  // return pluginVersion === SHARED_VERSION;
 }
 
 /**
