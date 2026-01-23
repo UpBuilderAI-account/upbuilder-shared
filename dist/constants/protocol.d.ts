@@ -57,6 +57,8 @@ export declare const SOCKET_EVENTS: {
         readonly STYLE_REGISTRY: "workflow:style_registry";
         readonly VALIDATION_PROGRESS: "workflow:validation_progress";
         readonly OUTPUT: "workflow:output";
+        readonly STRUCTURED_PLAN: "workflow:structured_plan";
+        readonly SECTION_PROGRESS: "workflow:section_progress";
     };
     /**
      * Server → Client: Project state updates

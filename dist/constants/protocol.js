@@ -77,6 +77,10 @@ exports.SOCKET_EVENTS = {
         // Validation progress (convert_to_platform stage)
         VALIDATION_PROGRESS: 'workflow:validation_progress', // Server → Client: Validation/fix progress for panel display
         OUTPUT: 'workflow:output', // Server → Client: Terminal text output
+        // Structured plan (plan stage)
+        STRUCTURED_PLAN: 'workflow:structured_plan', // Server → Client: Parsed structured plan JSON
+        // Section build progress (build_sections stage)
+        SECTION_PROGRESS: 'workflow:section_progress', // Server → Client: Per-section build progress
     },
     /**
      * Server → Client: Project state updates
