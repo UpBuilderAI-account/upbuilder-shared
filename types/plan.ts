@@ -158,17 +158,21 @@ export interface SectionBuildProgress {
   sectionId: string;
   sectionName: string;
   designName: string;
-  status: 'pending' | 'analyzing' | 'building' | 'validating' | 'complete' | 'failed';
+  status: 'pending' | 'analyzing' | 'building' | 'validating' | 'fixing' | 'fixing_retry' | 'complete' | 'failed';
   progress: number; // 0-100
   message?: string;
   isGlobal?: boolean;
   isPrimaryInstance?: boolean;
+  // Fixing details (when status is 'fixing' or 'fixing_retry')
+  fixAttempt?: number; // 1 or 2 (max 2 attempts)
+  errorsFixed?: number;
+  errorsRemaining?: number;
 }
 
 export interface BuildSectionsProgress {
   totalSections: number;
   completedSections: number;
-  currentPhase: 'analyzing' | 'building' | 'validating';
+  currentPhase: 'analyzing' | 'building' | 'validating' | 'fixing';
   sections: SectionBuildProgress[];
 }
 

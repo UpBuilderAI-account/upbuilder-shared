@@ -563,6 +563,14 @@ export interface ServerToClientEvents {
         projectId: string;
         text: string;
     }) => void;
+    'workflow:structured_plan': (data: {
+        projectId: string;
+        plan: import('./plan').StructuredPlan;
+    }) => void;
+    'workflow:section_progress': (data: {
+        projectId: string;
+        progress: import('./plan').BuildSectionsProgress;
+    }) => void;
     'workflow:validation_progress': (data: {
         projectId: string;
         designId: string;

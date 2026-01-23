@@ -152,16 +152,19 @@ export interface SectionBuildProgress {
     sectionId: string;
     sectionName: string;
     designName: string;
-    status: 'pending' | 'analyzing' | 'building' | 'validating' | 'complete' | 'failed';
+    status: 'pending' | 'analyzing' | 'building' | 'validating' | 'fixing' | 'fixing_retry' | 'complete' | 'failed';
     progress: number;
     message?: string;
     isGlobal?: boolean;
     isPrimaryInstance?: boolean;
+    fixAttempt?: number;
+    errorsFixed?: number;
+    errorsRemaining?: number;
 }
 export interface BuildSectionsProgress {
     totalSections: number;
     completedSections: number;
-    currentPhase: 'analyzing' | 'building' | 'validating';
+    currentPhase: 'analyzing' | 'building' | 'validating' | 'fixing';
     sections: SectionBuildProgress[];
 }
 export interface StructuredPlanEvent {

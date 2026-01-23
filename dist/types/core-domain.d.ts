@@ -185,6 +185,13 @@ export interface ProjectState {
         confirmed?: boolean;
         confirmedAt?: number;
         generatedAt: number;
+        structuredPlan?: import('./plan').StructuredPlan | null;
+        proposedDesignNames?: Array<{
+            index: number;
+            originalName: string;
+            proposedName: string;
+            type: string;
+        }>;
         buildData?: {
             designs: Array<{
                 id: string;

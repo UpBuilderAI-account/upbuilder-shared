@@ -315,6 +315,15 @@ export interface ProjectState {
     confirmed?: boolean;
     confirmedAt?: number;
     generatedAt: number;
+    // Structured plan JSON for frontend rendering (new card-based UI)
+    structuredPlan?: import('./plan').StructuredPlan | null;
+    // Proposed design names extracted from plan
+    proposedDesignNames?: Array<{
+      index: number;
+      originalName: string;
+      proposedName: string;
+      type: string;
+    }>;
     // Build data extracted from plan (technical analysis for build stage)
     buildData?: {
       designs: Array<{
