@@ -43,6 +43,10 @@ export const HTML_TAG_TO_COMPONENT: Record<string, WebflowComponentType> = {
   i: 'Emphasized',
   sup: 'Superscript',
   sub: 'Subscript',
+  code: 'InlineCode',
+  s: 'Strikethrough',
+  del: 'Strikethrough',
+  u: 'Underline',
 
   // Lists
   ul: 'List',
@@ -346,6 +350,9 @@ export function getDefaultTag(componentType: WebflowComponentType): string {
     Emphasized: 'em',
     Superscript: 'sup',
     Subscript: 'sub',
+    InlineCode: 'code',
+    Strikethrough: 's',
+    Underline: 'u',
     LineBreak: 'br',
     Figure: 'figure',
     Figcaption: 'figcaption',

@@ -312,6 +312,16 @@ export interface ExportConfig {
    * @deprecated Use enableAIAssistant instead
    */
   enablePlanning?: boolean;
+  /**
+   * Webflow-specific configuration
+   * When set, synced styles from the Webflow site will be merged with AI-generated styles
+   */
+  webflow?: {
+    /** The Webflow site ID to use for synced styles */
+    siteId: string;
+    /** Whether to use synced styles from this site (default: true if siteId is set) */
+    useSyncedStyles?: boolean;
+  };
 }
 
 /**

@@ -179,31 +179,36 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
   },
 
   // ===========================================================================
-  // TEXT FORMATTING (must be inside Paragraph)
+  // TEXT FORMATTING (inline elements for rich text)
+  // Can be inside: Paragraph, Heading, Block (with data.text), Span, Link, or nested in each other
   // ===========================================================================
   Strong: {
     displayName: 'Strong',
-    constraints: {
-      ancestors: [{ is: 'Paragraph', rule: 'AtLeastOne' }]
-    }
+    constraints: {}
   },
   Emphasized: {
     displayName: 'Emphasized',
-    constraints: {
-      ancestors: [{ is: 'Paragraph', rule: 'AtLeastOne' }]
-    }
+    constraints: {}
   },
   Superscript: {
     displayName: 'Superscript',
-    constraints: {
-      ancestors: [{ is: 'Paragraph', rule: 'AtLeastOne' }]
-    }
+    constraints: {}
   },
   Subscript: {
     displayName: 'Subscript',
-    constraints: {
-      ancestors: [{ is: 'Paragraph', rule: 'AtLeastOne' }]
-    }
+    constraints: {}
+  },
+  InlineCode: {
+    displayName: 'Inline Code',
+    constraints: {}
+  },
+  Strikethrough: {
+    displayName: 'Strikethrough',
+    constraints: {}
+  },
+  Underline: {
+    displayName: 'Underline',
+    constraints: {}
   },
 
   // ===========================================================================

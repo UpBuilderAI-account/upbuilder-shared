@@ -188,23 +188,23 @@ exports.WEBFLOW_COMPONENTS = {
         description: 'Figure caption element'
     },
     // ===========================================================================
-    // TEXT FORMATTING COMPONENTS (4)
+    // TEXT FORMATTING COMPONENTS (7)
     // ===========================================================================
     Strong: {
         displayName: 'Strong',
-        tags: ['strong'],
+        tags: ['strong', 'b'],
         isContainer: true,
         category: 'text-formatting',
         specialDataFields: [],
-        description: 'Bold/strong text, must be inside Paragraph'
+        description: 'Bold/strong text, used inside rich text containers'
     },
     Emphasized: {
         displayName: 'Emphasized',
-        tags: ['em'],
+        tags: ['em', 'i'],
         isContainer: true,
         category: 'text-formatting',
         specialDataFields: [],
-        description: 'Italic/emphasized text, must be inside Paragraph'
+        description: 'Italic/emphasized text, used inside rich text containers'
     },
     Superscript: {
         displayName: 'Superscript',
@@ -212,7 +212,7 @@ exports.WEBFLOW_COMPONENTS = {
         isContainer: true,
         category: 'text-formatting',
         specialDataFields: [],
-        description: 'Superscript text, must be inside Paragraph'
+        description: 'Superscript text (x²), used inside rich text containers'
     },
     Subscript: {
         displayName: 'Subscript',
@@ -220,7 +220,31 @@ exports.WEBFLOW_COMPONENTS = {
         isContainer: true,
         category: 'text-formatting',
         specialDataFields: [],
-        description: 'Subscript text, must be inside Paragraph'
+        description: 'Subscript text (H₂O), used inside rich text containers'
+    },
+    InlineCode: {
+        displayName: 'Inline Code',
+        tags: ['code'],
+        isContainer: true,
+        category: 'text-formatting',
+        specialDataFields: [],
+        description: 'Inline code snippet, used inside rich text containers'
+    },
+    Strikethrough: {
+        displayName: 'Strikethrough',
+        tags: ['s', 'del'],
+        isContainer: true,
+        category: 'text-formatting',
+        specialDataFields: [],
+        description: 'Strikethrough text, used inside rich text containers'
+    },
+    Underline: {
+        displayName: 'Underline',
+        tags: ['u'],
+        isContainer: true,
+        category: 'text-formatting',
+        specialDataFields: [],
+        description: 'Underlined text, used inside rich text containers'
     },
     // ===========================================================================
     // NAVBAR COMPONENTS (6)
