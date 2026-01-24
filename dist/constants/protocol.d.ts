@@ -185,6 +185,9 @@ export declare const SOCKET_EVENTS: {
         readonly CREATE_COLLECTION: "webflow:create_collection";
         readonly SYNC_CMS_ITEMS: "webflow:sync_cms_items";
         readonly CMS_PROGRESS: "webflow:cms_progress";
+        readonly SYNC_STYLES: "webflow:sync_styles";
+        readonly GET_SITE_STYLES: "webflow:get_site_styles";
+        readonly STYLES_SYNCED: "webflow:styles_synced";
     };
 };
 /**

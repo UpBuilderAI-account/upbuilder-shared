@@ -215,6 +215,10 @@ exports.SOCKET_EVENTS = {
         CREATE_COLLECTION: 'webflow:create_collection', // Client → Server: Create CMS collection
         SYNC_CMS_ITEMS: 'webflow:sync_cms_items', // Client → Server: Sync CMS items
         CMS_PROGRESS: 'webflow:cms_progress', // Server → Client: CMS sync progress
+        // Style sync (from Designer Extension)
+        SYNC_STYLES: 'webflow:sync_styles', // Client → Server: Sync styles from Designer Extension
+        GET_SITE_STYLES: 'webflow:get_site_styles', // Client → Server: Get synced styles for a site
+        STYLES_SYNCED: 'webflow:styles_synced', // Server → Client: Styles sync complete
     },
 };
 // ============================================================================
