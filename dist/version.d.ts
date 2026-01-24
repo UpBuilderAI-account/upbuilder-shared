@@ -8,7 +8,7 @@
  * If versions don't match, the backend rejects the connection with a
  * VERSION_OUTDATED error, prompting the user to close and reopen Figma
  */
-export declare const SHARED_VERSION = "2.1.51";
+export declare const SHARED_VERSION = "2.1.52";
 /**
  * Minimum supported version (optional - for backwards compatibility)
  * If set, versions >= MIN_SUPPORTED_VERSION are accepted
