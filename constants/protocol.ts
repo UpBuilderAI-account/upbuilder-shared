@@ -170,6 +170,11 @@ export const SOCKET_EVENTS = {
     AI_RESPONSE: 'customizer:ai:response',       // Server → Client: AI assistant response
     AI_STREAM: 'customizer:ai:stream',           // Server → Client: AI assistant streaming chunk
     ERROR: 'customizer:error',                   // Server → Client: Error event
+    // Restore to original
+    RESTORE_ORIGINAL: 'customizer:restore_original',     // Client → Server: Restore all designs to original XSCP
+    CHECK_HAS_ORIGINAL: 'customizer:check_has_original', // Client → Server: Check if original XSCP exists
+    HAS_ORIGINAL: 'customizer:has_original',             // Server → Client: Response with hasOriginal boolean
+    RESTORE_COMPLETE: 'customizer:restore_complete',     // Server → Client: Restore completed successfully
   },
 
   /**

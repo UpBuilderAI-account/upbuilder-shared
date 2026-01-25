@@ -134,6 +134,10 @@ export declare const SOCKET_EVENTS: {
         readonly AI_RESPONSE: "customizer:ai:response";
         readonly AI_STREAM: "customizer:ai:stream";
         readonly ERROR: "customizer:error";
+        readonly RESTORE_ORIGINAL: "customizer:restore_original";
+        readonly CHECK_HAS_ORIGINAL: "customizer:check_has_original";
+        readonly HAS_ORIGINAL: "customizer:has_original";
+        readonly RESTORE_COMPLETE: "customizer:restore_complete";
     };
     /**
      * Plan stage events (client ↔ server)
