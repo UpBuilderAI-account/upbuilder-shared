@@ -175,8 +175,6 @@ export const SOCKET_EVENTS = {
     CHECK_HAS_ORIGINAL: 'customizer:check_has_original', // Client → Server: Check if original XSCP exists
     HAS_ORIGINAL: 'customizer:has_original',             // Server → Client: Response with hasOriginal boolean
     RESTORE_COMPLETE: 'customizer:restore_complete',     // Server → Client: Restore completed successfully
-    // Dev: Quick rebuild (uses cached AI responses)
-    DEV_QUICK_REBUILD: 'customizer:dev_quick_rebuild',   // Client → Server: Rebuild using cached responses (dev only)
   },
 
   /**

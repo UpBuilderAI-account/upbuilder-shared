@@ -138,7 +138,6 @@ export declare const SOCKET_EVENTS: {
         readonly CHECK_HAS_ORIGINAL: "customizer:check_has_original";
         readonly HAS_ORIGINAL: "customizer:has_original";
         readonly RESTORE_COMPLETE: "customizer:restore_complete";
-        readonly DEV_QUICK_REBUILD: "customizer:dev_quick_rebuild";
     };
     /**
      * Plan stage events (client ↔ server)
