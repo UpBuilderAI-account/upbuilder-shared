@@ -476,6 +476,8 @@ export interface StyleDefinition {
     focus?: string;
     /** Active/pressed state CSS */
     active?: string;
+    /** Original Webflow style ID (for synced styles - preserves ID on import) */
+    webflowStyleId?: string;
 }
 /**
  * Build styles stage state

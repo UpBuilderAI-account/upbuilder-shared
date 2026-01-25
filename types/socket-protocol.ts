@@ -328,8 +328,16 @@ export interface ClientToServerEvents {
   join_plugin_room: (data: { projectId: string }, callback?: CallbackResponse) => void;
   leave_plugin_room: (data: { projectId: string }, callback?: CallbackResponse) => void;
 
-  // Project list request
-  request_project_list: (data: void, callback?: CallbackResponse) => void;
+  // Project list request (with optional pagination/filter params)
+  request_project_list: (
+    data?: {
+      page?: number;
+      limit?: number;
+      status?: 'processing' | 'complete';
+      search?: string;
+    },
+    callback?: CallbackResponse
+  ) => void;
 
   // Single project request
   request_project: (data: { projectId: string }, callback?: CallbackResponse) => void;
