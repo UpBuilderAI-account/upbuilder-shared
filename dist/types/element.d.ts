@@ -93,10 +93,15 @@ export interface BorderWidths {
 export interface Border {
     widths?: BorderWidths;
     colors?: ColorRGBA[];
-    align?: string;
+    /** Stroke alignment: CENTER (default), INSIDE, OUTSIDE */
+    align?: 'CENTER' | 'INSIDE' | 'OUTSIDE';
     cap?: string;
     join?: string;
     miterAngle?: number;
+    /** Dash pattern [dash, gap] for dashed/dotted borders */
+    dashPattern?: number[];
+    /** Gradient data for gradient borders */
+    gradients?: GradientData[];
 }
 export interface DropShadow {
     x: number;
@@ -108,6 +113,15 @@ export interface DropShadow {
     blendMode?: string;
     showBehind?: boolean;
     type?: 'DROP_SHADOW' | 'INNER_SHADOW';
+}
+/**
+ * Blur effect (layer blur or background blur)
+ * - LAYER_BLUR → CSS filter: blur(Xpx)
+ * - BACKGROUND_BLUR → CSS backdrop-filter: blur(Xpx)
+ */
+export interface BlurEffect {
+    type: 'LAYER_BLUR' | 'BACKGROUND_BLUR';
+    radius: number;
 }
 export interface ImageMetadata {
     s3Key?: string;
@@ -178,10 +192,17 @@ export interface Element {
     rotation?: number;
     opacity?: number;
     zIndex?: number;
+    /**
+     * Blend mode for layer compositing
+     * Maps to CSS mix-blend-mode
+     */
+    blendMode?: string;
     backgroundColors?: BackgroundFill[];
     borders?: Border;
     borderRadius?: number | number[] | string;
     dropShadows?: DropShadow[];
+    /** Blur effects (layer blur, background blur) */
+    blurEffects?: BlurEffect[];
     texts?: TextSegment[];
     textStyles?: TextStyle;
     textContent?: string;
