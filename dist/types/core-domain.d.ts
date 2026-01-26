@@ -1,10 +1,10 @@
 /**
  * User subscription tiers
- * basic: Free tier
- * pro: $9.99/mo - full features + GitHub sync
- * NOTE: Plus tier has been removed
+ * basic: Free tier (2 exports/month, 1 design/project)
+ * pro: $9.99/mo (50 exports/month, 2 designs/project)
+ * max: $19.99/mo (100 exports/month, 20 designs/project)
  */
-export type SubscriptionTier = 'basic' | 'pro';
+export type SubscriptionTier = 'basic' | 'pro' | 'max';
 /**
  * User account data
  */
