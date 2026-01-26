@@ -66,6 +66,8 @@ export interface TextSegment {
   text: string;
   font?: Font;
   colors?: ColorRGBA[];
+  /** Gradient data for gradient text fills (background-clip: text) */
+  gradient?: GradientData;
 }
 
 export interface TextStyle {
@@ -79,6 +81,22 @@ export interface TextStyle {
   textDecoration?: string;
   textTransform?: string;
   color?: ColorRGBA;
+  /**
+   * Text auto-resize mode from Figma
+   * - NONE: fixed width & height
+   * - WIDTH_AND_HEIGHT: hug contents (width: fit-content)
+   * - HEIGHT: fixed width, auto height
+   * - TRUNCATE: fixed size with text-overflow: ellipsis
+   */
+  textAutoResize?: 'NONE' | 'WIDTH_AND_HEIGHT' | 'HEIGHT' | 'TRUNCATE';
+  /**
+   * Text truncation mode
+   * - DISABLED: no truncation
+   * - ENDING: truncate with ellipsis
+   */
+  textTruncation?: 'DISABLED' | 'ENDING';
+  /** Maximum number of lines before truncation (for -webkit-line-clamp) */
+  maxLines?: number;
 }
 
 // ==================== FILLS & GRADIENTS ====================
