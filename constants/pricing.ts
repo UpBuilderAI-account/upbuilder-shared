@@ -25,6 +25,16 @@ export const PRO_FEATURES = [
 ] as const;
 
 /**
+ * Max plan feature list
+ */
+export const MAX_FEATURES = [
+  'Unlimited designs/month',
+  'Export to Webflow',
+  'Priority support',
+  'Early access to new features',
+] as const;
+
+/**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
  */
@@ -56,6 +66,15 @@ export const PRICING_CONFIG = {
     exportsPerMonth: 200,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
     popular: true,
+  },
+  max: {
+    name: 'Max',
+    price: 19.99,
+    displayPrice: '19.99',
+    description: 'For teams and agencies',
+    features: MAX_FEATURES,
+    exportsPerMonth: 999999, // Unlimited
+    maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
   },
 } as const;
 

@@ -6,7 +6,7 @@
 // NOTE: Plus tier has been removed - only Basic (free) and Pro tiers exist
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;
+exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.MAX_FEATURES = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;
 /**
  * Basic (Free) plan feature list
  */
@@ -23,6 +23,15 @@ exports.PRO_FEATURES = [
     '200 designs/month',
     'Export to Webflow',
     'Priority support',
+];
+/**
+ * Max plan feature list
+ */
+exports.MAX_FEATURES = [
+    'Unlimited designs/month',
+    'Export to Webflow',
+    'Priority support',
+    'Early access to new features',
 ];
 /**
  * Design slots per tier
@@ -55,5 +64,14 @@ exports.PRICING_CONFIG = {
         exportsPerMonth: 200,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
         popular: true,
+    },
+    max: {
+        name: 'Max',
+        price: 19.99,
+        displayPrice: '19.99',
+        description: 'For teams and agencies',
+        features: exports.MAX_FEATURES,
+        exportsPerMonth: 999999, // Unlimited
+        maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
     },
 };
