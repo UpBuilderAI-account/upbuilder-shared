@@ -296,20 +296,34 @@ export interface ProjectState {
   // Custom fonts detected during Webflow export (need manual import in Webflow)
   customFonts?: Array<{ family: string; weights: string[]; styles: string[] }>;
 
-  // Assembled designs (consolidated HTML/CSS/JS from build stage)
+  /**
+   * @deprecated LEGACY - No longer populated or used.
+   * The current XSCP workflow stores section codes in the Section SQL table.
+   * Kept for backward compatibility with old projects only.
+   */
   assembledDesigns?: Array<{
     id: string;
     designId: string;
     name: string;
     html: string;
-    css: string;  // Deprecated: use consolidatedCSS at project level
-    js: string;   // Deprecated: use consolidatedJS at project level
+    css: string;
+    js: string;
     sectionCount: number;
     createdAt: string;
   }>;
 
-  // Consolidated CSS/JS stored once at project level (not duplicated per-design)
+  /**
+   * @deprecated LEGACY - No longer populated or used.
+   * Stylesheets are stored in S3 (global-styles.json).
+   * Kept for backward compatibility with old projects only.
+   */
   consolidatedCSS?: string;
+
+  /**
+   * @deprecated LEGACY - No longer populated or used.
+   * Global JS is no longer used in XSCP workflow.
+   * Kept for backward compatibility with old projects only.
+   */
   consolidatedJS?: string;
 
   // Export config (set from plugin, skips export_config stage in workflow)

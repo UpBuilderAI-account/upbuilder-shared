@@ -159,6 +159,11 @@ export interface ProjectState {
         weights: string[];
         styles: string[];
     }>;
+    /**
+     * @deprecated LEGACY - No longer populated or used.
+     * The current XSCP workflow stores section codes in the Section SQL table.
+     * Kept for backward compatibility with old projects only.
+     */
     assembledDesigns?: Array<{
         id: string;
         designId: string;
@@ -169,7 +174,17 @@ export interface ProjectState {
         sectionCount: number;
         createdAt: string;
     }>;
+    /**
+     * @deprecated LEGACY - No longer populated or used.
+     * Stylesheets are stored in S3 (global-styles.json).
+     * Kept for backward compatibility with old projects only.
+     */
     consolidatedCSS?: string;
+    /**
+     * @deprecated LEGACY - No longer populated or used.
+     * Global JS is no longer used in XSCP workflow.
+     * Kept for backward compatibility with old projects only.
+     */
     consolidatedJS?: string;
     exportConfig?: import('./workflow').ExportConfig;
     assetUploadStatus?: {
