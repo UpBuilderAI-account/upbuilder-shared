@@ -53,6 +53,7 @@ export const SOCKET_EVENTS = {
     DELETE: 'delete_project',
     DELETED: 'project_deleted',
     TRANSFER_OWNERSHIP: 'transfer_project_ownership',
+    GET_STATUS: 'project:get_status',  // Get project processing status for resume
   },
 
   /**

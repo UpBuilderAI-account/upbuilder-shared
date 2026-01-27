@@ -15,7 +15,7 @@ export interface StructuredPlan {
 export interface PlanSummary {
     projectName: string;
     designCount: number;
-    framework: 'client-first' | 'bem-lite';
+    framework: 'client-first';
     totalSections: number;
     globalComponentsCount: number;
     customInstructions?: string;

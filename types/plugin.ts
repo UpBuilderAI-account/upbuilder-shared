@@ -260,6 +260,11 @@ export interface PluginErrorData {
 }
 
 /**
+ * Project processing status for resume functionality
+ */
+export type ProjectProcessingStatus = 'processing' | 'complete' | 'failed' | 'canceled';
+
+/**
  * Recent project data (stored in plugin storage)
  */
 export interface RecentProject {
@@ -270,6 +275,16 @@ export interface RecentProject {
   createdAt: number;
   frameName?: string;
   frameDimensions?: Dimensions;
+
+  // Resume functionality fields
+  projectId?: string;              // Backend project UUID
+  status?: ProjectProcessingStatus; // Current processing status
+  currentStage?: string;           // Current workflow stage ID
+  progress?: number;               // Overall progress 0-100
+  lastActiveAt?: number;           // Timestamp of last activity
+  platform?: string;               // 'webflow'
+  designCount?: number;            // Number of designs in project
+  errorMessage?: string;           // Error message if status is 'failed'
 }
 
 // ============================================================================

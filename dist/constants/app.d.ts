@@ -12,7 +12,7 @@ export declare const DEFAULT_PLATFORM = "webflow";
  * Default style framework
  * Must match DEFAULT_STYLESHEET_CONFIG.framework in types/workflow.ts
  */
-export declare const DEFAULT_STYLE_FRAMEWORK = "simple";
+export declare const DEFAULT_STYLE_FRAMEWORK = "client-first";
 /**
  * Default breakpoint values (in pixels)
  * Simplified: desktop > tablet > mobile only

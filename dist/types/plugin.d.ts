@@ -335,6 +335,10 @@ export interface PluginErrorData {
     details?: Record<string, unknown>;
 }
 /**
+ * Project processing status for resume functionality
+ */
+export type ProjectProcessingStatus = 'processing' | 'complete' | 'failed' | 'canceled';
+/**
  * Recent project data (stored in plugin storage)
  */
 export interface RecentProject {
@@ -345,6 +349,14 @@ export interface RecentProject {
     createdAt: number;
     frameName?: string;
     frameDimensions?: Dimensions;
+    projectId?: string;
+    status?: ProjectProcessingStatus;
+    currentStage?: string;
+    progress?: number;
+    lastActiveAt?: number;
+    platform?: string;
+    designCount?: number;
+    errorMessage?: string;
 }
 /**
  * Plugin authentication payload stored during OAuth flow

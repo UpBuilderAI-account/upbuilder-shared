@@ -12,7 +12,7 @@ exports.getStageOrderForPlatform = getStageOrderForPlatform;
  * Default stylesheet configuration
  */
 exports.DEFAULT_STYLESHEET_CONFIG = {
-    framework: 'bem-lite',
+    framework: 'client-first',
     // Core (locked)
     useRemFontSizes: true,
     useUnitlessLineHeight: true,
@@ -31,8 +31,8 @@ exports.DEFAULT_STYLESHEET_CONFIG = {
     generateOverflow: false,
     generateZIndex: false,
     generatePointerEvents: false,
-    // Units (off for bem-lite = px only)
-    allowFlexibleUnits: false,
+    // Units (Client-First uses flexible units)
+    allowFlexibleUnits: true,
 };
 /**
  * Default responsive configuration

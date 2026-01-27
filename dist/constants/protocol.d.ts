@@ -36,6 +36,7 @@ export declare const SOCKET_EVENTS: {
         readonly DELETE: "delete_project";
         readonly DELETED: "project_deleted";
         readonly TRANSFER_OWNERSHIP: "transfer_project_ownership";
+        readonly GET_STATUS: "project:get_status";
     };
     /**
      * Workflow control events (client → server)

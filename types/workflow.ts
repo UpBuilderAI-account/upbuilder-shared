@@ -250,7 +250,6 @@ export interface StylesheetConfig {
   /**
    * Allow flexible CSS units (rem, em, %, vh, vw)
    * If false, only px is allowed
-   * Default: true for client-first, false for bem-lite
    */
   allowFlexibleUnits: boolean;
 }
@@ -328,7 +327,7 @@ export interface ExportConfig {
  * Default stylesheet configuration
  */
 export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
-  framework: 'bem-lite',
+  framework: 'client-first',
 
   // Core (locked)
   useRemFontSizes: true,
@@ -351,8 +350,8 @@ export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
   generateZIndex: false,
   generatePointerEvents: false,
 
-  // Units (off for bem-lite = px only)
-  allowFlexibleUnits: false,
+  // Units (Client-First uses flexible units)
+  allowFlexibleUnits: true,
 };
 
 /**
@@ -473,7 +472,7 @@ export interface WorkflowExportComplete {
 
 export interface WorkflowCommand {
   projectId: string;
-  action: 'start' | 'cancel' | 'next' | 'reprocess_load' | 'reprocess_convert_to_platform' | 'reprocess_customize' | 'reprocess_customize_fast' | 'quick_rebuild';
+  action: 'start' | 'cancel' | 'next' | 'resume' | 'reprocess_load' | 'reprocess_convert_to_platform' | 'reprocess_customize' | 'reprocess_customize_fast' | 'quick_rebuild';
   retry?: boolean;
   /** Export configuration from export_config stage */
   exportConfig?: ExportConfig;
