@@ -391,6 +391,16 @@ export interface ProjectState {
     styles: string; // Combined ALL_STYLES
     completedAt: number;
   };
+
+  // Style metrics from build-styles stage (for frontend display)
+  styleMetrics?: {
+    totalStyles: number;
+    reusedStyles: number;
+    newStyles: number;
+    reusedStyleNames: string[];
+    newStyleNames: string[];
+    sourceProjectName?: string;
+  };
 }
 
 export interface SectionCode {

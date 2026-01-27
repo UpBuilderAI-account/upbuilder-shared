@@ -242,6 +242,14 @@ export interface ProjectState {
         styles: string;
         completedAt: number;
     };
+    styleMetrics?: {
+        totalStyles: number;
+        reusedStyles: number;
+        newStyles: number;
+        reusedStyleNames: string[];
+        newStyleNames: string[];
+        sourceProjectName?: string;
+    };
 }
 export interface SectionCode {
     html: string;
