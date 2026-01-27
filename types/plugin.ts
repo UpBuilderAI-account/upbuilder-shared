@@ -154,8 +154,8 @@ export type PluginBackendMessage =
   | { type: 'design-images-extracted'; data: PluginImagesData & { frameIndex: number; designId: string; isGlobalDedup?: boolean } }
   | { type: 'design-images-batch'; data: PluginImagesBatchData }
   | { type: 'progress-update'; data: PluginProgressData }
-  | { type: 'recent-projects-saved'; data: { success: boolean } }
-  | { type: 'recent-projects-loaded'; data: { success: boolean; projects: RecentProject[] } }
+  | { type: 'recent-projects-saved'; data: { success: boolean; requestId?: number } }
+  | { type: 'recent-projects-loaded'; data: { success: boolean; projects: RecentProject[]; requestId?: number } }
   | { type: 'error'; data: PluginErrorData }
   // Complex hierarchy (grouped graphics) detection messages
   | { type: 'complex-hierarchy-detected'; data: ComplexHierarchyDetectedData }
@@ -183,8 +183,8 @@ export type PluginFrontendMessage =
   | { type: 'extract-images'; data: { projectId: string; designId: string } }
   | { type: 'extract-images-for-design'; data: { projectId: string; designId: string; frameIndex: number; isLastDesign: boolean } }
   | { type: 'extract-all-images'; data: { projectId: string; frameToDesignMap: Record<number, string> } }
-  | { type: 'save-recent-projects'; data: { projects: RecentProject[] } }
-  | { type: 'load-recent-projects'; data: {} }
+  | { type: 'save-recent-projects'; data: { projects: RecentProject[]; requestId?: number } }
+  | { type: 'load-recent-projects'; data: { requestId?: number } }
   // Complex hierarchy (grouped graphics) messages
   | { type: 'scan-complex-hierarchies'; data: { frameIds: string[] } }
   | { type: 'complex-hierarchy-approval'; data: { approvedNodeIds: string[]; excludedNodeIds: string[] } }

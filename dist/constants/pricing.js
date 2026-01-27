@@ -3,7 +3,8 @@
 // PRICING CONSTANTS
 // Centralized pricing plan and feature definitions
 // ============================================================================
-// NOTE: Plus tier has been removed - only Basic (free) and Pro tiers exist
+// Tiers: Basic (free), Pro ($9.99), Max ($19.99)
+// NOTE: Max tier exists for future use but is hidden from UI pricing cards
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.MAX_FEATURES = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;

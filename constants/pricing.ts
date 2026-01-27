@@ -2,7 +2,8 @@
 // PRICING CONSTANTS
 // Centralized pricing plan and feature definitions
 // ============================================================================
-// NOTE: Plus tier has been removed - only Basic (free) and Pro tiers exist
+// Tiers: Basic (free), Pro ($9.99), Max ($19.99)
+// NOTE: Max tier exists for future use but is hidden from UI pricing cards
 // ============================================================================
 
 /**

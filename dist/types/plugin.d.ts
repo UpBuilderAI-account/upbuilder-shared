@@ -150,12 +150,14 @@ export type PluginBackendMessage = {
     type: 'recent-projects-saved';
     data: {
         success: boolean;
+        requestId?: number;
     };
 } | {
     type: 'recent-projects-loaded';
     data: {
         success: boolean;
         projects: RecentProject[];
+        requestId?: number;
     };
 } | {
     type: 'error';
@@ -245,10 +247,13 @@ export type PluginFrontendMessage = {
     type: 'save-recent-projects';
     data: {
         projects: RecentProject[];
+        requestId?: number;
     };
 } | {
     type: 'load-recent-projects';
-    data: {};
+    data: {
+        requestId?: number;
+    };
 } | {
     type: 'scan-complex-hierarchies';
     data: {
