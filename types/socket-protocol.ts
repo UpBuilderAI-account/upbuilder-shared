@@ -692,6 +692,15 @@ export interface ServerToClientEvents {
     isComplete: boolean;
     wasFixed: boolean;
   }) => void;
+  'workflow:style_metrics': (data: {
+    projectId: string;
+    totalStyles: number;
+    reusedStyles: number;
+    newStyles: number;
+    reusedStyleNames: string[];
+    newStyleNames: string[];
+    sourceProjectName?: string;
+  }) => void;
 
   // Ownership transfer events
   project_ownership_transferred: (data: {
