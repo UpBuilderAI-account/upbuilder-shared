@@ -55,12 +55,14 @@ export interface PluginAuthTokenResponse {
     user?: User;
     error?: string;
 }
-export type ProjectStatus = 'idle' | 'export_config' | 'load' | 'plan' | 'section_bounding' | 'build_styles' | 'build_sections' | 'assembly' | 'convert_to_platform' | 'customize' | 'complete' | 'failed';
+export type ProjectStatus = 'idle' | 'analyze_design' | 'images_export' | 'export_config' | 'load' | 'plan' | 'section_bounding' | 'build_styles' | 'build_sections' | 'assembly' | 'convert_to_platform' | 'customize' | 'complete' | 'failed';
 /**
  * Type-safe constants for ProjectStatus
  */
 export declare const PROJECT_STATUS: {
     readonly IDLE: ProjectStatus;
+    readonly ANALYZE_DESIGN: ProjectStatus;
+    readonly IMAGES_EXPORT: ProjectStatus;
     readonly EXPORT_CONFIG: ProjectStatus;
     readonly LOAD: ProjectStatus;
     readonly PLAN: ProjectStatus;

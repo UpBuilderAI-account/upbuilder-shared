@@ -19,6 +19,10 @@ exports.shouldSkipStage = shouldSkipStage;
  */
 exports.PROJECT_STATUS = {
     IDLE: 'idle',
+    // Plugin-side stages
+    ANALYZE_DESIGN: 'analyze_design',
+    IMAGES_EXPORT: 'images_export',
+    // Backend workflow stages
     EXPORT_CONFIG: 'export_config',
     LOAD: 'load',
     PLAN: 'plan',
@@ -55,7 +59,11 @@ function isProcessingStage(status) {
 function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
     var _a;
     const transitions = {
-        idle: 'export_config',
+        idle: 'analyze_design',
+        // Plugin-side stages (run in Figma plugin)
+        analyze_design: 'images_export',
+        images_export: 'load', // After images, backend load begins
+        // Backend workflow stages
         export_config: 'load',
         load: 'plan',
         plan: 'section_bounding',

@@ -96,6 +96,10 @@ exports.STAGE_ORDER = [
     'customize',
 ];
 exports.STAGE_LABELS = {
+    // Plugin-side stages
+    analyze_design: 'Analyzing Design',
+    images_export: 'Uploading Images',
+    // Backend workflow stages
     export_config: 'Configure Export',
     load: 'Loading Data',
     plan: 'Planning Design',

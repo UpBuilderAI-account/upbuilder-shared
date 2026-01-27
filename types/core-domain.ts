@@ -83,6 +83,10 @@ export interface PluginAuthTokenResponse {
 
 export type ProjectStatus =
   | 'idle'
+  // Plugin-side stages (before backend workflow starts)
+  | 'analyze_design'     // Plugin extracts Figma node structure
+  | 'images_export'      // Plugin extracts and uploads images
+  // Backend workflow stages
   | 'export_config'      // First stage - configure export options
   | 'load'
   | 'plan'               // AI analyzes designs, user can ask questions, then confirms
@@ -100,6 +104,10 @@ export type ProjectStatus =
  */
 export const PROJECT_STATUS = {
   IDLE: 'idle' as ProjectStatus,
+  // Plugin-side stages
+  ANALYZE_DESIGN: 'analyze_design' as ProjectStatus,
+  IMAGES_EXPORT: 'images_export' as ProjectStatus,
+  // Backend workflow stages
   EXPORT_CONFIG: 'export_config' as ProjectStatus,
   LOAD: 'load' as ProjectStatus,
   PLAN: 'plan' as ProjectStatus,
@@ -137,7 +145,11 @@ export function isProcessingStage(status: ProjectStatus): boolean {
  */
 export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, _enableAIAssistant?: boolean): ProjectStatus | null {
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
-    idle: 'export_config',
+    idle: 'analyze_design',
+    // Plugin-side stages (run in Figma plugin)
+    analyze_design: 'images_export',
+    images_export: 'load',  // After images, backend load begins
+    // Backend workflow stages
     export_config: 'load',
     load: 'plan',
     plan: 'section_bounding',

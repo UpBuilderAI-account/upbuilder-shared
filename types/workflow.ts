@@ -882,6 +882,10 @@ export const STAGE_ORDER: Stage[] = [
 ];
 
 export const STAGE_LABELS: Record<Stage, string> = {
+  // Plugin-side stages
+  analyze_design: 'Analyzing Design',
+  images_export: 'Uploading Images',
+  // Backend workflow stages
   export_config: 'Configure Export',
   load: 'Loading Data',
   plan: 'Planning Design',
