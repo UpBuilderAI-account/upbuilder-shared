@@ -31,8 +31,8 @@ exports.DEFAULT_STYLESHEET_CONFIG = {
     generateOverflow: false,
     generateZIndex: false,
     generatePointerEvents: false,
-    // Units (Client-First uses flexible units)
-    allowFlexibleUnits: true,
+    // Units (disabled by default)
+    allowFlexibleUnits: false,
 };
 /**
  * Default responsive configuration

@@ -32,6 +32,7 @@ export const MAX_FEATURES = [
   'Unlimited designs/month',
   'Export to Webflow',
   'Priority support',
+  'Expand from existing projects',
   'Early access to new features',
 ] as const;
 

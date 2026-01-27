@@ -10,7 +10,7 @@ export declare const PRO_FEATURES: readonly ["200 designs/month", "Export to Web
 /**
  * Max plan feature list
  */
-export declare const MAX_FEATURES: readonly ["Unlimited designs/month", "Export to Webflow", "Priority support", "Early access to new features"];
+export declare const MAX_FEATURES: readonly ["Unlimited designs/month", "Export to Webflow", "Priority support", "Expand from existing projects", "Early access to new features"];
 /**
  * Design slots per tier
  * Controls how many frames/designs users can select in the plugin
@@ -48,7 +48,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 19.99;
         readonly displayPrice: "19.99";
         readonly description: "For teams and agencies";
-        readonly features: readonly ["Unlimited designs/month", "Export to Webflow", "Priority support", "Early access to new features"];
+        readonly features: readonly ["Unlimited designs/month", "Export to Webflow", "Priority support", "Expand from existing projects", "Early access to new features"];
         readonly exportsPerMonth: 999999;
         readonly maxDesigns: 10;
     };

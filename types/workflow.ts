@@ -350,8 +350,8 @@ export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
   generateZIndex: false,
   generatePointerEvents: false,
 
-  // Units (Client-First uses flexible units)
-  allowFlexibleUnits: true,
+  // Units (disabled by default)
+  allowFlexibleUnits: false,
 };
 
 /**
