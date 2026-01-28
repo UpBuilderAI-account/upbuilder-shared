@@ -889,6 +889,7 @@ export const STAGE_ORDER: Stage[] = [
   'build_styles',
   'build_sections',
   'convert_to_platform',
+  'summary',
   'customize',
 ];
 
@@ -905,6 +906,7 @@ export const STAGE_LABELS: Record<Stage, string> = {
   build_sections: 'Building Sections',
   assembly: 'Assembling', // @deprecated - kept for backwards compatibility
   convert_to_platform: 'Generating Export',
+  summary: 'Saving Version',
   customize: 'Preview & Export',
 };
 

@@ -33,6 +33,7 @@ export interface FrameData {
   imageCount?: number;
   index?: number; // Frame index for processing order
   previewUrl?: string; // Base64 preview image for UI
+  hasBackground?: boolean; // Whether frame has any visible background fill
 }
 
 // FrameMetadata and PluginFrameData aliases removed - use FrameData directly
@@ -149,6 +150,7 @@ export type PluginBackendMessage =
   | { type: 'frame-selected'; data: FrameData }
   | { type: 'current-selection-detected'; data: FrameData }
   | { type: 'selection-error'; data: { message: string; nodeType?: string } }
+  | { type: 'frame-oversized'; data: { name: string; width: number; height: number } }
   | { type: 'nodes-extracted'; data: PluginNodesData }
   | { type: 'images-extracted'; data: PluginImagesData }
   | { type: 'design-images-extracted'; data: PluginImagesData & { frameIndex: number; designId: string; isGlobalDedup?: boolean } }

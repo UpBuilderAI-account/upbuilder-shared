@@ -12,4 +12,5 @@ export * from './editable-tree';
 export * from './edit-operations';
 export * from './plan';
 export * from './fixing';
+export * from './expansion';
 //# sourceMappingURL=index.d.ts.map

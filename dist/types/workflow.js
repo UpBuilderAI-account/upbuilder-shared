@@ -93,6 +93,7 @@ exports.STAGE_ORDER = [
     'build_styles',
     'build_sections',
     'convert_to_platform',
+    'summary',
     'customize',
 ];
 exports.STAGE_LABELS = {
@@ -108,6 +109,7 @@ exports.STAGE_LABELS = {
     build_sections: 'Building Sections',
     assembly: 'Assembling', // @deprecated - kept for backwards compatibility
     convert_to_platform: 'Generating Export',
+    summary: 'Saving Version',
     customize: 'Preview & Export',
 };
 /**

@@ -138,3 +138,6 @@ export * from './plan';
 
 // Fixing stage types (workflow v2 - AI auto-fix phase)
 export * from './fixing';
+
+// Expansion types (smart expansion mode & version history)
+export * from './expansion';

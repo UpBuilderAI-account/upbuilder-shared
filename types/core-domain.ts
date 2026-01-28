@@ -95,6 +95,7 @@ export type ProjectStatus =
   | 'build_sections'     // Per-section structure + new styles (references build_styles)
   | 'assembly'           // @deprecated - kept for backwards compatibility
   | 'convert_to_platform' // Merge styles + generate XSCP
+  | 'summary'            // Generate expansion summary + version snapshot
   | 'customize'          // Preview Webflow structure + export modal
   | 'complete'
   | 'failed';
@@ -116,6 +117,7 @@ export const PROJECT_STATUS = {
   BUILD_SECTIONS: 'build_sections' as ProjectStatus,
   ASSEMBLY: 'assembly' as ProjectStatus, // @deprecated - kept for backwards compatibility
   CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
+  SUMMARY: 'summary' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
   FAILED: 'failed' as ProjectStatus,
@@ -132,6 +134,7 @@ export function isProcessingStage(status: ProjectStatus): boolean {
     'build_styles',
     'build_sections',
     'convert_to_platform',
+    'summary',
   ];
   return processingStages.includes(status);
 }
@@ -157,7 +160,8 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
     build_styles: 'build_sections',
     build_sections: 'convert_to_platform',
     assembly: 'convert_to_platform', // @deprecated - old projects skip to convert
-    convert_to_platform: 'customize',
+    convert_to_platform: 'summary',
+    summary: 'customize',
     customize: 'complete',
     complete: null,
     failed: null,

@@ -70,3 +70,5 @@ __exportStar(require("./edit-operations"), exports);
 __exportStar(require("./plan"), exports);
 // Fixing stage types (workflow v2 - AI auto-fix phase)
 __exportStar(require("./fixing"), exports);
+// Expansion types (smart expansion mode & version history)
+__exportStar(require("./expansion"), exports);

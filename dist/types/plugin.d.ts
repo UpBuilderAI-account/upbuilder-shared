@@ -23,6 +23,7 @@ export interface FrameData {
     imageCount?: number;
     index?: number;
     previewUrl?: string;
+    hasBackground?: boolean;
 }
 /**
  * Preview image data
@@ -126,6 +127,13 @@ export type PluginBackendMessage = {
     data: {
         message: string;
         nodeType?: string;
+    };
+} | {
+    type: 'frame-oversized';
+    data: {
+        name: string;
+        width: number;
+        height: number;
     };
 } | {
     type: 'nodes-extracted';
