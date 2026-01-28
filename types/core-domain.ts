@@ -607,6 +607,9 @@ export interface Project {
   // GitHub integration
   github_repo?: string | null;
   github_synced_at?: string | null;
+  // Expansion versioning
+  current_expansion_version?: number;
+  expansion_count?: number;
 }
 
 // ============================================================================

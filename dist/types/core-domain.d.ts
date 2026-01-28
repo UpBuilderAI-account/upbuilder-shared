@@ -416,6 +416,8 @@ export interface Project {
     figma_url?: string | null;
     github_repo?: string | null;
     github_synced_at?: string | null;
+    current_expansion_version?: number;
+    expansion_count?: number;
 }
 /**
  * Export type/format
