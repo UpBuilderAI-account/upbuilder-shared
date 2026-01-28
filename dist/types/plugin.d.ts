@@ -375,7 +375,7 @@ export interface PluginAuthPayload {
         name?: string;
         email: string;
         subscription: {
-            tier: 'free' | 'pro' | 'enterprise';
+            tier: 'basic' | 'pro' | 'max';
         };
     };
     timestamp: number;
