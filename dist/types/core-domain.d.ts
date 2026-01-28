@@ -237,6 +237,7 @@ export interface ProjectState {
         blocks?: any;
     };
     buildSectionsState?: import('./workflow').BuildSectionsState;
+    buildStylesState?: import('./workflow').BuildStylesState;
     assemblyResult?: {
         structures: Record<string, string>;
         styles: string;
@@ -501,6 +502,8 @@ export interface ProjectEntity {
     };
     operation_started_at?: Date;
     state?: ProjectState;
+    current_expansion_version?: number;
+    expansion_count?: number;
     created_at: Date;
     updated_at: Date;
 }

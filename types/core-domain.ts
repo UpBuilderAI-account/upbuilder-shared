@@ -385,6 +385,9 @@ export interface ProjectState {
   // Build sections state (new section-by-section approach)
   buildSectionsState?: import('./workflow').BuildSectionsState;
 
+  // Build styles state (from build-styles or one-shot stage)
+  buildStylesState?: import('./workflow').BuildStylesState;
+
   // Assembly result (combined structures + styles)
   assemblyResult?: {
     structures: Record<string, string>; // Design ID -> Structure tree
@@ -707,6 +710,9 @@ export interface ProjectEntity {
   };
   operation_started_at?: Date;
   state?: ProjectState;
+  // Expansion versioning
+  current_expansion_version?: number;
+  expansion_count?: number;
   created_at: Date;
   updated_at: Date;
 }

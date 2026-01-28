@@ -237,6 +237,18 @@ export interface ExportConfig {
         /** Whether to use synced styles from this site (default: true if siteId is set) */
         useSyncedStyles?: boolean;
     };
+    /**
+     * UpBuilder-specific configuration
+     * When set, styles from an existing UpBuilder project will be reused
+     */
+    upbuilder?: {
+        /** The source project ID to reuse styles from */
+        projectId: string;
+        /** The source design ID (optional, for reference) */
+        designId?: string;
+        /** Whether to reuse styles from this project (default: true if projectId is set) */
+        reuseStyles?: boolean;
+    };
 }
 /**
  * Default stylesheet configuration
