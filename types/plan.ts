@@ -158,7 +158,7 @@ export interface SectionBuildProgress {
   sectionId: string;
   sectionName: string;
   designName: string;
-  status: 'pending' | 'analyzing' | 'building' | 'validating' | 'fixing' | 'fixing_retry' | 'complete' | 'failed';
+  status: 'pending' | 'analyzing' | 'building' | 'validating' | 'qa' | 'qa_rebuilding' | 'fixing' | 'fixing_retry' | 'complete' | 'failed';
   progress: number; // 0-100
   message?: string;
   isGlobal?: boolean;
@@ -167,12 +167,16 @@ export interface SectionBuildProgress {
   fixAttempt?: number; // 1 or 2 (max 2 attempts)
   errorsFixed?: number;
   errorsRemaining?: number;
+  // QA details (when status is 'qa' or 'qa_rebuilding')
+  qaStatus?: 'pending' | 'analyzing' | 'passed' | 'failed' | 'rebuilding';
+  qaAccuracy?: number; // 0-100
+  qaIssueCount?: number;
 }
 
 export interface BuildSectionsProgress {
   totalSections: number;
   completedSections: number;
-  currentPhase: 'analyzing' | 'building' | 'validating' | 'fixing';
+  currentPhase: 'analyzing' | 'building' | 'validating' | 'qa' | 'fixing';
   sections: SectionBuildProgress[];
 }
 

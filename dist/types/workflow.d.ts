@@ -254,6 +254,13 @@ export interface ExportConfig {
      * Default: true (enabled)
      */
     generateStylesheetGuide?: boolean;
+    /**
+     * Enable enhanced accuracy mode with visual QA
+     * When enabled, AI compares generated output against Figma screenshots
+     * and auto-rebuilds sections that don't meet 95% accuracy threshold
+     * Default: true (enabled)
+     */
+    enableEnhancedAccuracy?: boolean;
 }
 /**
  * Default stylesheet configuration

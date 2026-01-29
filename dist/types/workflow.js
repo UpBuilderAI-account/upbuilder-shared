@@ -64,6 +64,7 @@ exports.QUICK_EXPORT_CONFIG = {
     interactivity: exports.QUICK_INTERACTIVITY_CONFIG,
     enableAIAssistant: false, // Quick mode skips AI planning and fixing
     generateStylesheetGuide: true,
+    enableEnhancedAccuracy: false, // Quick mode skips visual QA
 };
 /**
  * Default export config - custom mode selected by default
@@ -75,6 +76,7 @@ exports.DEFAULT_EXPORT_CONFIG = {
     interactivity: exports.DEFAULT_INTERACTIVITY_CONFIG,
     enableAIAssistant: true, // AI assistant (planning + fixing) enabled by default
     generateStylesheetGuide: true,
+    enableEnhancedAccuracy: true, // Visual QA enabled by default
 };
 // =============================================================================
 // HELPERS
