@@ -16,8 +16,9 @@ export declare const MAX_FEATURES: readonly ["Unlimited designs/month", "Export 
  * Controls how many frames/designs users can select in the plugin
  */
 export declare const MAX_DESIGNS_PER_PROJECT: {
-    readonly free: 1;
-    readonly pro: 10;
+    readonly basic: 2;
+    readonly pro: 2;
+    readonly max: 9;
 };
 /**
  * Pricing configuration for display
@@ -31,7 +32,7 @@ export declare const PRICING_CONFIG: {
         readonly description: "Try UpBuilder for free";
         readonly features: readonly ["2 designs/month", "Preview Webflow Export", "Basic support"];
         readonly exportsPerMonth: 2;
-        readonly maxDesigns: 1;
+        readonly maxDesigns: 2;
     };
     readonly pro: {
         readonly name: "Pro";
@@ -40,7 +41,7 @@ export declare const PRICING_CONFIG: {
         readonly description: "For power users";
         readonly features: readonly ["200 designs/month", "Export to Webflow", "Priority support"];
         readonly exportsPerMonth: 200;
-        readonly maxDesigns: 10;
+        readonly maxDesigns: 2;
         readonly popular: true;
     };
     readonly max: {
@@ -50,7 +51,7 @@ export declare const PRICING_CONFIG: {
         readonly description: "For teams and agencies";
         readonly features: readonly ["Unlimited designs/month", "Export to Webflow", "Priority support", "Expand from existing projects", "Early access to new features"];
         readonly exportsPerMonth: 999999;
-        readonly maxDesigns: 10;
+        readonly maxDesigns: 9;
     };
 };
 //# sourceMappingURL=pricing.d.ts.map

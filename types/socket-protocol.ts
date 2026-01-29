@@ -714,6 +714,35 @@ export interface ServerToClientEvents {
     projectName?: string;
   }) => void;
 
+  // Expansion/restore events (broadcast to all tabs viewing the same project)
+  'expansion:started': (data: {
+    projectId: string;
+    userId: string;
+    type: 'expand' | 'restore';
+    version?: number;
+    timestamp: number;
+  }) => void;
+  'expansion:progress': (data: {
+    projectId: string;
+    stage: string;
+    percent: number;
+    message?: string;
+  }) => void;
+  'expansion:completed': (data: {
+    projectId: string;
+    newVersion: number;
+    type: 'expand' | 'restore';
+    designsAdded?: number;
+    stylesAdded?: number;
+    timestamp: number;
+  }) => void;
+  'expansion:failed': (data: {
+    projectId: string;
+    error: string;
+    type: 'expand' | 'restore';
+    timestamp: number;
+  }) => void;
+
   // User subscription updates
   'user:subscription_updated': (data: {
     tier: SubscriptionTier;

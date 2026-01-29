@@ -41,8 +41,9 @@ export const MAX_FEATURES = [
  * Controls how many frames/designs users can select in the plugin
  */
 export const MAX_DESIGNS_PER_PROJECT = {
-  free: 1,
-  pro: 10,
+  basic: 2,
+  pro: 2,
+  max: 9,
 } as const;
 
 /**
@@ -57,7 +58,7 @@ export const PRICING_CONFIG = {
     description: 'Try UpBuilder for free',
     features: BASIC_FEATURES,
     exportsPerMonth: 2,
-    maxDesigns: MAX_DESIGNS_PER_PROJECT.free,
+    maxDesigns: MAX_DESIGNS_PER_PROJECT.basic,
   },
   pro: {
     name: 'Pro',
@@ -76,7 +77,7 @@ export const PRICING_CONFIG = {
     description: 'For teams and agencies',
     features: MAX_FEATURES,
     exportsPerMonth: 999999, // Unlimited
-    maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
+    maxDesigns: MAX_DESIGNS_PER_PROJECT.max,
   },
 } as const;
 

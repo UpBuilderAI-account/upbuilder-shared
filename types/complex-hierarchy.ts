@@ -72,6 +72,9 @@ export interface ComplexHierarchyDetection {
   };
   thumbnailUrl?: string;   // base64 small preview
   isApproved: boolean;     // default based on confidence level
+  // Deduplication info
+  duplicateCount?: number;      // Number of visually identical graphics (1 = unique)
+  duplicateNodeIds?: string[];  // All node IDs in this duplicate group (including self)
 }
 
 /**

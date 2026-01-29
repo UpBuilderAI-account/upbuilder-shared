@@ -39,6 +39,8 @@ export interface ComplexHierarchyDetection {
     };
     thumbnailUrl?: string;
     isApproved: boolean;
+    duplicateCount?: number;
+    duplicateNodeIds?: string[];
 }
 /**
  * Get user-friendly display text for a complexity reason

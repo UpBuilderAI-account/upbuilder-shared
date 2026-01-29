@@ -613,6 +613,33 @@ export interface ServerToClientEvents {
         projectId: string;
         projectName?: string;
     }) => void;
+    'expansion:started': (data: {
+        projectId: string;
+        userId: string;
+        type: 'expand' | 'restore';
+        version?: number;
+        timestamp: number;
+    }) => void;
+    'expansion:progress': (data: {
+        projectId: string;
+        stage: string;
+        percent: number;
+        message?: string;
+    }) => void;
+    'expansion:completed': (data: {
+        projectId: string;
+        newVersion: number;
+        type: 'expand' | 'restore';
+        designsAdded?: number;
+        stylesAdded?: number;
+        timestamp: number;
+    }) => void;
+    'expansion:failed': (data: {
+        projectId: string;
+        error: string;
+        type: 'expand' | 'restore';
+        timestamp: number;
+    }) => void;
     'user:subscription_updated': (data: {
         tier: SubscriptionTier;
         isTrialing?: boolean;

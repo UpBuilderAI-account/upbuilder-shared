@@ -91,6 +91,16 @@ exports.SOCKET_EVENTS = {
         SECTION_UPDATE: 'section:update', // NEW: Granular section updates (relational migration)
     },
     /**
+     * Server → Client: Expansion lifecycle events (multi-tab sync)
+     * Broadcast to all tabs viewing the same project
+     */
+    EXPANSION: {
+        STARTED: 'expansion:started', // Another tab started expansion
+        PROGRESS: 'expansion:progress', // Expansion progress update
+        COMPLETED: 'expansion:completed', // Expansion completed successfully
+        FAILED: 'expansion:failed', // Expansion failed
+    },
+    /**
      * Server → Client: Plugin processing events
      */
     PLUGIN_EVENTS: {

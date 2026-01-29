@@ -96,6 +96,17 @@ export const SOCKET_EVENTS = {
   },
 
   /**
+   * Server → Client: Expansion lifecycle events (multi-tab sync)
+   * Broadcast to all tabs viewing the same project
+   */
+  EXPANSION: {
+    STARTED: 'expansion:started',       // Another tab started expansion
+    PROGRESS: 'expansion:progress',     // Expansion progress update
+    COMPLETED: 'expansion:completed',   // Expansion completed successfully
+    FAILED: 'expansion:failed',         // Expansion failed
+  },
+
+  /**
    * Server → Client: Plugin processing events
    */
   PLUGIN_EVENTS: {
@@ -267,6 +278,7 @@ export type ClientEventName =
  */
 export type ServerEventName =
   | typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE]
+  | typeof SOCKET_EVENTS.EXPANSION[keyof typeof SOCKET_EVENTS.EXPANSION]
   | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS]
   | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE]
   | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR]

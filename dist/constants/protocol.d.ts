@@ -69,6 +69,16 @@ export declare const SOCKET_EVENTS: {
         readonly SECTION_UPDATE: "section:update";
     };
     /**
+     * Server → Client: Expansion lifecycle events (multi-tab sync)
+     * Broadcast to all tabs viewing the same project
+     */
+    readonly EXPANSION: {
+        readonly STARTED: "expansion:started";
+        readonly PROGRESS: "expansion:progress";
+        readonly COMPLETED: "expansion:completed";
+        readonly FAILED: "expansion:failed";
+    };
+    /**
      * Server → Client: Plugin processing events
      */
     readonly PLUGIN_EVENTS: {
@@ -202,5 +212,5 @@ export type ClientEventName = typeof SOCKET_EVENTS.AUTH[keyof typeof SOCKET_EVEN
 /**
  * Type helper to get all server → client event names
  */
-export type ServerEventName = typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE] | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS] | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE] | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR] | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP] | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER] | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER] | typeof SOCKET_EVENTS.WEBFLOW[keyof typeof SOCKET_EVENTS.WEBFLOW];
+export type ServerEventName = typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE] | typeof SOCKET_EVENTS.EXPANSION[keyof typeof SOCKET_EVENTS.EXPANSION] | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS] | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE] | typeof SOCKET_EVENTS.ERROR[keyof typeof SOCKET_EVENTS.ERROR] | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP] | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER] | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER] | typeof SOCKET_EVENTS.WEBFLOW[keyof typeof SOCKET_EVENTS.WEBFLOW];
 //# sourceMappingURL=protocol.d.ts.map
