@@ -333,6 +333,11 @@ export interface ExportConfig {
     /** Whether to reuse styles from this project (default: true if projectId is set) */
     reuseStyles?: boolean;
   };
+  /**
+   * Generate a stylesheet guide documenting all generated styles
+   * Default: true (enabled)
+   */
+  generateStylesheetGuide?: boolean;
 }
 
 /**
@@ -398,6 +403,7 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: QUICK_INTERACTIVITY_CONFIG,
   enableAIAssistant: false,  // Quick mode skips AI planning and fixing
+  generateStylesheetGuide: true,
 };
 
 /**
@@ -409,6 +415,7 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
   enableAIAssistant: true,  // AI assistant (planning + fixing) enabled by default
+  generateStylesheetGuide: true,
 };
 
 // =============================================================================
