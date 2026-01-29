@@ -592,7 +592,7 @@ export interface ServerToClientWorkflowEvents {
 }
 
 export interface ClientToServerWorkflowEvents {
-  'workflow:command': (data: WorkflowCommand, cb: (ok: boolean) => void) => void;
+  'workflow:command': (data: WorkflowCommand, cb: (ok: boolean, cancelResult?: { wasExpansion: boolean; restoredVersion: number }) => void) => void;
   'workflow:save_code': (data: CodeSaveRequest, cb: (result: CodeSaveResult) => void) => void;
   'workflow:rename': (data: RenameRequest, cb: (result: RenameResult) => void) => void;
 }
