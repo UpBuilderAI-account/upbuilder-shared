@@ -197,6 +197,20 @@ export type PluginBackendMessage = {
             height: number;
         }>;
     };
+} | {
+    type: 'ai-scan-progress';
+    data: {
+        current: number;
+        total: number;
+    };
+} | {
+    type: 'ai-scan-data-ready';
+    data: AIScanDataReadyPayload;
+} | {
+    type: 'ai-approved-nodes-set';
+    data: {
+        count: number;
+    };
 };
 /**
  * Messages from plugin UI → plugin backend
@@ -320,6 +334,16 @@ export type PluginFrontendMessage = {
     data: {
         nodeIds: string[];
     };
+} | {
+    type: 'scan-ai-images';
+    data: {
+        frameIds: string[];
+    };
+} | {
+    type: 'set-ai-approved-nodes';
+    data: {
+        nodeIds: string[];
+    };
 };
 /**
  * Nodes extraction result (plugin UI wrapper)
@@ -431,5 +455,24 @@ export interface FullPreviewData {
     width: number;
     height: number;
     nodeName: string;
+}
+/**
+ * Data for AI scan (pre-export phase)
+ * Contains frame previews and lightweight node data for AI analysis
+ */
+export interface AIScanFrameData {
+    frameId: string;
+    frameName: string;
+    frameIndex: number;
+    bigPreview: {
+        data: string;
+        width: number;
+        height: number;
+    } | null;
+    nodes: Element[];
+}
+export interface AIScanDataReadyPayload {
+    frames: AIScanFrameData[];
+    totalFrames: number;
 }
 //# sourceMappingURL=plugin.d.ts.map

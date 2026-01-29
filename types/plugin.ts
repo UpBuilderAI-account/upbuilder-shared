@@ -167,7 +167,11 @@ export type PluginBackendMessage =
   | { type: 'outside-preview-ready'; data: OutsidePreviewData }
   // AI image review messages
   | { type: 'ai-image-review-approved'; data: { count: number } }
-  | { type: 'image-review-thumbnails-ready'; data: { thumbnails: Array<{ nodeId: string; thumbnailUrl: string; width: number; height: number }> } };
+  | { type: 'image-review-thumbnails-ready'; data: { thumbnails: Array<{ nodeId: string; thumbnailUrl: string; width: number; height: number }> } }
+  // AI image scan (pre-export phase)
+  | { type: 'ai-scan-progress'; data: { current: number; total: number } }
+  | { type: 'ai-scan-data-ready'; data: AIScanDataReadyPayload }
+  | { type: 'ai-approved-nodes-set'; data: { count: number } };
 
 /**
  * Messages from plugin UI → plugin backend
@@ -200,7 +204,10 @@ export type PluginFrontendMessage =
   | { type: 'request-outside-preview'; data: { nodeId: string; parentFrameId: string } }
   // AI image review messages
   | { type: 'ai-image-review-approval'; data: { confirmedNodeIds: string[] } }
-  | { type: 'request-image-review-thumbnails'; data: { nodeIds: string[] } };
+  | { type: 'request-image-review-thumbnails'; data: { nodeIds: string[] } }
+  // AI image scan (pre-export phase)
+  | { type: 'scan-ai-images'; data: { frameIds: string[] } }
+  | { type: 'set-ai-approved-nodes'; data: { nodeIds: string[] } };
 
 // ============================================================================
 // PLUGIN UI DATA STRUCTURES
@@ -341,4 +348,21 @@ export interface FullPreviewData {
   width: number;
   height: number;
   nodeName: string;
+}
+
+/**
+ * Data for AI scan (pre-export phase)
+ * Contains frame previews and lightweight node data for AI analysis
+ */
+export interface AIScanFrameData {
+  frameId: string;
+  frameName: string;
+  frameIndex: number;
+  bigPreview: { data: string; width: number; height: number } | null;
+  nodes: Element[];
+}
+
+export interface AIScanDataReadyPayload {
+  frames: AIScanFrameData[];
+  totalFrames: number;
 }
