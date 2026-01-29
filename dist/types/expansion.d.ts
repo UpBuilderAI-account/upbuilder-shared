@@ -61,6 +61,13 @@ export interface ExpansionContext {
     newDesignIds: string[];
     /** Design IDs that already exist */
     existingDesignIds: string[];
+    /** Full existing designs from state (passed through to avoid re-reading) */
+    existingDesigns?: Array<{
+        id: string;
+        name: string;
+        status?: string;
+        sections?: any[];
+    }>;
     /** Existing styles from previous version */
     existingStyles: StyleDefinition[];
     /** Full expansion history for context */
