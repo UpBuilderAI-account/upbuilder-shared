@@ -105,6 +105,8 @@ export interface CombinedDetection {
     /** Is this a false positive flagged by AI? */
     isFalsePositive?: boolean;
     falsePositiveReason?: string;
+    /** Whether node has children (used for filtering in AI review) */
+    hasChildren?: boolean;
 }
 /**
  * Image review state for a design in the UI
