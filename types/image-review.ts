@@ -18,8 +18,9 @@ export type GraphicCategory =
  * Confidence level for AI detection
  * - high: Auto-checked, very likely a graphic
  * - medium: Needs review, possibly a graphic
+ * - low: Needs review, likely structural but worth flagging
  */
-export type DetectionConfidence = 'high' | 'medium';
+export type DetectionConfidence = 'high' | 'medium' | 'low';
 
 /**
  * A single AI-detected potential graphic
