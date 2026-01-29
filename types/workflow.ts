@@ -338,13 +338,6 @@ export interface ExportConfig {
    * Default: true (enabled)
    */
   generateStylesheetGuide?: boolean;
-  /**
-   * Enable enhanced accuracy mode with visual QA
-   * When enabled, AI compares generated output against Figma screenshots
-   * and auto-rebuilds sections that don't meet 95% accuracy threshold
-   * Default: true (enabled)
-   */
-  enableEnhancedAccuracy?: boolean;
 }
 
 /**
@@ -411,7 +404,6 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   interactivity: QUICK_INTERACTIVITY_CONFIG,
   enableAIAssistant: false,  // Quick mode skips AI planning and fixing
   generateStylesheetGuide: true,
-  enableEnhancedAccuracy: false,  // Quick mode skips visual QA
 };
 
 /**
@@ -424,7 +416,6 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
   enableAIAssistant: true,  // AI assistant (planning + fixing) enabled by default
   generateStylesheetGuide: true,
-  enableEnhancedAccuracy: true,  // Visual QA enabled by default
 };
 
 // =============================================================================
