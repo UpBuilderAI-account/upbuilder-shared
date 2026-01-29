@@ -202,6 +202,36 @@ export interface ClientToServerEvents {
         imageCount: number;
     }>) => void;
     process_all_images: (data: PluginPayloads['process_all_images'], callback: CallbackResponse<ProcessAllImagesResponse>) => void;
+    image_review_request: (data: {
+        projectId: string;
+        designs: Array<{
+            designId: string;
+            designName: string;
+            screenshotUri: string;
+            screenshotBase64?: string;
+            dimensions: {
+                width: number;
+                height: number;
+            };
+            nodeTree: string;
+            currentDetections: string[];
+        }>;
+    }, callback: CallbackResponse<{
+        designs: Array<{
+            designId: string;
+            suggestions: Array<{
+                nodeId: string;
+                name: string;
+                category: string;
+                confidence: 'high' | 'medium';
+                reason: string;
+            }>;
+            falsePositives: Array<{
+                nodeId: string;
+                reason: string;
+            }>;
+        }>;
+    }>) => void;
     join_plugin_room: (data: {
         projectId: string;
     }, callback?: CallbackResponse) => void;
