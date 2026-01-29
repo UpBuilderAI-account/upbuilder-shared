@@ -38,4 +38,9 @@ export * from './plugin-progress';
  * Single source of truth for export stage UI
  */
 export * from './export-steps';
+/**
+ * One-shot build constants
+ * Eligibility check and skipped stages for fast single-design builds
+ */
+export * from './one-shot';
 //# sourceMappingURL=index.d.ts.map

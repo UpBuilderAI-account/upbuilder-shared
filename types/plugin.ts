@@ -164,7 +164,9 @@ export type PluginBackendMessage =
   | { type: 'full-preview-ready'; data: FullPreviewData }
   // Outside elements detection messages
   | { type: 'outside-elements-detected'; data: OutsideElementsDetectedData }
-  | { type: 'outside-preview-ready'; data: OutsidePreviewData };
+  | { type: 'outside-preview-ready'; data: OutsidePreviewData }
+  // AI image review messages
+  | { type: 'ai-image-review-approved'; data: { count: number } };
 
 /**
  * Messages from plugin UI → plugin backend
@@ -194,7 +196,9 @@ export type PluginFrontendMessage =
   // Outside elements messages
   | { type: 'scan-outside-elements'; data: { frameIds: string[] } }
   | { type: 'outside-elements-approval'; data: { includedNodeIds: string[]; excludedNodeIds: string[] } }
-  | { type: 'request-outside-preview'; data: { nodeId: string; parentFrameId: string } };
+  | { type: 'request-outside-preview'; data: { nodeId: string; parentFrameId: string } }
+  // AI image review messages
+  | { type: 'ai-image-review-approval'; data: { confirmedNodeIds: string[] } };
 
 // ============================================================================
 // PLUGIN UI DATA STRUCTURES

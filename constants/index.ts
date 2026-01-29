@@ -61,4 +61,10 @@ export * from './plugin-progress';
  */
 export * from './export-steps';
 
+/**
+ * One-shot build constants
+ * Eligibility check and skipped stages for fast single-design builds
+ */
+export * from './one-shot';
+
 // Note: Workflow labels and progress are now in types/workflow.ts

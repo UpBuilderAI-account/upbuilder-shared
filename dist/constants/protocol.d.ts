@@ -12,10 +12,11 @@ export declare const SOCKET_EVENTS: {
     };
     /**
      * Plugin workflow events (client → server)
-     * In execution order: SEND_NODES → SEND_DESIGN_IMAGES → PROCESS_ALL_IMAGES
+     * In execution order: SEND_NODES → IMAGE_REVIEW → SEND_DESIGN_IMAGES → PROCESS_ALL_IMAGES
      */
     readonly PLUGIN: {
         readonly SEND_NODES: "send_nodes";
+        readonly IMAGE_REVIEW: "image_review_request";
         readonly SEND_DESIGN_IMAGES: "send_design_images";
         readonly PROCESS_ALL_IMAGES: "process_all_images";
     };

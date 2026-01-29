@@ -13,4 +13,5 @@ export * from './edit-operations';
 export * from './plan';
 export * from './fixing';
 export * from './expansion';
+export * from './image-review';
 //# sourceMappingURL=index.d.ts.map

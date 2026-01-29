@@ -27,10 +27,11 @@ export const SOCKET_EVENTS = {
 
   /**
    * Plugin workflow events (client → server)
-   * In execution order: SEND_NODES → SEND_DESIGN_IMAGES → PROCESS_ALL_IMAGES
+   * In execution order: SEND_NODES → IMAGE_REVIEW → SEND_DESIGN_IMAGES → PROCESS_ALL_IMAGES
    */
   PLUGIN: {
     SEND_NODES: 'send_nodes',
+    IMAGE_REVIEW: 'image_review_request',  // AI-powered image detection
     SEND_DESIGN_IMAGES: 'send_design_images',
     PROCESS_ALL_IMAGES: 'process_all_images',
   },

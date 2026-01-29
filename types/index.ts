@@ -141,3 +141,6 @@ export * from './fixing';
 
 // Expansion types (smart expansion mode & version history)
 export * from './expansion';
+
+// Image review types (AI-powered image detection)
+export * from './image-review';

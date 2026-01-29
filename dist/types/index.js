@@ -72,3 +72,5 @@ __exportStar(require("./plan"), exports);
 __exportStar(require("./fixing"), exports);
 // Expansion types (smart expansion mode & version history)
 __exportStar(require("./expansion"), exports);
+// Image review types (AI-powered image detection)
+__exportStar(require("./image-review"), exports);

@@ -182,6 +182,11 @@ export type PluginBackendMessage = {
 } | {
     type: 'outside-preview-ready';
     data: OutsidePreviewData;
+} | {
+    type: 'ai-image-review-approved';
+    data: {
+        count: number;
+    };
 };
 /**
  * Messages from plugin UI → plugin backend
@@ -294,6 +299,11 @@ export type PluginFrontendMessage = {
     data: {
         nodeId: string;
         parentFrameId: string;
+    };
+} | {
+    type: 'ai-image-review-approval';
+    data: {
+        confirmedNodeIds: string[];
     };
 };
 /**

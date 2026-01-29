@@ -68,4 +68,9 @@ __exportStar(require("./plugin-progress"), exports);
  * Single source of truth for export stage UI
  */
 __exportStar(require("./export-steps"), exports);
+/**
+ * One-shot build constants
+ * Eligibility check and skipped stages for fast single-design builds
+ */
+__exportStar(require("./one-shot"), exports);
 // Note: Workflow labels and progress are now in types/workflow.ts
