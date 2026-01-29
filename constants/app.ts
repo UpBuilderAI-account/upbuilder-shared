@@ -123,6 +123,13 @@ export const MAX_NODES = 5000;
  */
 export const MAX_IMAGES = 2000;
 
+/**
+ * Maximum designs allowed per project (hard limit for all users)
+ * Enforced in both plugin UI and backend
+ * Note: Different from tier-based MAX_DESIGNS_PER_PROJECT in pricing.ts
+ */
+export const MAX_DESIGNS_PER_PROJECT_HARD_LIMIT = 20;
+
 // ============================================================================
 // HIERARCHY DEPTH LIMITS
 // ============================================================================

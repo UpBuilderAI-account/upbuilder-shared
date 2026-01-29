@@ -704,6 +704,13 @@ export interface ServerToClientEvents {
   'workflow:output': (data: { projectId: string; text: string }) => void;
   'workflow:structured_plan': (data: { projectId: string; plan: import('./plan').StructuredPlan }) => void;
   'workflow:section_progress': (data: { projectId: string; progress: import('./plan').BuildSectionsProgress }) => void;
+  'workflow:ai_analysis_progress': (data: {
+    projectId: string;
+    designId: string;
+    designName: string;
+    status: 'pending' | 'analyzing' | 'complete' | 'failed';
+    detectionCount?: number;
+  }) => void;
   'workflow:validation_progress': (data: {
     projectId: string;
     designId: string;

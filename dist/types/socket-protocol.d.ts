@@ -606,6 +606,13 @@ export interface ServerToClientEvents {
         projectId: string;
         progress: import('./plan').BuildSectionsProgress;
     }) => void;
+    'workflow:ai_analysis_progress': (data: {
+        projectId: string;
+        designId: string;
+        designName: string;
+        status: 'pending' | 'analyzing' | 'complete' | 'failed';
+        detectionCount?: number;
+    }) => void;
     'workflow:validation_progress': (data: {
         projectId: string;
         designId: string;
