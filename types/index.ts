@@ -110,6 +110,10 @@ export {
   type BuildSectionsEvents,
   type SectionBoundingEvents,
   type AssemblyEvents,
+  // AI image analysis progress (pre-export phase)
+  type AIAnalysisDesignProgress,
+  type AIAnalysisProgress,
+  type AIAnalysisProgressEvent,
 } from './workflow';
 
 // Plugin types

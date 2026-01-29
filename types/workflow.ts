@@ -889,6 +889,41 @@ export interface AssemblyEvents {
 }
 
 // =============================================================================
+// AI IMAGE ANALYSIS PROGRESS (Pre-export phase)
+// =============================================================================
+
+/**
+ * Per-design progress for AI image analysis during pre-export scan
+ */
+export interface AIAnalysisDesignProgress {
+  designId: string;
+  designName: string;
+  status: 'pending' | 'analyzing' | 'complete' | 'failed';
+  /** Number of graphics detected that need review */
+  detectionCount?: number;
+}
+
+/**
+ * Full AI analysis progress state
+ */
+export interface AIAnalysisProgress {
+  totalDesigns: number;
+  completedDesigns: number;
+  designs: AIAnalysisDesignProgress[];
+}
+
+/**
+ * Socket event payload for AI analysis progress updates
+ */
+export interface AIAnalysisProgressEvent {
+  projectId: string;
+  designId: string;
+  designName: string;
+  status: 'pending' | 'analyzing' | 'complete' | 'failed';
+  detectionCount?: number;
+}
+
+// =============================================================================
 // HELPERS
 // =============================================================================
 

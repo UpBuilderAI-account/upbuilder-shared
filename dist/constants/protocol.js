@@ -83,6 +83,8 @@ exports.SOCKET_EVENTS = {
         STRUCTURED_PLAN: 'workflow:structured_plan', // Server → Client: Parsed structured plan JSON
         // Section build progress (build_sections stage)
         SECTION_PROGRESS: 'workflow:section_progress', // Server → Client: Per-section build progress
+        // AI image analysis progress (pre-export phase)
+        AI_ANALYSIS_PROGRESS: 'workflow:ai_analysis_progress', // Server → Client: Per-design AI analysis progress
     },
     /**
      * Server → Client: Project state updates
