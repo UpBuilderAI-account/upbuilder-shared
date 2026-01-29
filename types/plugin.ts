@@ -166,7 +166,8 @@ export type PluginBackendMessage =
   | { type: 'outside-elements-detected'; data: OutsideElementsDetectedData }
   | { type: 'outside-preview-ready'; data: OutsidePreviewData }
   // AI image review messages
-  | { type: 'ai-image-review-approved'; data: { count: number } };
+  | { type: 'ai-image-review-approved'; data: { count: number } }
+  | { type: 'image-review-thumbnails-ready'; data: { thumbnails: Array<{ nodeId: string; thumbnailUrl: string; width: number; height: number }> } };
 
 /**
  * Messages from plugin UI → plugin backend
@@ -198,7 +199,8 @@ export type PluginFrontendMessage =
   | { type: 'outside-elements-approval'; data: { includedNodeIds: string[]; excludedNodeIds: string[] } }
   | { type: 'request-outside-preview'; data: { nodeId: string; parentFrameId: string } }
   // AI image review messages
-  | { type: 'ai-image-review-approval'; data: { confirmedNodeIds: string[] } };
+  | { type: 'ai-image-review-approval'; data: { confirmedNodeIds: string[] } }
+  | { type: 'request-image-review-thumbnails'; data: { nodeIds: string[] } };
 
 // ============================================================================
 // PLUGIN UI DATA STRUCTURES

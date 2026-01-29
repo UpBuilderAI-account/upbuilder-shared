@@ -187,6 +187,16 @@ export type PluginBackendMessage = {
     data: {
         count: number;
     };
+} | {
+    type: 'image-review-thumbnails-ready';
+    data: {
+        thumbnails: Array<{
+            nodeId: string;
+            thumbnailUrl: string;
+            width: number;
+            height: number;
+        }>;
+    };
 };
 /**
  * Messages from plugin UI → plugin backend
@@ -304,6 +314,11 @@ export type PluginFrontendMessage = {
     type: 'ai-image-review-approval';
     data: {
         confirmedNodeIds: string[];
+    };
+} | {
+    type: 'request-image-review-thumbnails';
+    data: {
+        nodeIds: string[];
     };
 };
 /**
