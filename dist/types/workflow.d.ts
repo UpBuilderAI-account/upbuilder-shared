@@ -249,11 +249,6 @@ export interface ExportConfig {
         /** Whether to reuse styles from this project (default: true if projectId is set) */
         reuseStyles?: boolean;
     };
-    /**
-     * Generate a stylesheet guide documenting all generated styles
-     * Default: true (enabled)
-     */
-    generateStylesheetGuide?: boolean;
 }
 /**
  * Default stylesheet configuration

@@ -63,7 +63,6 @@ exports.QUICK_EXPORT_CONFIG = {
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.QUICK_INTERACTIVITY_CONFIG,
     enableAIAssistant: false, // Quick mode skips AI planning and fixing
-    generateStylesheetGuide: true,
 };
 /**
  * Default export config - custom mode selected by default
@@ -74,7 +73,6 @@ exports.DEFAULT_EXPORT_CONFIG = {
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.DEFAULT_INTERACTIVITY_CONFIG,
     enableAIAssistant: true, // AI assistant (planning + fixing) enabled by default
-    generateStylesheetGuide: true,
 };
 // =============================================================================
 // HELPERS
