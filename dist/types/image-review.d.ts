@@ -90,14 +90,14 @@ export interface CombinedDetection {
     nodeId: string;
     name: string;
     /** Source of detection */
-    source: 'heuristic' | 'ai';
+    source: 'heuristic' | 'ai' | 'grouped';
     /** Only for AI detections */
     category?: GraphicCategory;
     confidence?: DetectionConfidence;
     reason?: string;
     /** Whether item is checked for export */
     isChecked: boolean;
-    /** Whether item needs review (medium confidence or heuristic) */
+    /** Whether item needs review */
     needsReview: boolean;
     /** Thumbnail preview */
     thumbnailUrl?: string;
@@ -106,8 +106,12 @@ export interface CombinedDetection {
     /** Is this a false positive flagged by AI? */
     isFalsePositive?: boolean;
     falsePositiveReason?: string;
-    /** Whether node has children (used for filtering in AI review) */
+    /** Whether node has children (used for filtering) */
     hasChildren?: boolean;
+    /** Number of visually identical graphics (1 = unique, from grouped graphics dedup) */
+    duplicateCount?: number;
+    /** All node IDs in this duplicate group (including self) */
+    duplicateNodeIds?: string[];
 }
 /**
  * Image review state for a design in the UI
