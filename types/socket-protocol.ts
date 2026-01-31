@@ -202,6 +202,12 @@ export interface PluginPayloads {
     preview?: PreviewData; // Small preview for UI
     smallPreview?: SmallPreview; // 720px JPG for featured image/thumbnails (S3)
     bigPreview?: BigPreview; // 8K max JPG for AI analysis (Google AI Files)
+    /** S3 URL from scan phase (skip re-upload of big preview) */
+    bigPreviewS3Url?: string;
+    /** Google AI URI from scan phase */
+    bigPreviewGoogleAiUri?: string;
+    /** Dimensions of the big preview from scan phase */
+    bigPreviewDimensions?: { width: number; height: number };
     /** @deprecated Use smallPreview instead */
     framePreview?: FramePreview;
     exportConfig?: ExportConfig; // Full export config from plugin (skips export_config stage)

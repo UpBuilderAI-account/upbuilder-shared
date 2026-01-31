@@ -109,6 +109,15 @@ export interface PluginPayloads {
         preview?: PreviewData;
         smallPreview?: SmallPreview;
         bigPreview?: BigPreview;
+        /** S3 URL from scan phase (skip re-upload of big preview) */
+        bigPreviewS3Url?: string;
+        /** Google AI URI from scan phase */
+        bigPreviewGoogleAiUri?: string;
+        /** Dimensions of the big preview from scan phase */
+        bigPreviewDimensions?: {
+            width: number;
+            height: number;
+        };
         /** @deprecated Use smallPreview instead */
         framePreview?: FramePreview;
         exportConfig?: ExportConfig;

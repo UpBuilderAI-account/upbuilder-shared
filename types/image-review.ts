@@ -96,6 +96,12 @@ export interface ImageReviewResponse {
   success: boolean;
   designs: ImageReviewDesignResult[];
   error?: string;
+  /** Pre-uploaded preview URLs from scan phase (keyed by designId) */
+  uploadedPreviews?: Record<string, {
+    s3Url: string;
+    googleAiUri: string;
+    dimensions: { width: number; height: number };
+  }>;
 }
 
 /**
