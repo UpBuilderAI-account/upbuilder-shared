@@ -161,6 +161,7 @@ export type PluginBackendMessage =
   | { type: 'error'; data: PluginErrorData }
   // Complex hierarchy (grouped graphics) detection messages
   | { type: 'complex-hierarchy-detected'; data: ComplexHierarchyDetectedData }
+  | { type: 'complex-hierarchy-frame-progress'; data: { frameId: string; detectionCount: number; status: 'detecting' | 'complete' } }
   | { type: 'full-preview-ready'; data: FullPreviewData }
   // Outside elements detection messages
   | { type: 'outside-elements-detected'; data: OutsideElementsDetectedData }
