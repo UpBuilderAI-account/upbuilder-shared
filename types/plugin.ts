@@ -198,6 +198,7 @@ export type PluginFrontendMessage =
   | { type: 'scan-complex-hierarchies'; data: { frameIds: string[] } }
   | { type: 'complex-hierarchy-approval'; data: { approvedNodeIds: string[]; excludedNodeIds: string[] } }
   | { type: 'request-full-preview'; data: { nodeId: string } }
+  | { type: 'scroll-to-node'; data: { nodeId: string } }
   // Outside elements messages
   | { type: 'scan-outside-elements'; data: { frameIds: string[] } }
   | { type: 'outside-elements-approval'; data: { includedNodeIds: string[]; excludedNodeIds: string[] } }

@@ -308,6 +308,11 @@ export type PluginFrontendMessage = {
         nodeId: string;
     };
 } | {
+    type: 'scroll-to-node';
+    data: {
+        nodeId: string;
+    };
+} | {
     type: 'scan-outside-elements';
     data: {
         frameIds: string[];
