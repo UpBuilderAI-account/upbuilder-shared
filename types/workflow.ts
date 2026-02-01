@@ -937,7 +937,6 @@ export const STAGE_ORDER: Stage[] = [
   'build_sections',
   'cms_schema',
   'convert_to_platform',
-  'summary',
   'customize',
 ];
 
@@ -955,7 +954,6 @@ export const STAGE_LABELS: Record<Stage, string> = {
   cms_schema: 'CMS Schema',
   assembly: 'Assembling', // @deprecated - kept for backwards compatibility
   convert_to_platform: 'Generating Export',
-  summary: 'Saving Version',
   customize: 'Preview & Export',
 };
 

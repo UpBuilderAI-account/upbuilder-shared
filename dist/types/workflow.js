@@ -96,7 +96,6 @@ exports.STAGE_ORDER = [
     'build_sections',
     'cms_schema',
     'convert_to_platform',
-    'summary',
     'customize',
 ];
 exports.STAGE_LABELS = {
@@ -113,7 +112,6 @@ exports.STAGE_LABELS = {
     cms_schema: 'CMS Schema',
     assembly: 'Assembling', // @deprecated - kept for backwards compatibility
     convert_to_platform: 'Generating Export',
-    summary: 'Saving Version',
     customize: 'Preview & Export',
 };
 /**

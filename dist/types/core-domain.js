@@ -32,7 +32,6 @@ exports.PROJECT_STATUS = {
     CMS_SCHEMA: 'cms_schema',
     ASSEMBLY: 'assembly', // @deprecated - kept for backwards compatibility
     CONVERT_TO_PLATFORM: 'convert_to_platform',
-    SUMMARY: 'summary',
     CUSTOMIZE: 'customize',
     COMPLETE: 'complete',
     FAILED: 'failed',
@@ -49,7 +48,6 @@ function isProcessingStage(status) {
         'build_sections',
         'cms_schema',
         'convert_to_platform',
-        'summary',
     ];
     return processingStages.includes(status);
 }
@@ -76,8 +74,7 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
         build_sections: 'cms_schema',
         cms_schema: 'convert_to_platform',
         assembly: 'convert_to_platform', // @deprecated - old projects skip to convert
-        convert_to_platform: 'summary',
-        summary: 'customize',
+        convert_to_platform: 'customize',
         customize: 'complete',
         complete: null,
         failed: null,
