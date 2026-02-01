@@ -173,9 +173,6 @@ export interface SectionBuildProgress {
   qaStatus?: 'pending' | 'analyzing' | 'passed' | 'failed' | 'rebuilding';
   qaAccuracy?: number; // 0-100
   qaIssueCount?: number;
-  // QA screenshot URLs (S3) for plugin comparison view
-  figmaScreenshotUrl?: string;
-  renderedScreenshotUrl?: string;
 }
 
 export interface BuildSectionsProgress {

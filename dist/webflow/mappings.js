@@ -357,6 +357,10 @@ function getDefaultTag(componentType) {
         LightboxWrapper: 'a',
         Map: 'div',
         Embed: 'div',
+        // CMS
+        DynamoList: 'div',
+        DynamoItem: 'div',
+        DynamoEmpty: 'div',
         // Container removed - use Block with container-* utility classes instead
     };
     return TAG_MAP[componentType] || 'div';

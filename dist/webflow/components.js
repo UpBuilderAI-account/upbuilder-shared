@@ -665,6 +665,33 @@ exports.WEBFLOW_COMPONENTS = {
         specialDataFields: ['embed'],
         description: 'Generic embed element'
     },
+    // ===========================================================================
+    // CMS COMPONENTS (3)
+    // ===========================================================================
+    DynamoList: {
+        displayName: 'Collection List',
+        tags: ['div'],
+        isContainer: true,
+        category: 'cms',
+        specialDataFields: ['dyn'],
+        description: 'CMS collection list wrapper',
+    },
+    DynamoItem: {
+        displayName: 'Collection Item',
+        tags: ['div'],
+        isContainer: true,
+        category: 'cms',
+        specialDataFields: ['dyn'],
+        description: 'Repeating item template inside collection list',
+    },
+    DynamoEmpty: {
+        displayName: 'Empty State',
+        tags: ['div'],
+        isContainer: true,
+        category: 'cms',
+        specialDataFields: ['dyn'],
+        description: 'Fallback content when collection is empty',
+    },
 };
 /** Array of all component type names */
 exports.ALL_COMPONENT_TYPES = Object.keys(exports.WEBFLOW_COMPONENTS);
@@ -695,6 +722,7 @@ exports.COMPONENTS_BY_CATEGORY = {
     form: getComponentsByCategory('form'),
     search: getComponentsByCategory('search'),
     media: getComponentsByCategory('media'),
+    cms: getComponentsByCategory('cms'),
 };
 /** Count of components */
 exports.COMPONENT_COUNT = exports.ALL_COMPONENT_TYPES.length;

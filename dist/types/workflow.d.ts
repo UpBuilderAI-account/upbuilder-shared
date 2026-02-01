@@ -552,8 +552,6 @@ export interface BoundedSection {
     designId: string;
     /** Google File Manager URI for section screenshot (set by section bounding stage) */
     screenshotUri?: string;
-    /** S3 URL for section screenshot (for plugin comparison view) */
-    screenshotS3Url?: string;
     /** Global verdict from plan stage (IDENTICAL or HAS_VARIANTS) */
     globalVerdict?: GlobalVerdict;
     /**
@@ -614,6 +612,8 @@ export interface BuildSectionsState {
     currentSectionIndex: number;
     /** Whether the build sections stage is complete */
     complete: boolean;
+    /** CMS schema generated during section_bounding (for build_sections to consume) */
+    cmsSchema?: import('./cms').CMSSchema;
 }
 export interface BuildSectionsEvents {
     /** Backend → Frontend: Request screenshot for a section */

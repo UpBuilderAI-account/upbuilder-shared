@@ -165,8 +165,6 @@ export interface SectionBuildProgress {
     qaStatus?: 'pending' | 'analyzing' | 'passed' | 'failed' | 'rebuilding';
     qaAccuracy?: number;
     qaIssueCount?: number;
-    figmaScreenshotUrl?: string;
-    renderedScreenshotUrl?: string;
 }
 export interface BuildSectionsProgress {
     totalSections: number;

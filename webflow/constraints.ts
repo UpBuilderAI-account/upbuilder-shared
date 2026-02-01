@@ -580,6 +580,21 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
     displayName: 'Embed',
     constraints: {}
   },
+  // ===========================================================================
+  // CMS COMPONENTS
+  // ===========================================================================
+  DynamoList: {
+    displayName: 'Collection List',
+    constraints: {}
+  },
+  DynamoItem: {
+    displayName: 'Collection Item',
+    constraints: {}
+  },
+  DynamoEmpty: {
+    displayName: 'Empty State',
+    constraints: {}
+  },
 };
 
 // -----------------------------------------------------------------------------

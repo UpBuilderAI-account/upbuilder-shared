@@ -423,6 +423,11 @@ export function getDefaultTag(componentType: WebflowComponentType): string {
     LightboxWrapper: 'a',
     Map: 'div',
     Embed: 'div',
+
+    // CMS
+    DynamoList: 'div',
+    DynamoItem: 'div',
+    DynamoEmpty: 'div',
     // Container removed - use Block with container-* utility classes instead
   };
 

@@ -32,7 +32,8 @@ export type ComponentCategory =
   | 'form'
   | 'search'
   | 'media'
-  | 'text-formatting';
+  | 'text-formatting'
+  | 'cms';
 
 // -----------------------------------------------------------------------------
 // All 55 Webflow Component Types
@@ -703,6 +704,34 @@ export const WEBFLOW_COMPONENTS = {
     specialDataFields: ['embed'],
     description: 'Generic embed element'
   },
+
+  // ===========================================================================
+  // CMS COMPONENTS (3)
+  // ===========================================================================
+  DynamoList: {
+    displayName: 'Collection List',
+    tags: ['div'],
+    isContainer: true,
+    category: 'cms',
+    specialDataFields: ['dyn'],
+    description: 'CMS collection list wrapper',
+  },
+  DynamoItem: {
+    displayName: 'Collection Item',
+    tags: ['div'],
+    isContainer: true,
+    category: 'cms',
+    specialDataFields: ['dyn'],
+    description: 'Repeating item template inside collection list',
+  },
+  DynamoEmpty: {
+    displayName: 'Empty State',
+    tags: ['div'],
+    isContainer: true,
+    category: 'cms',
+    specialDataFields: ['dyn'],
+    description: 'Fallback content when collection is empty',
+  },
 } as const;
 
 // -----------------------------------------------------------------------------
@@ -746,6 +775,7 @@ export const COMPONENTS_BY_CATEGORY = {
   form: getComponentsByCategory('form'),
   search: getComponentsByCategory('search'),
   media: getComponentsByCategory('media'),
+  cms: getComponentsByCategory('cms'),
 } as const;
 
 /** Count of components */
