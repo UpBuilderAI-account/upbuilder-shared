@@ -174,6 +174,70 @@ export interface RecollectQAGeometryResponse {
         };
     }>;
 }
+/** Server → Plugin: request geometry measurements */
+export interface GeometryMeasurementRequest {
+    requestId: string;
+    projectId: string;
+    sectionId: string;
+    commands: Array<{
+        type: 'MEASURE_NODE' | 'MEASURE_DISTANCE' | 'MEASURE_CHILDREN';
+        nodeIds: string[];
+    }>;
+}
+/** Plugin → Server: geometry measurement response */
+export interface GeometryMeasurementResponse {
+    requestId: string;
+    success: boolean;
+    measurements: Array<{
+        commandType: string;
+        nodeIds: string[];
+        data: NodeMeasurement | DistanceMeasurement | ChildrenMeasurement | null;
+        error?: string;
+    }>;
+}
+export interface NodeMeasurement {
+    nodeId: string;
+    name: string;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    layoutMode?: string;
+    paddingTop?: number;
+    paddingRight?: number;
+    paddingBottom?: number;
+    paddingLeft?: number;
+    itemSpacing?: number;
+}
+export interface DistanceMeasurement {
+    nodeIdA: string;
+    nodeIdB: string;
+    dx: number;
+    dy: number;
+    edgeDistanceH: number;
+    edgeDistanceV: number;
+}
+export interface ChildrenMeasurement {
+    parentId: string;
+    parentName: string;
+    layoutMode: string;
+    padding: {
+        top: number;
+        right: number;
+        bottom: number;
+        left: number;
+    };
+    itemSpacing: number;
+    children: Array<{
+        nodeId: string;
+        name: string;
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }>;
+    measuredGaps: number[];
+}
 /**
  * Project update event (Standard)
  */
@@ -268,6 +332,7 @@ export interface ClientToServerEvents {
             }>;
         }>;
     }>) => void;
+    'plugin:recollect_qa_geometry': (data: GeometryMeasurementResponse) => void;
     join_plugin_room: (data: {
         projectId: string;
     }, callback?: CallbackResponse) => void;
@@ -605,6 +670,7 @@ export interface ServerToClientEvents {
     'plugin:message': (data: PluginEvents['message']) => void;
     'plugin:nodes_processed': (data: PluginEvents['nodes_processed']) => void;
     'plugin:images_processed': (data: PluginEvents['images_processed']) => void;
+    'plugin:request_geometry': (data: GeometryMeasurementRequest) => void;
     error: (data: ErrorPayload) => void;
     'workflow:stage': (data: WorkflowStage) => void;
     'workflow:stages': (data: WorkflowStages) => void;

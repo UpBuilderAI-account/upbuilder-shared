@@ -19,6 +19,7 @@ export declare const SOCKET_EVENTS: {
         readonly IMAGE_REVIEW: "image_review_request";
         readonly SEND_DESIGN_IMAGES: "send_design_images";
         readonly PROCESS_ALL_IMAGES: "process_all_images";
+        readonly REQUEST_GEOMETRY: "plugin:request_geometry";
         readonly RECOLLECT_QA_GEOMETRY: "plugin:recollect_qa_geometry";
     };
     /**

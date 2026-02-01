@@ -218,6 +218,18 @@ export type PluginBackendMessage = {
     data: {
         count: number;
     };
+} | {
+    type: 'geometry-measured';
+    data: {
+        requestId: string;
+        success: boolean;
+        measurements: Array<{
+            commandType: string;
+            nodeIds: string[];
+            data: any;
+            error?: string;
+        }>;
+    };
 };
 /**
  * Messages from plugin UI → plugin backend
@@ -355,6 +367,15 @@ export type PluginFrontendMessage = {
     type: 'set-ai-approved-nodes';
     data: {
         nodeIds: string[];
+    };
+} | {
+    type: 'measure-geometry';
+    data: {
+        requestId: string;
+        commands: Array<{
+            type: string;
+            nodeIds: string[];
+        }>;
     };
 };
 /**
