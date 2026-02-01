@@ -39,6 +39,7 @@ export declare const SOCKET_EVENTS: {
         readonly DELETE: "delete_project";
         readonly DELETED: "project_deleted";
         readonly TRANSFER_OWNERSHIP: "transfer_project_ownership";
+        readonly CLAIM_GUEST_PROJECTS: "claim_guest_projects";
         readonly GET_STATUS: "project:get_status";
     };
     /**
@@ -153,6 +154,16 @@ export declare const SOCKET_EVENTS: {
         readonly CHECK_HAS_ORIGINAL: "customizer:check_has_original";
         readonly HAS_ORIGINAL: "customizer:has_original";
         readonly RESTORE_COMPLETE: "customizer:restore_complete";
+        readonly CMS_UPDATE_SCHEMA: "customizer:cms_update_schema";
+        readonly CMS_ADD_COLLECTION: "customizer:cms_add_collection";
+        readonly CMS_DELETE_COLLECTION: "customizer:cms_delete_collection";
+        readonly CMS_UPDATE_COLLECTION: "customizer:cms_update_collection";
+        readonly CMS_ADD_FIELD: "customizer:cms_add_field";
+        readonly CMS_DELETE_FIELD: "customizer:cms_delete_field";
+        readonly CMS_UPDATE_FIELD: "customizer:cms_update_field";
+        readonly CMS_ADD_ITEM: "customizer:cms_add_item";
+        readonly CMS_DELETE_ITEM: "customizer:cms_delete_item";
+        readonly CMS_UPDATE_ITEM: "customizer:cms_update_item";
     };
     /**
      * Plan stage events (client ↔ server)

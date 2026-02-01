@@ -508,6 +508,16 @@ export interface ClientToServerEvents {
     callback: CallbackResponse
   ) => void;
 
+  // Batch claim guest-owned projects (transfer from GUEST_USER_ID to current user)
+  claim_guest_projects: (
+    data: { projectIds: string[] },
+    callback: CallbackResponse<{
+      transferred: string[];
+      alreadyOwned: string[];
+      notFound: string[];
+    }>
+  ) => void;
+
   // Project deletion
   delete_project: (
     data: { projectId: string },

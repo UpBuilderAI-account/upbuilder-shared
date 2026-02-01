@@ -366,6 +366,13 @@ export interface ClientToServerEvents {
     transfer_project_ownership: (data: {
         projectId: string;
     }, callback: CallbackResponse) => void;
+    claim_guest_projects: (data: {
+        projectIds: string[];
+    }, callback: CallbackResponse<{
+        transferred: string[];
+        alreadyOwned: string[];
+        notFound: string[];
+    }>) => void;
     delete_project: (data: {
         projectId: string;
     }, callback: CallbackResponse) => void;

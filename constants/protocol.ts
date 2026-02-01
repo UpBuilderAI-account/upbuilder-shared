@@ -56,6 +56,7 @@ export const SOCKET_EVENTS = {
     DELETE: 'delete_project',
     DELETED: 'project_deleted',
     TRANSFER_OWNERSHIP: 'transfer_project_ownership',
+    CLAIM_GUEST_PROJECTS: 'claim_guest_projects',  // Batch claim guest-owned projects
     GET_STATUS: 'project:get_status',  // Get project processing status for resume
   },
 
@@ -192,6 +193,17 @@ export const SOCKET_EVENTS = {
     CHECK_HAS_ORIGINAL: 'customizer:check_has_original', // Client → Server: Check if original XSCP exists
     HAS_ORIGINAL: 'customizer:has_original',             // Server → Client: Response with hasOriginal boolean
     RESTORE_COMPLETE: 'customizer:restore_complete',     // Server → Client: Restore completed successfully
+    // CMS Content Management
+    CMS_UPDATE_SCHEMA: 'customizer:cms_update_schema',           // Client → Server: Update full CMS schema (init)
+    CMS_ADD_COLLECTION: 'customizer:cms_add_collection',         // Client → Server: Add a new collection
+    CMS_DELETE_COLLECTION: 'customizer:cms_delete_collection',   // Client → Server: Delete a collection
+    CMS_UPDATE_COLLECTION: 'customizer:cms_update_collection',   // Client → Server: Update collection metadata
+    CMS_ADD_FIELD: 'customizer:cms_add_field',                   // Client → Server: Add field to collection
+    CMS_DELETE_FIELD: 'customizer:cms_delete_field',             // Client → Server: Delete field from collection
+    CMS_UPDATE_FIELD: 'customizer:cms_update_field',             // Client → Server: Update field in collection
+    CMS_ADD_ITEM: 'customizer:cms_add_item',                     // Client → Server: Add item to collection
+    CMS_DELETE_ITEM: 'customizer:cms_delete_item',               // Client → Server: Delete item from collection
+    CMS_UPDATE_ITEM: 'customizer:cms_update_item',               // Client → Server: Update item in collection
   },
 
   /**
