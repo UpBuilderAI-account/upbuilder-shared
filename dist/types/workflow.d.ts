@@ -545,6 +545,8 @@ export interface BoundedSection {
     designId: string;
     /** Google File Manager URI for section screenshot (set by section bounding stage) */
     screenshotUri?: string;
+    /** S3 URL for section screenshot (for plugin comparison view) */
+    screenshotS3Url?: string;
     /** Global verdict from plan stage (IDENTICAL or HAS_VARIANTS) */
     globalVerdict?: GlobalVerdict;
     /**
