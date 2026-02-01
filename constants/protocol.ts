@@ -34,6 +34,7 @@ export const SOCKET_EVENTS = {
     IMAGE_REVIEW: 'image_review_request',  // AI-powered image detection
     SEND_DESIGN_IMAGES: 'send_design_images',
     PROCESS_ALL_IMAGES: 'process_all_images',
+    RECOLLECT_QA_GEOMETRY: 'plugin:recollect_qa_geometry',
   },
 
   /**

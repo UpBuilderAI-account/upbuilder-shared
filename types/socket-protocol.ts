@@ -242,6 +242,26 @@ export interface PluginPayloads {
     project_id: string;
     design_ids: string[]; // Ordered array (selection order)
   };
+
+  /**
+   * 4. Recollect QA geometry from Figma plugin (Phase 2 stub)
+   */
+  recollect_qa_geometry: {
+    project_id: string;
+    design_id: string;
+    frame_id: string;
+    node_ids: string[];
+  };
+}
+
+/**
+ * Response from plugin recollect QA geometry (Phase 2 stub)
+ */
+export interface RecollectQAGeometryResponse {
+  elements: Array<{
+    figmaNodeId: string;
+    absoluteBoundingBox: { x: number; y: number; width: number; height: number };
+  }>;
 }
 
 
