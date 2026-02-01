@@ -312,6 +312,13 @@ export interface ExportConfig {
    */
   enablePlanning?: boolean;
   /**
+   * Enable CMS collection generation
+   * When enabled, AI detects repeating content patterns and generates CMS schemas
+   * Webflow-only — skipped for other platforms
+   * Default: false (disabled)
+   */
+  enableCms?: boolean;
+  /**
    * Webflow-specific configuration
    * When set, synced styles from the Webflow site will be merged with AI-generated styles
    */
@@ -398,6 +405,7 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: QUICK_INTERACTIVITY_CONFIG,
   enableAIAssistant: false,  // Quick mode skips AI planning and fixing
+  enableCms: false,          // CMS disabled in quick mode
 };
 
 /**
@@ -409,6 +417,7 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
   enableAIAssistant: true,  // AI assistant (planning + fixing) enabled by default
+  enableCms: false,         // CMS disabled by default
 };
 
 // =============================================================================
@@ -924,6 +933,7 @@ export const STAGE_ORDER: Stage[] = [
   'section_bounding',
   'build_styles',
   'build_sections',
+  'cms_schema',
   'convert_to_platform',
   'summary',
   'customize',
@@ -940,6 +950,7 @@ export const STAGE_LABELS: Record<Stage, string> = {
   section_bounding: 'Detecting Sections',
   build_styles: 'Building Styles',
   build_sections: 'Building Sections',
+  cms_schema: 'CMS Schema',
   assembly: 'Assembling', // @deprecated - kept for backwards compatibility
   convert_to_platform: 'Generating Export',
   summary: 'Saving Version',

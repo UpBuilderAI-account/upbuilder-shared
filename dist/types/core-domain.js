@@ -29,6 +29,7 @@ exports.PROJECT_STATUS = {
     SECTION_BOUNDING: 'section_bounding',
     BUILD_STYLES: 'build_styles',
     BUILD_SECTIONS: 'build_sections',
+    CMS_SCHEMA: 'cms_schema',
     ASSEMBLY: 'assembly', // @deprecated - kept for backwards compatibility
     CONVERT_TO_PLATFORM: 'convert_to_platform',
     SUMMARY: 'summary',
@@ -46,6 +47,7 @@ function isProcessingStage(status) {
         'section_bounding',
         'build_styles',
         'build_sections',
+        'cms_schema',
         'convert_to_platform',
         'summary',
     ];
@@ -71,7 +73,8 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
         plan: 'section_bounding',
         section_bounding: 'build_styles',
         build_styles: 'build_sections',
-        build_sections: 'convert_to_platform',
+        build_sections: 'cms_schema',
+        cms_schema: 'convert_to_platform',
         assembly: 'convert_to_platform', // @deprecated - old projects skip to convert
         convert_to_platform: 'summary',
         summary: 'customize',

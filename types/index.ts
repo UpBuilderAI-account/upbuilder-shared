@@ -148,3 +148,6 @@ export * from './expansion';
 
 // Image review types (AI-powered image detection)
 export * from './image-review';
+
+// CMS types (schema, bindings, XSCP integration)
+export * from './cms';

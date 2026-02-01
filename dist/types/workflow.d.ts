@@ -228,6 +228,13 @@ export interface ExportConfig {
      */
     enablePlanning?: boolean;
     /**
+     * Enable CMS collection generation
+     * When enabled, AI detects repeating content patterns and generates CMS schemas
+     * Webflow-only — skipped for other platforms
+     * Default: false (disabled)
+     */
+    enableCms?: boolean;
+    /**
      * Webflow-specific configuration
      * When set, synced styles from the Webflow site will be merged with AI-generated styles
      */

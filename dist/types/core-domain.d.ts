@@ -55,7 +55,7 @@ export interface PluginAuthTokenResponse {
     user?: User;
     error?: string;
 }
-export type ProjectStatus = 'idle' | 'analyze_design' | 'images_export' | 'export_config' | 'load' | 'plan' | 'section_bounding' | 'build_styles' | 'build_sections' | 'assembly' | 'convert_to_platform' | 'summary' | 'customize' | 'complete' | 'failed';
+export type ProjectStatus = 'idle' | 'analyze_design' | 'images_export' | 'export_config' | 'load' | 'plan' | 'section_bounding' | 'build_styles' | 'build_sections' | 'cms_schema' | 'assembly' | 'convert_to_platform' | 'summary' | 'customize' | 'complete' | 'failed';
 /**
  * Type-safe constants for ProjectStatus
  */
@@ -69,6 +69,7 @@ export declare const PROJECT_STATUS: {
     readonly SECTION_BOUNDING: ProjectStatus;
     readonly BUILD_STYLES: ProjectStatus;
     readonly BUILD_SECTIONS: ProjectStatus;
+    readonly CMS_SCHEMA: ProjectStatus;
     readonly ASSEMBLY: ProjectStatus;
     readonly CONVERT_TO_PLATFORM: ProjectStatus;
     readonly SUMMARY: ProjectStatus;
@@ -244,6 +245,8 @@ export interface ProjectState {
         styles: string;
         completedAt: number;
     };
+    cmsSchema?: import('./cms').CMSSchema | null;
+    cmsCreationReport?: import('./cms').CMSCreationReport | null;
     styleMetrics?: {
         totalStyles: number;
         reusedStyles: number;

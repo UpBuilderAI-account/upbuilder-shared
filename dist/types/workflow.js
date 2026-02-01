@@ -63,6 +63,7 @@ exports.QUICK_EXPORT_CONFIG = {
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.QUICK_INTERACTIVITY_CONFIG,
     enableAIAssistant: false, // Quick mode skips AI planning and fixing
+    enableCms: false, // CMS disabled in quick mode
 };
 /**
  * Default export config - custom mode selected by default
@@ -73,6 +74,7 @@ exports.DEFAULT_EXPORT_CONFIG = {
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.DEFAULT_INTERACTIVITY_CONFIG,
     enableAIAssistant: true, // AI assistant (planning + fixing) enabled by default
+    enableCms: false, // CMS disabled by default
 };
 // =============================================================================
 // HELPERS
@@ -92,6 +94,7 @@ exports.STAGE_ORDER = [
     'section_bounding',
     'build_styles',
     'build_sections',
+    'cms_schema',
     'convert_to_platform',
     'summary',
     'customize',
@@ -107,6 +110,7 @@ exports.STAGE_LABELS = {
     section_bounding: 'Detecting Sections',
     build_styles: 'Building Styles',
     build_sections: 'Building Sections',
+    cms_schema: 'CMS Schema',
     assembly: 'Assembling', // @deprecated - kept for backwards compatibility
     convert_to_platform: 'Generating Export',
     summary: 'Saving Version',

@@ -14,4 +14,5 @@ export * from './plan';
 export * from './fixing';
 export * from './expansion';
 export * from './image-review';
+export * from './cms';
 //# sourceMappingURL=index.d.ts.map

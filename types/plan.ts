@@ -16,6 +16,8 @@ export interface StructuredPlan {
   typography: PlanTypography[];
   globalComponents: PlanGlobalComponent[];
   sectionsPerDesign: PlanDesignSections[];
+  /** Whether the design contains repeating content patterns eligible for CMS (product grids, blog lists, team members, etc.) */
+  hasCmsContent?: boolean;
 }
 
 export interface PlanSummary {

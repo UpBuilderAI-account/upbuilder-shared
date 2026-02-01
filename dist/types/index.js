@@ -74,3 +74,5 @@ __exportStar(require("./fixing"), exports);
 __exportStar(require("./expansion"), exports);
 // Image review types (AI-powered image detection)
 __exportStar(require("./image-review"), exports);
+// CMS types (schema, bindings, XSCP integration)
+__exportStar(require("./cms"), exports);
