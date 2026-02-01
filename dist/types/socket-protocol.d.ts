@@ -1,5 +1,5 @@
 import type { ImagePair, PreviewData, SmallPreview, BigPreview, FramePreview } from './plugin';
-import type { Element } from './element';
+import type { Element, FigmaColorVariable, FigmaVariableCollection } from './element';
 import type { WorkflowStage, WorkflowStages, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { ExportConfig } from './workflow';
@@ -121,6 +121,10 @@ export interface PluginPayloads {
         /** @deprecated Use smallPreview instead */
         framePreview?: FramePreview;
         exportConfig?: ExportConfig;
+        /** Figma color variables extracted from the design */
+        variables?: FigmaColorVariable[];
+        /** Figma variable collections metadata */
+        variableCollections?: FigmaVariableCollection[];
         selectedProjectData?: {
             type: 'existing';
             project: {

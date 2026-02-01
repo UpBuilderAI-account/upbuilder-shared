@@ -1,5 +1,5 @@
 import type { User, AuthStatus, Dimensions } from './core-domain';
-import type { Element, ColorRGBA } from './element';
+import type { Element, ColorRGBA, FigmaColorVariable, FigmaVariableCollection } from './element';
 import type { ComplexHierarchyDetection } from './complex-hierarchy';
 import type { OutsideElementsDetectedData, OutsidePreviewData } from './outside-elements';
 /**
@@ -369,6 +369,10 @@ export interface PluginNodesData {
     smallPreviews?: Record<number, SmallPreview>;
     bigPreviews?: Record<number, BigPreview>;
     framePreviews?: Record<number, SmallPreview>;
+    /** Figma color variables extracted from the design */
+    variables?: FigmaColorVariable[];
+    /** Figma variable collections metadata */
+    variableCollections?: FigmaVariableCollection[];
 }
 /**
  * Image extraction result (plugin UI wrapper)

@@ -6,7 +6,9 @@
 import type { User, AuthStatus, Dimensions } from './core-domain';
 import type {
   Element,
-  ColorRGBA
+  ColorRGBA,
+  FigmaColorVariable,
+  FigmaVariableCollection,
 } from './element';
 import type { ComplexHierarchyDetection } from './complex-hierarchy';
 import type { OutsideElementsDetectedData, OutsidePreviewData } from './outside-elements';
@@ -232,6 +234,10 @@ export interface PluginNodesData {
   bigPreviews?: Record<number, BigPreview>;
   // @deprecated Use smallPreviews instead
   framePreviews?: Record<number, SmallPreview>;
+  /** Figma color variables extracted from the design */
+  variables?: FigmaColorVariable[];
+  /** Figma variable collections metadata */
+  variableCollections?: FigmaVariableCollection[];
 }
 
 /**

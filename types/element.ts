@@ -36,12 +36,39 @@ export enum LineHeightUnit {
 
 // ==================== BASIC TYPES ====================
 
+/** Figma variable reference attached to a color */
+export interface FigmaVariableRef {
+  id: string;                // Figma variable ID (e.g. "VariableID:12:34")
+  name: string;              // Variable name (e.g. "primary/500")
+  collectionName: string;    // Collection name (e.g. "Brand Colors")
+}
+
+/** A complete Figma color variable with all mode values */
+export interface FigmaColorVariable {
+  id: string;
+  name: string;              // e.g. "primary/500"
+  collectionId: string;
+  collectionName: string;
+  /** Values per mode: { "Light": {r,g,b,a}, "Dark": {r,g,b,a} } */
+  modeValues: Record<string, ColorRGBA>;
+}
+
+/** A collection of Figma variables */
+export interface FigmaVariableCollection {
+  id: string;
+  name: string;
+  modes: { id: string; name: string }[];
+  defaultModeId: string;
+}
+
 export interface ColorRGBA {
   r: number;  // 0-1 range
   g: number;
   b: number;
   a: number;
   colorId?: string;  // For multi-colored text
+  /** Figma variable reference (if color is bound to a variable) */
+  variableRef?: FigmaVariableRef;
 }
 
 // ==================== FONT & TEXT ====================

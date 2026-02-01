@@ -235,6 +235,12 @@ export interface ExportConfig {
      */
     enableCms?: boolean;
     /**
+     * Enable design variable extraction and CSS custom property generation
+     * When enabled, Figma variables are extracted and mapped to CSS custom properties
+     * Default: false (disabled)
+     */
+    enableVariables?: boolean;
+    /**
      * Webflow-specific configuration
      * When set, synced styles from the Webflow site will be merged with AI-generated styles
      */

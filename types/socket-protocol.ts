@@ -12,7 +12,7 @@
 // ============================================================================
 
 import type { ImagePair, PreviewData, SmallPreview, BigPreview, FramePreview } from './plugin';
-import type { Element } from './element';
+import type { Element, FigmaColorVariable, FigmaVariableCollection } from './element';
 import type {
   WorkflowStage,
   WorkflowStages,
@@ -211,6 +211,10 @@ export interface PluginPayloads {
     /** @deprecated Use smallPreview instead */
     framePreview?: FramePreview;
     exportConfig?: ExportConfig; // Full export config from plugin (skips export_config stage)
+    /** Figma color variables extracted from the design */
+    variables?: FigmaColorVariable[];
+    /** Figma variable collections metadata */
+    variableCollections?: FigmaVariableCollection[];
     selectedProjectData?: {
       type: 'existing';
       project: {

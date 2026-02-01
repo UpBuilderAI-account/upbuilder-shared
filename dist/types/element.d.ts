@@ -23,12 +23,39 @@ export declare enum LineHeightUnit {
     PERCENT = "PERCENT",
     AUTO = "AUTO"
 }
+/** Figma variable reference attached to a color */
+export interface FigmaVariableRef {
+    id: string;
+    name: string;
+    collectionName: string;
+}
+/** A complete Figma color variable with all mode values */
+export interface FigmaColorVariable {
+    id: string;
+    name: string;
+    collectionId: string;
+    collectionName: string;
+    /** Values per mode: { "Light": {r,g,b,a}, "Dark": {r,g,b,a} } */
+    modeValues: Record<string, ColorRGBA>;
+}
+/** A collection of Figma variables */
+export interface FigmaVariableCollection {
+    id: string;
+    name: string;
+    modes: {
+        id: string;
+        name: string;
+    }[];
+    defaultModeId: string;
+}
 export interface ColorRGBA {
     r: number;
     g: number;
     b: number;
     a: number;
     colorId?: string;
+    /** Figma variable reference (if color is bound to a variable) */
+    variableRef?: FigmaVariableRef;
 }
 export interface Font {
     name?: string;
