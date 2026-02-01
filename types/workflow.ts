@@ -473,7 +473,6 @@ export interface ExportDesignData {
   nodeCount: number;
   styleCount: number;
   isLocked?: boolean;   // True if design exceeds tier limit and wasn't processed
-  previewUrl?: string;  // Backend URL to rendered HTML preview for iframe embedding
 }
 
 /** Custom font info with weights and styles */

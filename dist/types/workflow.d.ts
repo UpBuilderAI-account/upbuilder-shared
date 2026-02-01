@@ -323,7 +323,6 @@ export interface ExportDesignData {
     nodeCount: number;
     styleCount: number;
     isLocked?: boolean;
-    previewUrl?: string;
 }
 /** Custom font info with weights and styles */
 export interface CustomFontInfo {
