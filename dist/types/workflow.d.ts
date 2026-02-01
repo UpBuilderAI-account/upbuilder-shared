@@ -345,10 +345,12 @@ export interface WorkflowExportComplete {
 }
 export interface WorkflowCommand {
     projectId: string;
-    action: 'start' | 'cancel' | 'next' | 'resume' | 'reprocess_load' | 'reprocess_convert_to_platform' | 'reprocess_customize' | 'reprocess_customize_fast' | 'quick_rebuild';
+    action: 'start' | 'cancel' | 'next' | 'resume' | 'reprocess_load' | 'reprocess_convert_to_platform' | 'reprocess_customize' | 'reprocess_customize_fast' | 'quick_rebuild' | 'rerun_from_stage';
     retry?: boolean;
     /** Export configuration from export_config stage */
     exportConfig?: ExportConfig;
+    /** Stage to rerun from (dev-only, used with rerun_from_stage action) */
+    stageToRunFrom?: string;
 }
 /**
  * Request to save edited code from the customizer

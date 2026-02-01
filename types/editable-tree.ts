@@ -625,6 +625,8 @@ export interface EditableFontInfo {
   family: string;
   weights: string[];
   styles: string[];
+  source?: 'google' | 's3' | 'not_found';
+  urls?: string[];
 }
 
 /**
@@ -931,4 +933,14 @@ export interface EditableTreePayloadV2 extends EditableTreePayload {
    * Separate from fontCss for easier handling
    */
   googleFontsUrl?: string;
+
+  /** Variable mapping data (from S3 variable-mapping.json) */
+  variableMapping?: {
+    collections: import('./element').FigmaVariableCollection[];
+    variables: import('./element').FigmaColorVariable[];
+    cssPropertyMap: Record<string, string>;
+  } | null;
+
+  /** CMS schema (from project state) */
+  cmsSchema?: import('./cms').CMSSchema | null;
 }
