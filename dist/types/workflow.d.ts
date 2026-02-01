@@ -167,11 +167,6 @@ export interface StylesheetConfig {
     generatePointerEvents: boolean;
     /** Custom spacing scale (overrides defaults) */
     spacingScale?: SpacingScale;
-    /**
-     * Allow flexible CSS units (rem, em, %, vh, vw)
-     * If false, only px is allowed
-     */
-    allowFlexibleUnits: boolean;
 }
 /**
  * Responsive configuration (part of ExportConfig)

@@ -243,15 +243,6 @@ export interface StylesheetConfig {
   /** Custom spacing scale (overrides defaults) */
   spacingScale?: SpacingScale;
 
-  // ===========================================
-  // UNITS
-  // ===========================================
-
-  /**
-   * Allow flexible CSS units (rem, em, %, vh, vw)
-   * If false, only px is allowed
-   */
-  allowFlexibleUnits: boolean;
 }
 
 /**
@@ -374,9 +365,6 @@ export const DEFAULT_STYLESHEET_CONFIG: StylesheetConfig = {
   generateOverflow: false,
   generateZIndex: false,
   generatePointerEvents: false,
-
-  // Units (disabled by default)
-  allowFlexibleUnits: false,
 };
 
 /**
