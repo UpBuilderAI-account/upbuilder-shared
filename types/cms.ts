@@ -125,6 +125,48 @@ export interface CMSSchema {
 }
 
 // ============================================================================
+// NORMALIZATION — ensures sampleItems always use { fields: {...} } shape
+// ============================================================================
+
+/**
+ * Normalize a single sample item to always have { fields: {...} } shape.
+ * The AI sometimes generates flat objects like { "Title": "value" } instead of
+ * the expected { fields: { "Title": "value" } }.
+ */
+function normalizeSampleItem(item: unknown): CMSSampleItem {
+  if (!item || typeof item !== 'object') return { fields: {} };
+  const obj = item as Record<string, unknown>;
+
+  // Already wrapped correctly
+  if (obj.fields && typeof obj.fields === 'object' && !Array.isArray(obj.fields)) {
+    return { fields: obj.fields as Record<string, string | number | boolean> };
+  }
+
+  // Flat format — the object itself contains the field values
+  const fields: Record<string, string | number | boolean> = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+      fields[key] = value;
+    }
+  }
+  return { fields };
+}
+
+/**
+ * Normalize a full CMS schema so every sampleItem is in { fields: {...} } shape.
+ * Safe to call on already-normalized schemas (idempotent).
+ */
+export function normalizeCmsSchema(schema: CMSSchema): CMSSchema {
+  return {
+    ...schema,
+    collections: schema.collections.map(collection => ({
+      ...collection,
+      sampleItems: (collection.sampleItems || []).map(normalizeSampleItem),
+    })),
+  };
+}
+
+// ============================================================================
 // XSCP CMS BINDING TYPES
 // ============================================================================
 

@@ -92,6 +92,11 @@ export interface CMSSchema {
     };
 }
 /**
+ * Normalize a full CMS schema so every sampleItem is in { fields: {...} } shape.
+ * Safe to call on already-normalized schemas (idempotent).
+ */
+export declare function normalizeCmsSchema(schema: CMSSchema): CMSSchema;
+/**
  * Binding between an XSCP node and a CMS field
  */
 export interface CMSBinding {
