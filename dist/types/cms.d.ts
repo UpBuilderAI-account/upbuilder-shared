@@ -22,7 +22,7 @@ export type CMSFieldType = 'PlainText' | 'RichText' | 'Image' | 'Video' | 'File'
  * Webflow CMS hard limits — single source of truth for backend, frontend, and prompts
  */
 export declare const CMS_LIMITS: {
-    readonly MAX_FIELDS_PER_COLLECTION: 60;
+    readonly MAX_FIELDS_PER_COLLECTION: 30;
     readonly MAX_REFERENCE_FIELDS: 10;
     readonly MAX_MULTI_REFERENCE_FIELDS: 10;
     readonly MAX_ITEMS_PER_COLLECTION_LIST: 100;

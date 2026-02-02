@@ -50,7 +50,7 @@ export type CMSFieldType =
  * Webflow CMS hard limits — single source of truth for backend, frontend, and prompts
  */
 export const CMS_LIMITS = {
-  MAX_FIELDS_PER_COLLECTION: 60,
+  MAX_FIELDS_PER_COLLECTION: 30,
   MAX_REFERENCE_FIELDS: 10,
   MAX_MULTI_REFERENCE_FIELDS: 10,
   MAX_ITEMS_PER_COLLECTION_LIST: 100,
