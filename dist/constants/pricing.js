@@ -3,41 +3,40 @@
 // PRICING CONSTANTS
 // Centralized pricing plan and feature definitions
 // ============================================================================
-// Tiers: Basic (free), Pro ($9.99), Max ($19.99)
-// NOTE: Max tier exists for future use but is hidden from UI pricing cards
+// Tiers: Free ($0), Pro ($9.99), Max ($19.99)
+// All three tiers are displayed in both marketing and dashboard pricing
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.MAX_FEATURES = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;
 /**
- * Basic (Free) plan feature list
+ * Free plan feature list
  */
 exports.BASIC_FEATURES = [
-    '2 designs/month',
-    'Preview Webflow Export',
+    '2 exports/month',
+    'Preview only (no Webflow export)',
     'Basic support',
 ];
 /**
  * Pro plan feature list
- * NOTE: GitHub sync feature removed
  */
 exports.PRO_FEATURES = [
-    '200 designs/month',
-    'Export to Webflow',
+    'Unlimited exports',
+    'Up to 2 frames per export',
+    'Full Webflow export',
     'Priority support',
 ];
 /**
  * Max plan feature list
+ * Uses "Everything in Pro, plus:" framing on pricing cards
  */
 exports.MAX_FEATURES = [
-    'Unlimited designs/month',
-    'Export to Webflow',
-    'Priority support',
-    'Expand from existing projects',
+    'Up to 9 frames per export',
+    'Build on past exports',
     'Early access to new features',
 ];
 /**
  * Design slots per tier
- * Controls how many frames/designs users can select in the plugin
+ * Controls how many frames users can select in the plugin
  */
 exports.MAX_DESIGNS_PER_PROJECT = {
     basic: 2,
@@ -50,10 +49,10 @@ exports.MAX_DESIGNS_PER_PROJECT = {
  */
 exports.PRICING_CONFIG = {
     basic: {
-        name: 'Basic',
+        name: 'Free',
         price: 0,
         displayPrice: 'Free',
-        description: 'Try UpBuilder for free',
+        description: 'Try it out',
         features: exports.BASIC_FEATURES,
         exportsPerMonth: 2,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.basic,
@@ -62,9 +61,9 @@ exports.PRICING_CONFIG = {
         name: 'Pro',
         price: 9.99,
         displayPrice: '9.99',
-        description: 'For power users',
+        description: 'For individual makers',
         features: exports.PRO_FEATURES,
-        exportsPerMonth: 200,
+        exportsPerMonth: 999999, // Unlimited
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
         popular: true,
     },
@@ -72,7 +71,7 @@ exports.PRICING_CONFIG = {
         name: 'Max',
         price: 19.99,
         displayPrice: '19.99',
-        description: 'For teams and agencies',
+        description: 'For teams & agencies',
         features: exports.MAX_FEATURES,
         exportsPerMonth: 999999, // Unlimited
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.max,
