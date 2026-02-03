@@ -219,6 +219,14 @@ export type PluginBackendMessage = {
         count: number;
     };
 } | {
+    type: 'group-thumbnail-ready';
+    data: {
+        groupKey: string;
+        thumbnailUrl: string;
+        width: number;
+        height: number;
+    };
+} | {
     type: 'geometry-measured';
     data: {
         requestId: string;
@@ -366,6 +374,15 @@ export type PluginFrontendMessage = {
 } | {
     type: 'set-ai-approved-nodes';
     data: {
+        nodeIds: string[];
+        groups?: Array<{
+            nodeIds: string[];
+        }>;
+    };
+} | {
+    type: 'request-group-thumbnail';
+    data: {
+        groupKey: string;
         nodeIds: string[];
     };
 } | {

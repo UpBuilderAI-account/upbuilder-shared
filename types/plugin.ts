@@ -175,6 +175,7 @@ export type PluginBackendMessage =
   | { type: 'ai-scan-progress'; data: { current: number; total: number } }
   | { type: 'ai-scan-data-ready'; data: AIScanDataReadyPayload }
   | { type: 'ai-approved-nodes-set'; data: { count: number } }
+  | { type: 'group-thumbnail-ready'; data: { groupKey: string; thumbnailUrl: string; width: number; height: number } }
   // Geometry measurement response (plugin backend → frontend → websocket → server)
   | { type: 'geometry-measured'; data: { requestId: string; success: boolean; measurements: Array<{ commandType: string; nodeIds: string[]; data: any; error?: string }> } };
 
@@ -213,7 +214,8 @@ export type PluginFrontendMessage =
   | { type: 'request-image-review-thumbnails'; data: { nodeIds: string[] } }
   // AI image scan (pre-export phase)
   | { type: 'scan-ai-images'; data: { frameIds: string[] } }
-  | { type: 'set-ai-approved-nodes'; data: { nodeIds: string[] } }
+  | { type: 'set-ai-approved-nodes'; data: { nodeIds: string[]; groups?: Array<{ nodeIds: string[] }> } }
+  | { type: 'request-group-thumbnail'; data: { groupKey: string; nodeIds: string[] } }
   // Geometry measurement request (server → websocket → frontend → plugin backend)
   | { type: 'measure-geometry'; data: { requestId: string; commands: Array<{ type: string; nodeIds: string[] }> } };
 

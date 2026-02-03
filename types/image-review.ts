@@ -41,6 +41,12 @@ export interface DetectedGraphic {
   /** Dimensions */
   width?: number;
   height?: number;
+  /** For multi-node scattered groups: 3 tiers of possible compositions */
+  groupVariants?: {
+    high: string[];    // nodeIds — most inclusive
+    medium: string[];  // nodeIds — safer subset
+    low: string[];     // nodeIds — conservative core
+  };
 }
 
 /**
@@ -134,6 +140,14 @@ export interface CombinedDetection {
   duplicateCount?: number;
   /** All node IDs in this duplicate group (including self) */
   duplicateNodeIds?: string[];
+  /** For scattered groups: 3-tier variants the user can pick from */
+  groupVariants?: {
+    high: string[];
+    medium: string[];
+    low: string[];
+  };
+  /** Which tier the user selected (default: 'high') */
+  selectedTier?: 'high' | 'medium' | 'low';
 }
 
 /**
