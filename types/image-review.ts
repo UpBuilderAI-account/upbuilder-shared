@@ -173,3 +173,48 @@ export interface ImageReviewState {
   designs: ImageReviewDesignState[];
   error?: string;
 }
+
+// ============================================================================
+// SCATTERED ANALYSIS TYPES
+// AI-powered scattered composition detection (runs after section bounding)
+// ============================================================================
+
+/**
+ * A scattered composition group detected by AI
+ */
+export interface ScatteredGroup {
+  /** Unique identifier for this group */
+  id: string;
+  /** Descriptive name (e.g., "Footer Logo Wordmark") */
+  name: string;
+  /** AI's reasoning for grouping these nodes */
+  reason: string;
+  /** Confidence level */
+  confidence: DetectionConfidence;
+  /** Category of the composition */
+  category: GraphicCategory;
+  /** 3-tier variants: high (inclusive), medium (safer), low (conservative) */
+  groupVariants: {
+    high: string[];
+    medium: string[];
+    low: string[];
+  };
+}
+
+/**
+ * Scattered analysis results for a single section
+ */
+export interface ScatteredSectionResult {
+  sectionId: string;
+  sectionName: string;
+  groups: ScatteredGroup[];
+}
+
+/**
+ * Full scattered analysis results from backend
+ */
+export interface ScatteredAnalysisResults {
+  success: boolean;
+  sections: ScatteredSectionResult[];
+  error?: string;
+}

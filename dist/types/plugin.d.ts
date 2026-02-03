@@ -227,6 +227,11 @@ export type PluginBackendMessage = {
         height: number;
     };
 } | {
+    type: 'scattered-groups-approved';
+    data: {
+        count: number;
+    };
+} | {
     type: 'geometry-measured';
     data: {
         requestId: string;
@@ -381,6 +386,19 @@ export type PluginFrontendMessage = {
     };
 } | {
     type: 'request-group-thumbnail';
+    data: {
+        groupKey: string;
+        nodeIds: string[];
+    };
+} | {
+    type: 'approve-scattered-groups';
+    data: {
+        groups: Array<{
+            nodeIds: string[];
+        }>;
+    };
+} | {
+    type: 'request-scattered-thumbnail';
     data: {
         groupKey: string;
         nodeIds: string[];

@@ -27,6 +27,7 @@ exports.PROJECT_STATUS = {
     LOAD: 'load',
     PLAN: 'plan',
     SECTION_BOUNDING: 'section_bounding',
+    SCATTERED_ANALYSIS: 'scattered_analysis',
     BUILD_STYLES: 'build_styles',
     BUILD_SECTIONS: 'build_sections',
     CMS_SCHEMA: 'cms_schema',
@@ -44,6 +45,7 @@ function isProcessingStage(status) {
         'load',
         'plan', // Added - plan now auto-continues to section_bounding
         'section_bounding',
+        'scattered_analysis',
         'build_styles',
         'build_sections',
         'cms_schema',
@@ -69,7 +71,8 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
         export_config: 'load',
         load: 'plan',
         plan: 'section_bounding',
-        section_bounding: 'build_styles',
+        section_bounding: 'scattered_analysis',
+        scattered_analysis: 'build_styles',
         build_styles: 'build_sections',
         build_sections: 'cms_schema',
         cms_schema: 'convert_to_platform',
@@ -103,7 +106,7 @@ function requiresUserActionAfter(status) {
     // export_config: user configures export options
     // customize: user reviews final output and triggers export
     // NOTE: 'plan' removed - now auto-continues to section_bounding
-    return status === 'export_config' || status === 'customize';
+    return status === 'export_config' || status === 'customize' || status === 'scattered_analysis';
 }
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION

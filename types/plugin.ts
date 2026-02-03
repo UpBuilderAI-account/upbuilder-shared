@@ -176,6 +176,8 @@ export type PluginBackendMessage =
   | { type: 'ai-scan-data-ready'; data: AIScanDataReadyPayload }
   | { type: 'ai-approved-nodes-set'; data: { count: number } }
   | { type: 'group-thumbnail-ready'; data: { groupKey: string; thumbnailUrl: string; width: number; height: number } }
+  // Scattered analysis messages (post-section-bounding flow)
+  | { type: 'scattered-groups-approved'; data: { count: number } }
   // Geometry measurement response (plugin backend → frontend → websocket → server)
   | { type: 'geometry-measured'; data: { requestId: string; success: boolean; measurements: Array<{ commandType: string; nodeIds: string[]; data: any; error?: string }> } };
 
@@ -216,6 +218,9 @@ export type PluginFrontendMessage =
   | { type: 'scan-ai-images'; data: { frameIds: string[] } }
   | { type: 'set-ai-approved-nodes'; data: { nodeIds: string[]; groups?: Array<{ nodeIds: string[] }> } }
   | { type: 'request-group-thumbnail'; data: { groupKey: string; nodeIds: string[] } }
+  // Scattered analysis messages (post-section-bounding flow)
+  | { type: 'approve-scattered-groups'; data: { groups: Array<{ nodeIds: string[] }> } }
+  | { type: 'request-scattered-thumbnail'; data: { groupKey: string; nodeIds: string[] } }
   // Geometry measurement request (server → websocket → frontend → plugin backend)
   | { type: 'measure-geometry'; data: { requestId: string; commands: Array<{ type: string; nodeIds: string[] }> } };
 

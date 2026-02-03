@@ -65,6 +65,7 @@ export declare const SOCKET_EVENTS: {
         readonly STRUCTURED_PLAN: "workflow:structured_plan";
         readonly SECTION_PROGRESS: "workflow:section_progress";
         readonly AI_ANALYSIS_PROGRESS: "workflow:ai_analysis_progress";
+        readonly SCATTERED_ANALYSIS_RESULTS: "scattered-analysis-results";
     };
     /**
      * Server → Client: Project state updates

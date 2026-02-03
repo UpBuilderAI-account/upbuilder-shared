@@ -91,6 +91,8 @@ export const SOCKET_EVENTS = {
     SECTION_PROGRESS: 'workflow:section_progress', // Server → Client: Per-section build progress
     // AI image analysis progress (pre-export phase)
     AI_ANALYSIS_PROGRESS: 'workflow:ai_analysis_progress', // Server → Client: Per-design AI analysis progress
+    // Scattered analysis results (post-section-bounding)
+    SCATTERED_ANALYSIS_RESULTS: 'scattered-analysis-results', // Server → Client: Scattered composition groups for review
   },
 
   /**
