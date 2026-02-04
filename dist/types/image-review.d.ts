@@ -1,7 +1,7 @@
 /**
  * Category of detected graphic
  */
-export type GraphicCategory = 'icon' | 'illustration' | 'logo' | 'photo' | 'decorative' | 'complex';
+export type GraphicCategory = 'icon' | 'illustration' | 'logo' | 'photo' | 'decorative' | 'complex' | 'background' | 'pattern' | 'divider' | 'badge' | 'icon-strip' | 'graphic';
 /**
  * Confidence level for AI detection
  * - high: Auto-checked, very likely a graphic
@@ -170,14 +170,10 @@ export interface ScatteredGroup {
     reason: string;
     /** Confidence level */
     confidence: DetectionConfidence;
-    /** Category of the composition */
+    /** Category of the composition (background, logo, decoration, etc.) */
     category: GraphicCategory;
-    /** 3-tier variants: high (inclusive), medium (safer), low (conservative) */
-    groupVariants: {
-        high: string[];
-        medium: string[];
-        low: string[];
-    };
+    /** Node IDs that should be grouped together */
+    nodeIds: string[];
 }
 /**
  * Scattered analysis results for a single section

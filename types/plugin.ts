@@ -196,7 +196,7 @@ export type PluginFrontendMessage =
   | { type: 'select-frame'; data: { frameId: string } }
   | { type: 'enable-frame-selection'; data: { enabled: boolean } }
   | { type: 'cancel-frame-preview'; data: { frameId: string } }
-  | { type: 'extract-nodes'; data: { frameIds: string[] } }
+  | { type: 'extract-nodes'; data: { frameIds: string[]; maxDimension?: number } }
   | { type: 'extract-images'; data: { projectId: string; designId: string } }
   | { type: 'extract-images-for-design'; data: { projectId: string; designId: string; frameIndex: number; isLastDesign: boolean } }
   | { type: 'extract-all-images'; data: { projectId: string; frameToDesignMap: Record<number, string> } }

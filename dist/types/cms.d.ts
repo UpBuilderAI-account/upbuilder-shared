@@ -131,10 +131,12 @@ export interface CMSXSCPConfig {
  */
 export interface CMSCollectionStatus {
     collectionSlug: string;
-    status: 'success' | 'failed';
+    status: 'created' | 'skipped' | 'failed';
     webflowCollectionId?: string;
     error?: string;
     itemsCreated?: number;
+    fieldsCreated?: number;
+    fieldsFailed?: number;
 }
 /**
  * Full CMS creation report from extension

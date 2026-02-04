@@ -6,8 +6,19 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = void 0;
+exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.IMAGE_DIMENSION_PRESETS = exports.DEFAULT_IMAGE_CONFIG = void 0;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
+exports.DEFAULT_IMAGE_CONFIG = {
+    format: 'webp',
+    maxDimension: 1920,
+};
+exports.IMAGE_DIMENSION_PRESETS = [
+    { label: 'Low (1024px)', value: 1024 },
+    { label: 'Medium (1280px)', value: 1280 },
+    { label: 'Standard (1920px)', value: 1920 },
+    { label: 'High (2560px)', value: 2560 },
+    { label: 'Ultra (3840px)', value: 3840 },
+];
 /**
  * Default stylesheet configuration
  */
@@ -60,6 +71,7 @@ exports.QUICK_EXPORT_CONFIG = {
     stylesheet: exports.DEFAULT_STYLESHEET_CONFIG,
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.QUICK_INTERACTIVITY_CONFIG,
+    imageConfig: exports.DEFAULT_IMAGE_CONFIG,
     enableAIAssistant: false, // Quick mode skips AI planning and fixing
     enableCms: false, // CMS disabled in quick mode
     enableVariables: false, // Variables disabled in quick mode
@@ -72,6 +84,7 @@ exports.DEFAULT_EXPORT_CONFIG = {
     stylesheet: exports.DEFAULT_STYLESHEET_CONFIG,
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.DEFAULT_INTERACTIVITY_CONFIG,
+    imageConfig: exports.DEFAULT_IMAGE_CONFIG,
     enableAIAssistant: true, // AI assistant (planning + fixing) enabled by default
     enableCms: false, // CMS disabled by default
     enableVariables: false, // Variables disabled by default

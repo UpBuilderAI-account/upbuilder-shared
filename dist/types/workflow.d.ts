@@ -201,6 +201,33 @@ export interface InteractivityConfig {
     enableInteractiveComponents: boolean;
 }
 /**
+ * Image export configuration (part of ExportConfig)
+ * Controls image format and maximum dimensions for exported images
+ */
+export interface ImageConfig {
+    /** S3 storage format: 'webp' (default) or 'png' */
+    format: 'webp' | 'png';
+    /** Max dimension in pixels for exported images */
+    maxDimension: number;
+}
+export declare const DEFAULT_IMAGE_CONFIG: ImageConfig;
+export declare const IMAGE_DIMENSION_PRESETS: readonly [{
+    readonly label: "Low (1024px)";
+    readonly value: 1024;
+}, {
+    readonly label: "Medium (1280px)";
+    readonly value: 1280;
+}, {
+    readonly label: "Standard (1920px)";
+    readonly value: 1920;
+}, {
+    readonly label: "High (2560px)";
+    readonly value: 2560;
+}, {
+    readonly label: "Ultra (3840px)";
+    readonly value: 3840;
+}];
+/**
  * Complete export configuration
  * Sent from frontend to backend during export_config stage
  */
@@ -235,6 +262,8 @@ export interface ExportConfig {
      * Default: false (disabled)
      */
     enableVariables?: boolean;
+    /** Image export configuration (format + max dimensions) */
+    imageConfig?: ImageConfig;
     /**
      * Webflow-specific configuration
      * When set, synced styles from the Webflow site will be merged with AI-generated styles

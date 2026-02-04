@@ -281,6 +281,30 @@ export interface InteractivityConfig {
 }
 
 /**
+ * Image export configuration (part of ExportConfig)
+ * Controls image format and maximum dimensions for exported images
+ */
+export interface ImageConfig {
+  /** S3 storage format: 'webp' (default) or 'png' */
+  format: 'webp' | 'png';
+  /** Max dimension in pixels for exported images */
+  maxDimension: number;
+}
+
+export const DEFAULT_IMAGE_CONFIG: ImageConfig = {
+  format: 'webp',
+  maxDimension: 1920,
+};
+
+export const IMAGE_DIMENSION_PRESETS = [
+  { label: 'Low (1024px)', value: 1024 },
+  { label: 'Medium (1280px)', value: 1280 },
+  { label: 'Standard (1920px)', value: 1920 },
+  { label: 'High (2560px)', value: 2560 },
+  { label: 'Ultra (3840px)', value: 3840 },
+] as const;
+
+/**
  * Complete export configuration
  * Sent from frontend to backend during export_config stage
  */
@@ -315,6 +339,8 @@ export interface ExportConfig {
    * Default: false (disabled)
    */
   enableVariables?: boolean;
+  /** Image export configuration (format + max dimensions) */
+  imageConfig?: ImageConfig;
   /**
    * Webflow-specific configuration
    * When set, synced styles from the Webflow site will be merged with AI-generated styles
@@ -398,6 +424,7 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   stylesheet: DEFAULT_STYLESHEET_CONFIG,
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: QUICK_INTERACTIVITY_CONFIG,
+  imageConfig: DEFAULT_IMAGE_CONFIG,
   enableAIAssistant: false,  // Quick mode skips AI planning and fixing
   enableCms: false,          // CMS disabled in quick mode
   enableVariables: false,    // Variables disabled in quick mode
@@ -411,6 +438,7 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   stylesheet: DEFAULT_STYLESHEET_CONFIG,
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
+  imageConfig: DEFAULT_IMAGE_CONFIG,
   enableAIAssistant: true,  // AI assistant (planning + fixing) enabled by default
   enableCms: false,         // CMS disabled by default
   enableVariables: false,   // Variables disabled by default

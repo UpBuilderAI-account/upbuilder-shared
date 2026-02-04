@@ -291,6 +291,7 @@ export type PluginFrontendMessage = {
     type: 'extract-nodes';
     data: {
         frameIds: string[];
+        maxDimension?: number;
     };
 } | {
     type: 'extract-images';
