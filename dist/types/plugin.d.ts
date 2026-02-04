@@ -87,7 +87,7 @@ export interface ImagePair {
  * Plugin UI processing stages (for plugin interface state)
  * Separate from backend workflow ProcessingStage
  */
-export type PluginUIStage = 'idle' | 'selecting' | 'loading' | 'analyzing' | 'extracting' | 'uploading' | 'processing' | 'building' | 'exporting' | 'reviewing' | 'complete' | 'error';
+export type PluginUIStage = 'idle' | 'selecting' | 'loading' | 'analyzing' | 'extracting' | 'uploading' | 'processing' | 'upload-complete' | 'building' | 'exporting' | 'reviewing' | 'complete' | 'error';
 /**
  * Messages from plugin backend → plugin UI
  * (Internal Figma plugin communication, not WebSocket)

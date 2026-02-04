@@ -428,6 +428,32 @@ export interface Element {
   children?: Element[];
 }
 
+// ==================== GEOMETRY MEASUREMENT ====================
+
+/**
+ * Pre-computed geometric measurement data for QA prompts.
+ * Populated by populateElementMeasurements() in the backend data loader,
+ * replacing the previous AI + plugin roundtrip.
+ */
+export interface ElementMeasurement {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  layoutMode?: 'HORIZONTAL' | 'VERTICAL' | 'NONE';
+  padding?: { top: number; right: number; bottom: number; left: number };
+  itemSpacing?: number;
+  childMeasurements?: {
+    nodeId: string;
+    name: string;
+    relX: number;
+    relY: number;
+    width: number;
+    height: number;
+  }[];
+  measuredGaps?: number[];
+}
+
 // ==================== BACKEND PROCESSING TYPES ====================
 
 /**
@@ -466,6 +492,12 @@ export interface ProcessedElement extends Omit<Element, 'children'> {
   // Composite-specific properties (added during composite processing)
   isComposite?: boolean;
   replacedElements?: string[];
+
+  /** Marked true when this element has been replaced by a scattered composite */
+  replaced?: boolean;
+
+  /** Pre-computed geometric measurement for QA prompts */
+  measurement?: ElementMeasurement;
 
   // Hierarchy with processed children (STRICTLY typed)
   children?: ProcessedElement[];

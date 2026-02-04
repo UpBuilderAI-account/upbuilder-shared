@@ -121,6 +121,7 @@ export type PluginUIStage =
   | 'extracting'
   | 'uploading'
   | 'processing'
+  | 'upload-complete'
   | 'building'
   | 'exporting'
   | 'reviewing'

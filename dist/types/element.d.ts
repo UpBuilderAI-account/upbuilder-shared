@@ -343,6 +343,34 @@ export interface Element {
     children?: Element[];
 }
 /**
+ * Pre-computed geometric measurement data for QA prompts.
+ * Populated by populateElementMeasurements() in the backend data loader,
+ * replacing the previous AI + plugin roundtrip.
+ */
+export interface ElementMeasurement {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    layoutMode?: 'HORIZONTAL' | 'VERTICAL' | 'NONE';
+    padding?: {
+        top: number;
+        right: number;
+        bottom: number;
+        left: number;
+    };
+    itemSpacing?: number;
+    childMeasurements?: {
+        nodeId: string;
+        name: string;
+        relX: number;
+        relY: number;
+        width: number;
+        height: number;
+    }[];
+    measuredGaps?: number[];
+}
+/**
  * Backend processing metadata
  */
 export interface ProcessingData {
@@ -372,6 +400,10 @@ export interface ProcessedElement extends Omit<Element, 'children'> {
     htmlTag?: string;
     isComposite?: boolean;
     replacedElements?: string[];
+    /** Marked true when this element has been replaced by a scattered composite */
+    replaced?: boolean;
+    /** Pre-computed geometric measurement for QA prompts */
+    measurement?: ElementMeasurement;
     children?: ProcessedElement[];
 }
 //# sourceMappingURL=element.d.ts.map
