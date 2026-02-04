@@ -67,6 +67,7 @@ export declare const SOCKET_EVENTS: {
         readonly SECTION_RENDER: "workflow:section_render";
         readonly SECTION_COMPUTED: "workflow:section_computed";
         readonly SECTION_QA_PASSED: "workflow:section_qa_passed";
+        readonly SECTION_QA_RESULT: "workflow:section_qa_result";
         readonly AI_ANALYSIS_PROGRESS: "workflow:ai_analysis_progress";
         readonly SCATTERED_ANALYSIS_RESULTS: "scattered-analysis-results";
     };

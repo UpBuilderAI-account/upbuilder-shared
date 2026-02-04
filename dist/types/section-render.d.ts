@@ -92,4 +92,24 @@ export interface SectionQAPassedPayload {
     /** QA accuracy score 0-100 */
     accuracy: number;
 }
+/**
+ * Server → Frontend: QA result for each attempt (both pass and fail)
+ * Used by the filmstrip UI to show per-attempt thumbnails with status
+ */
+export interface SectionQAResultPayload {
+    sectionId: string;
+    sectionName: string;
+    attempt: number;
+    passed: boolean;
+    /** QA accuracy score 0-100 (even partial score for failures) */
+    accuracy: number;
+    /** Judge findings summary (for failed attempts) */
+    findings?: string;
+    /** HTML for this attempt's thumbnail rendering */
+    html: string;
+    /** CSS for this attempt's thumbnail rendering */
+    css: string;
+    /** Font CSS for thumbnail rendering */
+    fontCss?: string;
+}
 //# sourceMappingURL=section-render.d.ts.map

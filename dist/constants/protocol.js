@@ -90,6 +90,7 @@ exports.SOCKET_EVENTS = {
         SECTION_RENDER: 'workflow:section_render', // Server → Client: Send HTML/CSS for browser rendering
         SECTION_COMPUTED: 'workflow:section_computed', // Client → Server: Computed properties from browser
         SECTION_QA_PASSED: 'workflow:section_qa_passed', // Server → Client: Section passed QA, show in live preview
+        SECTION_QA_RESULT: 'workflow:section_qa_result', // Server → Client: QA result per attempt (pass or fail)
         // AI image analysis progress (pre-export phase)
         AI_ANALYSIS_PROGRESS: 'workflow:ai_analysis_progress', // Server → Client: Per-design AI analysis progress
         // Scattered analysis results (post-section-bounding)
