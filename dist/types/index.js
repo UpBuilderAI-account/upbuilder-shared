@@ -78,3 +78,5 @@ __exportStar(require("./expansion"), exports);
 __exportStar(require("./image-review"), exports);
 // CMS types (schema, bindings, XSCP integration)
 __exportStar(require("./cms"), exports);
+// Section render types (browser-based QA rendering)
+__exportStar(require("./section-render"), exports);

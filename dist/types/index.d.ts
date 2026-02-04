@@ -15,4 +15,5 @@ export * from './fixing';
 export * from './expansion';
 export * from './image-review';
 export * from './cms';
+export * from './section-render';
 //# sourceMappingURL=index.d.ts.map

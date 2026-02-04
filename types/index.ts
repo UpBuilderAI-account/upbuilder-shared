@@ -154,3 +154,6 @@ export * from './image-review';
 
 // CMS types (schema, bindings, XSCP integration)
 export * from './cms';
+
+// Section render types (browser-based QA rendering)
+export * from './section-render';
