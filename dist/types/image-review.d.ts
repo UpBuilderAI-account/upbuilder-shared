@@ -174,6 +174,17 @@ export interface ScatteredGroup {
     category: GraphicCategory;
     /** Node IDs that should be grouped together */
     nodeIds: string[];
+    /** S3 key for the composited image (set by backend after compositing) */
+    compositeS3Key?: string;
+    /** S3 URL for the thumbnail preview (set by backend) */
+    thumbnailUrl?: string;
+    /** Bounding box of the composite (set by backend) */
+    compositeBounds?: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    };
 }
 /**
  * Scattered analysis results for a single section

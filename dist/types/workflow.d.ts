@@ -374,6 +374,8 @@ export interface WorkflowCommand {
     exportConfig?: ExportConfig;
     /** Stage to rerun from (dev-only, used with rerun_from_stage action) */
     stageToRunFrom?: string;
+    /** Approved scattered group IDs (sent with 'next' action from scattered_analysis stage) */
+    approvedScatteredGroups?: string[];
 }
 /**
  * Request to save edited code from the customizer
