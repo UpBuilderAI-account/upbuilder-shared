@@ -130,13 +130,12 @@ export interface ImageReviewResponse {
     dimensions: { width: number; height: number };
   }>;
   /**
-   * When createProject was provided in request, these contain the real IDs.
-   * Plugin should store these and use them during send_nodes.
+   * When createProject was provided in request, this contains the real project ID.
+   * Plugin should store this and use it during send_nodes.
+   * NOTE: Designs are NOT created during scan - they are created during send_nodes.
    */
   createdProject?: {
     projectId: string;
-    /** Maps frameId → real designId (for plugin to use during export) */
-    designIdMap: Record<string, string>;
   };
 }
 
