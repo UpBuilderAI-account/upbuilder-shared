@@ -165,6 +165,8 @@ export interface SectionBuildProgress {
   message?: string;
   isGlobal?: boolean;
   isPrimaryInstance?: boolean;
+  /** Shared variant identifier for global sections (e.g., "navbar_v1") - same across all instances */
+  globalVariant?: string;
   // Fixing details (when status is 'fixing' or 'fixing_retry')
   fixAttempt?: number; // 1 or 2 (max 2 attempts)
   errorsFixed?: number;
