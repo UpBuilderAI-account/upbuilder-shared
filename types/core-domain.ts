@@ -154,14 +154,13 @@ export function isProcessingStage(status: ProjectStatus): boolean {
 export function getNextStatus(status: ProjectStatus, platform?: Platform, quickMode?: boolean, _enableAIAssistant?: boolean): ProjectStatus | null {
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
     // Plugin-side stages (run in Figma plugin, NOT in backend orchestrator)
-    // These transitions exist for plugin UI progress tracking only
-    // Backend workflow uses 'export_config' as the entry point
-    idle: 'export_config',  // Backend starts at export_config (plugin handles analyze_design/images_export)
-    scanning: 'export_config',  // After scan, backend starts at export_config
+    // Backend workflow starts directly at 'load' - plugin sends exportConfig with nodes
+    idle: 'load',  // Backend starts at load
+    scanning: 'load',  // After scan, backend starts at load
     analyze_design: 'images_export',  // Plugin-only: analyze → images
     images_export: 'load',  // Plugin-only: after images uploaded, backend starts load
-    // Backend workflow stages
-    export_config: 'load',
+    // Backend workflow stages (export_config removed - plugin sends config)
+    export_config: 'load',  // Legacy fallback - skip to load
     load: 'section_bounding',  // plan stage removed
     plan: 'section_bounding',  // @deprecated - kept for backwards compatibility
     section_bounding: 'scattered_analysis',
@@ -201,10 +200,9 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
  */
 export function requiresUserActionAfter(status: ProjectStatus): boolean {
   // These stages require user action to proceed
-  // export_config: user configures export options
   // customize: user reviews final output and triggers export
-  // NOTE: 'plan' removed - now auto-continues to section_bounding
-  return status === 'export_config' || status === 'customize' || status === 'scattered_analysis';
+  // NOTE: export_config removed - plugin sends config directly
+  return status === 'customize' || status === 'scattered_analysis';
 }
 
 // Bricks and Elementor commented out - only Webflow available for now
