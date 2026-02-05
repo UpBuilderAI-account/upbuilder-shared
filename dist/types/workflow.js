@@ -131,7 +131,7 @@ exports.isFailed = isFailed;
 exports.STAGE_ORDER = [
     'export_config',
     'load',
-    'plan',
+    // 'plan' removed - stage no longer exists
     'section_bounding',
     'scattered_analysis',
     'build_styles',

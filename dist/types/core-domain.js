@@ -43,7 +43,7 @@ exports.PROJECT_STATUS = {
 function isProcessingStage(status) {
     const processingStages = [
         'load',
-        'plan', // Added - plan now auto-continues to section_bounding
+        // 'plan' removed - stage no longer exists
         'section_bounding',
         'scattered_analysis',
         'build_styles',
@@ -69,8 +69,8 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
         images_export: 'load', // After images, backend load begins
         // Backend workflow stages
         export_config: 'load',
-        load: 'plan',
-        plan: 'section_bounding',
+        load: 'section_bounding', // plan stage removed
+        plan: 'section_bounding', // @deprecated - kept for backwards compatibility
         section_bounding: 'scattered_analysis',
         scattered_analysis: 'build_styles',
         build_styles: 'build_sections',

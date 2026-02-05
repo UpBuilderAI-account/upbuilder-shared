@@ -1046,7 +1046,7 @@ export const isFailed = (p: Progress): boolean => p === -1;
 export const STAGE_ORDER: Stage[] = [
   'export_config',
   'load',
-  'plan',
+  // 'plan' removed - stage no longer exists
   'section_bounding',
   'scattered_analysis',
   'build_styles',
