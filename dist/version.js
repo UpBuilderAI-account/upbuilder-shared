@@ -18,7 +18,7 @@ exports.getVersionMismatchMessage = getVersionMismatchMessage;
  * If versions don't match, the backend rejects the connection with a
  * VERSION_OUTDATED error, prompting the user to close and reopen Figma
  */
-exports.SHARED_VERSION = '2.1.246';
+exports.SHARED_VERSION = '2.1.249';
 /**
  * Minimum supported version (optional - for backwards compatibility)
  * If set, versions >= MIN_SUPPORTED_VERSION are accepted

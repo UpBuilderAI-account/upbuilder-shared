@@ -800,6 +800,24 @@ export interface StyleDefinition {
   webflowStyleId?: string;
 }
 
+/** Inter-section gap analysis for a single gap */
+export interface InterSectionGapAnalysis {
+  topSectionName: string;
+  bottomSectionName: string;
+  gapPx: number;
+  /** Classification: 'normal', 'touching', 'overlap', 'large_gap' */
+  classification: 'normal' | 'touching' | 'overlap' | 'large_gap';
+  /** Guidance for the AI on how to handle this gap */
+  guidance: string;
+}
+
+/** Spacing analysis for a single design */
+export interface DesignSpacingAnalysis {
+  designId: string;
+  designName: string;
+  gaps: InterSectionGapAnalysis[];
+}
+
 /**
  * Build styles stage state
  * Stores the base style system created before build-sections
@@ -811,6 +829,8 @@ export interface BuildStylesState {
   rawOutput: string;
   /** Timestamp when completed */
   completedAt: number;
+  /** Pre-computed inter-section spacing analysis for all designs */
+  spacingAnalysis?: DesignSpacingAnalysis[];
 }
 
 // =============================================================================
