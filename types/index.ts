@@ -113,6 +113,9 @@ export {
   // Build styles types (new build-styles stage)
   type StyleDefinition,
   type BuildStylesState,
+  // Inter-section spacing analysis (computed upfront in build-styles)
+  type InterSectionGapAnalysis,
+  type DesignSpacingAnalysis,
   // Section bounding & build sections types
   type SectionType,
   type GlobalVerdict,

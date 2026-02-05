@@ -302,12 +302,6 @@ export interface ExportConfig {
      * Default: false (disabled)
      */
     enableCms?: boolean;
-    /**
-     * Enable design variable extraction and CSS custom property generation
-     * When enabled, Figma variables are extracted and mapped to CSS custom properties
-     * Default: false (disabled)
-     */
-    enableVariables?: boolean;
     /** Image export configuration (format + max dimensions) */
     imageConfig?: ImageConfig;
     /** Units configuration for CSS output (px to rem/em conversion) */

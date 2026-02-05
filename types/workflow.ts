@@ -408,12 +408,6 @@ export interface ExportConfig {
    * Default: false (disabled)
    */
   enableCms?: boolean;
-  /**
-   * Enable design variable extraction and CSS custom property generation
-   * When enabled, Figma variables are extracted and mapped to CSS custom properties
-   * Default: false (disabled)
-   */
-  enableVariables?: boolean;
   /** Image export configuration (format + max dimensions) */
   imageConfig?: ImageConfig;
   /** Units configuration for CSS output (px to rem/em conversion) */
@@ -508,7 +502,6 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   navbarConfig: DEFAULT_NAVBAR_CONFIG,
   enableAIAssistant: false,  // Quick mode skips AI planning and fixing
   enableCms: false,          // CMS disabled in quick mode
-  enableVariables: false,    // Variables disabled in quick mode
 };
 
 /**
@@ -524,7 +517,6 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   navbarConfig: DEFAULT_NAVBAR_CONFIG,
   enableAIAssistant: true,  // AI assistant (planning + fixing) enabled by default
   enableCms: false,         // CMS disabled by default
-  enableVariables: false,   // Variables disabled by default
 };
 
 // =============================================================================
