@@ -64,11 +64,13 @@ function isProcessingStage(status) {
 function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
     var _a;
     const transitions = {
-        idle: 'analyze_design',
-        // Plugin-side stages (run in Figma plugin)
-        scanning: 'analyze_design', // AI scan phase → user proceeds with export
-        analyze_design: 'images_export',
-        images_export: 'load', // After images, backend load begins
+        // Plugin-side stages (run in Figma plugin, NOT in backend orchestrator)
+        // These transitions exist for plugin UI progress tracking only
+        // Backend workflow uses 'export_config' as the entry point
+        idle: 'export_config', // Backend starts at export_config (plugin handles analyze_design/images_export)
+        scanning: 'export_config', // After scan, backend starts at export_config
+        analyze_design: 'images_export', // Plugin-only: analyze → images
+        images_export: 'load', // Plugin-only: after images uploaded, backend starts load
         // Backend workflow stages
         export_config: 'load',
         load: 'section_bounding', // plan stage removed
