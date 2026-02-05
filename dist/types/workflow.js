@@ -6,7 +6,7 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.IMAGE_DIMENSION_PRESETS = exports.DEFAULT_IMAGE_CONFIG = void 0;
+exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.DEFAULT_NAVBAR_CONFIG = exports.SCALABLE_UNITS_CONFIG = exports.DEFAULT_UNITS_CONFIG = exports.IMAGE_DIMENSION_PRESETS = exports.DEFAULT_IMAGE_CONFIG = void 0;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
 exports.DEFAULT_IMAGE_CONFIG = {
     format: 'webp',
@@ -19,6 +19,30 @@ exports.IMAGE_DIMENSION_PRESETS = [
     { label: 'High (2560px)', value: 2560 },
     { label: 'Ultra (3840px)', value: 3840 },
 ];
+exports.DEFAULT_UNITS_CONFIG = {
+    baseFontSize: 16,
+    fontSize: 'px',
+    lineHeight: 'px',
+    letterSpacing: 'px',
+    spacing: 'px',
+    borderRadius: 'px',
+};
+/** Preset: Scalable units (rem-based, best practice) */
+exports.SCALABLE_UNITS_CONFIG = {
+    baseFontSize: 16,
+    fontSize: 'rem',
+    lineHeight: 'unitless',
+    letterSpacing: 'em',
+    spacing: 'rem',
+    borderRadius: 'px',
+};
+exports.DEFAULT_NAVBAR_CONFIG = {
+    collapseAt: 'medium',
+    animation: 'default',
+    animationDuration: 400,
+    dropdownHover: true,
+    dropdownDelay: 0,
+};
 /**
  * Default stylesheet configuration
  */
@@ -72,6 +96,8 @@ exports.QUICK_EXPORT_CONFIG = {
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.QUICK_INTERACTIVITY_CONFIG,
     imageConfig: exports.DEFAULT_IMAGE_CONFIG,
+    unitsConfig: exports.DEFAULT_UNITS_CONFIG,
+    navbarConfig: exports.DEFAULT_NAVBAR_CONFIG,
     enableAIAssistant: false, // Quick mode skips AI planning and fixing
     enableCms: false, // CMS disabled in quick mode
     enableVariables: false, // Variables disabled in quick mode
@@ -85,6 +111,8 @@ exports.DEFAULT_EXPORT_CONFIG = {
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.DEFAULT_INTERACTIVITY_CONFIG,
     imageConfig: exports.DEFAULT_IMAGE_CONFIG,
+    unitsConfig: exports.DEFAULT_UNITS_CONFIG,
+    navbarConfig: exports.DEFAULT_NAVBAR_CONFIG,
     enableAIAssistant: true, // AI assistant (planning + fixing) enabled by default
     enableCms: false, // CMS disabled by default
     enableVariables: false, // Variables disabled by default

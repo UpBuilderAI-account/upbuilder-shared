@@ -182,6 +182,17 @@ export interface BuildSectionsProgress {
   sections: SectionBuildProgress[];
 }
 
+/** Simplified status for UI display */
+export type SectionDisplayStatus = 'pending' | 'in_progress' | 'complete' | 'failed';
+
+/** Convert detailed build status to simplified display status */
+export function toDisplayStatus(status: SectionBuildProgress['status']): SectionDisplayStatus {
+  if (status === 'pending') return 'pending';
+  if (status === 'complete') return 'complete';
+  if (status === 'failed') return 'failed';
+  return 'in_progress'; // analyzing, building, validating, qa, qa_rebuilding, fixing, fixing_retry
+}
+
 // ============================================================================
 // SOCKET EVENTS FOR STRUCTURED PLAN
 // ============================================================================

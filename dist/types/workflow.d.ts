@@ -224,6 +224,56 @@ export declare const IMAGE_DIMENSION_PRESETS: readonly [{
     readonly value: 3840;
 }];
 /**
+ * CSS unit types for unit conversion
+ */
+export type CSSUnitType = 'px' | 'rem' | 'em' | 'unitless';
+/**
+ * Units configuration for CSS output
+ * Controls how pixel values from Figma are converted to different CSS units
+ */
+export interface UnitsConfig {
+    /** Base font size in pixels for rem/em calculations (default: 16) */
+    baseFontSize: number;
+    /** Unit for font-size properties */
+    fontSize: CSSUnitType;
+    /** Unit for line-height (unitless recommended for accessibility) */
+    lineHeight: CSSUnitType;
+    /** Unit for letter-spacing (em recommended to scale with font) */
+    letterSpacing: CSSUnitType;
+    /** Unit for margin, padding, gap */
+    spacing: CSSUnitType;
+    /** Unit for border-radius */
+    borderRadius: CSSUnitType;
+}
+export declare const DEFAULT_UNITS_CONFIG: UnitsConfig;
+/** Preset: Scalable units (rem-based, best practice) */
+export declare const SCALABLE_UNITS_CONFIG: UnitsConfig;
+export type UnitsPreset = 'figma' | 'scalable' | 'custom';
+/**
+ * Navbar collapse breakpoint options
+ */
+export type NavbarCollapseBreakpoint = 'medium' | 'small' | 'none';
+/**
+ * Navbar mobile menu animation style
+ */
+export type NavbarAnimation = 'default' | 'over-left' | 'over-right';
+/**
+ * Navbar configuration for mobile menu and dropdown behavior
+ */
+export interface NavbarConfig {
+    /** Breakpoint for mobile menu collapse: medium (991px), small (767px), or none */
+    collapseAt: NavbarCollapseBreakpoint;
+    /** Mobile menu animation style */
+    animation: NavbarAnimation;
+    /** Animation duration in milliseconds */
+    animationDuration: number;
+    /** Dropdown trigger: hover (desktop default) or click only */
+    dropdownHover: boolean;
+    /** Dropdown hover delay in milliseconds */
+    dropdownDelay: number;
+}
+export declare const DEFAULT_NAVBAR_CONFIG: NavbarConfig;
+/**
  * Complete export configuration
  * Sent from frontend to backend during export_config stage
  */
@@ -260,6 +310,10 @@ export interface ExportConfig {
     enableVariables?: boolean;
     /** Image export configuration (format + max dimensions) */
     imageConfig?: ImageConfig;
+    /** Units configuration for CSS output (px to rem/em conversion) */
+    unitsConfig?: UnitsConfig;
+    /** Navbar configuration for mobile menu and dropdown behavior */
+    navbarConfig?: NavbarConfig;
     /**
      * Webflow-specific configuration
      * When set, synced styles from the Webflow site will be merged with AI-generated styles

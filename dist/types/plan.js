@@ -7,6 +7,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PLAN_BLOCK_MARKERS = void 0;
+exports.toDisplayStatus = toDisplayStatus;
 // ============================================================================
 // BLOCK MARKERS (for parsing JSON from AI output)
 // ============================================================================
@@ -22,3 +23,13 @@ exports.PLAN_BLOCK_MARKERS = {
     QUESTIONS: { begin: 'BEGIN QUESTIONS', end: 'END QUESTIONS' },
     READY: { begin: 'BEGIN READY', end: 'END READY' },
 };
+/** Convert detailed build status to simplified display status */
+function toDisplayStatus(status) {
+    if (status === 'pending')
+        return 'pending';
+    if (status === 'complete')
+        return 'complete';
+    if (status === 'failed')
+        return 'failed';
+    return 'in_progress'; // analyzing, building, validating, qa, qa_rebuilding, fixing, fixing_retry
+}

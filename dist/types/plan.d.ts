@@ -172,6 +172,10 @@ export interface BuildSectionsProgress {
     currentPhase: 'analyzing' | 'building' | 'validating' | 'qa' | 'fixing';
     sections: SectionBuildProgress[];
 }
+/** Simplified status for UI display */
+export type SectionDisplayStatus = 'pending' | 'in_progress' | 'complete' | 'failed';
+/** Convert detailed build status to simplified display status */
+export declare function toDisplayStatus(status: SectionBuildProgress['status']): SectionDisplayStatus;
 export interface StructuredPlanEvent {
     projectId: string;
     plan: StructuredPlan;

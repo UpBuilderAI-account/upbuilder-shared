@@ -301,6 +301,85 @@ export const IMAGE_DIMENSION_PRESETS = [
 ] as const;
 
 /**
+ * CSS unit types for unit conversion
+ */
+export type CSSUnitType = 'px' | 'rem' | 'em' | 'unitless';
+
+/**
+ * Units configuration for CSS output
+ * Controls how pixel values from Figma are converted to different CSS units
+ */
+export interface UnitsConfig {
+  /** Base font size in pixels for rem/em calculations (default: 16) */
+  baseFontSize: number;
+  /** Unit for font-size properties */
+  fontSize: CSSUnitType;
+  /** Unit for line-height (unitless recommended for accessibility) */
+  lineHeight: CSSUnitType;
+  /** Unit for letter-spacing (em recommended to scale with font) */
+  letterSpacing: CSSUnitType;
+  /** Unit for margin, padding, gap */
+  spacing: CSSUnitType;
+  /** Unit for border-radius */
+  borderRadius: CSSUnitType;
+}
+
+export const DEFAULT_UNITS_CONFIG: UnitsConfig = {
+  baseFontSize: 16,
+  fontSize: 'px',
+  lineHeight: 'px',
+  letterSpacing: 'px',
+  spacing: 'px',
+  borderRadius: 'px',
+};
+
+/** Preset: Scalable units (rem-based, best practice) */
+export const SCALABLE_UNITS_CONFIG: UnitsConfig = {
+  baseFontSize: 16,
+  fontSize: 'rem',
+  lineHeight: 'unitless',
+  letterSpacing: 'em',
+  spacing: 'rem',
+  borderRadius: 'px',
+};
+
+export type UnitsPreset = 'figma' | 'scalable' | 'custom';
+
+/**
+ * Navbar collapse breakpoint options
+ */
+export type NavbarCollapseBreakpoint = 'medium' | 'small' | 'none';
+
+/**
+ * Navbar mobile menu animation style
+ */
+export type NavbarAnimation = 'default' | 'over-left' | 'over-right';
+
+/**
+ * Navbar configuration for mobile menu and dropdown behavior
+ */
+export interface NavbarConfig {
+  /** Breakpoint for mobile menu collapse: medium (991px), small (767px), or none */
+  collapseAt: NavbarCollapseBreakpoint;
+  /** Mobile menu animation style */
+  animation: NavbarAnimation;
+  /** Animation duration in milliseconds */
+  animationDuration: number;
+  /** Dropdown trigger: hover (desktop default) or click only */
+  dropdownHover: boolean;
+  /** Dropdown hover delay in milliseconds */
+  dropdownDelay: number;
+}
+
+export const DEFAULT_NAVBAR_CONFIG: NavbarConfig = {
+  collapseAt: 'medium',
+  animation: 'default',
+  animationDuration: 400,
+  dropdownHover: true,
+  dropdownDelay: 0,
+};
+
+/**
  * Complete export configuration
  * Sent from frontend to backend during export_config stage
  */
@@ -337,6 +416,10 @@ export interface ExportConfig {
   enableVariables?: boolean;
   /** Image export configuration (format + max dimensions) */
   imageConfig?: ImageConfig;
+  /** Units configuration for CSS output (px to rem/em conversion) */
+  unitsConfig?: UnitsConfig;
+  /** Navbar configuration for mobile menu and dropdown behavior */
+  navbarConfig?: NavbarConfig;
   /**
    * Webflow-specific configuration
    * When set, synced styles from the Webflow site will be merged with AI-generated styles
@@ -421,6 +504,8 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: QUICK_INTERACTIVITY_CONFIG,
   imageConfig: DEFAULT_IMAGE_CONFIG,
+  unitsConfig: DEFAULT_UNITS_CONFIG,
+  navbarConfig: DEFAULT_NAVBAR_CONFIG,
   enableAIAssistant: false,  // Quick mode skips AI planning and fixing
   enableCms: false,          // CMS disabled in quick mode
   enableVariables: false,    // Variables disabled in quick mode
@@ -435,6 +520,8 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
   imageConfig: DEFAULT_IMAGE_CONFIG,
+  unitsConfig: DEFAULT_UNITS_CONFIG,
+  navbarConfig: DEFAULT_NAVBAR_CONFIG,
   enableAIAssistant: true,  // AI assistant (planning + fixing) enabled by default
   enableCms: false,         // CMS disabled by default
   enableVariables: false,   // Variables disabled by default
