@@ -82,7 +82,10 @@ export interface ImageReviewRequest {
         projectName: string;
         platform: string;
         styleFramework?: string;
-        breakpoints?: Record<string, number>;
+        breakpoints?: {
+            tablet: number;
+            mobile: number;
+        };
     };
 }
 /**
