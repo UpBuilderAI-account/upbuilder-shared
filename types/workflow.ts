@@ -1058,6 +1058,7 @@ export const STAGE_ORDER: Stage[] = [
 
 export const STAGE_LABELS: Record<Stage, string> = {
   // Plugin-side stages
+  scanning: 'AI Scanning',
   analyze_design: 'Analyzing Design',
   images_export: 'Uploading Images',
   // Backend workflow stages

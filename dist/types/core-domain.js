@@ -20,6 +20,7 @@ exports.shouldSkipStage = shouldSkipStage;
 exports.PROJECT_STATUS = {
     IDLE: 'idle',
     // Plugin-side stages
+    SCANNING: 'scanning',
     ANALYZE_DESIGN: 'analyze_design',
     IMAGES_EXPORT: 'images_export',
     // Backend workflow stages
@@ -65,6 +66,7 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
     const transitions = {
         idle: 'analyze_design',
         // Plugin-side stages (run in Figma plugin)
+        scanning: 'analyze_design', // AI scan phase → user proceeds with export
         analyze_design: 'images_export',
         images_export: 'load', // After images, backend load begins
         // Backend workflow stages

@@ -48,8 +48,11 @@ export interface FalsePositive {
  * Input for image review request (per design)
  */
 export interface ImageReviewDesignInput {
+    /** Temp design ID (will be replaced with real ID after project creation) */
     designId: string;
     designName: string;
+    /** Original Figma frame ID (for mapping back to plugin frames) */
+    frameId?: string;
     /** Google Files URI of design screenshot (optional if base64 provided) */
     screenshotUri: string;
     /** Base64 encoded screenshot (backend will upload to Google Files) */
@@ -67,8 +70,20 @@ export interface ImageReviewDesignInput {
  * Full image review request to backend
  */
 export interface ImageReviewRequest {
+    /** Temp project ID for socket room (scan-{timestamp}) */
     projectId: string;
     designs: ImageReviewDesignInput[];
+    /**
+     * When provided, backend will create project/designs during scan phase.
+     * This eliminates fragile client-side URL caching between scan and export.
+     */
+    createProject?: {
+        userId: string;
+        projectName: string;
+        platform: string;
+        styleFramework?: string;
+        breakpoints?: Record<string, number>;
+    };
 }
 /**
  * AI analysis result for a single design
@@ -96,6 +111,15 @@ export interface ImageReviewResponse {
             height: number;
         };
     }>;
+    /**
+     * When createProject was provided in request, these contain the real IDs.
+     * Plugin should store these and use them during send_nodes.
+     */
+    createdProject?: {
+        projectId: string;
+        /** Maps frameId → real designId (for plugin to use during export) */
+        designIdMap: Record<string, string>;
+    };
 }
 /**
  * Combined detection for UI display

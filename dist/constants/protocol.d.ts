@@ -63,13 +63,10 @@ export declare const SOCKET_EVENTS: {
         readonly VALIDATION_PROGRESS: "workflow:validation_progress";
         readonly STRUCTURED_PLAN: "workflow:structured_plan";
         readonly SECTION_PROGRESS: "workflow:section_progress";
-        readonly SECTION_RENDER: "workflow:section_render";
-        readonly SECTION_COMPUTED: "workflow:section_computed";
         readonly SECTION_QA_PASSED: "workflow:section_qa_passed";
         readonly SECTION_QA_RESULT: "workflow:section_qa_result";
         readonly AI_ANALYSIS_PROGRESS: "workflow:ai_analysis_progress";
         readonly SCATTERED_ANALYSIS_RESULTS: "scattered-analysis-results";
-        readonly TAB_VISIBILITY: "tab_visibility";
     };
     /**
      * Server → Client: Project state updates

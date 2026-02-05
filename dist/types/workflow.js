@@ -142,6 +142,7 @@ exports.STAGE_ORDER = [
 ];
 exports.STAGE_LABELS = {
     // Plugin-side stages
+    scanning: 'AI Scanning',
     analyze_design: 'Analyzing Design',
     images_export: 'Uploading Images',
     // Backend workflow stages

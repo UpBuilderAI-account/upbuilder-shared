@@ -84,6 +84,7 @@ export interface PluginAuthTokenResponse {
 export type ProjectStatus =
   | 'idle'
   // Plugin-side stages (before backend workflow starts)
+  | 'scanning'           // AI scan phase (image review, before export)
   | 'analyze_design'     // Plugin extracts Figma node structure
   | 'images_export'      // Plugin extracts and uploads images
   // Backend workflow stages
@@ -107,6 +108,7 @@ export type ProjectStatus =
 export const PROJECT_STATUS = {
   IDLE: 'idle' as ProjectStatus,
   // Plugin-side stages
+  SCANNING: 'scanning' as ProjectStatus,
   ANALYZE_DESIGN: 'analyze_design' as ProjectStatus,
   IMAGES_EXPORT: 'images_export' as ProjectStatus,
   // Backend workflow stages
@@ -153,6 +155,7 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
   const transitions: Record<ProjectStatus, ProjectStatus | null> = {
     idle: 'analyze_design',
     // Plugin-side stages (run in Figma plugin)
+    scanning: 'analyze_design',  // AI scan phase → user proceeds with export
     analyze_design: 'images_export',
     images_export: 'load',  // After images, backend load begins
     // Backend workflow stages

@@ -85,17 +85,13 @@ exports.SOCKET_EVENTS = {
         STRUCTURED_PLAN: 'workflow:structured_plan', // Server → Client: Parsed structured plan JSON
         // Section build progress (build_sections stage)
         SECTION_PROGRESS: 'workflow:section_progress', // Server → Client: Per-section build progress
-        // Browser-based QA rendering (build_sections stage)
-        SECTION_RENDER: 'workflow:section_render', // Server → Client: Send HTML/CSS for browser rendering
-        SECTION_COMPUTED: 'workflow:section_computed', // Client → Server: Computed properties from browser
+        // QA results (build_sections stage)
         SECTION_QA_PASSED: 'workflow:section_qa_passed', // Server → Client: Section passed QA, show in live preview
         SECTION_QA_RESULT: 'workflow:section_qa_result', // Server → Client: QA result per attempt (pass or fail)
         // AI image analysis progress (pre-export phase)
         AI_ANALYSIS_PROGRESS: 'workflow:ai_analysis_progress', // Server → Client: Per-design AI analysis progress
         // Scattered analysis results (post-section-bounding)
         SCATTERED_ANALYSIS_RESULTS: 'scattered-analysis-results', // Server → Client: Scattered composition groups for review
-        // Tab visibility (client → server): Notify backend when tab is hidden/visible
-        TAB_VISIBILITY: 'tab_visibility',
     },
     /**
      * Server → Client: Project state updates

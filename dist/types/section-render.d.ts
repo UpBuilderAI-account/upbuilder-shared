@@ -49,7 +49,7 @@ export interface ComputedElementProps {
     };
 }
 /**
- * Server → Frontend: Send rendered HTML/CSS for browser rendering
+ * Input payload for Puppeteer rendering
  */
 export interface SectionRenderPayload {
     sectionId: string;
@@ -70,7 +70,7 @@ export interface SectionRenderPayload {
     timestamp?: number;
 }
 /**
- * Frontend → Server: Computed properties from browser rendering
+ * Output payload from Puppeteer rendering
  */
 export interface SectionComputedPayload {
     sectionId: string;

@@ -1,7 +1,7 @@
 // ============================================================================
 // SECTION RENDER TYPES
-// Browser-based QA rendering: server sends HTML/CSS to frontend for rendering
-// in a hidden iframe, frontend extracts computed properties and sends them back.
+// Server-side QA rendering: Puppeteer extracts computed CSS properties from
+// rendered HTML sections for QA validation against Figma designs.
 // ============================================================================
 
 /**
@@ -56,7 +56,7 @@ export interface ComputedElementProps {
 }
 
 /**
- * Server → Frontend: Send rendered HTML/CSS for browser rendering
+ * Input payload for Puppeteer rendering
  */
 export interface SectionRenderPayload {
   sectionId: string;
@@ -78,7 +78,7 @@ export interface SectionRenderPayload {
 }
 
 /**
- * Frontend → Server: Computed properties from browser rendering
+ * Output payload from Puppeteer rendering
  */
 export interface SectionComputedPayload {
   sectionId: string;
