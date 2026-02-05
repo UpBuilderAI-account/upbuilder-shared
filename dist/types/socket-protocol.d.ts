@@ -353,7 +353,10 @@ export interface ClientToServerEvents {
     }, callback?: (res: {
         success: boolean;
     }) => void) => void;
-    'workflow:command': (data: WorkflowCommand, callback: (ok: boolean) => void) => void;
+    'workflow:command': (data: WorkflowCommand, callback: (ok: boolean, cancelResult?: {
+        wasExpansion: boolean;
+        restoredVersion: number;
+    }) => void) => void;
     'workflow:save_code': (data: CodeSaveRequest, callback: (result: CodeSaveResult) => void) => void;
     'workflow:rename': (data: RenameRequest, callback: (result: RenameResult) => void) => void;
     'workflow:process_pending': (data: {

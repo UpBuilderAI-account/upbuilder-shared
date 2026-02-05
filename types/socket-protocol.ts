@@ -481,7 +481,7 @@ export interface ClientToServerEvents {
   // Workflow command (replaces workflow_start, workflow_next, workflow_customize)
   'workflow:command': (
     data: WorkflowCommand,
-    callback: (ok: boolean) => void
+    callback: (ok: boolean, cancelResult?: { wasExpansion: boolean; restoredVersion: number }) => void
   ) => void;
 
   // Workflow save code (save edited code from customizer)

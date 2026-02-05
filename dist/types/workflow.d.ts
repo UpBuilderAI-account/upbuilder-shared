@@ -575,8 +575,8 @@ export interface BoundedSection {
     /** Google File Manager URI for section screenshot (set by section bounding stage) */
     screenshotUri?: string;
     /**
-     * Human-readable display name for the section (shown in Webflow Navigator)
-     * Concise, max 2 words, capitalized: "Header Section", "Navbar v1", "Testimonials"
+     * Human-readable display name for the section (used in Layers panel and XSCP meta.displayName)
+     * Format: Capitalized, concise. For global sections: "Navbar v1", "Footer v2". For non-global: "Hero", "Features".
      */
     displayName?: string;
     /** Global verdict from plan stage (IDENTICAL or HAS_VARIANTS) */
