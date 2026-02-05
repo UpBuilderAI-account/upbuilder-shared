@@ -674,6 +674,10 @@ export interface ApplyEditsResponse {
     operationType: EditOperationType | 'unknown';
     message: string;
   }>;
+  /** Design IDs updated by global section propagation */
+  propagatedDesignIds?: string[];
+  /** Updated node subtrees for propagated designs (avoids re-fetch) */
+  propagatedUpdates?: Record<string, Record<string, import('./editable-tree').EditableNode>>;
 }
 
 /**

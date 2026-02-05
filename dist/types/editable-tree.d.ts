@@ -433,6 +433,11 @@ export interface IdMapping {
     webflowIdToClassName: Record<string, string>;
     /** Version this mapping was created for */
     version: string;
+    /**
+     * For global sections: variant → { structuralPath → nodeId }
+     * Used to translate operations between designs sharing the same global section
+     */
+    globalSectionPaths?: Record<string, Record<string, string>>;
 }
 /**
  * CSS properties stored as a string per breakpoint+state
@@ -587,5 +592,28 @@ export interface EditableTreePayloadV2 extends EditableTreePayload {
     } | null;
     /** CMS schema (from project state) */
     cmsSchema?: import('./cms').CMSSchema | null;
+    /** Global section mappings for linked editing (cross-design path maps) */
+    globalSectionMappings?: GlobalSectionMapping[];
+}
+/**
+ * Cross-design node mapping for a global section variant
+ * Allows correlating the same "conceptual node" across different designs
+ * despite having different internal IDs (node-5 in design A = node-23 in design B)
+ */
+export interface GlobalSectionMapping {
+    /** Global section variant identifier, e.g., "navbar_default" */
+    variant: string;
+    /** Human-readable name, e.g., "Navbar" */
+    name: string;
+    /** Which designs have this variant */
+    designIds: string[];
+    /** Maps designId → rootNodeId for quick lookup */
+    rootNodeIds: Record<string, string>;
+    /**
+     * Maps structuralPath → { designId → nodeId }
+     * Path format: DFS child-index path, e.g., "", "0", "0/1", "0/1/2"
+     * Root itself = ""
+     */
+    pathMap: Record<string, Record<string, string>>;
 }
 //# sourceMappingURL=editable-tree.d.ts.map

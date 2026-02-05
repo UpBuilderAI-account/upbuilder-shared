@@ -703,10 +703,6 @@ export interface ServerToClientEvents {
         styles: any[];
         totalCount: number;
     }) => void;
-    'workflow:output': (data: {
-        projectId: string;
-        text: string;
-    }) => void;
     'workflow:structured_plan': (data: {
         projectId: string;
         plan: import('./plan').StructuredPlan;

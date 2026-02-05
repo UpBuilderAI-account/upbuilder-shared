@@ -73,6 +73,8 @@ export interface SectionRenderPayload {
   assetsBaseUrl: string;
   /** data-element-id values to extract computed properties for */
   elementIds: string[];
+  /** Timestamp when the render request was created (for stale render detection) */
+  timestamp?: number;
 }
 
 /**

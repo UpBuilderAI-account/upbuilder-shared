@@ -61,7 +61,6 @@ export declare const SOCKET_EVENTS: {
         readonly WEBFLOW_STRUCTURE: "workflow:webflow_structure";
         readonly STYLE_REGISTRY: "workflow:style_registry";
         readonly VALIDATION_PROGRESS: "workflow:validation_progress";
-        readonly OUTPUT: "workflow:output";
         readonly STRUCTURED_PLAN: "workflow:structured_plan";
         readonly SECTION_PROGRESS: "workflow:section_progress";
         readonly SECTION_RENDER: "workflow:section_render";
@@ -70,6 +69,7 @@ export declare const SOCKET_EVENTS: {
         readonly SECTION_QA_RESULT: "workflow:section_qa_result";
         readonly AI_ANALYSIS_PROGRESS: "workflow:ai_analysis_progress";
         readonly SCATTERED_ANALYSIS_RESULTS: "scattered-analysis-results";
+        readonly TAB_VISIBILITY: "tab_visibility";
     };
     /**
      * Server → Client: Project state updates

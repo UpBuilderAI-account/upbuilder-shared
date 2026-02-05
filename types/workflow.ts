@@ -71,8 +71,6 @@ export interface WorkflowStage {
   exportStartedAt?: number;
   /** Assembly progress tracking (build stage only) */
   assemblyProgress?: AssemblyProgress;
-  /** Streaming output content for this stage (workflow terminal text) */
-  streamContent?: string;
 }
 
 /**
@@ -93,8 +91,6 @@ export interface WorkflowStages {
   stages: WorkflowStage[];
   /** Early asset upload progress (runs in background during load stage) */
   earlyAssetUpload?: EarlyAssetUploadProgress;
-  /** Accumulated stream content for reconnection (workflow:output text) */
-  streamContent?: string;
 }
 
 // =============================================================================
@@ -763,6 +759,11 @@ export interface BoundedSection {
   designId: string;
   /** Google File Manager URI for section screenshot (set by section bounding stage) */
   screenshotUri?: string;
+  /**
+   * Human-readable display name for the section (shown in Webflow Navigator)
+   * Concise, max 2 words, capitalized: "Header Section", "Navbar v1", "Testimonials"
+   */
+  displayName?: string;
 
   // ===========================================
   // GLOBAL SECTION DEDUPLICATION METADATA

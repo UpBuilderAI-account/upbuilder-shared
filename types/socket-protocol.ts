@@ -813,7 +813,6 @@ export interface ServerToClientEvents {
   'workflow:background_progress': (data: WorkflowBackgroundProgress) => void;
   'workflow:webflow_structure': (data: { designId: string; designName: string; xscp: any }) => void;
   'workflow:style_registry': (data: { styles: any[]; totalCount: number }) => void;
-  'workflow:output': (data: { projectId: string; text: string }) => void;
   'workflow:structured_plan': (data: { projectId: string; plan: import('./plan').StructuredPlan }) => void;
   'workflow:section_progress': (data: { projectId: string; progress: import('./plan').BuildSectionsProgress }) => void;
   'workflow:ai_analysis_progress': (data: {

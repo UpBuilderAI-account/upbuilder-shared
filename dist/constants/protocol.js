@@ -81,7 +81,6 @@ exports.SOCKET_EVENTS = {
         STYLE_REGISTRY: 'workflow:style_registry', // Server → Client: Style registry for style panel
         // Validation progress (convert_to_platform stage)
         VALIDATION_PROGRESS: 'workflow:validation_progress', // Server → Client: Validation/fix progress for panel display
-        OUTPUT: 'workflow:output', // Server → Client: Terminal text output
         // Structured plan (plan stage)
         STRUCTURED_PLAN: 'workflow:structured_plan', // Server → Client: Parsed structured plan JSON
         // Section build progress (build_sections stage)
@@ -95,6 +94,8 @@ exports.SOCKET_EVENTS = {
         AI_ANALYSIS_PROGRESS: 'workflow:ai_analysis_progress', // Server → Client: Per-design AI analysis progress
         // Scattered analysis results (post-section-bounding)
         SCATTERED_ANALYSIS_RESULTS: 'scattered-analysis-results', // Server → Client: Scattered composition groups for review
+        // Tab visibility (client → server): Notify backend when tab is hidden/visible
+        TAB_VISIBILITY: 'tab_visibility',
     },
     /**
      * Server → Client: Project state updates
