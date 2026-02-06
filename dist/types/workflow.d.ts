@@ -302,6 +302,8 @@ export interface ExportConfig {
      * Default: false (disabled)
      */
     enableCms?: boolean;
+    /** Enable Figma design variables export (color variables → Webflow variables) */
+    enableVariables?: boolean;
     /** Image export configuration (format + max dimensions) */
     imageConfig?: ImageConfig;
     /** Units configuration for CSS output (px to rem/em conversion) */
