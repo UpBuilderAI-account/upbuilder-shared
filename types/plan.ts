@@ -182,6 +182,8 @@ export interface BuildSectionsProgress {
   completedSections: number;
   currentPhase: 'analyzing' | 'building' | 'validating' | 'qa' | 'fixing';
   sections: SectionBuildProgress[];
+  /** True when using one-shot build (entire design in single AI call) */
+  isOneShot?: boolean;
 }
 
 /** Simplified status for UI display */
