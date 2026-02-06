@@ -7,25 +7,24 @@ export declare const MAX_DESIGNS_PER_PROJECT: {
     readonly max: 9;
 };
 /**
- * Pricing configuration (kept for backward compat, all unlimited)
+ * Pricing configuration
+ * All tiers are currently free with unlimited exports
  */
 export declare const PRICING_CONFIG: {
     readonly basic: {
         readonly name: "Free";
         readonly price: 0;
         readonly displayPrice: "Free";
-        readonly description: "Unlimited access";
+        readonly description: "Full access to all features";
         readonly features: readonly string[];
-        readonly exportsPerMonth: 999999;
         readonly maxDesigns: 2;
     };
     readonly pro: {
         readonly name: "Pro";
         readonly price: 0;
         readonly displayPrice: "Free";
-        readonly description: "Unlimited access";
+        readonly description: "Full access to all features";
         readonly features: readonly string[];
-        readonly exportsPerMonth: 999999;
         readonly maxDesigns: 2;
         readonly popular: true;
     };
@@ -33,9 +32,8 @@ export declare const PRICING_CONFIG: {
         readonly name: "Max";
         readonly price: 0;
         readonly displayPrice: "Free";
-        readonly description: "Unlimited access";
+        readonly description: "Full access to all features";
         readonly features: readonly string[];
-        readonly exportsPerMonth: 999999;
         readonly maxDesigns: 9;
     };
 };

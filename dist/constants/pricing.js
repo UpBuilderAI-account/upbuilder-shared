@@ -1,7 +1,7 @@
 "use strict";
 // ============================================================================
 // PRICING CONSTANTS
-// Export limits removed - unlimited exports for all users
+// All users have unlimited access - no export limits
 // Frame-per-project limits remain tier-gated
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -15,25 +15,32 @@ exports.MAX_DESIGNS_PER_PROJECT = {
     max: 9,
 };
 /**
- * Pricing configuration (kept for backward compat, all unlimited)
+ * Pricing configuration
+ * All tiers are currently free with unlimited exports
  */
 exports.PRICING_CONFIG = {
     basic: {
         name: 'Free',
         price: 0,
         displayPrice: 'Free',
-        description: 'Unlimited access',
-        features: [],
-        exportsPerMonth: 999999,
+        description: 'Full access to all features',
+        features: [
+            'Figma to Webflow conversion',
+            'Unlimited exports',
+            'Up to 2 frames per export',
+        ],
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.basic,
     },
     pro: {
         name: 'Pro',
         price: 0,
         displayPrice: 'Free',
-        description: 'Unlimited access',
-        features: [],
-        exportsPerMonth: 999999,
+        description: 'Full access to all features',
+        features: [
+            'Figma to Webflow conversion',
+            'Unlimited exports',
+            'Up to 2 frames per export',
+        ],
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
         popular: true,
     },
@@ -41,9 +48,14 @@ exports.PRICING_CONFIG = {
         name: 'Max',
         price: 0,
         displayPrice: 'Free',
-        description: 'Unlimited access',
-        features: [],
-        exportsPerMonth: 999999,
+        description: 'Full access to all features',
+        features: [
+            'Figma to Webflow conversion',
+            'Unlimited exports',
+            'Up to 9 frames per export',
+            'Build on past exports',
+            'Early access features',
+        ],
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.max,
     },
 };
