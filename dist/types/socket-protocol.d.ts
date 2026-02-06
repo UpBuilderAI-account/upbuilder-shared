@@ -359,13 +359,6 @@ export interface ClientToServerEvents {
     }) => void) => void;
     'workflow:save_code': (data: CodeSaveRequest, callback: (result: CodeSaveResult) => void) => void;
     'workflow:rename': (data: RenameRequest, callback: (result: RenameResult) => void) => void;
-    'workflow:process_pending': (data: {
-        projectId: string;
-    }, callback: (result: {
-        success: boolean;
-        error?: string;
-        designCount?: number;
-    }) => void) => void;
     transfer_project_ownership: (data: {
         projectId: string;
     }, callback: CallbackResponse) => void;
@@ -691,10 +684,6 @@ export interface ServerToClientEvents {
         type: RenameTargetType;
         id: string;
         name: string;
-    }) => void;
-    'workflow:export_limit_reached': (data: {
-        projectId: string;
-        message: string;
     }) => void;
     'workflow:background_progress': (data: WorkflowBackgroundProgress) => void;
     'workflow:webflow_structure': (data: {

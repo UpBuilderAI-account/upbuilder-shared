@@ -50,10 +50,12 @@ export declare const DEFAULT_MAX_RETRIES = 3;
 export declare const SIMPLE_MAX_RETRIES = 3;
 /**
  * Simple streaming timeout (5 minutes)
+ * @deprecated Use TIMEOUTS.STREAMING_SIMPLE_TIMEOUT from './timeouts' instead
  */
 export declare const STREAMING_SIMPLE_TIMEOUT_MS = 300000;
 /**
  * Retry delay for simple streaming (5 seconds)
+ * @deprecated Use TIMEOUTS.STREAMING_SIMPLE_RETRY_DELAY from './timeouts' instead
  */
 export declare const STREAMING_SIMPLE_RETRY_DELAY_MS = 5000;
 /**
@@ -67,15 +69,17 @@ export declare const MAX_SCREENSHOT_DIMENSION = 8192;
  */
 export declare const SERVER_STARTUP_RETRY_DELAY_MS = 3000;
 /**
- * Default chunk timeout for AI streaming (2 minutes)
+ * Default chunk timeout for AI streaming (3 minutes)
+ * @deprecated Use TIMEOUTS.STREAMING_CHUNK_TIMEOUT from './timeouts' instead
  */
-export declare const STREAMING_CHUNK_TIMEOUT_MS = 120000;
+export declare const STREAMING_CHUNK_TIMEOUT_MS = 180000;
 /**
  * Maximum retries for AI streaming
  */
 export declare const STREAMING_MAX_RETRIES = 3;
 /**
  * Retry delay for streaming failures (5 seconds)
+ * @deprecated Use TIMEOUTS.STREAMING_RETRY_DELAY from './timeouts' instead
  */
 export declare const STREAMING_RETRY_DELAY_MS = 5000;
 /**

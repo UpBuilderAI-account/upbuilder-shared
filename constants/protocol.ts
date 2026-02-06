@@ -73,10 +73,6 @@ export const SOCKET_EVENTS = {
     SAVE_CODE: 'workflow:save_code',   // Client → Server: Save edited code from customizer
     RENAME: 'workflow:rename',         // Client → Server: Rename design/section
     RENAMED: 'workflow:renamed',       // Server → Client: Broadcast rename to other clients
-    // Export limit events
-    EXPORT_LIMIT_REACHED: 'workflow:export_limit_reached', // Server → Client: Export limit exceeded
-    // Pending designs processing (Pro upgrade flow)
-    PROCESS_PENDING: 'workflow:process_pending',  // Client → Server: Process pending designs after upgrade
     // Background progress (export_config stage)
     BACKGROUND_PROGRESS: 'workflow:background_progress', // Server → Client: Background job progress during export_config
     // Webflow structure preview (customize stage)
@@ -182,7 +178,7 @@ export const SOCKET_EVENTS = {
     TREE_DATA: 'customizer:tree_data',           // Server → Client: Tree data response
     APPLY_EDITS: 'customizer:apply_edits',       // Client → Server: Apply edit operations
     EDITS_APPLIED: 'customizer:edits_applied',   // Server → Client: Edits applied response
-    REQUEST_EXPORT: 'customizer:request_export', // Client → Server: Request export (Pro only)
+    REQUEST_EXPORT: 'customizer:request_export', // Client → Server: Request export
     EXPORT_READY: 'customizer:export_ready',     // Server → Client: Export ready response
     REQUEST_PREVIEW: 'customizer:request_preview', // Client → Server: Request HTML preview
     UPLOAD_IMAGE: 'customizer:upload_image',     // Client → Server: Upload image asset

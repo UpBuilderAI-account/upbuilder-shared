@@ -55,8 +55,6 @@ export declare const SOCKET_EVENTS: {
         readonly SAVE_CODE: "workflow:save_code";
         readonly RENAME: "workflow:rename";
         readonly RENAMED: "workflow:renamed";
-        readonly EXPORT_LIMIT_REACHED: "workflow:export_limit_reached";
-        readonly PROCESS_PENDING: "workflow:process_pending";
         readonly BACKGROUND_PROGRESS: "workflow:background_progress";
         readonly WEBFLOW_STRUCTURE: "workflow:webflow_structure";
         readonly STYLE_REGISTRY: "workflow:style_registry";

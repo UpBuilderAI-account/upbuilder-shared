@@ -496,12 +496,6 @@ export interface ClientToServerEvents {
     callback: (result: RenameResult) => void
   ) => void;
 
-  // Process pending designs after upgrade to Pro
-  'workflow:process_pending': (
-    data: { projectId: string },
-    callback: (result: { success: boolean; error?: string; designCount?: number }) => void
-  ) => void;
-
   // Ownership transfer
   transfer_project_ownership: (
     data: { projectId: string },
@@ -809,7 +803,6 @@ export interface ServerToClientEvents {
   'workflow:editor': (data: WorkflowEditor) => void;
   'workflow:export_complete': (data: WorkflowExportComplete) => void;
   'workflow:renamed': (data: { type: RenameTargetType; id: string; name: string }) => void;
-  'workflow:export_limit_reached': (data: { projectId: string; message: string }) => void;
   'workflow:background_progress': (data: WorkflowBackgroundProgress) => void;
   'workflow:webflow_structure': (data: { designId: string; designName: string; xscp: any }) => void;
   'workflow:style_registry': (data: { styles: any[]; totalCount: number }) => void;
