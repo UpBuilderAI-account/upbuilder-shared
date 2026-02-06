@@ -34,6 +34,7 @@ export const PRICING_CONFIG = {
     features: [] as readonly string[],
     exportsPerMonth: 999999,
     maxDesigns: MAX_DESIGNS_PER_PROJECT.pro,
+    popular: true,
   },
   max: {
     name: 'Max',

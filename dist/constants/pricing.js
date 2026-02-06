@@ -35,6 +35,7 @@ exports.PRICING_CONFIG = {
         features: [],
         exportsPerMonth: 999999,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
+        popular: true,
     },
     max: {
         name: 'Max',

@@ -27,6 +27,7 @@ export declare const PRICING_CONFIG: {
         readonly features: readonly string[];
         readonly exportsPerMonth: 999999;
         readonly maxDesigns: 2;
+        readonly popular: true;
     };
     readonly max: {
         readonly name: "Max";
