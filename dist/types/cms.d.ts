@@ -22,15 +22,23 @@ export type CMSFieldType = 'PlainText' | 'RichText' | 'Image' | 'Video' | 'File'
  * Webflow CMS hard limits — single source of truth for backend, frontend, and prompts
  */
 export declare const CMS_LIMITS: {
-    readonly MAX_FIELDS_PER_COLLECTION: 30;
-    readonly MAX_REFERENCE_FIELDS: 10;
-    readonly MAX_MULTI_REFERENCE_FIELDS: 10;
+    readonly MAX_FIELDS_PER_COLLECTION: 60;
+    readonly MAX_REFERENCE_FIELDS: 5;
+    readonly MAX_MULTI_REFERENCE_FIELDS: 5;
     readonly MAX_ITEMS_PER_COLLECTION_LIST: 100;
     readonly MAX_COLLECTION_LISTS_PER_PAGE: 20;
     readonly MAX_NESTED_LISTS_PER_PAGE: 2;
     readonly MAX_NESTED_LIST_ITEMS: 5;
     readonly MAX_OPTION_CHOICES: 100;
     readonly MAX_OPTION_CHOICE_LENGTH: 256;
+    /** Plan-dependent collection limits */
+    readonly MAX_COLLECTIONS_CMS: 20;
+    readonly MAX_COLLECTIONS_BUSINESS: 40;
+    /** Plan-dependent item limits (site-wide across all collections) */
+    readonly MAX_ITEMS_CMS: 2000;
+    readonly MAX_ITEMS_BUSINESS: 10000;
+    /** Bulk API batch size */
+    readonly MAX_BULK_ITEMS: 100;
 };
 /**
  * A single field within a collection

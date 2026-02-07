@@ -50,15 +50,23 @@ export type CMSFieldType =
  * Webflow CMS hard limits — single source of truth for backend, frontend, and prompts
  */
 export const CMS_LIMITS = {
-  MAX_FIELDS_PER_COLLECTION: 30,
-  MAX_REFERENCE_FIELDS: 10,
-  MAX_MULTI_REFERENCE_FIELDS: 10,
+  MAX_FIELDS_PER_COLLECTION: 60,
+  MAX_REFERENCE_FIELDS: 5,
+  MAX_MULTI_REFERENCE_FIELDS: 5,
   MAX_ITEMS_PER_COLLECTION_LIST: 100,
   MAX_COLLECTION_LISTS_PER_PAGE: 20,
   MAX_NESTED_LISTS_PER_PAGE: 2,
   MAX_NESTED_LIST_ITEMS: 5,
   MAX_OPTION_CHOICES: 100,
   MAX_OPTION_CHOICE_LENGTH: 256,
+  /** Plan-dependent collection limits */
+  MAX_COLLECTIONS_CMS: 20,
+  MAX_COLLECTIONS_BUSINESS: 40,
+  /** Plan-dependent item limits (site-wide across all collections) */
+  MAX_ITEMS_CMS: 2000,
+  MAX_ITEMS_BUSINESS: 10000,
+  /** Bulk API batch size */
+  MAX_BULK_ITEMS: 100,
 } as const;
 
 /**
