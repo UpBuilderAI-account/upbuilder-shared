@@ -178,6 +178,8 @@ exports.SOCKET_EVENTS = {
         CHECK_HAS_ORIGINAL: 'customizer:check_has_original', // Client → Server: Check if original XSCP exists
         HAS_ORIGINAL: 'customizer:has_original', // Server → Client: Response with hasOriginal boolean
         RESTORE_COMPLETE: 'customizer:restore_complete', // Server → Client: Restore completed successfully
+        // Dev: Reprocess XSCP from saved snapshot
+        REPROCESS_XSCP: 'customizer:reprocess_xscp', // Client → Server: Re-run dedup+normalizer+XSCP from snapshot
         // CMS Content Management
         CMS_UPDATE_SCHEMA: 'customizer:cms_update_schema', // Client → Server: Update full CMS schema (init)
         CMS_ADD_COLLECTION: 'customizer:cms_add_collection', // Client → Server: Add a new collection
