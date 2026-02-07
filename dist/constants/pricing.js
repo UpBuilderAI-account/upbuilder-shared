@@ -12,7 +12,7 @@ exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.MAX_FEATURES 
  * Free plan feature list
  */
 exports.BASIC_FEATURES = [
-    '2 exports/month',
+    'Unlimited exports',
     'Preview only (no Webflow export)',
     'Basic support',
 ];
@@ -54,7 +54,6 @@ exports.PRICING_CONFIG = {
         displayPrice: 'Free',
         description: 'Try it out',
         features: exports.BASIC_FEATURES,
-        exportsPerMonth: 2,
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.basic,
     },
     pro: {
@@ -63,7 +62,6 @@ exports.PRICING_CONFIG = {
         displayPrice: '9.99',
         description: 'For individual makers',
         features: exports.PRO_FEATURES,
-        exportsPerMonth: 999999, // Unlimited
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.pro,
         popular: true,
     },
@@ -73,7 +71,6 @@ exports.PRICING_CONFIG = {
         displayPrice: '19.99',
         description: 'For teams & agencies',
         features: exports.MAX_FEATURES,
-        exportsPerMonth: 999999, // Unlimited
         maxDesigns: exports.MAX_DESIGNS_PER_PROJECT.max,
     },
 };

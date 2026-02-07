@@ -656,6 +656,12 @@ export interface ApplyEditsRequest {
   operations: EditOperation[];
   /** Version the edits are based on (for conflict detection) */
   baseVersion: string;
+  /** Updated variable mapping (only sent when variables were changed) */
+  variableMapping?: {
+    collections: import('./element').FigmaVariableCollection[];
+    variables: import('./element').FigmaColorVariable[];
+    cssPropertyMap: Record<string, string>;
+  };
 }
 
 /**

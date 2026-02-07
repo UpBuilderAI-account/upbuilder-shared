@@ -1,7 +1,7 @@
 /**
  * Free plan feature list
  */
-export declare const BASIC_FEATURES: readonly ["2 exports/month", "Preview only (no Webflow export)", "Basic support"];
+export declare const BASIC_FEATURES: readonly ["Unlimited exports", "Preview only (no Webflow export)", "Basic support"];
 /**
  * Pro plan feature list
  */
@@ -30,8 +30,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 0;
         readonly displayPrice: "Free";
         readonly description: "Try it out";
-        readonly features: readonly ["2 exports/month", "Preview only (no Webflow export)", "Basic support"];
-        readonly exportsPerMonth: 2;
+        readonly features: readonly ["Unlimited exports", "Preview only (no Webflow export)", "Basic support"];
         readonly maxDesigns: 2;
     };
     readonly pro: {
@@ -40,7 +39,6 @@ export declare const PRICING_CONFIG: {
         readonly displayPrice: "9.99";
         readonly description: "For individual makers";
         readonly features: readonly ["Unlimited exports", "Up to 2 frames per export", "Full Webflow export", "Priority support"];
-        readonly exportsPerMonth: 999999;
         readonly maxDesigns: 2;
         readonly popular: true;
     };
@@ -50,7 +48,6 @@ export declare const PRICING_CONFIG: {
         readonly displayPrice: "19.99";
         readonly description: "For teams & agencies";
         readonly features: readonly ["Up to 9 frames per export", "Build on past exports", "Early access to new features"];
-        readonly exportsPerMonth: 999999;
         readonly maxDesigns: 9;
     };
 };

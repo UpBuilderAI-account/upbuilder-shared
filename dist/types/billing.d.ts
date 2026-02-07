@@ -3,7 +3,7 @@ export type { SubscriptionTier };
 /**
  * Subscription status
  */
-export type SubscriptionStatus = 'active' | 'canceled' | 'past_due';
+export type SubscriptionStatus = 'active' | 'trialing' | 'canceled' | 'past_due' | 'incomplete' | 'unpaid';
 /**
  * Subscription entity
  * Represents user subscription data in database and Stripe
@@ -25,7 +25,6 @@ export interface Subscription {
  */
 export interface PlanFeatures {
     projectLimit: number | 'unlimited';
-    exportsPerMonth: number | 'unlimited';
     features: string[];
 }
 /**
