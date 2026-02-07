@@ -21,6 +21,7 @@ export declare const SOCKET_EVENTS: {
         readonly PROCESS_ALL_IMAGES: "process_all_images";
         readonly REQUEST_GEOMETRY: "plugin:request_geometry";
         readonly RECOLLECT_QA_GEOMETRY: "plugin:recollect_qa_geometry";
+        readonly CANCEL_SCAN: "cancel_scan";
     };
     /**
      * Plugin room management (client → server)

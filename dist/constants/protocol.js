@@ -36,6 +36,7 @@ exports.SOCKET_EVENTS = {
         PROCESS_ALL_IMAGES: 'process_all_images',
         REQUEST_GEOMETRY: 'plugin:request_geometry',
         RECOLLECT_QA_GEOMETRY: 'plugin:recollect_qa_geometry',
+        CANCEL_SCAN: 'cancel_scan',
     },
     /**
      * Plugin room management (client → server)
