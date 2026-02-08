@@ -645,7 +645,7 @@ exports.WEBFLOW_COMPONENTS = {
     // ===========================================================================
     // MAP COMPONENT (1)
     // ===========================================================================
-    Map: {
+    MapWidget: {
         displayName: 'Map',
         tags: ['div'],
         isContainer: false,
@@ -654,26 +654,23 @@ exports.WEBFLOW_COMPONENTS = {
         description: 'Google Maps embed'
     },
     // ===========================================================================
-    // EMBED COMPONENT (1)
+    // CMS COMPONENTS (4)
     // ===========================================================================
-    Embed: {
-        displayName: 'Embed',
+    DynamoWrapper: {
+        displayName: 'Collection List Wrapper',
         tags: ['div'],
-        isContainer: false,
-        category: 'media',
-        specialDataFields: ['embed'],
-        description: 'Generic embed element'
+        isContainer: true,
+        category: 'cms',
+        specialDataFields: ['dyn'],
+        description: 'Outer wrapper for CMS collection list, contains DynamoList and DynamoEmpty',
     },
-    // ===========================================================================
-    // CMS COMPONENTS (3)
-    // ===========================================================================
     DynamoList: {
         displayName: 'Collection List',
         tags: ['div'],
         isContainer: true,
         category: 'cms',
         specialDataFields: ['dyn'],
-        description: 'CMS collection list wrapper',
+        description: 'CMS collection list, contains DynamoItem elements',
     },
     DynamoItem: {
         displayName: 'Collection Item',

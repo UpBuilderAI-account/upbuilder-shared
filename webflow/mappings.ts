@@ -422,10 +422,10 @@ export function getDefaultTag(componentType: WebflowComponentType): string {
     Video: 'div',
     RichText: 'div',
     LightboxWrapper: 'a',
-    Map: 'div',
-    Embed: 'div',
+    MapWidget: 'div',
 
     // CMS
+    DynamoWrapper: 'div',
     DynamoList: 'div',
     DynamoItem: 'div',
     DynamoEmpty: 'div',

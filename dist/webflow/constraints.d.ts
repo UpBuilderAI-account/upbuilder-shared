@@ -52,5 +52,6 @@ export declare const HIERARCHY_CHAINS: {
     readonly fileUpload: readonly ["FormFileUploadWrapper", readonly ["FormFileUploadDefault", "FormFileUploadUploading", "FormFileUploadSuccess", "FormFileUploadError"]];
     readonly list: readonly ["List", "ListItem"];
     readonly search: readonly ["SearchForm", readonly ["SearchInput", "SearchButton", "FormBlockLabel"]];
+    readonly cms: readonly ["DynamoWrapper", readonly ["DynamoList", "DynamoEmpty"], "DynamoItem"];
 };
 //# sourceMappingURL=constraints.d.ts.map

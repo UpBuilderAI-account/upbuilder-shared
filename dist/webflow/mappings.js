@@ -356,9 +356,9 @@ function getDefaultTag(componentType) {
         Video: 'div',
         RichText: 'div',
         LightboxWrapper: 'a',
-        Map: 'div',
-        Embed: 'div',
+        MapWidget: 'div',
         // CMS
+        DynamoWrapper: 'div',
         DynamoList: 'div',
         DynamoItem: 'div',
         DynamoEmpty: 'div',

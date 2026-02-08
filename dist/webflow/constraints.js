@@ -39,6 +39,20 @@ const FORBID_LINK_DESCENDANTS = [
     { is: 'LightboxWrapper', rule: 'Forbid' },
     { is: 'RichText', rule: 'Forbid' },
     { is: 'Video', rule: 'Forbid' },
+    { is: 'FormWrapper', rule: 'Forbid' },
+    { is: 'SearchForm', rule: 'Forbid' },
+];
+/** Form fields forbidden as descendants of FormCheckboxWrapper/FormRadioWrapper */
+const FORBID_FORM_FIELD_DESCENDANTS = [
+    { is: 'FormBlockLabel', rule: 'Forbid' },
+    { is: 'FormButton', rule: 'Forbid' },
+    { is: 'FormCheckboxWrapper', rule: 'Forbid' },
+    { is: 'FormFileUploadWrapper', rule: 'Forbid' },
+    { is: 'FormRadioWrapper', rule: 'Forbid' },
+    { is: 'FormReCaptcha', rule: 'Forbid' },
+    { is: 'FormSelect', rule: 'Forbid' },
+    { is: 'FormTextarea', rule: 'Forbid' },
+    { is: 'FormTextInput', rule: 'Forbid' },
 ];
 // -----------------------------------------------------------------------------
 // All Component Constraints
@@ -92,7 +106,7 @@ exports.WEBFLOW_CONSTRAINTS = {
     ListItem: {
         displayName: 'List Item',
         constraints: {
-            ancestors: [{ is: 'List', rule: 'AtLeastOne' }]
+            parent: [{ is: 'List', rule: 'ExactlyOne' }]
         }
     },
     Image: {
@@ -190,36 +204,33 @@ exports.WEBFLOW_CONSTRAINTS = {
     NavbarContainer: {
         displayName: 'Container',
         constraints: {
-            pinToParent: true,
-            ancestors: [{ is: 'NavbarWrapper', rule: 'AtLeastOne' }]
+            ancestors: [{ is: 'NavbarWrapper', rule: 'ExactlyOne' }]
         }
     },
     NavbarBrand: {
         displayName: 'Brand',
         constraints: {
-            ancestors: [{ is: 'NavbarWrapper', rule: 'AtLeastOne' }],
             descendants: FORBID_LINK_DESCENDANTS
         }
     },
     NavbarMenu: {
         displayName: 'Nav Menu',
         constraints: {
-            ancestors: [{ is: 'NavbarWrapper', rule: 'AtLeastOne' }],
+            ancestors: [{ is: 'NavbarWrapper', rule: 'ExactlyOne' }],
             descendants: [{ is: 'NavbarMenu', rule: 'Forbid' }]
         }
     },
     NavbarLink: {
         displayName: 'Nav Link',
         constraints: {
-            ancestors: [{ is: 'NavbarWrapper', rule: 'AtLeastOne' }],
+            ancestors: [{ is: 'NavbarWrapper', rule: 'ExactlyOne' }],
             descendants: FORBID_LINK_DESCENDANTS
         }
     },
     NavbarButton: {
         displayName: 'Menu Button',
         constraints: {
-            pinToParent: true,
-            ancestors: [{ is: 'NavbarWrapper', rule: 'AtLeastOne' }]
+            ancestors: [{ is: 'NavbarWrapper', rule: 'ExactlyOne' }]
         }
     },
     // ===========================================================================
@@ -236,7 +247,6 @@ exports.WEBFLOW_CONSTRAINTS = {
         displayName: 'Dropdown Toggle',
         constraints: {
             pinToParent: true,
-            ancestors: [{ is: 'DropdownWrapper', rule: 'AtLeastOne' }]
         }
     },
     DropdownList: {
@@ -270,26 +280,35 @@ exports.WEBFLOW_CONSTRAINTS = {
         displayName: 'Tabs Menu',
         constraints: {
             pinToParent: true,
-            ancestors: [{ is: 'TabsWrapper', rule: 'ExactlyOne' }]
+            parent: [{ is: 'TabsWrapper', rule: 'ExactlyOne' }],
+            children: [
+                { is: 'TabsLink', name: 'Non-Tab-Link Item', rule: 'RequireOnly' },
+                { is: 'TabsLink', rule: 'AtLeastOne' },
+            ]
         }
     },
     TabsContent: {
         displayName: 'Tabs Content',
         constraints: {
             pinToParent: true,
-            ancestors: [{ is: 'TabsWrapper', rule: 'ExactlyOne' }]
+            parent: [{ is: 'TabsWrapper', rule: 'ExactlyOne' }],
+            children: [
+                { is: 'TabsPane', name: 'Non-Tab-Pane Item', rule: 'RequireOnly' },
+                { is: 'TabsPane', rule: 'AtLeastOne' },
+            ]
         }
     },
     TabsLink: {
         displayName: 'Tab Link',
         constraints: {
-            ancestors: [{ is: 'TabsWrapper', rule: 'ExactlyOne' }]
+            parent: [{ is: 'TabsMenu', rule: 'RequireOnly' }],
+            descendants: FORBID_LINK_DESCENDANTS
         }
     },
     TabsPane: {
         displayName: 'Tab Pane',
         constraints: {
-            ancestors: [{ is: 'TabsWrapper', rule: 'ExactlyOne' }]
+            parent: [{ is: 'TabsContent', rule: 'RequireOnly' }]
         }
     },
     // ===========================================================================
@@ -305,14 +324,16 @@ exports.WEBFLOW_CONSTRAINTS = {
         displayName: 'Mask',
         constraints: {
             pinToParent: true,
-            ancestors: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }]
+            children: [
+                { is: 'SliderSlide', name: 'Non-Slide Item', rule: 'RequireOnly' },
+                { is: 'SliderSlide', rule: 'AtLeastOne' },
+            ]
         }
     },
     SliderSlide: {
         displayName: 'Slide',
         constraints: {
-            pinToParent: true,
-            ancestors: [{ is: 'SliderWrapper', rule: 'AtLeastOne' }]
+            parent: [{ is: 'SliderMask', rule: 'ExactlyOne' }]
         }
     },
     SliderArrow: {
@@ -355,9 +376,8 @@ exports.WEBFLOW_CONSTRAINTS = {
     FormBlockLabel: {
         displayName: 'Label',
         constraints: {
-            pinToParent: true,
             ancestors: [
-                { is: ['FormCheckboxWrapper', 'FormRadioWrapper'], rule: 'Forbid' }
+                { is: ['FormForm', 'SearchForm'], name: 'Form', rule: 'ExactlyOne' }
             ]
         }
     },
@@ -390,7 +410,8 @@ exports.WEBFLOW_CONSTRAINTS = {
         constraints: {
             ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }],
             descendants: [
-                { is: 'FormBlockLabel', rule: 'Forbid' },
+                ...FORBID_LINK_DESCENDANTS,
+                ...FORBID_FORM_FIELD_DESCENDANTS,
             ]
         }
     },
@@ -405,7 +426,8 @@ exports.WEBFLOW_CONSTRAINTS = {
         constraints: {
             ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }],
             descendants: [
-                { is: 'FormBlockLabel', rule: 'Forbid' },
+                ...FORBID_LINK_DESCENDANTS,
+                ...FORBID_FORM_FIELD_DESCENDANTS,
             ]
         }
     },
@@ -545,28 +567,42 @@ exports.WEBFLOW_CONSTRAINTS = {
             descendants: FORBID_LINK_DESCENDANTS
         }
     },
-    Map: {
+    MapWidget: {
         displayName: 'Map',
-        constraints: {}
-    },
-    Embed: {
-        displayName: 'Embed',
-        constraints: {}
+        constraints: {
+            ancestors: [{ is: 'DynamoItem', rule: 'Forbid' }]
+        }
     },
     // ===========================================================================
     // CMS COMPONENTS
     // ===========================================================================
+    DynamoWrapper: {
+        displayName: 'Collection List Wrapper',
+        constraints: {
+            children: [
+                { is: ['DynamoList', 'DynamoEmpty'], name: 'Element', rule: 'RequireOnly' },
+            ]
+        }
+    },
     DynamoList: {
         displayName: 'Collection List',
-        constraints: {}
+        constraints: {
+            pinToParent: true,
+            children: [{ is: 'DynamoItem', name: 'Element', rule: 'RequireOnly' }]
+        }
     },
     DynamoItem: {
         displayName: 'Collection Item',
-        constraints: {}
+        constraints: {
+            pinToParent: true,
+        }
     },
     DynamoEmpty: {
         displayName: 'Empty State',
-        constraints: {}
+        constraints: {
+            pinToParent: true,
+            descendants: [{ is: 'DynamoWrapper', rule: 'Forbid' }]
+        }
     },
 };
 // -----------------------------------------------------------------------------
@@ -635,4 +671,5 @@ exports.HIERARCHY_CHAINS = {
     fileUpload: ['FormFileUploadWrapper', ['FormFileUploadDefault', 'FormFileUploadUploading', 'FormFileUploadSuccess', 'FormFileUploadError']],
     list: ['List', 'ListItem'],
     search: ['SearchForm', ['SearchInput', 'SearchButton', 'FormBlockLabel']],
+    cms: ['DynamoWrapper', ['DynamoList', 'DynamoEmpty'], 'DynamoItem'],
 };
