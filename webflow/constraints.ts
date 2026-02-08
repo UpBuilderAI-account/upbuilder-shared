@@ -392,7 +392,10 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
   FormBlockLabel: {
     displayName: 'Label',
     constraints: {
-      pinToParent: true
+      pinToParent: true,
+      ancestors: [
+        { is: ['FormCheckboxWrapper', 'FormRadioWrapper'], rule: 'Forbid' }
+      ]
     }
   },
   FormTextInput: {
@@ -422,7 +425,10 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
   FormCheckboxWrapper: {
     displayName: 'Checkbox',
     constraints: {
-      ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }]
+      ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }],
+      descendants: [
+        { is: 'FormBlockLabel', rule: 'Forbid' },
+      ]
     }
   },
   FormCheckboxInput: {
@@ -434,7 +440,10 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
   FormRadioWrapper: {
     displayName: 'Radio Button',
     constraints: {
-      ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }]
+      ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }],
+      descendants: [
+        { is: 'FormBlockLabel', rule: 'Forbid' },
+      ]
     }
   },
   FormRadioInput: {
@@ -446,7 +455,10 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
   FormInlineLabel: {
     displayName: 'Inline Label',
     constraints: {
-      pinToParent: true
+      pinToParent: true,
+      ancestors: [
+        { is: ['FormCheckboxWrapper', 'FormRadioWrapper'], rule: 'ExactlyOne' }
+      ]
     }
   },
   FormSuccessMessage: {

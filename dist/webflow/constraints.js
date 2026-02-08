@@ -352,7 +352,10 @@ exports.WEBFLOW_CONSTRAINTS = {
     FormBlockLabel: {
         displayName: 'Label',
         constraints: {
-            pinToParent: true
+            pinToParent: true,
+            ancestors: [
+                { is: ['FormCheckboxWrapper', 'FormRadioWrapper'], rule: 'Forbid' }
+            ]
         }
     },
     FormTextInput: {
@@ -382,7 +385,10 @@ exports.WEBFLOW_CONSTRAINTS = {
     FormCheckboxWrapper: {
         displayName: 'Checkbox',
         constraints: {
-            ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }]
+            ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }],
+            descendants: [
+                { is: 'FormBlockLabel', rule: 'Forbid' },
+            ]
         }
     },
     FormCheckboxInput: {
@@ -394,7 +400,10 @@ exports.WEBFLOW_CONSTRAINTS = {
     FormRadioWrapper: {
         displayName: 'Radio Button',
         constraints: {
-            ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }]
+            ancestors: [{ is: 'FormForm', rule: 'ExactlyOne' }],
+            descendants: [
+                { is: 'FormBlockLabel', rule: 'Forbid' },
+            ]
         }
     },
     FormRadioInput: {
@@ -406,7 +415,10 @@ exports.WEBFLOW_CONSTRAINTS = {
     FormInlineLabel: {
         displayName: 'Inline Label',
         constraints: {
-            pinToParent: true
+            pinToParent: true,
+            ancestors: [
+                { is: ['FormCheckboxWrapper', 'FormRadioWrapper'], rule: 'ExactlyOne' }
+            ]
         }
     },
     FormSuccessMessage: {
