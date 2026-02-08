@@ -853,6 +853,18 @@ export interface BoundedSection {
   name: string;
   type: SectionType;
   bounds: { x: number; y: number; width: number; height: number };
+  /**
+   * Content-only bounds excluding decorative/overflow elements.
+   * Used for spacing analysis and QA height checks where decorative elements
+   * (brush strokes, background textures) inflate the full bounding box.
+   * Falls back to `bounds` when not set.
+   */
+  contentBounds?: { x: number; y: number; width: number; height: number };
+  /**
+   * htmlIds of decorative/overflow elements identified by the AI builder.
+   * These are excluded from content height calculations.
+   */
+  decorativeElementIds?: string[];
   elementIds: string[];
   isGlobal: boolean;
   order: number;
