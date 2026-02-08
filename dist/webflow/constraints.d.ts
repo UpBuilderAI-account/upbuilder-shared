@@ -42,7 +42,7 @@ export declare function getAllowedChildren(type: WebflowComponentType): WebflowC
 /** Check if component must be pinned to parent */
 export declare function isPinnedToParent(type: WebflowComponentType): boolean;
 export declare const HIERARCHY_CHAINS: {
-    readonly navbar: readonly ["NavbarWrapper", "NavbarContainer", readonly ["NavbarBrand", "NavbarMenu", "NavbarButton"], "NavbarLink"];
+    readonly navbar: readonly ["NavbarWrapper", readonly ["NavbarBrand", "NavbarMenu", "NavbarButton"], "NavbarLink"];
     readonly dropdown: readonly ["DropdownWrapper", readonly ["DropdownToggle", "DropdownList"], "DropdownLink"];
     readonly tabs: readonly ["TabsWrapper", readonly ["TabsMenu", "TabsContent"], readonly ["TabsLink", "TabsPane"]];
     readonly slider: readonly ["SliderWrapper", readonly ["SliderMask", "SliderArrow", "SliderNav"], "SliderSlide"];

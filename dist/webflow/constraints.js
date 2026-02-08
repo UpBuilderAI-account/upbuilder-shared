@@ -661,7 +661,7 @@ function isPinnedToParent(type) {
 // Hierarchy Chains (common parent-child patterns)
 // -----------------------------------------------------------------------------
 exports.HIERARCHY_CHAINS = {
-    navbar: ['NavbarWrapper', 'NavbarContainer', ['NavbarBrand', 'NavbarMenu', 'NavbarButton'], 'NavbarLink'],
+    navbar: ['NavbarWrapper', ['NavbarBrand', 'NavbarMenu', 'NavbarButton'], 'NavbarLink'],
     dropdown: ['DropdownWrapper', ['DropdownToggle', 'DropdownList'], 'DropdownLink'],
     tabs: ['TabsWrapper', ['TabsMenu', 'TabsContent'], ['TabsLink', 'TabsPane']],
     slider: ['SliderWrapper', ['SliderMask', 'SliderArrow', 'SliderNav'], 'SliderSlide'],

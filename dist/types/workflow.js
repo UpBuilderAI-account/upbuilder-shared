@@ -41,7 +41,7 @@ exports.DEFAULT_NAVBAR_CONFIG = {
     animation: 'default',
     animationDuration: 400,
     dropdownHover: true,
-    dropdownDelay: 0,
+    dropdownDelay: 300,
 };
 /**
  * Default stylesheet configuration

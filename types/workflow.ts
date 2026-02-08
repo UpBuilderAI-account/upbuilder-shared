@@ -376,7 +376,7 @@ export const DEFAULT_NAVBAR_CONFIG: NavbarConfig = {
   animation: 'default',
   animationDuration: 400,
   dropdownHover: true,
-  dropdownDelay: 0,
+  dropdownDelay: 300,
 };
 
 /**
