@@ -177,7 +177,7 @@ export interface EditableNode {
     };
     /** Form input properties */
     formProps?: {
-        /** Input type (text, email, password, etc.) */
+        /** Input type (text, email, password, submit, etc.) */
         type?: string;
         /** Placeholder text */
         placeholder?: string;
@@ -185,6 +185,8 @@ export interface EditableNode {
         required?: boolean;
         /** Input name attribute */
         name?: string;
+        /** Button value text (for type="submit") */
+        value?: string;
     };
     /** Video properties */
     videoProps?: {
