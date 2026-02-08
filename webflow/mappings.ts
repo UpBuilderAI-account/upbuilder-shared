@@ -336,6 +336,7 @@ function mapDivElement(context?: MappingContext): WebflowComponentType {
 export function getDefaultTag(componentType: WebflowComponentType): string {
   const TAG_MAP: Partial<Record<WebflowComponentType, string>> = {
     Block: 'div',
+    BlockContainer: 'div',
     Section: 'section',
     Heading: 'h2', // Default, actual tag set via data.tag
     Paragraph: 'p',

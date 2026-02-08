@@ -277,6 +277,7 @@ function mapDivElement(context) {
 function getDefaultTag(componentType) {
     const TAG_MAP = {
         Block: 'div',
+        BlockContainer: 'div',
         Section: 'section',
         Heading: 'h2', // Default, actual tag set via data.tag
         Paragraph: 'p',
