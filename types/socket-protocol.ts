@@ -630,6 +630,15 @@ export interface ClientToServerEvents {
     }) => void
   ) => void;
 
+  'webflow:get_custom_css': (
+    data: { projectId: string },
+    callback: (response: {
+      success: boolean;
+      data?: { customCss: string; hasCustomCss: boolean };
+      error?: string;
+    }) => void
+  ) => void;
+
   'webflow:download_assets_zip': (
     data: { projectId: string },
     callback: (response: {
