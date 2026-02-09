@@ -113,7 +113,7 @@ exports.MAX_IMAGES = 2000;
  * Enforced in both plugin UI and backend
  * Note: Different from tier-based MAX_DESIGNS_PER_PROJECT in pricing.ts
  */
-exports.MAX_DESIGNS_PER_PROJECT_HARD_LIMIT = 20;
+exports.MAX_DESIGNS_PER_PROJECT_HARD_LIMIT = 30;
 // ============================================================================
 // HIERARCHY DEPTH LIMITS
 // ============================================================================
