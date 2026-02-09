@@ -10,8 +10,8 @@
  * Free plan feature list
  */
 export const BASIC_FEATURES = [
-  'Unlimited exports',
-  'Preview only (no Webflow export)',
+  'Preview export',
+  'Up to 2 frames',
   'Basic support',
 ] as const;
 
@@ -19,20 +19,19 @@ export const BASIC_FEATURES = [
  * Pro plan feature list
  */
 export const PRO_FEATURES = [
-  'Unlimited exports',
-  'Up to 2 frames per export',
-  'Full Webflow export',
+  'Webflow export',
+  'Up to 2 frames',
   'Priority support',
 ] as const;
 
 /**
  * Max plan feature list
- * Uses "Everything in Pro, plus:" framing on pricing cards
  */
 export const MAX_FEATURES = [
-  'Up to 9 frames per export',
+  'Webflow export',
+  'Up to 9 frames',
+  'Priority support',
   'Build on past exports',
-  'Early access to new features',
 ] as const;
 
 /**

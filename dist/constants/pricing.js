@@ -12,27 +12,26 @@ exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.MAX_FEATURES 
  * Free plan feature list
  */
 exports.BASIC_FEATURES = [
-    'Unlimited exports',
-    'Preview only (no Webflow export)',
+    'Preview export',
+    'Up to 2 frames',
     'Basic support',
 ];
 /**
  * Pro plan feature list
  */
 exports.PRO_FEATURES = [
-    'Unlimited exports',
-    'Up to 2 frames per export',
-    'Full Webflow export',
+    'Webflow export',
+    'Up to 2 frames',
     'Priority support',
 ];
 /**
  * Max plan feature list
- * Uses "Everything in Pro, plus:" framing on pricing cards
  */
 exports.MAX_FEATURES = [
-    'Up to 9 frames per export',
+    'Webflow export',
+    'Up to 9 frames',
+    'Priority support',
     'Build on past exports',
-    'Early access to new features',
 ];
 /**
  * Design slots per tier
