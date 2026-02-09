@@ -261,7 +261,6 @@ export const SOCKET_EVENTS = {
 
     // Push to Webflow
     PUSH_DESIGN: 'webflow:push_design',          // Client → Server: Get Designer-ready payload
-    GET_CUSTOM_CSS: 'webflow:get_custom_css',    // Client → Server: Get custom CSS for all designs
     PUSH_PROGRESS: 'webflow:push_progress',      // Server → Client: Push progress
     PUSH_COMPLETE: 'webflow:push_complete',      // Server → Client: Push complete
 

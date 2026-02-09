@@ -208,7 +208,6 @@ export declare const SOCKET_EVENTS: {
         readonly ASSET_COMPLETE: "webflow:asset_complete";
         readonly DOWNLOAD_ASSETS_ZIP: "webflow:download_assets_zip";
         readonly PUSH_DESIGN: "webflow:push_design";
-        readonly GET_CUSTOM_CSS: "webflow:get_custom_css";
         readonly PUSH_PROGRESS: "webflow:push_progress";
         readonly PUSH_COMPLETE: "webflow:push_complete";
         readonly GET_COLLECTIONS: "webflow:get_collections";

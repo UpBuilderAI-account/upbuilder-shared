@@ -954,6 +954,9 @@ export interface EditableTreePayloadV2 extends EditableTreePayload {
 
   /** Global section mappings for linked editing (cross-design path maps) */
   globalSectionMappings?: GlobalSectionMapping[];
+
+  /** Custom CSS extracted from XSCP (Webflow-unsupported properties) */
+  customCss?: string | null;
 }
 
 // ============================================================================
