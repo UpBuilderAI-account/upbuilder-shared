@@ -61,9 +61,11 @@ export interface ImageReviewDesignInput {
         width: number;
         height: number;
     };
-    /** Compact tree representation for AI */
+    /** Compact tree representation for AI (uses short IDs if nodeIdMap provided) */
     nodeTree: string;
-    /** Node IDs already detected by heuristics */
+    /** Maps short IDs back to real figma node IDs (e.g. "n1" → "I5:1207;86:1300") */
+    nodeIdMap?: Record<string, string>;
+    /** Node IDs already detected by heuristics (short IDs if nodeIdMap provided) */
     currentDetections: string[];
 }
 /**

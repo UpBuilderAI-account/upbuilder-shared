@@ -12,15 +12,20 @@
 export const BASIC_FEATURES = [
   'Preview export',
   'Up to 2 frames',
-  'Basic support',
+  'Client-First CSS',
+  'CSS Variables',
+  'CMS schema',
 ] as const;
 
 /**
  * Pro plan feature list
  */
 export const PRO_FEATURES = [
-  'Webflow export',
+  'Full Webflow export',
   'Up to 2 frames',
+  'CSS Variables',
+  'CMS Collections',
+  'Global Components',
   'Priority support',
 ] as const;
 
@@ -28,8 +33,11 @@ export const PRO_FEATURES = [
  * Max plan feature list
  */
 export const MAX_FEATURES = [
-  'Webflow export',
+  'Full Webflow export',
   'Up to 9 frames',
+  'CSS Variables',
+  'CMS Collections',
+  'Global Components',
   'Priority support',
   'Build on past exports',
 ] as const;
