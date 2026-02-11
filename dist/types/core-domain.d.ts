@@ -580,6 +580,8 @@ export interface DesignEntity {
     html_list?: string | null;
     /** AI representation: HTML-like hierarchy with auto-layout hints from Figma */
     figma_mockup?: string | null;
+    /** Pre-formatted design system analysis (typography groups, color palette, etc.) */
+    design_system_analysis?: string | null;
     status?: string;
     width?: number;
     height?: number;

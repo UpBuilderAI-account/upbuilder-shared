@@ -812,6 +812,9 @@ export interface DesignEntity {
   /** AI representation: HTML-like hierarchy with auto-layout hints from Figma */
   figma_mockup?: string | null;
 
+  /** Pre-formatted design system analysis (typography groups, color palette, etc.) */
+  design_system_analysis?: string | null;
+
   // Legacy fields - NOT stored in DB, exist only in Project.state.designs[]
   // These are here only for type compatibility during database queries
   status?: string;
