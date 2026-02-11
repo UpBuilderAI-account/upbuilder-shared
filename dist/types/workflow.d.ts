@@ -688,6 +688,16 @@ export interface BoundedSection {
      * Used to copy analysis results after build_sections
      */
     primarySectionId?: string;
+    /**
+     * Elements from OTHER sections that appear in this section's screenshot crop area.
+     * Used to warn build-sections AI to skip these elements — they belong to other sections
+     * but are visually present due to overlapping backgrounds or overflow.
+     */
+    screenshotIntruders?: Array<{
+        elementId: string;
+        fromSection: string;
+        htmlLine: string;
+    }>;
 }
 /**
  * Analysis result for a single section
