@@ -598,6 +598,8 @@ export interface EditableTreePayloadV2 extends EditableTreePayload {
     globalSectionMappings?: GlobalSectionMapping[];
     /** Custom CSS extracted from XSCP (Webflow-unsupported properties) */
     customCss?: string | null;
+    /** Active units mode the XSCP was built with (px or rem) */
+    activeUnits?: 'px' | 'rem';
 }
 /**
  * Cross-design node mapping for a global section variant
