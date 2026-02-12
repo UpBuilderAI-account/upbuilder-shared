@@ -153,6 +153,7 @@ export declare const SOCKET_EVENTS: {
         readonly HAS_ORIGINAL: "customizer:has_original";
         readonly RESTORE_COMPLETE: "customizer:restore_complete";
         readonly REPROCESS_XSCP: "customizer:reprocess_xscp";
+        readonly SWITCH_UNITS: "customizer:switch_units";
         readonly CMS_UPDATE_SCHEMA: "customizer:cms_update_schema";
         readonly CMS_ADD_COLLECTION: "customizer:cms_add_collection";
         readonly CMS_DELETE_COLLECTION: "customizer:cms_delete_collection";

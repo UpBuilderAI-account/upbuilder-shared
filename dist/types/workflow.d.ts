@@ -246,7 +246,7 @@ export interface UnitsConfig {
     borderRadius: CSSUnitType;
 }
 export declare const DEFAULT_UNITS_CONFIG: UnitsConfig;
-/** Preset: Scalable units (rem-based, best practice) */
+/** Preset: Scalable units (rem-based, Client-First convention) */
 export declare const SCALABLE_UNITS_CONFIG: UnitsConfig;
 export type UnitsPreset = 'figma' | 'scalable' | 'custom';
 /**
@@ -702,6 +702,11 @@ export interface BoundedSection {
      * Used to copy analysis results after build_sections
      */
     primarySectionId?: string;
+    /**
+     * True if this navbar's bounds overlap the section below it (typically the hero).
+     * When set, the section root needs position: absolute to float over the hero content.
+     */
+    isOverlayNavbar?: boolean;
     /**
      * Elements from OTHER sections that appear in this section's screenshot crop area.
      * Used to warn build-sections AI to skip these elements — they belong to other sections

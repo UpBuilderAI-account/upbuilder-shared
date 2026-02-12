@@ -333,14 +333,14 @@ export const DEFAULT_UNITS_CONFIG: UnitsConfig = {
   borderRadius: 'px',
 };
 
-/** Preset: Scalable units (rem-based, best practice) */
+/** Preset: Scalable units (rem-based, Client-First convention) */
 export const SCALABLE_UNITS_CONFIG: UnitsConfig = {
   baseFontSize: 16,
   fontSize: 'rem',
   lineHeight: 'unitless',
   letterSpacing: 'em',
   spacing: 'rem',
-  borderRadius: 'px',
+  borderRadius: 'rem',
 };
 
 export type UnitsPreset = 'figma' | 'scalable' | 'custom';
@@ -500,7 +500,7 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: QUICK_INTERACTIVITY_CONFIG,
   imageConfig: DEFAULT_IMAGE_CONFIG,
-  unitsConfig: DEFAULT_UNITS_CONFIG,
+  unitsConfig: SCALABLE_UNITS_CONFIG,
   navbarConfig: DEFAULT_NAVBAR_CONFIG,
   enableAIAssistant: false,  // Quick mode skips AI planning and fixing
   enableCms: false,          // CMS disabled in quick mode
@@ -515,7 +515,7 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
   imageConfig: DEFAULT_IMAGE_CONFIG,
-  unitsConfig: DEFAULT_UNITS_CONFIG,
+  unitsConfig: SCALABLE_UNITS_CONFIG,
   navbarConfig: DEFAULT_NAVBAR_CONFIG,
   enableAIAssistant: true,  // AI assistant (planning + fixing) enabled by default
   enableCms: false,         // CMS disabled by default
@@ -914,6 +914,16 @@ export interface BoundedSection {
    * Used to copy analysis results after build_sections
    */
   primarySectionId?: string;
+
+  // ===========================================
+  // OVERLAY NAVBAR METADATA
+  // ===========================================
+
+  /**
+   * True if this navbar's bounds overlap the section below it (typically the hero).
+   * When set, the section root needs position: absolute to float over the hero content.
+   */
+  isOverlayNavbar?: boolean;
 
   // ===========================================
   // SCREENSHOT INTRUDER METADATA
