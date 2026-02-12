@@ -652,6 +652,20 @@ export interface BoundedSection {
      * These are excluded from content height calculations.
      */
     decorativeElementIds?: string[];
+    /** Figma auto-layout padding on section root frame. Null if not auto-layout. */
+    figmaPadding?: {
+        top: number;
+        right: number;
+        bottom: number;
+        left: number;
+    };
+    /** Padding measured from child positions (absolute children excluded). */
+    measuredPadding?: {
+        top: number;
+        right: number;
+        bottom: number;
+        left: number;
+    };
     elementIds: string[];
     isGlobal: boolean;
     order: number;
