@@ -500,7 +500,7 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: QUICK_INTERACTIVITY_CONFIG,
   imageConfig: DEFAULT_IMAGE_CONFIG,
-  unitsConfig: SCALABLE_UNITS_CONFIG,
+  unitsConfig: DEFAULT_UNITS_CONFIG,
   navbarConfig: DEFAULT_NAVBAR_CONFIG,
   enableAIAssistant: false,  // Quick mode skips AI planning and fixing
   enableCms: false,          // CMS disabled in quick mode
@@ -515,7 +515,7 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
   imageConfig: DEFAULT_IMAGE_CONFIG,
-  unitsConfig: SCALABLE_UNITS_CONFIG,
+  unitsConfig: DEFAULT_UNITS_CONFIG,
   navbarConfig: DEFAULT_NAVBAR_CONFIG,
   enableAIAssistant: true,  // AI assistant (planning + fixing) enabled by default
   enableCms: false,         // CMS disabled by default
