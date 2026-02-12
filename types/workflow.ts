@@ -337,8 +337,8 @@ export const DEFAULT_UNITS_CONFIG: UnitsConfig = {
 export const SCALABLE_UNITS_CONFIG: UnitsConfig = {
   baseFontSize: 16,
   fontSize: 'rem',
-  lineHeight: 'unitless',
-  letterSpacing: 'em',
+  lineHeight: 'unitless', // Uses element's font-size for correct ratio
+  letterSpacing: 'rem',
   spacing: 'rem',
   borderRadius: 'rem',
 };

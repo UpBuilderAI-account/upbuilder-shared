@@ -31,8 +31,8 @@ exports.DEFAULT_UNITS_CONFIG = {
 exports.SCALABLE_UNITS_CONFIG = {
     baseFontSize: 16,
     fontSize: 'rem',
-    lineHeight: 'unitless',
-    letterSpacing: 'em',
+    lineHeight: 'unitless', // Uses element's font-size for correct ratio
+    letterSpacing: 'rem',
     spacing: 'rem',
     borderRadius: 'rem',
 };
