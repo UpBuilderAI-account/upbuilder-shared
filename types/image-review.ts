@@ -105,6 +105,11 @@ export interface ImageReviewRequest {
     styleFramework?: string;
     breakpoints?: { tablet: number; mobile: number };
   };
+  /**
+   * When true, skip AI analysis (fast mode).
+   * Screenshots are still uploaded, but AI review is skipped.
+   */
+  fastMode?: boolean;
 }
 
 /**
