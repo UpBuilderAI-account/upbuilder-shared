@@ -196,7 +196,7 @@ export type PluginFrontendMessage =
   | { type: 'select-frame'; data: { frameId: string } }
   | { type: 'enable-frame-selection'; data: { enabled: boolean } }
   | { type: 'cancel-frame-preview'; data: { frameId: string } }
-  | { type: 'extract-nodes'; data: { frameIds: string[]; maxDimension?: number } }
+  | { type: 'extract-nodes'; data: { frameIds: string[]; maxDimension?: number; fastMode?: boolean } }
   | { type: 'extract-images'; data: { projectId: string; designId: string } }
   | { type: 'extract-images-for-design'; data: { projectId: string; designId: string; frameIndex: number; isLastDesign: boolean } }
   | { type: 'extract-all-images'; data: { projectId: string; frameToDesignMap: Record<number, string> } }
@@ -215,7 +215,7 @@ export type PluginFrontendMessage =
   | { type: 'ai-image-review-approval'; data: { confirmedNodeIds: string[] } }
   | { type: 'request-image-review-thumbnails'; data: { nodeIds: string[] } }
   // AI image scan (pre-export phase)
-  | { type: 'scan-ai-images'; data: { frameIds: string[] } }
+  | { type: 'scan-ai-images'; data: { frameIds: string[]; fastMode?: boolean } }
   | { type: 'set-ai-approved-nodes'; data: { nodeIds: string[]; groups?: Array<{ nodeIds: string[] }> } }
   | { type: 'request-group-thumbnail'; data: { groupKey: string; nodeIds: string[] } }
   // Geometry measurement request (server → websocket → frontend → plugin backend)

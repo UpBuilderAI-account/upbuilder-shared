@@ -288,6 +288,7 @@ export type PluginFrontendMessage = {
     data: {
         frameIds: string[];
         maxDimension?: number;
+        fastMode?: boolean;
     };
 } | {
     type: 'extract-images';
@@ -372,6 +373,7 @@ export type PluginFrontendMessage = {
     type: 'scan-ai-images';
     data: {
         frameIds: string[];
+        fastMode?: boolean;
     };
 } | {
     type: 'set-ai-approved-nodes';
