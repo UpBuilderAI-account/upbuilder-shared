@@ -332,6 +332,21 @@ export interface ExportConfig {
         /** Whether to reuse styles from this project (default: true if projectId is set) */
         reuseStyles?: boolean;
     };
+    /**
+     * Fast Mode - optimized for well-structured Figma files with high auto layout coverage
+     * When enabled:
+     * - Uses Gemini Flash instead of Pro for all AI calls (faster, cheaper)
+     * - Skips AI image naming (uses sanitized Figma node names instead)
+     * - Best results when design has ≥85% auto layout coverage
+     * Default: false
+     */
+    fastMode?: boolean;
+    /**
+     * Auto layout coverage percentage (0-100)
+     * Calculated by plugin during frame selection
+     * Used to determine if fast mode is recommended
+     */
+    autoLayoutCoverage?: number;
 }
 /**
  * Default stylesheet configuration
