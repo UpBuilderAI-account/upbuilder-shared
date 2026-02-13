@@ -24,6 +24,7 @@ export interface FrameData {
     index?: number;
     previewUrl?: string;
     hasBackground?: boolean;
+    autoLayoutCoverage?: number;
 }
 /**
  * Preview image data

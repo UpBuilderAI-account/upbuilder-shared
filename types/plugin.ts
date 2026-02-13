@@ -36,6 +36,7 @@ export interface FrameData {
   index?: number; // Frame index for processing order
   previewUrl?: string; // Base64 preview image for UI
   hasBackground?: boolean; // Whether frame has any visible background fill
+  autoLayoutCoverage?: number; // Auto layout coverage percentage (0-100)
 }
 
 // FrameMetadata and PluginFrameData aliases removed - use FrameData directly
