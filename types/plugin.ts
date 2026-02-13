@@ -381,4 +381,5 @@ export interface AIScanFrameData {
 export interface AIScanDataReadyPayload {
   frames: AIScanFrameData[];
   totalFrames: number;
+  fastMode?: boolean;
 }
