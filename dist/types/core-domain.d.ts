@@ -13,7 +13,7 @@ export interface User {
     email: string;
     name?: string;
     avatar?: string | null;
-    role?: 'user' | 'admin';
+    role?: 'user' | 'admin' | 'superadmin';
     created_at: string;
     subscription?: {
         tier: SubscriptionTier;
