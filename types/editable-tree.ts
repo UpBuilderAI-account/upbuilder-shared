@@ -960,6 +960,12 @@ export interface EditableTreePayloadV2 extends EditableTreePayload {
 
   /** Active units mode the XSCP was built with (px or rem) */
   activeUnits?: 'px' | 'rem';
+
+  /**
+   * Whether original XSCP backup exists for restore functionality
+   * Merged into tree response to eliminate separate socket round-trip
+   */
+  hasOriginal?: boolean;
 }
 
 // ============================================================================
