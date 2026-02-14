@@ -83,3 +83,5 @@ __exportStar(require("./image-review"), exports);
 __exportStar(require("./cms"), exports);
 // Section render types (browser-based QA rendering)
 __exportStar(require("./section-render"), exports);
+// Clipboard export types (plugin → frontend paste workflow)
+__exportStar(require("./clipboard-export"), exports);

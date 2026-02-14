@@ -66,6 +66,7 @@ export declare const SOCKET_EVENTS: {
         readonly SECTION_QA_RESULT: "workflow:section_qa_result";
         readonly AI_ANALYSIS_PROGRESS: "workflow:ai_analysis_progress";
         readonly SCATTERED_ANALYSIS_RESULTS: "scattered-analysis-results";
+        readonly FILE_GENERATED: "workflow:file_generated";
     };
     /**
      * Server → Client: Project state updates

@@ -169,3 +169,6 @@ export * from './cms';
 
 // Section render types (browser-based QA rendering)
 export * from './section-render';
+
+// Clipboard export types (plugin → frontend paste workflow)
+export * from './clipboard-export';
