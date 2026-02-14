@@ -448,6 +448,11 @@ export interface ExportConfig {
    */
   fastMode?: boolean;
   /**
+   * Skip AI image naming - use sanitized Figma layer names instead of AI descriptions
+   * Auto-enabled when fastMode is true, but can be toggled independently
+   */
+  skipImageTagging?: boolean;
+  /**
    * Auto layout coverage percentage (0-100)
    * Calculated by plugin during frame selection
    * Used to determine if fast mode is recommended
