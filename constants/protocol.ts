@@ -94,6 +94,9 @@ export const SOCKET_EVENTS = {
     SCATTERED_ANALYSIS_RESULTS: 'scattered-analysis-results', // Server → Client: Scattered composition groups for review
     // File generation streaming (build_sections stage)
     FILE_GENERATED: 'workflow:file_generated', // Server → Client: Stream generated files as they complete
+    // Progressive file display (shows code panel during workflow)
+    FILES_SCAFFOLD: 'workflow:files_scaffold',           // Server → Client: Initial project scaffold files
+    SECTION_PLACEHOLDERS: 'workflow:section_placeholders', // Server → Client: Empty section file placeholders
   },
 
   /**

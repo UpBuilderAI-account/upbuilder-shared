@@ -85,3 +85,5 @@ __exportStar(require("./cms"), exports);
 __exportStar(require("./section-render"), exports);
 // Clipboard export types (plugin → frontend paste workflow)
 __exportStar(require("./clipboard-export"), exports);
+// Workflow files types (progressive file display)
+__exportStar(require("./workflow-files"), exports);
