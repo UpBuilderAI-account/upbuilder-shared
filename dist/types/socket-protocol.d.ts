@@ -740,6 +740,9 @@ export interface ServerToClientEvents {
         newStyleNames: string[];
         sourceProjectName?: string;
     }) => void;
+    'workflow:files_scaffold': (data: import('./workflow-files').FilesScaffoldEvent) => void;
+    'workflow:section_placeholders': (data: import('./workflow-files').SectionPlaceholdersEvent) => void;
+    'workflow:file_generated': (data: import('./clipboard-export').FileGeneratedEvent) => void;
     project_ownership_transferred: (data: {
         projectId: string;
         projectName?: string;

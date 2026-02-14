@@ -845,6 +845,10 @@ export interface ServerToClientEvents {
     newStyleNames: string[];
     sourceProjectName?: string;
   }) => void;
+  // Progressive file display events
+  'workflow:files_scaffold': (data: import('./workflow-files').FilesScaffoldEvent) => void;
+  'workflow:section_placeholders': (data: import('./workflow-files').SectionPlaceholdersEvent) => void;
+  'workflow:file_generated': (data: import('./clipboard-export').FileGeneratedEvent) => void;
 
   // Ownership transfer events
   project_ownership_transferred: (data: {
