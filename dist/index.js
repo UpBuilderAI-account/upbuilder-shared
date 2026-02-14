@@ -51,6 +51,8 @@ __exportStar(require("./constants"), exports);
 __exportStar(require("./utils"), exports);
 // Export Webflow module (components, constraints, data fields, breakpoints, mappings, docs)
 exports.webflow = __importStar(require("./webflow"));
+// Export CSS module (webflow base styles)
+__exportStar(require("./css"), exports);
 // Re-export commonly used validation functions directly for convenience
 var hierarchy_helpers_1 = require("./webflow/hierarchy-helpers");
 Object.defineProperty(exports, "canPlaceElement", { enumerable: true, get: function () { return hierarchy_helpers_1.canPlaceElement; } });

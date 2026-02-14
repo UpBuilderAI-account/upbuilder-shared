@@ -18,6 +18,9 @@ export * from './utils';
 // Export Webflow module (components, constraints, data fields, breakpoints, mappings, docs)
 export * as webflow from './webflow';
 
+// Export CSS module (webflow base styles)
+export * from './css';
+
 // Re-export commonly used validation functions directly for convenience
 export {
   canPlaceElement,
