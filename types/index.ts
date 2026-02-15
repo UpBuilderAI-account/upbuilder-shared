@@ -26,6 +26,9 @@ export * from './socket-protocol';
 // Workflow types - explicit exports to avoid conflicts with core-domain
 // (workflow.ts types are lightweight progress-tracking types)
 export {
+  // AI Model & Preset types
+  type AIModel,
+  type ExportPreset,
   // Stage types
   type Stage,
   type Progress,

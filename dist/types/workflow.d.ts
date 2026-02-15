@@ -7,6 +7,18 @@ export type Stage = Exclude<ProjectStatus, 'idle' | 'complete' | 'failed'>;
 /** Progress: -1 = failed, 0 = pending, 1-99 = running, 100 = complete */
 export type Progress = number;
 export type { Platform };
+/**
+ * AI model for section building and analysis
+ * - flash: Gemini Flash (faster, cheaper, good for well-structured designs)
+ * - pro: Gemini Pro (more capable, better for complex designs)
+ */
+export type AIModel = 'flash' | 'pro';
+/**
+ * Export preset for quick configuration
+ * - fast: Flash model + skip image analysis (faster, cheaper)
+ * - quality: Pro model + full image analysis (better results)
+ */
+export type ExportPreset = 'fast' | 'quality';
 export interface WorkflowSection {
     id: string;
     name: string;
@@ -333,6 +345,21 @@ export interface ExportConfig {
         reuseStyles?: boolean;
     };
     /**
+     * AI model for section building and analysis
+     * - flash: Gemini Flash (faster, cheaper, good for well-structured designs)
+     * - pro: Gemini Pro (more capable, better for complex designs)
+     */
+    aiModel?: AIModel;
+    /**
+     * Skip all image analysis features:
+     * - Image review (AI scan phase suggestions)
+     * - Image deduplication
+     * - AI image naming/tagging
+     * When true, uses sanitized Figma layer names instead
+     */
+    skipImageAnalysis?: boolean;
+    /**
+     * @deprecated Use aiModel instead
      * Fast Mode - optimized for well-structured Figma files with high auto layout coverage
      * When enabled:
      * - Uses Gemini Flash instead of Pro for all AI calls (faster, cheaper)
@@ -342,6 +369,7 @@ export interface ExportConfig {
      */
     fastMode?: boolean;
     /**
+     * @deprecated Use skipImageAnalysis instead
      * Skip AI image naming - use sanitized Figma layer names instead of AI descriptions
      * Auto-enabled when fastMode is true, but can be toggled independently
      */
