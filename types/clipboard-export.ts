@@ -51,6 +51,8 @@ export interface FileGeneratedEvent {
     content: string;
     /** Section name for UI display */
     sectionName: string;
+    /** File status: 'building' for in-progress, 'complete' for finished */
+    status?: 'building' | 'complete';
   };
   progress: {
     completedFiles: number;
