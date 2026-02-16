@@ -6,8 +6,15 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.DEFAULT_NAVBAR_CONFIG = exports.SCALABLE_UNITS_CONFIG = exports.DEFAULT_UNITS_CONFIG = exports.IMAGE_DIMENSION_PRESETS = exports.DEFAULT_IMAGE_CONFIG = void 0;
+exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.DEFAULT_NAVBAR_CONFIG = exports.SCALABLE_UNITS_CONFIG = exports.DEFAULT_UNITS_CONFIG = exports.IMAGE_DIMENSION_PRESETS = exports.DEFAULT_IMAGE_CONFIG = exports.DEFAULT_COMPONENTS_CONFIG = void 0;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
+exports.DEFAULT_COMPONENTS_CONFIG = {
+    navbar: true,
+    forms: true,
+    tabs: true,
+    sliders: true,
+    videos: true,
+};
 exports.DEFAULT_IMAGE_CONFIG = {
     format: 'webp',
     maxDimension: 1920,
@@ -78,14 +85,14 @@ exports.DEFAULT_RESPONSIVE_CONFIG = {
  */
 exports.DEFAULT_INTERACTIVITY_CONFIG = {
     enableTransitions: false, // CSS hover effects disabled by default
-    enableInteractiveComponents: false, // Tabs, sliders, dropdowns disabled by default (enable for specific sections)
+    components: exports.DEFAULT_COMPONENTS_CONFIG, // All interactive components enabled by default
 };
 /**
  * Quick mode interactivity
  */
 exports.QUICK_INTERACTIVITY_CONFIG = {
     enableTransitions: false, // CSS hover effects disabled by default
-    enableInteractiveComponents: false, // Tabs, sliders, dropdowns disabled by default
+    components: exports.DEFAULT_COMPONENTS_CONFIG, // All interactive components enabled by default
 };
 /**
  * Quick export config - uses defaults, skips stylesheet review, no animations

@@ -192,6 +192,22 @@ export interface ResponsiveConfig {
     enableResponsive: boolean;
 }
 /**
+ * Granular component toggles for interactive elements
+ */
+export interface ComponentsConfig {
+    /** NavbarWrapper, NavbarMenu, NavbarButton, etc. */
+    navbar: boolean;
+    /** FormWrapper, FormForm, FormTextInput, etc. */
+    forms: boolean;
+    /** TabsWrapper, TabsMenu, TabsLink, TabsPane */
+    tabs: boolean;
+    /** SliderWrapper, SliderMask, SliderSlide, SliderArrow */
+    sliders: boolean;
+    /** Video, BackgroundVideoWrapper */
+    videos: boolean;
+}
+export declare const DEFAULT_COMPONENTS_CONFIG: ComponentsConfig;
+/**
  * Interactivity configuration (part of ExportConfig)
  * Controls CSS transitions and hover effects
  */
@@ -204,10 +220,16 @@ export interface InteractivityConfig {
      */
     enableTransitions: boolean;
     /**
+     * @deprecated Use `components` instead for granular control
      * Enable interactive components (tabs, sliders, dropdowns, carousels)
      * If false, forces static layouts only - no interactive patterns
      */
-    enableInteractiveComponents: boolean;
+    enableInteractiveComponents?: boolean;
+    /**
+     * Granular control over which interactive component types to enable
+     * Each component type can be individually toggled
+     */
+    components?: ComponentsConfig;
 }
 /**
  * Image export configuration (part of ExportConfig)

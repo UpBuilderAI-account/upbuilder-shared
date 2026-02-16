@@ -276,6 +276,30 @@ export interface ResponsiveConfig {
 }
 
 /**
+ * Granular component toggles for interactive elements
+ */
+export interface ComponentsConfig {
+  /** NavbarWrapper, NavbarMenu, NavbarButton, etc. */
+  navbar: boolean;
+  /** FormWrapper, FormForm, FormTextInput, etc. */
+  forms: boolean;
+  /** TabsWrapper, TabsMenu, TabsLink, TabsPane */
+  tabs: boolean;
+  /** SliderWrapper, SliderMask, SliderSlide, SliderArrow */
+  sliders: boolean;
+  /** Video, BackgroundVideoWrapper */
+  videos: boolean;
+}
+
+export const DEFAULT_COMPONENTS_CONFIG: ComponentsConfig = {
+  navbar: true,
+  forms: true,
+  tabs: true,
+  sliders: true,
+  videos: true,
+};
+
+/**
  * Interactivity configuration (part of ExportConfig)
  * Controls CSS transitions and hover effects
  */
@@ -289,10 +313,17 @@ export interface InteractivityConfig {
   enableTransitions: boolean;
 
   /**
+   * @deprecated Use `components` instead for granular control
    * Enable interactive components (tabs, sliders, dropdowns, carousels)
    * If false, forces static layouts only - no interactive patterns
    */
-  enableInteractiveComponents: boolean;
+  enableInteractiveComponents?: boolean;
+
+  /**
+   * Granular control over which interactive component types to enable
+   * Each component type can be individually toggled
+   */
+  components?: ComponentsConfig;
 }
 
 /**
@@ -549,7 +580,7 @@ export const DEFAULT_RESPONSIVE_CONFIG: ResponsiveConfig = {
  */
 export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: false,   // CSS hover effects disabled by default
-  enableInteractiveComponents: false,  // Tabs, sliders, dropdowns disabled by default (enable for specific sections)
+  components: DEFAULT_COMPONENTS_CONFIG,  // All interactive components enabled by default
 };
 
 /**
@@ -557,7 +588,7 @@ export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
  */
 export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: false,   // CSS hover effects disabled by default
-  enableInteractiveComponents: false,  // Tabs, sliders, dropdowns disabled by default
+  components: DEFAULT_COMPONENTS_CONFIG,  // All interactive components enabled by default
 };
 
 /**
