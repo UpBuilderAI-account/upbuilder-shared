@@ -61,8 +61,14 @@ export declare const CLASS_PATTERNS: {
     readonly formSuccess: readonly [RegExp, RegExp];
     readonly formError: readonly [RegExp, RegExp];
     readonly button: readonly [RegExp, RegExp, RegExp];
-    readonly grid: readonly [RegExp, RegExp];
+    readonly grid: readonly [RegExp, RegExp, RegExp];
     readonly richText: readonly [RegExp, RegExp];
+    readonly row: readonly [RegExp, RegExp];
+    readonly column: readonly [RegExp, RegExp];
+    readonly hflex: readonly [RegExp, RegExp, RegExp];
+    readonly vflex: readonly [RegExp, RegExp, RegExp];
+    readonly bgVideo: readonly [RegExp, RegExp, RegExp];
+    readonly codeBlock: readonly [RegExp, RegExp];
 };
 /**
  * Check if a class string matches a pattern

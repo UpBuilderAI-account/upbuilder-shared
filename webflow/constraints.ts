@@ -93,6 +93,34 @@ const FORBID_FORM_FIELD_DESCENDANTS: ConstraintDef[] = [
 
 export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstraintEntry> = {
   // ===========================================================================
+  // LAYOUT GRID COMPONENTS
+  // ===========================================================================
+  Row: {
+    displayName: 'Row',
+    constraints: {
+      children: [{ is: 'Column', rule: 'AtLeastOne' }]
+    }
+  },
+  Column: {
+    displayName: 'Column',
+    constraints: {
+      parent: [{ is: 'Row', rule: 'ExactlyOne' }]
+    }
+  },
+  Grid: {
+    displayName: 'Grid',
+    constraints: {}
+  },
+  HFlex: {
+    displayName: 'H Flex',
+    constraints: {}
+  },
+  VFlex: {
+    displayName: 'V Flex',
+    constraints: {}
+  },
+
+  // ===========================================================================
   // BASIC COMPONENTS
   // ===========================================================================
   Block: {
@@ -616,6 +644,45 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
       ancestors: [{ is: 'DynamoItem', rule: 'Forbid' }]
     }
   },
+  CodeBlock: {
+    displayName: 'Code Block',
+    constraints: {}
+  },
+
+  // ===========================================================================
+  // BACKGROUND VIDEO COMPONENTS
+  // ===========================================================================
+  BackgroundVideoWrapper: {
+    displayName: 'Background Video',
+    constraints: {
+      wraps: ['BackgroundVideoPlayPauseButton'],
+      descendants: [{ is: 'BackgroundVideoWrapper', rule: 'Forbid' }]
+    }
+  },
+  BackgroundVideoPlayPauseButton: {
+    displayName: 'BG Video Button',
+    constraints: {
+      pinToParent: true,
+      ancestors: [{ is: 'BackgroundVideoWrapper', rule: 'ExactlyOne' }],
+      children: [
+        { is: ['BackgroundVideoPlayPauseButtonPlaying', 'BackgroundVideoPlayPauseButtonPaused'] as WebflowComponentType[], rule: 'RequireOnly' }
+      ]
+    }
+  },
+  BackgroundVideoPlayPauseButtonPlaying: {
+    displayName: 'BG Video Playing State',
+    constraints: {
+      pinToParent: true,
+      parent: [{ is: 'BackgroundVideoPlayPauseButton', rule: 'ExactlyOne' }]
+    }
+  },
+  BackgroundVideoPlayPauseButtonPaused: {
+    displayName: 'BG Video Paused State',
+    constraints: {
+      pinToParent: true,
+      parent: [{ is: 'BackgroundVideoPlayPauseButton', rule: 'ExactlyOne' }]
+    }
+  },
   // ===========================================================================
   // CMS COMPONENTS
   // ===========================================================================
@@ -721,4 +788,6 @@ export const HIERARCHY_CHAINS = {
   list: ['List', 'ListItem'],
   search: ['SearchForm', ['SearchInput', 'SearchButton', 'FormBlockLabel']],
   cms: ['DynamoWrapper', ['DynamoList', 'DynamoEmpty'], 'DynamoItem'],
+  row: ['Row', 'Column'],
+  bgVideo: ['BackgroundVideoWrapper', 'BackgroundVideoPlayPauseButton', ['BackgroundVideoPlayPauseButtonPlaying', 'BackgroundVideoPlayPauseButtonPaused']],
 } as const;

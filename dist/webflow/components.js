@@ -1,7 +1,7 @@
 "use strict";
 // ============================================================================
 // WEBFLOW COMPONENT DEFINITIONS
-// Single source of truth for all 55 Webflow component types
+// Single source of truth for all 65 Webflow component types
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.COMPONENT_COUNT = exports.COMPONENTS_BY_CATEGORY = exports.ALL_COMPONENT_TYPES = exports.WEBFLOW_COMPONENTS = void 0;
@@ -9,9 +9,52 @@ exports.getComponentDef = getComponentDef;
 exports.isValidComponentType = isValidComponentType;
 exports.getComponentsByCategory = getComponentsByCategory;
 // -----------------------------------------------------------------------------
-// All 55 Webflow Component Types
+// All 65 Webflow Component Types
 // -----------------------------------------------------------------------------
 exports.WEBFLOW_COMPONENTS = {
+    // ===========================================================================
+    // LAYOUT GRID COMPONENTS (5)
+    // ===========================================================================
+    Row: {
+        displayName: 'Row',
+        tags: ['div'],
+        isContainer: true,
+        category: 'layout-grid',
+        specialDataFields: ['grid'],
+        description: 'Legacy 12-column grid row, contains Column children'
+    },
+    Column: {
+        displayName: 'Column',
+        tags: ['div'],
+        isContainer: true,
+        category: 'layout-grid',
+        specialDataFields: ['grid'],
+        description: 'Column inside Row, part of legacy grid system'
+    },
+    Grid: {
+        displayName: 'Grid',
+        tags: ['div'],
+        isContainer: true,
+        category: 'layout-grid',
+        specialDataFields: ['grid'],
+        description: 'CSS Grid layout container'
+    },
+    HFlex: {
+        displayName: 'H Flex',
+        tags: ['div'],
+        isContainer: true,
+        category: 'basic',
+        specialDataFields: [],
+        description: 'Horizontal flexbox container (Quick Stack horizontal)'
+    },
+    VFlex: {
+        displayName: 'V Flex',
+        tags: ['div'],
+        isContainer: true,
+        category: 'basic',
+        specialDataFields: [],
+        description: 'Vertical flexbox container (Quick Stack vertical)'
+    },
     // ===========================================================================
     // BASIC COMPONENTS (14)
     // ===========================================================================
@@ -118,6 +161,14 @@ exports.WEBFLOW_COMPONENTS = {
         category: 'media',
         specialDataFields: ['embed', 'insideRTE'],
         description: 'Custom HTML/SVG embed'
+    },
+    CodeBlock: {
+        displayName: 'Code Block',
+        tags: ['div'],
+        isContainer: false,
+        category: 'media',
+        specialDataFields: ['code', 'language', 'theme', 'lineNumbers'],
+        description: 'Syntax-highlighted code block'
     },
     LineBreak: {
         displayName: 'Line Break',
@@ -654,6 +705,41 @@ exports.WEBFLOW_COMPONENTS = {
         description: 'Google Maps embed'
     },
     // ===========================================================================
+    // BACKGROUND VIDEO COMPONENTS (4)
+    // ===========================================================================
+    BackgroundVideoWrapper: {
+        displayName: 'Background Video',
+        tags: ['div'],
+        isContainer: true,
+        category: 'video',
+        specialDataFields: ['bgvideo', 'attr'],
+        description: 'Background video container with autoplay support'
+    },
+    BackgroundVideoPlayPauseButton: {
+        displayName: 'BG Video Button',
+        tags: ['div'],
+        isContainer: true,
+        category: 'video',
+        specialDataFields: ['attr'],
+        description: 'Play/pause toggle button for background video'
+    },
+    BackgroundVideoPlayPauseButtonPlaying: {
+        displayName: 'BG Video Playing State',
+        tags: ['div'],
+        isContainer: true,
+        category: 'video',
+        specialDataFields: [],
+        description: 'State shown when video is playing (pause icon)'
+    },
+    BackgroundVideoPlayPauseButtonPaused: {
+        displayName: 'BG Video Paused State',
+        tags: ['div'],
+        isContainer: true,
+        category: 'video',
+        specialDataFields: [],
+        description: 'State shown when video is paused (play icon)'
+    },
+    // ===========================================================================
     // CMS COMPONENTS (4)
     // ===========================================================================
     DynamoWrapper: {
@@ -719,6 +805,8 @@ exports.COMPONENTS_BY_CATEGORY = {
     search: getComponentsByCategory('search'),
     media: getComponentsByCategory('media'),
     cms: getComponentsByCategory('cms'),
+    'layout-grid': getComponentsByCategory('layout-grid'),
+    video: getComponentsByCategory('video'),
 };
 /** Count of components */
 exports.COMPONENT_COUNT = exports.ALL_COMPONENT_TYPES.length;

@@ -276,6 +276,12 @@ function mapDivElement(context) {
  */
 function getDefaultTag(componentType) {
     const TAG_MAP = {
+        // Layout Grid
+        Row: 'div',
+        Column: 'div',
+        Grid: 'div',
+        HFlex: 'div',
+        VFlex: 'div',
         Block: 'div',
         BlockContainer: 'div',
         Section: 'section',
@@ -357,6 +363,12 @@ function getDefaultTag(componentType) {
         RichText: 'div',
         LightboxWrapper: 'a',
         MapWidget: 'div',
+        CodeBlock: 'div',
+        // Background Video
+        BackgroundVideoWrapper: 'div',
+        BackgroundVideoPlayPauseButton: 'div',
+        BackgroundVideoPlayPauseButtonPlaying: 'div',
+        BackgroundVideoPlayPauseButtonPaused: 'div',
         // CMS
         DynamoWrapper: 'div',
         DynamoList: 'div',
@@ -412,8 +424,16 @@ exports.CLASS_PATTERNS = {
     formSuccess: [/success[-_]?message/i, /w-form-done/i],
     formError: [/error[-_]?message/i, /w-form-fail/i],
     button: [/button/i, /btn/i, /cta/i],
-    grid: [/grid/i, /layout/i],
+    grid: [/grid/i, /layout/i, /w-layout-grid/i],
     richText: [/rich[-_]?text/i, /w-richtext/i],
+    // Layout Grid
+    row: [/w-row/i, /row[-_]?wrapper/i],
+    column: [/w-col/i, /column/i],
+    hflex: [/w-layout-hflex/i, /hflex/i, /h-flex/i],
+    vflex: [/w-layout-vflex/i, /vflex/i, /v-flex/i],
+    // Background Video
+    bgVideo: [/w-background-video/i, /bg[-_]?video/i, /background[-_]?video/i],
+    codeBlock: [/code[-_]?block/i, /w-code-block/i],
 };
 /**
  * Check if a class string matches a pattern

@@ -53,5 +53,7 @@ export declare const HIERARCHY_CHAINS: {
     readonly list: readonly ["List", "ListItem"];
     readonly search: readonly ["SearchForm", readonly ["SearchInput", "SearchButton", "FormBlockLabel"]];
     readonly cms: readonly ["DynamoWrapper", readonly ["DynamoList", "DynamoEmpty"], "DynamoItem"];
+    readonly row: readonly ["Row", "Column"];
+    readonly bgVideo: readonly ["BackgroundVideoWrapper", "BackgroundVideoPlayPauseButton", readonly ["BackgroundVideoPlayPauseButtonPlaying", "BackgroundVideoPlayPauseButtonPaused"]];
 };
 //# sourceMappingURL=constraints.d.ts.map
