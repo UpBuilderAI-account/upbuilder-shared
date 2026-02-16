@@ -430,7 +430,7 @@ export function getDefaultTag(componentType: WebflowComponentType): string {
     RichText: 'div',
     LightboxWrapper: 'a',
     MapWidget: 'div',
-    CodeBlock: 'div',
+    CodeBlock: 'pre',
 
     // Background Video
     BackgroundVideoWrapper: 'div',

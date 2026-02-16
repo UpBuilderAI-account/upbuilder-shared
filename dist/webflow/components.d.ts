@@ -160,11 +160,11 @@ export declare const WEBFLOW_COMPONENTS: {
     };
     readonly CodeBlock: {
         readonly displayName: "Code Block";
-        readonly tags: readonly ["div"];
+        readonly tags: readonly ["pre"];
         readonly isContainer: false;
         readonly category: "media";
         readonly specialDataFields: readonly ["code", "language", "theme", "lineNumbers"];
-        readonly description: "Syntax-highlighted code block";
+        readonly description: "Syntax-highlighted code block (inside RichText only)";
     };
     readonly LineBreak: {
         readonly displayName: "Line Break";

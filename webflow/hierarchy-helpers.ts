@@ -18,7 +18,7 @@ import {
 export interface PlacementCheckResult {
   valid: boolean;
   error?: string;
-  errorCode?: 'INVALID_PARENT' | 'INVALID_CHILD' | 'FORBIDDEN_NESTING' | 'FORBIDDEN_DESCENDANT' | 'MISSING_ANCESTOR';
+  errorCode?: 'INVALID_PARENT' | 'INVALID_CHILD' | 'FORBIDDEN_NESTING' | 'FORBIDDEN_DESCENDANT' | 'MISSING_ANCESTOR' | 'MISSING_REQUIRED_CHILD' | 'DUPLICATE_REQUIRED_CHILD' | 'DUPLICATE_OPTIONAL_CHILD';
 }
 
 export type DropPosition = 'inside' | 'before' | 'after';
@@ -335,7 +335,56 @@ export function validateDesignTree(
           errors.push({
             nodeId,
             message: `${getDisplayName(node.componentType as WebflowComponentType)} must contain at least one ${requiredName}`,
-            errorCode: 'MISSING_ANCESTOR',
+            errorCode: 'MISSING_REQUIRED_CHILD',
+          });
+        }
+      }
+
+      // Check ExactlyOne constraint - must have exactly one child of this type
+      if (constraint.rule === 'ExactlyOne') {
+        const requiredTypes = Array.isArray(constraint.is)
+          ? constraint.is
+          : [constraint.is as string];
+
+        const matchingChildren = node.children.filter(childId => {
+          const child = nodes[childId];
+          return child && requiredTypes.includes(child.componentType);
+        });
+
+        if (matchingChildren.length === 0) {
+          const requiredName = getDisplayName(requiredTypes[0] as WebflowComponentType);
+          errors.push({
+            nodeId,
+            message: `${getDisplayName(node.componentType as WebflowComponentType)} must contain exactly one ${requiredName}`,
+            errorCode: 'MISSING_REQUIRED_CHILD',
+          });
+        } else if (matchingChildren.length > 1) {
+          const requiredName = getDisplayName(requiredTypes[0] as WebflowComponentType);
+          errors.push({
+            nodeId,
+            message: `${getDisplayName(node.componentType as WebflowComponentType)} can only contain one ${requiredName}, found ${matchingChildren.length}`,
+            errorCode: 'DUPLICATE_REQUIRED_CHILD',
+          });
+        }
+      }
+
+      // Check ZeroOrOne constraint - can have at most one child of this type
+      if (constraint.rule === 'ZeroOrOne') {
+        const allowedTypes = Array.isArray(constraint.is)
+          ? constraint.is
+          : [constraint.is as string];
+
+        const matchingChildren = node.children.filter(childId => {
+          const child = nodes[childId];
+          return child && allowedTypes.includes(child.componentType);
+        });
+
+        if (matchingChildren.length > 1) {
+          const childName = getDisplayName(allowedTypes[0] as WebflowComponentType);
+          errors.push({
+            nodeId,
+            message: `${getDisplayName(node.componentType as WebflowComponentType)} can only contain at most one ${childName}, found ${matchingChildren.length}`,
+            errorCode: 'DUPLICATE_OPTIONAL_CHILD',
           });
         }
       }
@@ -411,6 +460,12 @@ export function getConstraintErrorMessage(
       return `${elementName} cannot be inside ${targetName}`;
     case 'MISSING_ANCESTOR':
       return `${elementName} must be inside a ${targetName}`;
+    case 'MISSING_REQUIRED_CHILD':
+      return `${targetName} is missing required child ${elementName}`;
+    case 'DUPLICATE_REQUIRED_CHILD':
+      return `${targetName} can only have one ${elementName}`;
+    case 'DUPLICATE_OPTIONAL_CHILD':
+      return `${targetName} can have at most one ${elementName}`;
     default:
       return 'Invalid element placement';
   }

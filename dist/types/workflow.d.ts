@@ -15,10 +15,11 @@ export type { Platform };
 export type AIModel = 'flash' | 'pro';
 /**
  * Export preset for quick configuration
- * - fast: Flash model + skip image analysis (faster, cheaper)
- * - quality: Pro model + full image analysis (better results)
+ * - quality: Pro model + full image analysis (best results)
+ * - fast: Flash model + basic analysis (faster, cheaper)
+ * - unstyled: Structure only, no CSS styles (fastest, for custom styling)
  */
-export type ExportPreset = 'fast' | 'quality';
+export type ExportPreset = 'quality' | 'fast' | 'unstyled';
 export interface WorkflowSection {
     id: string;
     name: string;

@@ -104,6 +104,7 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
   Column: {
     displayName: 'Column',
     constraints: {
+      pinToParent: true,
       parent: [{ is: 'Row', rule: 'ExactlyOne' }]
     }
   },
@@ -646,7 +647,10 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
   },
   CodeBlock: {
     displayName: 'Code Block',
-    constraints: {}
+    constraints: {
+      // CodeBlock can only be inside RichText (content editor)
+      ancestors: [{ is: 'RichText', rule: 'ExactlyOne' }]
+    }
   },
 
   // ===========================================================================
@@ -655,7 +659,8 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
   BackgroundVideoWrapper: {
     displayName: 'Background Video',
     constraints: {
-      wraps: ['BackgroundVideoPlayPauseButton'],
+      // BackgroundVideoPlayPauseButton is optional (ZeroOrOne), not required
+      children: [{ is: 'BackgroundVideoPlayPauseButton', rule: 'ZeroOrOne' }],
       descendants: [{ is: 'BackgroundVideoWrapper', rule: 'Forbid' }]
     }
   },
@@ -663,9 +668,11 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
     displayName: 'BG Video Button',
     constraints: {
       pinToParent: true,
+      wraps: ['BackgroundVideoPlayPauseButtonPlaying', 'BackgroundVideoPlayPauseButtonPaused'],
       ancestors: [{ is: 'BackgroundVideoWrapper', rule: 'ExactlyOne' }],
       children: [
-        { is: ['BackgroundVideoPlayPauseButtonPlaying', 'BackgroundVideoPlayPauseButtonPaused'] as WebflowComponentType[], rule: 'RequireOnly' }
+        { is: 'BackgroundVideoPlayPauseButtonPlaying', rule: 'ExactlyOne' },
+        { is: 'BackgroundVideoPlayPauseButtonPaused', rule: 'ExactlyOne' }
       ]
     }
   },
@@ -673,14 +680,22 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
     displayName: 'BG Video Playing State',
     constraints: {
       pinToParent: true,
-      parent: [{ is: 'BackgroundVideoPlayPauseButton', rule: 'ExactlyOne' }]
+      ancestors: [{ is: 'BackgroundVideoPlayPauseButton', rule: 'ExactlyOne' }],
+      descendants: [
+        ...FORBID_LINK_DESCENDANTS,
+        { is: 'BackgroundVideoWrapper', rule: 'Forbid' }
+      ]
     }
   },
   BackgroundVideoPlayPauseButtonPaused: {
     displayName: 'BG Video Paused State',
     constraints: {
       pinToParent: true,
-      parent: [{ is: 'BackgroundVideoPlayPauseButton', rule: 'ExactlyOne' }]
+      ancestors: [{ is: 'BackgroundVideoPlayPauseButton', rule: 'ExactlyOne' }],
+      descendants: [
+        ...FORBID_LINK_DESCENDANTS,
+        { is: 'BackgroundVideoWrapper', rule: 'Forbid' }
+      ]
     }
   },
   // ===========================================================================

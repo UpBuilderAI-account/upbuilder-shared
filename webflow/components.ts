@@ -195,11 +195,11 @@ export const WEBFLOW_COMPONENTS = {
   },
   CodeBlock: {
     displayName: 'Code Block',
-    tags: ['div'],
+    tags: ['pre'],
     isContainer: false,
     category: 'media',
     specialDataFields: ['code', 'language', 'theme', 'lineNumbers'],
-    description: 'Syntax-highlighted code block'
+    description: 'Syntax-highlighted code block (inside RichText only)'
   },
   LineBreak: {
     displayName: 'Line Break',

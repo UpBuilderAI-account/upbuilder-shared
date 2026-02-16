@@ -1,7 +1,7 @@
 export interface PlacementCheckResult {
     valid: boolean;
     error?: string;
-    errorCode?: 'INVALID_PARENT' | 'INVALID_CHILD' | 'FORBIDDEN_NESTING' | 'FORBIDDEN_DESCENDANT' | 'MISSING_ANCESTOR';
+    errorCode?: 'INVALID_PARENT' | 'INVALID_CHILD' | 'FORBIDDEN_NESTING' | 'FORBIDDEN_DESCENDANT' | 'MISSING_ANCESTOR' | 'MISSING_REQUIRED_CHILD' | 'DUPLICATE_REQUIRED_CHILD' | 'DUPLICATE_OPTIONAL_CHILD';
 }
 export type DropPosition = 'inside' | 'before' | 'after';
 export interface DesignNode {
