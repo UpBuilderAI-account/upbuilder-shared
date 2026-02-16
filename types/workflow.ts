@@ -474,6 +474,17 @@ export interface ExportConfig {
   skipImageAnalysis?: boolean;
 
   /**
+   * Skip all CSS styling generation (unstyled preset)
+   * When true:
+   * - Skips build_styles stage entirely
+   * - Elements have no className/styles
+   * - Skips Puppeteer QA (no styles to validate)
+   * - Produces HTML skeleton without CSS
+   * Use for custom styling workflows where user adds their own classes
+   */
+  skipStyling?: boolean;
+
+  /**
    * @deprecated Use aiModel instead
    * Fast Mode - optimized for well-structured Figma files with high auto layout coverage
    * When enabled:
