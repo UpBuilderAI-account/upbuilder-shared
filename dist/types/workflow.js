@@ -85,6 +85,7 @@ exports.DEFAULT_RESPONSIVE_CONFIG = {
  */
 exports.DEFAULT_INTERACTIVITY_CONFIG = {
     enableTransitions: false, // CSS hover effects disabled by default
+    enableInteractiveComponents: true, // Interactive components enabled by default ("Static only" unchecked)
     components: exports.DEFAULT_COMPONENTS_CONFIG, // All interactive components enabled by default
 };
 /**
@@ -92,6 +93,7 @@ exports.DEFAULT_INTERACTIVITY_CONFIG = {
  */
 exports.QUICK_INTERACTIVITY_CONFIG = {
     enableTransitions: false, // CSS hover effects disabled by default
+    enableInteractiveComponents: true, // Interactive components enabled by default
     components: exports.DEFAULT_COMPONENTS_CONFIG, // All interactive components enabled by default
 };
 /**

@@ -580,6 +580,7 @@ export const DEFAULT_RESPONSIVE_CONFIG: ResponsiveConfig = {
  */
 export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: false,   // CSS hover effects disabled by default
+  enableInteractiveComponents: true,  // Interactive components enabled by default ("Static only" unchecked)
   components: DEFAULT_COMPONENTS_CONFIG,  // All interactive components enabled by default
 };
 
@@ -588,6 +589,7 @@ export const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig = {
  */
 export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
   enableTransitions: false,   // CSS hover effects disabled by default
+  enableInteractiveComponents: true,  // Interactive components enabled by default
   components: DEFAULT_COMPONENTS_CONFIG,  // All interactive components enabled by default
 };
 
