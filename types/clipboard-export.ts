@@ -5,37 +5,24 @@
 
 /**
  * Design info included in clipboard export.
- * Contains minimal data needed to display design cards and start processing.
+ * Minimal data: just ID, name, and base64 thumbnail for preview.
  */
 export interface ClipboardExportDesign {
   designId: string;
   designName: string;
-  /** Small base64 preview thumbnail (optional) */
+  /** Base64 preview thumbnail */
   thumbnail?: string;
-  dimensions: {
-    width: number;
-    height: number;
-  };
-  nodeCount: number;
 }
 
 /**
  * JSON blob copied to clipboard after plugin export.
- * User pastes this into the Code panel to start processing.
+ * Kept minimal - just project ID and design list.
  */
 export interface ClipboardExportData {
-  /** Schema version for future compatibility */
-  version: 1;
   /** Project ID in database */
   projectId: string;
-  /** Human-readable project name */
-  projectName: string;
   /** Designs available for processing */
   designs: ClipboardExportDesign[];
-  /** Target platform */
-  platform: 'webflow' | 'react';
-  /** ISO timestamp when export was created */
-  createdAt: string;
 }
 
 /**
@@ -71,16 +58,8 @@ export function validateClipboardExportData(data: unknown): string | null {
 
   const obj = data as Record<string, unknown>;
 
-  if (obj.version !== 1) {
-    return 'Unsupported version. Please update your Figma plugin.';
-  }
-
   if (!obj.projectId || typeof obj.projectId !== 'string') {
     return 'Missing project ID. Please re-export from Figma plugin.';
-  }
-
-  if (!obj.projectName || typeof obj.projectName !== 'string') {
-    return 'Missing project name.';
   }
 
   if (!Array.isArray(obj.designs) || obj.designs.length === 0) {
@@ -91,10 +70,6 @@ export function validateClipboardExportData(data: unknown): string | null {
     if (!design.designId || !design.designName) {
       return 'Invalid design data.';
     }
-  }
-
-  if (obj.platform !== 'webflow' && obj.platform !== 'react') {
-    return 'Invalid platform. Must be "webflow" or "react".';
   }
 
   return null;

@@ -1,15 +1,15 @@
 /**
  * Free plan feature list
  */
-export declare const BASIC_FEATURES: readonly ["Preview export", "Up to 2 frames", "Client-First CSS", "CSS Variables", "CMS schema"];
+export declare const BASIC_FEATURES: readonly ["Up to 2 designs per export"];
 /**
  * Pro plan feature list
  */
-export declare const PRO_FEATURES: readonly ["Full Webflow export", "Up to 2 frames", "CSS Variables", "CMS Collections", "Global Components", "Priority support"];
+export declare const PRO_FEATURES: readonly ["Quality mode", "Up to 2 designs per export"];
 /**
  * Max plan feature list
  */
-export declare const MAX_FEATURES: readonly ["Full Webflow export", "Up to 9 frames", "CSS Variables", "CMS Collections", "Global Components", "Priority support", "Build on past exports"];
+export declare const MAX_FEATURES: readonly ["Quality mode", "Up to 9 designs per export", "Expand with more designs"];
 /**
  * Design slots per tier
  * Controls how many frames users can select in the plugin
@@ -29,7 +29,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 0;
         readonly displayPrice: "Free";
         readonly description: "Try it out";
-        readonly features: readonly ["Preview export", "Up to 2 frames", "Client-First CSS", "CSS Variables", "CMS schema"];
+        readonly features: readonly ["Up to 2 designs per export"];
         readonly maxDesigns: 2;
     };
     readonly pro: {
@@ -37,7 +37,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 9.99;
         readonly displayPrice: "9.99";
         readonly description: "For individual makers";
-        readonly features: readonly ["Full Webflow export", "Up to 2 frames", "CSS Variables", "CMS Collections", "Global Components", "Priority support"];
+        readonly features: readonly ["Quality mode", "Up to 2 designs per export"];
         readonly maxDesigns: 2;
         readonly popular: true;
     };
@@ -46,7 +46,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 19.99;
         readonly displayPrice: "19.99";
         readonly description: "For teams & agencies";
-        readonly features: readonly ["Full Webflow export", "Up to 9 frames", "CSS Variables", "CMS Collections", "Global Components", "Priority support", "Build on past exports"];
+        readonly features: readonly ["Quality mode", "Up to 9 designs per export", "Expand with more designs"];
         readonly maxDesigns: 9;
     };
 };

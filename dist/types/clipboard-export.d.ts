@@ -1,35 +1,22 @@
 /**
  * Design info included in clipboard export.
- * Contains minimal data needed to display design cards and start processing.
+ * Minimal data: just ID, name, and base64 thumbnail for preview.
  */
 export interface ClipboardExportDesign {
     designId: string;
     designName: string;
-    /** Small base64 preview thumbnail (optional) */
+    /** Base64 preview thumbnail */
     thumbnail?: string;
-    dimensions: {
-        width: number;
-        height: number;
-    };
-    nodeCount: number;
 }
 /**
  * JSON blob copied to clipboard after plugin export.
- * User pastes this into the Code panel to start processing.
+ * Kept minimal - just project ID and design list.
  */
 export interface ClipboardExportData {
-    /** Schema version for future compatibility */
-    version: 1;
     /** Project ID in database */
     projectId: string;
-    /** Human-readable project name */
-    projectName: string;
     /** Designs available for processing */
     designs: ClipboardExportDesign[];
-    /** Target platform */
-    platform: 'webflow' | 'react';
-    /** ISO timestamp when export was created */
-    createdAt: string;
 }
 /**
  * Event emitted when a section file is generated during build.

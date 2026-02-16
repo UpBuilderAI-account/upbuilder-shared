@@ -12,34 +12,22 @@ exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.MAX_FEATURES 
  * Free plan feature list
  */
 exports.BASIC_FEATURES = [
-    'Preview export',
-    'Up to 2 frames',
-    'Client-First CSS',
-    'CSS Variables',
-    'CMS schema',
+    'Up to 2 designs per export',
 ];
 /**
  * Pro plan feature list
  */
 exports.PRO_FEATURES = [
-    'Full Webflow export',
-    'Up to 2 frames',
-    'CSS Variables',
-    'CMS Collections',
-    'Global Components',
-    'Priority support',
+    'Quality mode',
+    'Up to 2 designs per export',
 ];
 /**
  * Max plan feature list
  */
 exports.MAX_FEATURES = [
-    'Full Webflow export',
-    'Up to 9 frames',
-    'CSS Variables',
-    'CMS Collections',
-    'Global Components',
-    'Priority support',
-    'Build on past exports',
+    'Quality mode',
+    'Up to 9 designs per export',
+    'Expand with more designs',
 ];
 /**
  * Design slots per tier
