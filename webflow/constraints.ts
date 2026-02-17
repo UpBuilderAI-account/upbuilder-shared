@@ -314,6 +314,7 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
     displayName: 'Dropdown Toggle',
     constraints: {
       pinToParent: true,
+      children: [{ is: 'Icon', rule: 'Forbid' }]  // Use Image for chevron/arrow graphics, not Icon
     }
   },
   DropdownList: {
@@ -409,7 +410,8 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
     displayName: 'Slider Arrow',
     constraints: {
       pinToParent: true,
-      ancestors: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }]
+      ancestors: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }],
+      children: [{ is: 'Icon', rule: 'Forbid' }]  // Use Image for arrow graphics, not Icon
     }
   },
   SliderNav: {

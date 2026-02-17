@@ -14,6 +14,7 @@ exports.DEFAULT_COMPONENTS_CONFIG = {
     tabs: true,
     sliders: true,
     videos: true,
+    dropdowns: true,
 };
 exports.DEFAULT_IMAGE_CONFIG = {
     format: 'webp',

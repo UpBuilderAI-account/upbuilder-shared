@@ -275,6 +275,7 @@ exports.WEBFLOW_CONSTRAINTS = {
         displayName: 'Dropdown Toggle',
         constraints: {
             pinToParent: true,
+            children: [{ is: 'Icon', rule: 'Forbid' }] // Use Image for chevron/arrow graphics, not Icon
         }
     },
     DropdownList: {
@@ -368,7 +369,8 @@ exports.WEBFLOW_CONSTRAINTS = {
         displayName: 'Slider Arrow',
         constraints: {
             pinToParent: true,
-            ancestors: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }]
+            ancestors: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }],
+            children: [{ is: 'Icon', rule: 'Forbid' }] // Use Image for arrow graphics, not Icon
         }
     },
     SliderNav: {

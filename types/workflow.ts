@@ -289,6 +289,8 @@ export interface ComponentsConfig {
   sliders: boolean;
   /** Video, BackgroundVideoWrapper */
   videos: boolean;
+  /** DropdownWrapper, DropdownToggle, DropdownList, DropdownLink (also used for FAQ/Accordion) */
+  dropdowns: boolean;
 }
 
 export const DEFAULT_COMPONENTS_CONFIG: ComponentsConfig = {
@@ -297,6 +299,7 @@ export const DEFAULT_COMPONENTS_CONFIG: ComponentsConfig = {
   tabs: true,
   sliders: true,
   videos: true,
+  dropdowns: true,
 };
 
 /**
