@@ -88,3 +88,5 @@ __exportStar(require("./section-render"), exports);
 __exportStar(require("./clipboard-export"), exports);
 // Workflow files types (progressive file display)
 __exportStar(require("./workflow-files"), exports);
+// Project config types (fonts, design tokens, navigation)
+__exportStar(require("./project-config"), exports);

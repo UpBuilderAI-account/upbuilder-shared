@@ -186,3 +186,6 @@ export * from './clipboard-export';
 
 // Workflow files types (progressive file display)
 export * from './workflow-files';
+
+// Project config types (fonts, design tokens, navigation)
+export * from './project-config';

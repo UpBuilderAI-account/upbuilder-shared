@@ -18,4 +18,5 @@ export * from './cms';
 export * from './section-render';
 export * from './clipboard-export';
 export * from './workflow-files';
+export * from './project-config';
 //# sourceMappingURL=index.d.ts.map
