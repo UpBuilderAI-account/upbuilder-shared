@@ -23,5 +23,6 @@ __exportStar(require("./colors"), exports);
 // Note: html-generator moved to backend-new/utils - not needed in plugin/frontend
 __exportStar(require("./paths"), exports);
 __exportStar(require("./export-eta"), exports);
-// Note: validators not exported here - import directly from './validators' if needed
+__exportStar(require("./validation"), exports);
+// Note: Zod-based validators not exported here - import directly from './validators' if needed
 // This avoids bundling Zod into Figma plugin which doesn't support ES2020+ syntax

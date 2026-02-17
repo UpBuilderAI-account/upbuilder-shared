@@ -410,7 +410,7 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
     displayName: 'Slider Arrow',
     constraints: {
       pinToParent: true,
-      ancestors: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }],
+      parent: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }],  // MUST be direct child of SliderWrapper
       children: [{ is: 'Icon', rule: 'Forbid' }]  // Use Image for arrow graphics, not Icon
     }
   },
@@ -418,7 +418,8 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
     displayName: 'Slide Nav',
     constraints: {
       pinToParent: true,
-      ancestors: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }]
+      parent: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }]  // MUST be direct child of SliderWrapper
+      // Note: SliderNav should have NO children - Webflow auto-generates nav dots
     }
   },
 

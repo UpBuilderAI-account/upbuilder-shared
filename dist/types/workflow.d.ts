@@ -503,6 +503,8 @@ export interface WorkflowCommand {
     exportConfig?: ExportConfig;
     /** Stage to rerun from (dev-only, used with rerun_from_stage action) */
     stageToRunFrom?: string;
+    /** Design IDs to process (for expansion: only process these specific designs) */
+    designIds?: string[];
 }
 /**
  * Request to save edited code from the customizer
