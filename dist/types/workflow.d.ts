@@ -501,8 +501,6 @@ export interface WorkflowCommand {
     exportConfig?: ExportConfig;
     /** Stage to rerun from (dev-only, used with rerun_from_stage action) */
     stageToRunFrom?: string;
-    /** Approved scattered group IDs (sent with 'next' action from scattered_analysis stage) */
-    approvedScatteredGroups?: string[];
 }
 /**
  * Request to save edited code from the customizer
@@ -970,4 +968,56 @@ export declare const STAGE_LABELS: Record<Stage, string>;
  * Currently all platforms use the same stage order
  */
 export declare function getStageOrderForPlatform(_platform: string): Stage[];
+/**
+ * Types of tier limit violations
+ */
+export type TierViolationType = 'export_limit' | 'design_limit' | 'quality_mode' | 'ai_image_detection';
+/**
+ * A single tier limit violation
+ */
+export interface TierViolation {
+    type: TierViolationType;
+    message: string;
+    currentValue: number | boolean;
+    allowedValue: number | boolean;
+    /** If true, user can continue with automatic downgrade */
+    canContinueWithDowngrade: boolean;
+    /** Description of the downgrade action (e.g., "Continue with Fast mode") */
+    downgradeAction?: string;
+}
+/**
+ * Result of tier validation check
+ */
+export interface TierValidationResult {
+    valid: boolean;
+    violations: TierViolation[];
+    usage: {
+        exportsThisMonth: number;
+        exportsLimit: number;
+        exportsRemaining: number;
+        resetsAt: string;
+    };
+}
+/**
+ * Extended workflow start request with tier validation support
+ */
+export interface WorkflowStartWithValidation {
+    projectId: string;
+    exportConfig?: ExportConfig;
+    /** If true, automatically apply downgrades for soft violations */
+    forceDowngrade?: boolean;
+}
+/**
+ * Response from workflow start with validation
+ */
+export interface WorkflowStartValidationResponse {
+    success: boolean;
+    error?: string;
+    /** True if validation failed and user must choose an action */
+    requiresValidation?: boolean;
+    /** True if user must upgrade (hard block like export limit) */
+    requiresUpgrade?: boolean;
+    /** Validation details when requiresValidation is true */
+    validation?: TierValidationResult;
+}
 //# sourceMappingURL=workflow.d.ts.map

@@ -140,7 +140,6 @@ exports.STAGE_ORDER = [
     'load',
     // 'plan' removed - stage no longer exists
     'section_bounding',
-    'scattered_analysis',
     'build_styles',
     'build_sections',
     'cms_schema',
@@ -157,7 +156,6 @@ exports.STAGE_LABELS = {
     load: 'Loading Data',
     plan: 'Planning Design',
     section_bounding: 'Detecting Sections',
-    scattered_analysis: 'Analyzing Scattered',
     build_styles: 'Building Styles',
     build_sections: 'Building Sections',
     cms_schema: 'CMS Schema',

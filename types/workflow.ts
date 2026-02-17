@@ -702,8 +702,6 @@ export interface WorkflowCommand {
   exportConfig?: ExportConfig;
   /** Stage to rerun from (dev-only, used with rerun_from_stage action) */
   stageToRunFrom?: string;
-  /** Approved scattered group IDs (sent with 'next' action from scattered_analysis stage) */
-  approvedScatteredGroups?: string[];
 }
 
 // =============================================================================
@@ -1205,7 +1203,6 @@ export const STAGE_ORDER: Stage[] = [
   'load',
   // 'plan' removed - stage no longer exists
   'section_bounding',
-  'scattered_analysis',
   'build_styles',
   'build_sections',
   'cms_schema',
@@ -1223,7 +1220,6 @@ export const STAGE_LABELS: Record<Stage, string> = {
   load: 'Loading Data',
   plan: 'Planning Design',
   section_bounding: 'Detecting Sections',
-  scattered_analysis: 'Analyzing Scattered',
   build_styles: 'Building Styles',
   build_sections: 'Building Sections',
   cms_schema: 'CMS Schema',
@@ -1238,4 +1234,70 @@ export const STAGE_LABELS: Record<Stage, string> = {
  */
 export function getStageOrderForPlatform(_platform: string): Stage[] {
   return STAGE_ORDER;
+}
+
+// =============================================================================
+// TIER VALIDATION TYPES
+// Used for enforcing subscription limits on workflow start
+// =============================================================================
+
+/**
+ * Types of tier limit violations
+ */
+export type TierViolationType =
+  | 'export_limit'      // Monthly export limit exceeded (hard block)
+  | 'design_limit'      // Too many designs selected
+  | 'quality_mode'      // Quality mode requires Pro+
+  | 'ai_image_detection'; // AI image detection requires Pro+
+
+/**
+ * A single tier limit violation
+ */
+export interface TierViolation {
+  type: TierViolationType;
+  message: string;
+  currentValue: number | boolean;
+  allowedValue: number | boolean;
+  /** If true, user can continue with automatic downgrade */
+  canContinueWithDowngrade: boolean;
+  /** Description of the downgrade action (e.g., "Continue with Fast mode") */
+  downgradeAction?: string;
+}
+
+/**
+ * Result of tier validation check
+ */
+export interface TierValidationResult {
+  valid: boolean;
+  violations: TierViolation[];
+  usage: {
+    exportsThisMonth: number;
+    exportsLimit: number;
+    exportsRemaining: number;
+    resetsAt: string; // ISO date string
+  };
+}
+
+/**
+ * Extended workflow start request with tier validation support
+ */
+export interface WorkflowStartWithValidation {
+  projectId: string;
+  exportConfig?: ExportConfig;
+  /** If true, automatically apply downgrades for soft violations */
+  forceDowngrade?: boolean;
+}
+
+/**
+ * Response from workflow start with validation
+ */
+export interface WorkflowStartValidationResponse {
+  success: boolean;
+  error?: string;
+  /** True if validation failed and user must choose an action */
+  requiresValidation?: boolean;
+  /** True if user must upgrade (hard block like export limit) */
+  requiresUpgrade?: boolean;
+  /** Validation details when requiresValidation is true */
+  validation?: TierValidationResult;
 }

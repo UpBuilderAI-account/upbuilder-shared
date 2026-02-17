@@ -28,7 +28,6 @@ exports.PROJECT_STATUS = {
     LOAD: 'load',
     PLAN: 'plan',
     SECTION_BOUNDING: 'section_bounding',
-    SCATTERED_ANALYSIS: 'scattered_analysis',
     BUILD_STYLES: 'build_styles',
     BUILD_SECTIONS: 'build_sections',
     CMS_SCHEMA: 'cms_schema',
@@ -46,7 +45,6 @@ function isProcessingStage(status) {
         'load',
         // 'plan' removed - stage no longer exists
         'section_bounding',
-        'scattered_analysis',
         'build_styles',
         'build_sections',
         'cms_schema',
@@ -74,8 +72,7 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
         export_config: 'load', // Legacy fallback - skip to load
         load: 'section_bounding', // plan stage removed
         plan: 'section_bounding', // @deprecated - kept for backwards compatibility
-        section_bounding: 'scattered_analysis',
-        scattered_analysis: 'build_styles',
+        section_bounding: 'build_styles',
         build_styles: 'build_sections',
         build_sections: 'cms_schema',
         cms_schema: 'convert_to_platform',
@@ -108,7 +105,7 @@ function requiresUserActionAfter(status) {
     // These stages require user action to proceed
     // customize: user reviews final output and triggers export
     // NOTE: export_config removed - plugin sends config directly
-    return status === 'customize' || status === 'scattered_analysis';
+    return status === 'customize';
 }
 // =============================================================================
 // PLATFORM-SPECIFIC STAGE CONFIGURATION

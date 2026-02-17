@@ -6,6 +6,11 @@
 // All three tiers are displayed in both marketing and dashboard pricing
 // ============================================================================
 
+import type { SubscriptionTier } from '../types/core-domain';
+
+// Re-export for convenience
+export type { SubscriptionTier };
+
 /**
  * Free plan feature list
  */
@@ -39,6 +44,33 @@ export const MAX_DESIGNS_PER_PROJECT = {
   pro: 2,
   max: 9,
 } as const;
+
+/**
+ * Comprehensive tier limits for enforcement
+ * Used by backend to validate exports and by frontend to show upgrade prompts
+ */
+export const TIER_LIMITS = {
+  basic: {
+    exportsPerMonth: 9,
+    maxDesignsPerExport: 2,
+    qualityMode: false,
+    aiImageDetection: false,
+  },
+  pro: {
+    exportsPerMonth: 30,
+    maxDesignsPerExport: 2,
+    qualityMode: true,
+    aiImageDetection: true,
+  },
+  max: {
+    exportsPerMonth: 100,
+    maxDesignsPerExport: 9,
+    qualityMode: true,
+    aiImageDetection: true,
+  },
+} as const;
+
+export type TierLimits = typeof TIER_LIMITS[SubscriptionTier];
 
 /**
  * Pricing configuration for display

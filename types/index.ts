@@ -84,6 +84,12 @@ export {
   type WorkflowExportComplete,
   // Client events
   type WorkflowCommand,
+  // Tier validation types
+  type TierViolationType,
+  type TierViolation,
+  type TierValidationResult,
+  type WorkflowStartWithValidation,
+  type WorkflowStartValidationResponse,
   // Editor code save types
   type CodeSaveRequest,
   type CodeChange,

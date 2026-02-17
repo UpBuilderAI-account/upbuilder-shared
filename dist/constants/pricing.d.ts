@@ -1,3 +1,5 @@
+import type { SubscriptionTier } from '../types/core-domain';
+export type { SubscriptionTier };
 /**
  * Free plan feature list
  */
@@ -19,6 +21,31 @@ export declare const MAX_DESIGNS_PER_PROJECT: {
     readonly pro: 2;
     readonly max: 9;
 };
+/**
+ * Comprehensive tier limits for enforcement
+ * Used by backend to validate exports and by frontend to show upgrade prompts
+ */
+export declare const TIER_LIMITS: {
+    readonly basic: {
+        readonly exportsPerMonth: 9;
+        readonly maxDesignsPerExport: 2;
+        readonly qualityMode: false;
+        readonly aiImageDetection: false;
+    };
+    readonly pro: {
+        readonly exportsPerMonth: 30;
+        readonly maxDesignsPerExport: 2;
+        readonly qualityMode: true;
+        readonly aiImageDetection: true;
+    };
+    readonly max: {
+        readonly exportsPerMonth: 100;
+        readonly maxDesignsPerExport: 9;
+        readonly qualityMode: true;
+        readonly aiImageDetection: true;
+    };
+};
+export type TierLimits = typeof TIER_LIMITS[SubscriptionTier];
 /**
  * Pricing configuration for display
  * Note: priceId values should be injected from environment variables at runtime

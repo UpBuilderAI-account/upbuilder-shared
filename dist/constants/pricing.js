@@ -7,7 +7,7 @@
 // All three tiers are displayed in both marketing and dashboard pricing
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PRICING_CONFIG = exports.MAX_DESIGNS_PER_PROJECT = exports.MAX_FEATURES = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;
+exports.PRICING_CONFIG = exports.TIER_LIMITS = exports.MAX_DESIGNS_PER_PROJECT = exports.MAX_FEATURES = exports.PRO_FEATURES = exports.BASIC_FEATURES = void 0;
 /**
  * Free plan feature list
  */
@@ -37,6 +37,30 @@ exports.MAX_DESIGNS_PER_PROJECT = {
     basic: 2,
     pro: 2,
     max: 9,
+};
+/**
+ * Comprehensive tier limits for enforcement
+ * Used by backend to validate exports and by frontend to show upgrade prompts
+ */
+exports.TIER_LIMITS = {
+    basic: {
+        exportsPerMonth: 9,
+        maxDesignsPerExport: 2,
+        qualityMode: false,
+        aiImageDetection: false,
+    },
+    pro: {
+        exportsPerMonth: 30,
+        maxDesignsPerExport: 2,
+        qualityMode: true,
+        aiImageDetection: true,
+    },
+    max: {
+        exportsPerMonth: 100,
+        maxDesignsPerExport: 9,
+        qualityMode: true,
+        aiImageDetection: true,
+    },
 };
 /**
  * Pricing configuration for display
