@@ -190,7 +190,7 @@ export interface EditableNode {
     };
     /** Video properties */
     videoProps?: {
-        /** Video source URL */
+        /** Video source URL (HTML5 video or BackgroundVideoWrapper) */
         src?: string;
         /** Whether video autoplays */
         autoplay?: boolean;
@@ -202,6 +202,10 @@ export interface EditableNode {
         controls?: boolean;
         /** Poster image URL */
         poster?: string;
+        /** YouTube/Vimeo embed URL (Video component) */
+        videoUrl?: string;
+        /** Video embed title for accessibility (Video component) */
+        videoTitle?: string;
     };
     /** Data attributes (e.g., data-collapse, data-animation for navbar) */
     attributes?: Record<string, string>;
