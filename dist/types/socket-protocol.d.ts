@@ -1138,5 +1138,6 @@ export interface SocketData {
     isAuthenticated?: boolean;
     isGuest?: boolean;
     figmaUserId?: string;
+    rateLimitKey?: string;
 }
 //# sourceMappingURL=socket-protocol.d.ts.map

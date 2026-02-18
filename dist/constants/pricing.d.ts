@@ -3,15 +3,15 @@ export type { SubscriptionTier };
 /**
  * Free plan feature list
  */
-export declare const BASIC_FEATURES: readonly ["Up to 2 designs per export"];
+export declare const BASIC_FEATURES: readonly ["Fast model", "2 designs per import"];
 /**
  * Pro plan feature list
  */
-export declare const PRO_FEATURES: readonly ["Quality mode", "Up to 2 designs per export"];
+export declare const PRO_FEATURES: readonly ["Fast + Smart model", "2 designs per import"];
 /**
  * Max plan feature list
  */
-export declare const MAX_FEATURES: readonly ["Quality mode", "Up to 9 designs per export", "Expand with more designs"];
+export declare const MAX_FEATURES: readonly ["Fast + Smart model", "9 designs per import", "30 designs per project", "Import more designs to a project"];
 /**
  * Design slots per tier
  * Controls how many frames users can select in the plugin
@@ -29,19 +29,22 @@ export declare const TIER_LIMITS: {
     readonly basic: {
         readonly exportsPerMonth: 9;
         readonly maxDesignsPerExport: 2;
-        readonly qualityMode: false;
+        readonly smartModel: false;
+        readonly smartModelUsesPerMonth: 0;
         readonly aiImageDetection: false;
     };
     readonly pro: {
         readonly exportsPerMonth: 30;
         readonly maxDesignsPerExport: 2;
-        readonly qualityMode: true;
+        readonly smartModel: true;
+        readonly smartModelUsesPerMonth: 30;
         readonly aiImageDetection: true;
     };
     readonly max: {
         readonly exportsPerMonth: 100;
         readonly maxDesignsPerExport: 9;
-        readonly qualityMode: true;
+        readonly smartModel: true;
+        readonly smartModelUsesPerMonth: 100;
         readonly aiImageDetection: true;
     };
 };
@@ -56,7 +59,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 0;
         readonly displayPrice: "Free";
         readonly description: "Try it out";
-        readonly features: readonly ["Up to 2 designs per export"];
+        readonly features: readonly ["Fast model", "2 designs per import"];
         readonly maxDesigns: 2;
     };
     readonly pro: {
@@ -64,7 +67,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 9.99;
         readonly displayPrice: "9.99";
         readonly description: "For individual makers";
-        readonly features: readonly ["Quality mode", "Up to 2 designs per export"];
+        readonly features: readonly ["Fast + Smart model", "2 designs per import"];
         readonly maxDesigns: 2;
         readonly popular: true;
     };
@@ -73,7 +76,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 19.99;
         readonly displayPrice: "19.99";
         readonly description: "For teams & agencies";
-        readonly features: readonly ["Quality mode", "Up to 9 designs per export", "Expand with more designs"];
+        readonly features: readonly ["Fast + Smart model", "9 designs per import", "30 designs per project", "Import more designs to a project"];
         readonly maxDesigns: 9;
     };
 };

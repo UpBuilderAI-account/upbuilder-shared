@@ -1230,6 +1230,7 @@ export interface SocketData {
   isAuthenticated?: boolean;
   isGuest?: boolean;
   figmaUserId?: string; // Figma user ID from plugin token (for guest isolation)
+  rateLimitKey?: string; // Key for rate limiting (figmaUserId || userId) - 1 concurrent job per key
 }
 
 // ============================================================================

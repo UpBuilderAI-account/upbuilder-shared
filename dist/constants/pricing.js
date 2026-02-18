@@ -12,22 +12,24 @@ exports.PRICING_CONFIG = exports.TIER_LIMITS = exports.MAX_DESIGNS_PER_PROJECT =
  * Free plan feature list
  */
 exports.BASIC_FEATURES = [
-    'Up to 2 designs per export',
+    'Fast model',
+    '2 designs per import',
 ];
 /**
  * Pro plan feature list
  */
 exports.PRO_FEATURES = [
-    'Quality mode',
-    'Up to 2 designs per export',
+    'Fast + Smart model',
+    '2 designs per import',
 ];
 /**
  * Max plan feature list
  */
 exports.MAX_FEATURES = [
-    'Quality mode',
-    'Up to 9 designs per export',
-    'Expand with more designs',
+    'Fast + Smart model',
+    '9 designs per import',
+    '30 designs per project',
+    'Import more designs to a project',
 ];
 /**
  * Design slots per tier
@@ -46,19 +48,22 @@ exports.TIER_LIMITS = {
     basic: {
         exportsPerMonth: 9,
         maxDesignsPerExport: 2,
-        qualityMode: false,
+        smartModel: false,
+        smartModelUsesPerMonth: 0,
         aiImageDetection: false,
     },
     pro: {
         exportsPerMonth: 30,
         maxDesignsPerExport: 2,
-        qualityMode: true,
+        smartModel: true,
+        smartModelUsesPerMonth: 30,
         aiImageDetection: true,
     },
     max: {
         exportsPerMonth: 100,
         maxDesignsPerExport: 9,
-        qualityMode: true,
+        smartModel: true,
+        smartModelUsesPerMonth: 100,
         aiImageDetection: true,
     },
 };

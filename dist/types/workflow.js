@@ -24,8 +24,6 @@ exports.IMAGE_DIMENSION_PRESETS = [
     { label: 'Low (1024px)', value: 1024 },
     { label: 'Medium (1280px)', value: 1280 },
     { label: 'Standard (1920px)', value: 1920 },
-    { label: 'High (2560px)', value: 2560 },
-    { label: 'Ultra (3840px)', value: 3840 },
 ];
 exports.DEFAULT_UNITS_CONFIG = {
     baseFontSize: 16,

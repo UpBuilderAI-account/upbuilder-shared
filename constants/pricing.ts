@@ -15,24 +15,26 @@ export type { SubscriptionTier };
  * Free plan feature list
  */
 export const BASIC_FEATURES = [
-  'Up to 2 designs per export',
+  'Fast model',
+  '2 designs per import',
 ] as const;
 
 /**
  * Pro plan feature list
  */
 export const PRO_FEATURES = [
-  'Quality mode',
-  'Up to 2 designs per export',
+  'Fast + Smart model',
+  '2 designs per import',
 ] as const;
 
 /**
  * Max plan feature list
  */
 export const MAX_FEATURES = [
-  'Quality mode',
-  'Up to 9 designs per export',
-  'Expand with more designs',
+  'Fast + Smart model',
+  '9 designs per import',
+  '30 designs per project',
+  'Import more designs to a project',
 ] as const;
 
 /**
@@ -53,19 +55,22 @@ export const TIER_LIMITS = {
   basic: {
     exportsPerMonth: 9,
     maxDesignsPerExport: 2,
-    qualityMode: false,
+    smartModel: false,
+    smartModelUsesPerMonth: 0,
     aiImageDetection: false,
   },
   pro: {
     exportsPerMonth: 30,
     maxDesignsPerExport: 2,
-    qualityMode: true,
+    smartModel: true,
+    smartModelUsesPerMonth: 30,
     aiImageDetection: true,
   },
   max: {
     exportsPerMonth: 100,
     maxDesignsPerExport: 9,
-    qualityMode: true,
+    smartModel: true,
+    smartModelUsesPerMonth: 100,
     aiImageDetection: true,
   },
 } as const;

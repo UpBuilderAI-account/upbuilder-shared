@@ -349,8 +349,6 @@ export const IMAGE_DIMENSION_PRESETS = [
   { label: 'Low (1024px)', value: 1024 },
   { label: 'Medium (1280px)', value: 1280 },
   { label: 'Standard (1920px)', value: 1920 },
-  { label: 'High (2560px)', value: 2560 },
-  { label: 'Ultra (3840px)', value: 3840 },
 ] as const;
 
 /**
@@ -1250,9 +1248,10 @@ export function getStageOrderForPlatform(_platform: string): Stage[] {
  * Types of tier limit violations
  */
 export type TierViolationType =
-  | 'export_limit'      // Monthly export limit exceeded (hard block)
-  | 'design_limit'      // Too many designs selected
-  | 'quality_mode'      // Quality mode requires Pro+
+  | 'export_limit'        // Monthly export limit exceeded (hard block)
+  | 'design_limit'        // Too many designs selected
+  | 'quality_mode'        // Quality mode requires Pro+ (feature gating)
+  | 'smart_model_limit'   // Monthly smart model uses exceeded
   | 'ai_image_detection'; // AI image detection requires Pro+
 
 /**
@@ -1279,6 +1278,9 @@ export interface TierValidationResult {
     exportsThisMonth: number;
     exportsLimit: number;
     exportsRemaining: number;
+    smartModelUsesThisMonth: number;
+    smartModelUsesLimit: number;
+    smartModelUsesRemaining: number;
     resetsAt: string; // ISO date string
   };
 }

@@ -253,12 +253,6 @@ export declare const IMAGE_DIMENSION_PRESETS: readonly [{
 }, {
     readonly label: "Standard (1920px)";
     readonly value: 1920;
-}, {
-    readonly label: "High (2560px)";
-    readonly value: 2560;
-}, {
-    readonly label: "Ultra (3840px)";
-    readonly value: 3840;
 }];
 /**
  * CSS unit types for unit conversion
@@ -975,7 +969,7 @@ export declare function getStageOrderForPlatform(_platform: string): Stage[];
 /**
  * Types of tier limit violations
  */
-export type TierViolationType = 'export_limit' | 'design_limit' | 'quality_mode' | 'ai_image_detection';
+export type TierViolationType = 'export_limit' | 'design_limit' | 'quality_mode' | 'smart_model_limit' | 'ai_image_detection';
 /**
  * A single tier limit violation
  */
@@ -999,6 +993,9 @@ export interface TierValidationResult {
         exportsThisMonth: number;
         exportsLimit: number;
         exportsRemaining: number;
+        smartModelUsesThisMonth: number;
+        smartModelUsesLimit: number;
+        smartModelUsesRemaining: number;
         resetsAt: string;
     };
 }
