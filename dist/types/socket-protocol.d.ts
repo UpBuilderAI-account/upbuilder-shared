@@ -126,14 +126,15 @@ export interface PluginPayloads {
         variables?: FigmaColorVariable[];
         /** Figma variable collections metadata */
         variableCollections?: FigmaVariableCollection[];
-        selectedProjectData?: {
-            type: 'existing';
-            project: {
-                id: string;
-                name?: string;
-                user_id?: string;
-            };
-            designName?: string;
+        /** Session ID from scan phase (for retrieving temp files) */
+        sessionId?: string;
+        /** Temp design ID from scan phase (maps to temp S3 path) */
+        scanTempDesignId?: string;
+        /** Target project: create new or expand existing */
+        targetProject: {
+            type: 'new' | 'existing';
+            /** Required if type='existing' */
+            projectId?: string;
         };
     };
     /**
@@ -304,10 +305,11 @@ export interface ClientToServerEvents {
     }>) => void;
     process_all_images: (data: PluginPayloads['process_all_images'], callback: CallbackResponse<ProcessAllImagesResponse>) => void;
     image_review_request: (data: {
-        projectId: string;
+        sessionId: string;
         designs: Array<{
             designId: string;
             designName: string;
+            frameId?: string;
             screenshotUri: string;
             screenshotBase64?: string;
             dimensions: {
@@ -315,22 +317,34 @@ export interface ClientToServerEvents {
                 height: number;
             };
             nodeTree: string;
+            nodeIdMap?: Record<string, string>;
             currentDetections: string[];
         }>;
+        fastMode?: boolean;
     }, callback: CallbackResponse<{
+        sessionId: string;
         designs: Array<{
             designId: string;
             suggestions: Array<{
                 nodeId: string;
                 name: string;
                 category: string;
-                confidence: 'high' | 'medium';
+                confidence: 'high' | 'medium' | 'low';
                 reason: string;
             }>;
             falsePositives: Array<{
                 nodeId: string;
                 reason: string;
             }>;
+        }>;
+        uploadedPreviews?: Record<string, {
+            tempDesignId: string;
+            s3Url: string;
+            googleAiUri: string;
+            dimensions: {
+                width: number;
+                height: number;
+            };
         }>;
     }>) => void;
     'plugin:recollect_qa_geometry': (data: GeometryMeasurementResponse) => void;
