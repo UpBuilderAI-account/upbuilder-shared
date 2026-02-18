@@ -78,6 +78,8 @@ export interface DesignImagesSummary {
     designName: string;
     imageCount: number;
     labelRange: string;
+    /** Temp design ID for session-based export */
+    tempDesignId?: string;
 }
 /**
  * Authentication payload
@@ -139,18 +141,32 @@ export interface PluginPayloads {
     };
     /**
      * 2. Send design images (stores without processing)
+     * NOTE: Now uses sessionId/tempDesignId for temp-only export
      */
     send_design_images: {
-        project_id: string;
-        design_id: string;
+        /** Session ID from send_nodes response */
+        sessionId: string;
+        /** Temp design ID from send_nodes response */
+        tempDesignId: string;
         images: ImagePair[];
+        /** @deprecated Use sessionId - legacy field for backwards compatibility */
+        project_id?: string;
+        /** @deprecated Use tempDesignId - legacy field for backwards compatibility */
+        design_id?: string;
     };
     /**
      * 3. Process all stored images together with global labels
+     * NOTE: Now uses sessionId/tempDesignIds for temp-only export
      */
     process_all_images: {
-        project_id: string;
-        design_ids: string[];
+        /** Session ID from send_nodes response */
+        sessionId: string;
+        /** Temp design IDs to process (ordered array) */
+        tempDesignIds: string[];
+        /** @deprecated Use sessionId - legacy field for backwards compatibility */
+        project_id?: string;
+        /** @deprecated Use tempDesignIds - legacy field for backwards compatibility */
+        design_ids?: string[];
     };
     /**
      * 4. Recollect QA geometry from Figma plugin (Phase 2 stub)
@@ -297,8 +313,8 @@ export interface ClientToServerEvents {
         isGuest: boolean;
     }>) => void;
     send_nodes: (data: PluginPayloads['send_nodes'], callback: CallbackResponse<{
-        project_id: string;
-        design_id: string;
+        sessionId: string;
+        tempDesignId: string;
     }>) => void;
     send_design_images: (data: PluginPayloads['send_design_images'], callback: CallbackResponse<{
         imageCount: number;
@@ -374,6 +390,29 @@ export interface ClientToServerEvents {
     }) => void) => void;
     'workflow:save_code': (data: CodeSaveRequest, callback: (result: CodeSaveResult) => void) => void;
     'workflow:rename': (data: RenameRequest, callback: (result: RenameResult) => void) => void;
+    'workflow:import_session': (data: {
+        /** Session ID from clipboard export */
+        sessionId: string;
+        /** Target project: 'new' creates new project, or existing project ID */
+        projectId: 'new' | string;
+        /** Project name (for new projects) */
+        projectName?: string;
+        /** Selected temp design IDs to import */
+        selectedDesigns: string[];
+        /** Platform (webflow, etc.) */
+        platform: Platform;
+        /** Style framework (client-first, etc.) */
+        styleFramework: StyleFramework;
+        /** Breakpoints configuration */
+        breakpoints: Breakpoints;
+        /** Export config from plugin */
+        exportConfig?: ExportConfig;
+    }, callback: CallbackResponse<{
+        /** Created/target project ID */
+        projectId: string;
+        /** Map of tempDesignId → real designId */
+        designIdMap: Record<string, string>;
+    }>) => void;
     transfer_project_ownership: (data: {
         projectId: string;
     }, callback: CallbackResponse) => void;

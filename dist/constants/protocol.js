@@ -71,6 +71,8 @@ exports.SOCKET_EVENTS = {
         SAVE_CODE: 'workflow:save_code', // Client → Server: Save edited code from customizer
         RENAME: 'workflow:rename', // Client → Server: Rename design/section
         RENAMED: 'workflow:renamed', // Server → Client: Broadcast rename to other clients
+        // Import session (temp-only export flow)
+        IMPORT_SESSION: 'workflow:import_session', // Client → Server: Import temp session files to real project
         // Background progress (export_config stage)
         BACKGROUND_PROGRESS: 'workflow:background_progress', // Server → Client: Background job progress during export_config
         // Webflow structure preview (customize stage)
