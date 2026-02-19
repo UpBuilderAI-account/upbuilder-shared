@@ -153,10 +153,6 @@ export declare const SOCKET_EVENTS: {
         readonly ASSET_UPLOAD_STATUS: "customizer:asset_upload_status";
         readonly ASSET_UPLOAD_PROGRESS: "customizer:asset_upload_progress";
         readonly ERROR: "customizer:error";
-        readonly RESTORE_ORIGINAL: "customizer:restore_original";
-        readonly CHECK_HAS_ORIGINAL: "customizer:check_has_original";
-        readonly HAS_ORIGINAL: "customizer:has_original";
-        readonly RESTORE_COMPLETE: "customizer:restore_complete";
         readonly REPROCESS_XSCP: "customizer:reprocess_xscp";
         readonly SWITCH_UNITS: "customizer:switch_units";
         readonly CMS_UPDATE_SCHEMA: "customizer:cms_update_schema";

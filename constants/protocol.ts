@@ -194,11 +194,6 @@ export const SOCKET_EVENTS = {
     ASSET_UPLOAD_STATUS: 'customizer:asset_upload_status', // Client → Server: Get asset upload status
     ASSET_UPLOAD_PROGRESS: 'customizer:asset_upload_progress', // Server → Client: Broadcast upload progress/completion
     ERROR: 'customizer:error',                   // Server → Client: Error event
-    // Restore to original
-    RESTORE_ORIGINAL: 'customizer:restore_original',     // Client → Server: Restore all designs to original XSCP
-    CHECK_HAS_ORIGINAL: 'customizer:check_has_original', // Client → Server: Check if original XSCP exists
-    HAS_ORIGINAL: 'customizer:has_original',             // Server → Client: Response with hasOriginal boolean
-    RESTORE_COMPLETE: 'customizer:restore_complete',     // Server → Client: Restore completed successfully
     // Dev: Reprocess XSCP from saved snapshot
     REPROCESS_XSCP: 'customizer:reprocess_xscp',       // Client → Server: Re-run dedup+normalizer+XSCP from snapshot
     SWITCH_UNITS: 'customizer:switch_units',             // Client → Server: Re-run normalizer with rem units
