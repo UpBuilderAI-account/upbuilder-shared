@@ -15,7 +15,7 @@ export type { SubscriptionTier };
  * Free plan feature list
  */
 export const BASIC_FEATURES = [
-  'Fast model',
+  '5 exports',
   '2 designs per import',
 ] as const;
 
@@ -23,7 +23,7 @@ export const BASIC_FEATURES = [
  * Pro plan feature list
  */
 export const PRO_FEATURES = [
-  'Fast + Smart model',
+  '75 exports/month',
   '2 designs per import',
 ] as const;
 
@@ -31,7 +31,7 @@ export const PRO_FEATURES = [
  * Max plan feature list
  */
 export const MAX_FEATURES = [
-  'Fast + Smart model',
+  '200 exports/month',
   '9 designs per import',
   '30 designs per project',
   'Import more designs to a project',
@@ -53,24 +53,30 @@ export const MAX_DESIGNS_PER_PROJECT = {
  */
 export const TIER_LIMITS = {
   basic: {
-    exportsPerMonth: 9,
+    exportsPerMonth: 5,
     maxDesignsPerExport: 2,
-    smartModel: false,
-    smartModelUsesPerMonth: 0,
-    aiImageDetection: false,
+    aiExportsPerMonth: 5,
+    // Legacy fields for backwards compatibility
+    smartModel: true,
+    smartModelUsesPerMonth: 5,
+    aiImageDetection: true,
   },
   pro: {
-    exportsPerMonth: 30,
+    exportsPerMonth: 75,
     maxDesignsPerExport: 2,
+    aiExportsPerMonth: 75,
+    // Legacy fields for backwards compatibility
     smartModel: true,
-    smartModelUsesPerMonth: 30,
+    smartModelUsesPerMonth: 75,
     aiImageDetection: true,
   },
   max: {
-    exportsPerMonth: 100,
+    exportsPerMonth: 200,
     maxDesignsPerExport: 9,
+    aiExportsPerMonth: 200,
+    // Legacy fields for backwards compatibility
     smartModel: true,
-    smartModelUsesPerMonth: 100,
+    smartModelUsesPerMonth: 200,
     aiImageDetection: true,
   },
 } as const;
