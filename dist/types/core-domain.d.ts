@@ -521,6 +521,7 @@ export interface ProjectEntity {
     state?: ProjectState;
     current_expansion_version?: number;
     expansion_count?: number;
+    export_counted?: boolean;
     created_at: Date;
     updated_at: Date;
 }

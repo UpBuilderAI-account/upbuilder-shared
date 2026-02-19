@@ -747,6 +747,8 @@ export interface ProjectEntity {
   // Expansion versioning
   current_expansion_version?: number;
   expansion_count?: number;
+  // Tracks if this project has been counted against user's export quota
+  export_counted?: boolean;
   created_at: Date;
   updated_at: Date;
 }

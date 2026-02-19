@@ -20,8 +20,12 @@ export interface WorkflowFile {
   status: WorkflowFileStatus;
   /** Section name for section files */
   sectionName?: string;
+  /** Design name this file belongs to (for page/section files) */
+  designName?: string;
   /** Whether this is a global section (navbar, footer) */
   isGlobal?: boolean;
+  /** Whether this file is from an expansion (new design added to existing project) */
+  isExpansion?: boolean;
 }
 
 /**
