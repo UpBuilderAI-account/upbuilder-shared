@@ -860,6 +860,11 @@ export interface ServerToClientEvents {
   'workflow:stage': (data: WorkflowStage) => void;
   'workflow:stages': (data: WorkflowStages) => void;
   'workflow:error': (data: WorkflowError) => void;
+  'workflow:import_project_created': (data: {
+    projectId: string;
+    designIdMap: Record<string, string>;
+    isExpansion: boolean;
+  }) => void;
   'workflow:editor': (data: WorkflowEditor) => void;
   'workflow:export_complete': (data: WorkflowExportComplete) => void;
   'workflow:renamed': (data: { type: RenameTargetType; id: string; name: string }) => void;

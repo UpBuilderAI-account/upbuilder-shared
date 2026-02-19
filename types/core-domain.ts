@@ -286,12 +286,25 @@ export interface ProgressLogEntry {
 }
 
 /**
+ * Import progress - stored in project.state during import
+ * Cleared on import complete or failure
+ */
+export interface ImportProgress {
+  stage: 'import';
+  progress: number;
+  message: string;
+}
+
+/**
  * Project state - stored in database JSONB column.
  * Contains ONLY what the UI needs to render (metadata).
  * Heavy data lives in S3 (stylesheet, globalJS) and SQL tables (section codes).
  */
 export interface ProjectState {
   designs: Design[];
+
+  // Import progress - temporary, cleared on complete/failure
+  importProgress?: ImportProgress | null;
 
   // Global sections - hydrated from GlobalSection table for frontend display
   globalSections?: GlobalSection[];
