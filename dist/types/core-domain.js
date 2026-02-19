@@ -65,12 +65,12 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
     var _a;
     const transitions = {
         // Plugin-side stages (run in Figma plugin, NOT in backend orchestrator)
-        idle: 'import', // After idle, import stage runs first
+        idle: 'load', // Workflow starts at load (import handled separately by import-session handler)
         scanning: 'import', // After scan, import stage runs
         analyze_design: 'images_export', // Plugin-only: analyze → images
         images_export: 'import', // Plugin-only: after images uploaded, import runs
-        // Import stage (processes images, AI naming, copies files)
-        import: 'load', // After import, load stage starts
+        // Import stage (handled by import-session.handler.ts, not orchestrator)
+        import: 'load', // After import completes, workflow starts at load
         // Backend workflow stages (export_config removed - plugin sends config)
         export_config: 'load', // Legacy fallback - skip to load
         load: 'section_bounding', // plan stage removed
