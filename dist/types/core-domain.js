@@ -23,6 +23,8 @@ exports.PROJECT_STATUS = {
     SCANNING: 'scanning',
     ANALYZE_DESIGN: 'analyze_design',
     IMAGES_EXPORT: 'images_export',
+    // Import stage
+    IMPORT: 'import',
     // Backend workflow stages
     EXPORT_CONFIG: 'export_config',
     LOAD: 'load',
@@ -63,11 +65,12 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
     var _a;
     const transitions = {
         // Plugin-side stages (run in Figma plugin, NOT in backend orchestrator)
-        // Backend workflow starts directly at 'load' - plugin sends exportConfig with nodes
-        idle: 'load', // Backend starts at load
-        scanning: 'load', // After scan, backend starts at load
+        idle: 'import', // After idle, import stage runs first
+        scanning: 'import', // After scan, import stage runs
         analyze_design: 'images_export', // Plugin-only: analyze → images
-        images_export: 'load', // Plugin-only: after images uploaded, backend starts load
+        images_export: 'import', // Plugin-only: after images uploaded, import runs
+        // Import stage (processes images, AI naming, copies files)
+        import: 'load', // After import, load stage starts
         // Backend workflow stages (export_config removed - plugin sends config)
         export_config: 'load', // Legacy fallback - skip to load
         load: 'section_bounding', // plan stage removed

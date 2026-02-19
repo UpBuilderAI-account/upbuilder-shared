@@ -1202,6 +1202,7 @@ export const isComplete = (p: Progress): boolean => p === 100;
 export const isFailed = (p: Progress): boolean => p === -1;
 
 export const STAGE_ORDER: Stage[] = [
+  'import',
   'export_config',
   'load',
   // 'plan' removed - stage no longer exists
@@ -1218,6 +1219,8 @@ export const STAGE_LABELS: Record<Stage, string> = {
   scanning: 'AI Scanning',
   analyze_design: 'Analyzing Design',
   images_export: 'Uploading Images',
+  // Import stage
+  import: 'Importing Project',
   // Backend workflow stages
   export_config: 'Configure Export',
   load: 'Loading Data',

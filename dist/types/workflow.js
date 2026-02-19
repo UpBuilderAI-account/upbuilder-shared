@@ -135,6 +135,7 @@ exports.isComplete = isComplete;
 const isFailed = (p) => p === -1;
 exports.isFailed = isFailed;
 exports.STAGE_ORDER = [
+    'import',
     'export_config',
     'load',
     // 'plan' removed - stage no longer exists
@@ -150,6 +151,8 @@ exports.STAGE_LABELS = {
     scanning: 'AI Scanning',
     analyze_design: 'Analyzing Design',
     images_export: 'Uploading Images',
+    // Import stage
+    import: 'Importing Project',
     // Backend workflow stages
     export_config: 'Configure Export',
     load: 'Loading Data',
