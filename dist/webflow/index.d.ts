@@ -2,5 +2,5 @@ export { type WebflowComponentDef, type ComponentCategory, type WebflowComponent
 export { type ConstraintRule, type ConstraintDef, type ComponentConstraints, type ComponentConstraintEntry, WEBFLOW_CONSTRAINTS, HIERARCHY_CHAINS, getConstraints, getDisplayName, requiresAncestor, forbidsDescendant, hasStrictChildren, getAllowedChildren, isPinnedToParent, } from './constraints';
 export { type BreakpointKey, type StateKey, type WebflowStyleVariantKey, getVariantKey, } from './breakpoints';
 export { type MappingContext, HTML_TAG_TO_COMPONENT, CLASS_PATTERNS, getComponentType, getDefaultTag, getXSCPType, matchesClassPattern, } from './mappings';
-export { type PlacementCheckResult, type DropPosition, type DesignNode, type TreeValidationResult, canPlaceElement, canContainChild, getValidParentTypes, getValidChildTypes, validateDesignTree, getConstraintErrorMessage, } from './hierarchy-helpers';
+export type { PlacementCheckResult, DropPosition, DesignNode, TreeValidationResult, } from './hierarchy-helpers';
 //# sourceMappingURL=index.d.ts.map

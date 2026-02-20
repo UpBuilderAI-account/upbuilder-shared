@@ -21,16 +21,12 @@ export * as webflow from './webflow';
 // Export CSS module (webflow base styles)
 export * from './css';
 
-// Re-export commonly used validation functions directly for convenience
-export {
-  canPlaceElement,
-  canContainChild,
-  validateDesignTree,
-  getConstraintErrorMessage,
-  type PlacementCheckResult,
-  type DropPosition,
-  type DesignNode,
-  type TreeValidationResult,
+// Re-export validation TYPES only (functions moved to backend API to protect IP)
+export type {
+  PlacementCheckResult,
+  DropPosition,
+  DesignNode,
+  TreeValidationResult,
 } from './webflow/hierarchy-helpers';
 
 // NOTE: Interactive component detection moved to backend-new/prompts/webflow/docs

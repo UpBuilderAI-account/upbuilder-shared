@@ -4,5 +4,5 @@ export * from './constants';
 export * from './utils';
 export * as webflow from './webflow';
 export * from './css';
-export { canPlaceElement, canContainChild, validateDesignTree, getConstraintErrorMessage, type PlacementCheckResult, type DropPosition, type DesignNode, type TreeValidationResult, } from './webflow/hierarchy-helpers';
+export type { PlacementCheckResult, DropPosition, DesignNode, TreeValidationResult, } from './webflow/hierarchy-helpers';
 //# sourceMappingURL=index.d.ts.map

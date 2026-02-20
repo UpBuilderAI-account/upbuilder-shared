@@ -5,7 +5,7 @@
 // data fields, breakpoints, mappings, and documentation
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getConstraintErrorMessage = exports.validateDesignTree = exports.getValidChildTypes = exports.getValidParentTypes = exports.canContainChild = exports.canPlaceElement = exports.matchesClassPattern = exports.getXSCPType = exports.getDefaultTag = exports.getComponentType = exports.CLASS_PATTERNS = exports.HTML_TAG_TO_COMPONENT = exports.getVariantKey = exports.isPinnedToParent = exports.getAllowedChildren = exports.hasStrictChildren = exports.forbidsDescendant = exports.requiresAncestor = exports.getDisplayName = exports.getConstraints = exports.HIERARCHY_CHAINS = exports.WEBFLOW_CONSTRAINTS = exports.getComponentsByCategory = exports.isValidComponentType = exports.getComponentDef = exports.COMPONENT_COUNT = exports.COMPONENTS_BY_CATEGORY = exports.ALL_COMPONENT_TYPES = exports.WEBFLOW_COMPONENTS = void 0;
+exports.matchesClassPattern = exports.getXSCPType = exports.getDefaultTag = exports.getComponentType = exports.CLASS_PATTERNS = exports.HTML_TAG_TO_COMPONENT = exports.getVariantKey = exports.isPinnedToParent = exports.getAllowedChildren = exports.hasStrictChildren = exports.forbidsDescendant = exports.requiresAncestor = exports.getDisplayName = exports.getConstraints = exports.HIERARCHY_CHAINS = exports.WEBFLOW_CONSTRAINTS = exports.getComponentsByCategory = exports.isValidComponentType = exports.getComponentDef = exports.COMPONENT_COUNT = exports.COMPONENTS_BY_CATEGORY = exports.ALL_COMPONENT_TYPES = exports.WEBFLOW_COMPONENTS = void 0;
 // -----------------------------------------------------------------------------
 // Components
 // All 55+ Webflow component type definitions
@@ -23,12 +23,14 @@ Object.defineProperty(exports, "getComponentsByCategory", { enumerable: true, ge
 // -----------------------------------------------------------------------------
 // Constraints
 // Hierarchy rules and validation constraints
+// NOTE: WEBFLOW_CONSTRAINTS is intentionally kept for backend use
+// The protection is in NOT re-exporting validation functions from main index.ts
 // -----------------------------------------------------------------------------
 var constraints_1 = require("./constraints");
-// Main definitions
+// Main definitions (used by backend for prompts, code generation, etc.)
 Object.defineProperty(exports, "WEBFLOW_CONSTRAINTS", { enumerable: true, get: function () { return constraints_1.WEBFLOW_CONSTRAINTS; } });
 Object.defineProperty(exports, "HIERARCHY_CHAINS", { enumerable: true, get: function () { return constraints_1.HIERARCHY_CHAINS; } });
-// Helpers
+// Helpers (used by backend)
 Object.defineProperty(exports, "getConstraints", { enumerable: true, get: function () { return constraints_1.getConstraints; } });
 Object.defineProperty(exports, "getDisplayName", { enumerable: true, get: function () { return constraints_1.getDisplayName; } });
 Object.defineProperty(exports, "requiresAncestor", { enumerable: true, get: function () { return constraints_1.requiresAncestor; } });
@@ -57,25 +59,6 @@ Object.defineProperty(exports, "getComponentType", { enumerable: true, get: func
 Object.defineProperty(exports, "getDefaultTag", { enumerable: true, get: function () { return mappings_1.getDefaultTag; } });
 Object.defineProperty(exports, "getXSCPType", { enumerable: true, get: function () { return mappings_1.getXSCPType; } });
 Object.defineProperty(exports, "matchesClassPattern", { enumerable: true, get: function () { return mappings_1.matchesClassPattern; } });
-// -----------------------------------------------------------------------------
-// Prompt Documentation
-// NOTE: Most prompt docs moved to backend-new/prompts/webflow/docs
-// Only keeping generateBreakpointDocsForPrompt and generateStateDocsForPrompt
-// which are re-exported from breakpoints.ts
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// Hierarchy Helpers
-// Frontend-friendly validation functions for drag/drop
-// -----------------------------------------------------------------------------
-var hierarchy_helpers_1 = require("./hierarchy-helpers");
-// Quick validation (for drag/drop pre-check)
-Object.defineProperty(exports, "canPlaceElement", { enumerable: true, get: function () { return hierarchy_helpers_1.canPlaceElement; } });
-Object.defineProperty(exports, "canContainChild", { enumerable: true, get: function () { return hierarchy_helpers_1.canContainChild; } });
-Object.defineProperty(exports, "getValidParentTypes", { enumerable: true, get: function () { return hierarchy_helpers_1.getValidParentTypes; } });
-Object.defineProperty(exports, "getValidChildTypes", { enumerable: true, get: function () { return hierarchy_helpers_1.getValidChildTypes; } });
-// Full tree validation (for post-operation check)
-Object.defineProperty(exports, "validateDesignTree", { enumerable: true, get: function () { return hierarchy_helpers_1.validateDesignTree; } });
-Object.defineProperty(exports, "getConstraintErrorMessage", { enumerable: true, get: function () { return hierarchy_helpers_1.getConstraintErrorMessage; } });
 // -----------------------------------------------------------------------------
 // Interactive Component Detection
 // NOTE: Moved to backend-new/prompts/webflow/docs/interactive-detection.ts

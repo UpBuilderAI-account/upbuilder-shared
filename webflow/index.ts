@@ -29,6 +29,8 @@ export {
 // -----------------------------------------------------------------------------
 // Constraints
 // Hierarchy rules and validation constraints
+// NOTE: WEBFLOW_CONSTRAINTS is intentionally kept for backend use
+// The protection is in NOT re-exporting validation functions from main index.ts
 // -----------------------------------------------------------------------------
 export {
   // Types
@@ -37,11 +39,11 @@ export {
   type ComponentConstraints,
   type ComponentConstraintEntry,
 
-  // Main definitions
+  // Main definitions (used by backend for prompts, code generation, etc.)
   WEBFLOW_CONSTRAINTS,
   HIERARCHY_CHAINS,
 
-  // Helpers
+  // Helpers (used by backend)
   getConstraints,
   getDisplayName,
   requiresAncestor,
@@ -94,24 +96,13 @@ export {
 
 // -----------------------------------------------------------------------------
 // Hierarchy Helpers
-// Frontend-friendly validation functions for drag/drop
+// Types only - validation functions moved to backend API to protect IP
 // -----------------------------------------------------------------------------
-export {
-  // Types
-  type PlacementCheckResult,
-  type DropPosition,
-  type DesignNode,
-  type TreeValidationResult,
-
-  // Quick validation (for drag/drop pre-check)
-  canPlaceElement,
-  canContainChild,
-  getValidParentTypes,
-  getValidChildTypes,
-
-  // Full tree validation (for post-operation check)
-  validateDesignTree,
-  getConstraintErrorMessage,
+export type {
+  PlacementCheckResult,
+  DropPosition,
+  DesignNode,
+  TreeValidationResult,
 } from './hierarchy-helpers';
 
 // -----------------------------------------------------------------------------
