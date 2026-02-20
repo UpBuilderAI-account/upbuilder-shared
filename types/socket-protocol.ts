@@ -780,6 +780,16 @@ export interface ClientToServerEvents {
     callback?: (response: { success: boolean; error?: string }) => void
   ) => void;
 
+  // Validate session (check if temp session still exists and has valid data)
+  'workflow:validate_session': (
+    data: { sessionId: string },
+    callback: (response: {
+      success: boolean;
+      data?: { valid: boolean; reason?: string; designCount?: number };
+      error?: string;
+    }) => void
+  ) => void;
+
   // NEW: Rebuild-only fixing (no incremental commands)
   'fixing:request_rebuild': (
     data: {

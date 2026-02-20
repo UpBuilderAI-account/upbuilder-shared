@@ -658,6 +658,17 @@ export interface ClientToServerEvents {
         success: boolean;
         error?: string;
     }) => void) => void;
+    'workflow:validate_session': (data: {
+        sessionId: string;
+    }, callback: (response: {
+        success: boolean;
+        data?: {
+            valid: boolean;
+            reason?: string;
+            designCount?: number;
+        };
+        error?: string;
+    }) => void) => void;
     'fixing:request_rebuild': (data: {
         projectId: string;
         designId: string;
