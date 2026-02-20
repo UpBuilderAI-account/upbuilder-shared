@@ -316,6 +316,14 @@ export interface RecentProject {
   platform?: string;               // 'webflow'
   designCount?: number;            // Number of designs in project
   errorMessage?: string;           // Error message if status is 'failed'
+
+  // Clipboard data for re-copy (Recent Exports feature)
+  sessionId?: string;              // Session ID for temp storage lookup
+  designs?: Array<{                // Designs stored in temp session
+    tempDesignId: string;
+    designName: string;
+    thumbnail?: string;
+  }>;
 }
 
 // ============================================================================

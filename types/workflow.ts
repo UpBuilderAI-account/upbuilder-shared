@@ -1082,6 +1082,8 @@ export interface BuildSectionsState {
   complete: boolean;
   /** CMS schema generated during section_bounding (for build_sections to consume) */
   cmsSchema?: import('./cms').CMSSchema;
+  /** Element IDs for scroll reveal animations (aggregated from ANIMATIONS blocks) */
+  animateElementIds?: string[];
 }
 
 // =============================================================================

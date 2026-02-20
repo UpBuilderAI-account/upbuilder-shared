@@ -477,6 +477,12 @@ export interface RecentProject {
     platform?: string;
     designCount?: number;
     errorMessage?: string;
+    sessionId?: string;
+    designs?: Array<{
+        tempDesignId: string;
+        designName: string;
+        thumbnail?: string;
+    }>;
 }
 /**
  * Plugin authentication payload stored during OAuth flow
