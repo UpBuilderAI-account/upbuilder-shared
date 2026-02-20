@@ -660,6 +660,20 @@ export const QUICK_ANIMATIONS_CONFIG: AnimationsConfig = {
 };
 
 /**
+ * Animation effect type (matches effect names in prompts and CSS)
+ */
+export type AnimationEffect = 'slide-up' | 'fade-in' | 'pop' | 'grow' | 'bounce';
+
+/**
+ * Parsed animation entry from AI response
+ * Maps element ID to its animation effect
+ */
+export interface AnimationEntry {
+  elementId: string;
+  effect: AnimationEffect;
+}
+
+/**
  * Quick export config - uses defaults, skips stylesheet review, no animations
  */
 export const QUICK_EXPORT_CONFIG: ExportConfig = {
@@ -1149,8 +1163,8 @@ export interface BuildSectionsState {
   complete: boolean;
   /** CMS schema generated during section_bounding (for build_sections to consume) */
   cmsSchema?: import('./cms').CMSSchema;
-  /** Element IDs for scroll reveal animations (aggregated from ANIMATIONS blocks) */
-  animateElementIds?: string[];
+  /** Animation entries for scroll reveal animations (aggregated from ANIMATIONS blocks) */
+  animationEntries?: AnimationEntry[];
 }
 
 // =============================================================================

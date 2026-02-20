@@ -74,6 +74,14 @@ export {
   QUICK_INTERACTIVITY_CONFIG,
   DEFAULT_EXPORT_CONFIG,
   QUICK_EXPORT_CONFIG,
+  // Animation config types
+  type AnimationsConfig,
+  type AnimationEffectsConfig,
+  type AnimationEffect,
+  type AnimationEntry,
+  DEFAULT_ANIMATIONS_CONFIG,
+  DEFAULT_ANIMATION_EFFECTS_CONFIG,
+  QUICK_ANIMATIONS_CONFIG,
   // Customize types
   type CustomSectionCode,
   type CustomizeData,
