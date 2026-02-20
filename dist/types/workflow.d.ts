@@ -313,6 +313,8 @@ export interface ExportConfig {
     stylesheet: StylesheetConfig;
     responsive: ResponsiveConfig;
     interactivity: InteractivityConfig;
+    /** Animations configuration (scroll reveal, etc.) */
+    animations?: AnimationsConfig;
     /** Custom AI instructions for guiding design decisions (optional) */
     customInstructions?: string;
     /**
@@ -426,6 +428,52 @@ export declare const DEFAULT_INTERACTIVITY_CONFIG: InteractivityConfig;
  * Quick mode interactivity
  */
 export declare const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig;
+/**
+ * Granular control over which animation effects to use
+ */
+export interface AnimationEffectsConfig {
+    /** Slide up into view */
+    slideUp: boolean;
+    /** Simple fade in */
+    fadeIn: boolean;
+    /** Pop in with slight bounce */
+    pop: boolean;
+    /** Grow/scale up from small */
+    grow: boolean;
+    /** Bounce in effect */
+    bounce: boolean;
+}
+/**
+ * Default animation effects configuration (all disabled by default)
+ */
+export declare const DEFAULT_ANIMATION_EFFECTS_CONFIG: AnimationEffectsConfig;
+/**
+ * Animations configuration (part of ExportConfig)
+ * Controls scroll reveal and other animations
+ */
+export interface AnimationsConfig {
+    /**
+     * Enable scroll reveal animations:
+     * - AI selects key elements to animate
+     * - Elements animate when scrolling into viewport
+     * - Generates IX2 interactions for Webflow
+     * - Works in React preview via IntersectionObserver
+     */
+    enableScrollReveal: boolean;
+    /**
+     * Which animation effects to use
+     * AI will pick the most appropriate effect for each element from enabled options
+     */
+    effects?: AnimationEffectsConfig;
+}
+/**
+ * Default animations configuration
+ */
+export declare const DEFAULT_ANIMATIONS_CONFIG: AnimationsConfig;
+/**
+ * Quick mode animations (disabled for speed)
+ */
+export declare const QUICK_ANIMATIONS_CONFIG: AnimationsConfig;
 /**
  * Quick export config - uses defaults, skips stylesheet review, no animations
  */

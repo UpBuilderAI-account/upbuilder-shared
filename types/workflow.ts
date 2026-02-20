@@ -439,6 +439,8 @@ export interface ExportConfig {
   stylesheet: StylesheetConfig;
   responsive: ResponsiveConfig;
   interactivity: InteractivityConfig;
+  /** Animations configuration (scroll reveal, etc.) */
+  animations?: AnimationsConfig;
   /** Custom AI instructions for guiding design decisions (optional) */
   customInstructions?: string;
   /**
@@ -595,6 +597,69 @@ export const QUICK_INTERACTIVITY_CONFIG: InteractivityConfig = {
 };
 
 /**
+ * Granular control over which animation effects to use
+ */
+export interface AnimationEffectsConfig {
+  /** Slide up into view */
+  slideUp: boolean;
+  /** Simple fade in */
+  fadeIn: boolean;
+  /** Pop in with slight bounce */
+  pop: boolean;
+  /** Grow/scale up from small */
+  grow: boolean;
+  /** Bounce in effect */
+  bounce: boolean;
+}
+
+/**
+ * Default animation effects configuration (all disabled by default)
+ */
+export const DEFAULT_ANIMATION_EFFECTS_CONFIG: AnimationEffectsConfig = {
+  slideUp: false,
+  fadeIn: false,
+  pop: false,
+  grow: false,
+  bounce: false,
+};
+
+/**
+ * Animations configuration (part of ExportConfig)
+ * Controls scroll reveal and other animations
+ */
+export interface AnimationsConfig {
+  /**
+   * Enable scroll reveal animations:
+   * - AI selects key elements to animate
+   * - Elements animate when scrolling into viewport
+   * - Generates IX2 interactions for Webflow
+   * - Works in React preview via IntersectionObserver
+   */
+  enableScrollReveal: boolean;
+  /**
+   * Which animation effects to use
+   * AI will pick the most appropriate effect for each element from enabled options
+   */
+  effects?: AnimationEffectsConfig;
+}
+
+/**
+ * Default animations configuration
+ */
+export const DEFAULT_ANIMATIONS_CONFIG: AnimationsConfig = {
+  enableScrollReveal: false,  // Scroll reveal disabled by default
+  effects: DEFAULT_ANIMATION_EFFECTS_CONFIG,
+};
+
+/**
+ * Quick mode animations (disabled for speed)
+ */
+export const QUICK_ANIMATIONS_CONFIG: AnimationsConfig = {
+  enableScrollReveal: false,  // Disabled in quick mode
+  effects: DEFAULT_ANIMATION_EFFECTS_CONFIG,
+};
+
+/**
  * Quick export config - uses defaults, skips stylesheet review, no animations
  */
 export const QUICK_EXPORT_CONFIG: ExportConfig = {
@@ -602,6 +667,7 @@ export const QUICK_EXPORT_CONFIG: ExportConfig = {
   stylesheet: DEFAULT_STYLESHEET_CONFIG,
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: QUICK_INTERACTIVITY_CONFIG,
+  animations: QUICK_ANIMATIONS_CONFIG,
   imageConfig: DEFAULT_IMAGE_CONFIG,
   unitsConfig: DEFAULT_UNITS_CONFIG,
   navbarConfig: DEFAULT_NAVBAR_CONFIG,
@@ -617,6 +683,7 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   stylesheet: DEFAULT_STYLESHEET_CONFIG,
   responsive: DEFAULT_RESPONSIVE_CONFIG,
   interactivity: DEFAULT_INTERACTIVITY_CONFIG,
+  animations: DEFAULT_ANIMATIONS_CONFIG,
   imageConfig: DEFAULT_IMAGE_CONFIG,
   unitsConfig: DEFAULT_UNITS_CONFIG,
   navbarConfig: DEFAULT_NAVBAR_CONFIG,

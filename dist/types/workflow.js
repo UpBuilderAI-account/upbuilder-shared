@@ -6,7 +6,7 @@
 // No beforeSteps, afterSteps, exportSteps - just simple progress tracking
 // ============================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.DEFAULT_NAVBAR_CONFIG = exports.SCALABLE_UNITS_CONFIG = exports.DEFAULT_UNITS_CONFIG = exports.IMAGE_DIMENSION_PRESETS = exports.DEFAULT_IMAGE_CONFIG = exports.DEFAULT_COMPONENTS_CONFIG = void 0;
+exports.STAGE_LABELS = exports.STAGE_ORDER = exports.isFailed = exports.isComplete = exports.isRunning = exports.isPending = exports.DEFAULT_EXPORT_CONFIG = exports.QUICK_EXPORT_CONFIG = exports.QUICK_ANIMATIONS_CONFIG = exports.DEFAULT_ANIMATIONS_CONFIG = exports.DEFAULT_ANIMATION_EFFECTS_CONFIG = exports.QUICK_INTERACTIVITY_CONFIG = exports.DEFAULT_INTERACTIVITY_CONFIG = exports.DEFAULT_RESPONSIVE_CONFIG = exports.DEFAULT_STYLESHEET_CONFIG = exports.DEFAULT_NAVBAR_CONFIG = exports.SCALABLE_UNITS_CONFIG = exports.DEFAULT_UNITS_CONFIG = exports.IMAGE_DIMENSION_PRESETS = exports.DEFAULT_IMAGE_CONFIG = exports.DEFAULT_COMPONENTS_CONFIG = void 0;
 exports.getStageOrderForPlatform = getStageOrderForPlatform;
 exports.DEFAULT_COMPONENTS_CONFIG = {
     navbar: true,
@@ -96,6 +96,30 @@ exports.QUICK_INTERACTIVITY_CONFIG = {
     components: exports.DEFAULT_COMPONENTS_CONFIG, // All interactive components enabled by default
 };
 /**
+ * Default animation effects configuration (all disabled by default)
+ */
+exports.DEFAULT_ANIMATION_EFFECTS_CONFIG = {
+    slideUp: false,
+    fadeIn: false,
+    pop: false,
+    grow: false,
+    bounce: false,
+};
+/**
+ * Default animations configuration
+ */
+exports.DEFAULT_ANIMATIONS_CONFIG = {
+    enableScrollReveal: false, // Scroll reveal disabled by default
+    effects: exports.DEFAULT_ANIMATION_EFFECTS_CONFIG,
+};
+/**
+ * Quick mode animations (disabled for speed)
+ */
+exports.QUICK_ANIMATIONS_CONFIG = {
+    enableScrollReveal: false, // Disabled in quick mode
+    effects: exports.DEFAULT_ANIMATION_EFFECTS_CONFIG,
+};
+/**
  * Quick export config - uses defaults, skips stylesheet review, no animations
  */
 exports.QUICK_EXPORT_CONFIG = {
@@ -103,6 +127,7 @@ exports.QUICK_EXPORT_CONFIG = {
     stylesheet: exports.DEFAULT_STYLESHEET_CONFIG,
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.QUICK_INTERACTIVITY_CONFIG,
+    animations: exports.QUICK_ANIMATIONS_CONFIG,
     imageConfig: exports.DEFAULT_IMAGE_CONFIG,
     unitsConfig: exports.DEFAULT_UNITS_CONFIG,
     navbarConfig: exports.DEFAULT_NAVBAR_CONFIG,
@@ -117,6 +142,7 @@ exports.DEFAULT_EXPORT_CONFIG = {
     stylesheet: exports.DEFAULT_STYLESHEET_CONFIG,
     responsive: exports.DEFAULT_RESPONSIVE_CONFIG,
     interactivity: exports.DEFAULT_INTERACTIVITY_CONFIG,
+    animations: exports.DEFAULT_ANIMATIONS_CONFIG,
     imageConfig: exports.DEFAULT_IMAGE_CONFIG,
     unitsConfig: exports.DEFAULT_UNITS_CONFIG,
     navbarConfig: exports.DEFAULT_NAVBAR_CONFIG,
