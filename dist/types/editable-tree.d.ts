@@ -222,6 +222,8 @@ export interface EditableNode {
         name: string;
         variant: string;
     };
+    /** Component-specific settings (Slider, Dropdown, Tabs, Navbar, etc.) */
+    settings?: import('./component-settings').ComponentSettings;
 }
 /** CSS property categories for UI grouping */
 export type PropertyCategory = 'layout' | 'spacing' | 'size' | 'typography' | 'background' | 'border' | 'effects' | 'position' | 'other';

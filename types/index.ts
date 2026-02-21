@@ -197,3 +197,6 @@ export * from './workflow-files';
 
 // Project config types (fonts, design tokens, navigation)
 export * from './project-config';
+
+// Component settings types (Slider, Dropdown, Tabs, Navbar, etc.)
+export * from './component-settings';

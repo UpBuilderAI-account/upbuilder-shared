@@ -414,6 +414,9 @@ export interface EditableNode {
     name: string;      // e.g., "Navbar"
     variant: string;   // e.g., "navbar_default"
   };
+
+  /** Component-specific settings (Slider, Dropdown, Tabs, Navbar, etc.) */
+  settings?: import('./component-settings').ComponentSettings;
 }
 
 // ============================================================================

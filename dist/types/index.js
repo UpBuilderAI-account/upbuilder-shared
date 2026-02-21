@@ -93,3 +93,5 @@ __exportStar(require("./clipboard-export"), exports);
 __exportStar(require("./workflow-files"), exports);
 // Project config types (fonts, design tokens, navigation)
 __exportStar(require("./project-config"), exports);
+// Component settings types (Slider, Dropdown, Tabs, Navbar, etc.)
+__exportStar(require("./component-settings"), exports);
