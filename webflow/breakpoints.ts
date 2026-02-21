@@ -56,8 +56,8 @@ export const BREAKPOINTS: Record<string, BreakpointDef> = {
   mobile: {
     key: 'mobile',
     name: 'Mobile',
-    mediaQuery: '@media screen and (max-width: 478px)',
-    width: 478,
+    mediaQuery: '@media screen and (max-width: 479px)',
+    width: 479,
     direction: 'down',
     order: 3,
     variantKey: 'tiny',
@@ -282,7 +282,7 @@ export const STYLE_REGISTRY_FIELDS = {
   main: 'main',
   // Smaller breakpoints (max-width)
   medium: 'medium',  // ≤991px (tablet)
-  tiny: 'tiny',      // ≤478px (mobile)
+  tiny: 'tiny',      // ≤479px (mobile)
   // Desktop states
   hover: 'hover',
   focus: 'focus',
@@ -303,7 +303,7 @@ export function generateBreakpointDocsForPrompt(): string {
 |-------|-------------|-----------|-------------|
 | main | (none) | Base | Desktop styles (default) |
 | medium | max-width: 991px | DOWN | Tablet (≤991px) |
-| tiny | max-width: 478px | DOWN | Mobile (≤478px) |
+| tiny | max-width: 479px | DOWN | Mobile (≤479px) |
 
 **Cascade Rules:**
 - \`main\` (Desktop) is the BASE - always required
@@ -369,7 +369,7 @@ Each style entry uses this format:
 | comb | YES | "" for base class, "&" for combo modifier |
 | main | YES | Desktop styles (BASE) |
 | medium | NO | Tablet (≤991px, max-width) |
-| tiny | NO | Mobile (≤478px, max-width) |
+| tiny | NO | Mobile (≤479px, max-width) |
 | hover | NO | Hover state styles |
 | focus | NO | Focus state styles |
 
