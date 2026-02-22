@@ -1,6 +1,6 @@
 import type { ImagePair, PreviewData, SmallPreview, BigPreview, FramePreview } from './plugin';
 import type { Element, FigmaColorVariable, FigmaVariableCollection } from './element';
-import type { WorkflowStage, WorkflowStages, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType } from './workflow';
+import type { WorkflowStage, WorkflowStages, WorkflowError, WorkflowEditor, WorkflowCommand, WorkflowExportComplete, WorkflowBackgroundProgress, CodeSaveRequest, CodeSaveResult, RenameRequest, RenameResult, RenameTargetType, AgentEvent, AgentHistory } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { ExportConfig } from './workflow';
 import type { RequestTreePayload, TreeDataResponse } from './editable-tree';
@@ -1142,6 +1142,18 @@ export interface ServerToClientEvents {
     'assembly:error': (data: {
         projectId: string;
         error: string;
+    }) => void;
+    'agent:event': (data: {
+        projectId: string;
+        event: AgentEvent;
+    }) => void;
+    'agent:complete': (data: {
+        projectId: string;
+        history: AgentHistory;
+    }) => void;
+    'agent:error': (data: {
+        projectId: string;
+        message: string;
     }) => void;
 }
 /**

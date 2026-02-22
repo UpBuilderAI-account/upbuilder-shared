@@ -26,6 +26,8 @@ import type {
   RenameRequest,
   RenameResult,
   RenameTargetType,
+  AgentEvent,
+  AgentHistory,
 } from './workflow';
 import type { Breakpoints, Platform, StyleFramework, Project, ExportOptions, ExportPayload, SectionStageStatus, SubscriptionTier } from './core-domain';
 import type { ExportConfig } from './workflow';
@@ -1233,6 +1235,11 @@ export interface ServerToClientEvents {
     styles: string;
   }) => void;
   'assembly:error': (data: { projectId: string; error: string }) => void;
+
+  // Agent stage events (Claude Agent SDK refactoring)
+  'agent:event': (data: { projectId: string; event: AgentEvent }) => void;
+  'agent:complete': (data: { projectId: string; history: AgentHistory }) => void;
+  'agent:error': (data: { projectId: string; message: string }) => void;
 }
 
 /**
