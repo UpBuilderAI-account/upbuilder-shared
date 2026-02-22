@@ -122,6 +122,64 @@ export interface WorkflowError {
 }
 
 // =============================================================================
+// AGENT STAGE (Claude Agent SDK)
+// =============================================================================
+
+/**
+ * A single diff chunk showing removed/added lines
+ */
+export interface AgentDiffChunk {
+  lineStart: number;
+  removed: string[];
+  added: string[];
+}
+
+/**
+ * A single agent event (action taken by Claude Agent)
+ */
+export interface AgentEvent {
+  type: 'reading' | 'writing' | 'editing' | 'running' | 'thinking' | 'validating' | 'done' | 'error';
+  /** File path being read/written/edited */
+  file?: string;
+  /** Number of lines in written file */
+  lineCount?: number;
+  /** Diff chunks for edit operations */
+  diff?: AgentDiffChunk[];
+  /** Command being run (for 'running' type) */
+  command?: string;
+  /** Command output or validation result */
+  output?: string;
+  /** Claude's reasoning text (for 'thinking' type) */
+  text?: string;
+  /** Whether operation succeeded (for 'done' type) */
+  success?: boolean;
+  /** Number of agent turns used */
+  turns?: number;
+  /** Total cost in USD */
+  costUsd?: number;
+  /** Timestamp when event occurred */
+  timestamp?: number;
+}
+
+/**
+ * Agent completion stats
+ */
+export interface AgentStats {
+  turns: number;
+  costUsd: number;
+  filesEdited: number;
+  validationPassed: boolean;
+}
+
+/**
+ * Agent history returned after completion
+ */
+export interface AgentHistory {
+  events: AgentEvent[];
+  stats: AgentStats;
+}
+
+// =============================================================================
 // EDITOR (Customize Stage)
 // =============================================================================
 
@@ -1294,6 +1352,7 @@ export const STAGE_ORDER: Stage[] = [
   'build_sections',
   'cms_schema',
   'convert_to_platform',
+  'agent',
   'customize',
 ];
 
@@ -1314,6 +1373,7 @@ export const STAGE_LABELS: Record<Stage, string> = {
   cms_schema: 'CMS Schema',
   assembly: 'Assembling', // @deprecated - kept for backwards compatibility
   convert_to_platform: 'Generating Export',
+  agent: 'AI Refactor',
   customize: 'Preview & Export',
 };
 

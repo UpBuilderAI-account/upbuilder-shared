@@ -226,6 +226,16 @@ export const SOCKET_EVENTS = {
   },
 
   /**
+   * Agent stage events (server → client)
+   * For Claude Agent SDK refactoring stage
+   */
+  AGENT: {
+    EVENT: 'agent:event',           // Server → Client: Single agent action (read/write/edit/etc)
+    COMPLETE: 'agent:complete',     // Server → Client: Agent finished with history
+    ERROR: 'agent:error',           // Server → Client: Agent error
+  },
+
+  /**
    * Fixing stage events (client ↔ server)
    * For AI-powered auto-fixing after build
    */

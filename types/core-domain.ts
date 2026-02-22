@@ -99,6 +99,7 @@ export type ProjectStatus =
   | 'cms_schema'         // Generate CMS collection schemas (webflow only)
   | 'assembly'           // @deprecated - kept for backwards compatibility
   | 'convert_to_platform' // Merge styles + generate XSCP
+  | 'agent'              // AI refactor stage (Claude Agent SDK)
   | 'customize'          // Preview Webflow structure + export modal
   | 'complete'
   | 'failed';
@@ -124,6 +125,7 @@ export const PROJECT_STATUS = {
   CMS_SCHEMA: 'cms_schema' as ProjectStatus,
   ASSEMBLY: 'assembly' as ProjectStatus, // @deprecated - kept for backwards compatibility
   CONVERT_TO_PLATFORM: 'convert_to_platform' as ProjectStatus,
+  AGENT: 'agent' as ProjectStatus,
   CUSTOMIZE: 'customize' as ProjectStatus,
   COMPLETE: 'complete' as ProjectStatus,
   FAILED: 'failed' as ProjectStatus,
@@ -141,6 +143,7 @@ export function isProcessingStage(status: ProjectStatus): boolean {
     'build_sections',
     'cms_schema',
     'convert_to_platform',
+    'agent',
   ];
   return processingStages.includes(status);
 }
@@ -170,7 +173,8 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
     build_sections: 'cms_schema',
     cms_schema: 'convert_to_platform',
     assembly: 'convert_to_platform', // @deprecated - old projects skip to convert
-    convert_to_platform: 'customize',
+    convert_to_platform: 'agent',
+    agent: 'customize',
     customize: 'complete',
     complete: null,
     failed: null,

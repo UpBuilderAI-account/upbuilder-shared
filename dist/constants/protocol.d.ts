@@ -181,6 +181,15 @@ export declare const SOCKET_EVENTS: {
         readonly ERROR: "plan:error";
     };
     /**
+     * Agent stage events (server → client)
+     * For Claude Agent SDK refactoring stage
+     */
+    readonly AGENT: {
+        readonly EVENT: "agent:event";
+        readonly COMPLETE: "agent:complete";
+        readonly ERROR: "agent:error";
+    };
+    /**
      * Fixing stage events (client ↔ server)
      * For AI-powered auto-fixing after build
      */
