@@ -148,6 +148,11 @@ export {
   type AIAnalysisDesignProgress,
   type AIAnalysisProgress,
   type AIAnalysisProgressEvent,
+  // Agent stage types (Claude Agent SDK)
+  type AgentDiffChunk,
+  type AgentEvent,
+  type AgentStats,
+  type AgentHistory,
 } from './workflow';
 
 // Plugin types
