@@ -188,6 +188,8 @@ export declare const SOCKET_EVENTS: {
         readonly EVENT: "agent:event";
         readonly COMPLETE: "agent:complete";
         readonly ERROR: "agent:error";
+        readonly PREVIEW_READY: "agent:preview_ready";
+        readonly PREVIEW_STOPPED: "agent:preview_stopped";
     };
     /**
      * Fixing stage events (client ↔ server)

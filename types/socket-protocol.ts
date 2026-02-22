@@ -1240,6 +1240,8 @@ export interface ServerToClientEvents {
   'agent:event': (data: { projectId: string; event: AgentEvent }) => void;
   'agent:complete': (data: { projectId: string; history: AgentHistory }) => void;
   'agent:error': (data: { projectId: string; message: string }) => void;
+  'agent:preview_ready': (data: { projectId: string; port: number; url: string }) => void;
+  'agent:preview_stopped': (data: { projectId: string }) => void;
 }
 
 /**
