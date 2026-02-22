@@ -149,6 +149,10 @@ exports.WEBFLOW_CONSTRAINTS = {
         displayName: 'Icon',
         constraints: {}
     },
+    HamburgerIcon: {
+        displayName: 'Hamburger Icon',
+        constraints: {}
+    },
     HtmlEmbed: {
         displayName: 'HTML Embed',
         constraints: {}

@@ -359,6 +359,7 @@ function getDefaultTag(componentType) {
         // Media
         HtmlEmbed: 'div',
         Icon: 'div',
+        HamburgerIcon: 'div',
         Video: 'div',
         RichText: 'div',
         LightboxWrapper: 'a',

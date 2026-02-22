@@ -184,6 +184,10 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
     displayName: 'Icon',
     constraints: {}
   },
+  HamburgerIcon: {
+    displayName: 'Hamburger Icon',
+    constraints: {}
+  },
   HtmlEmbed: {
     displayName: 'HTML Embed',
     constraints: {}

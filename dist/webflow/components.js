@@ -154,6 +154,14 @@ exports.WEBFLOW_COMPONENTS = {
         specialDataFields: ['widget'],
         description: 'Icon widget element'
     },
+    HamburgerIcon: {
+        displayName: 'Hamburger Icon',
+        tags: ['div'],
+        isContainer: false,
+        category: 'media',
+        specialDataFields: ['widget'],
+        description: 'Hamburger menu icon for navbar toggle'
+    },
     HtmlEmbed: {
         displayName: 'HTML Embed',
         tags: ['div'],

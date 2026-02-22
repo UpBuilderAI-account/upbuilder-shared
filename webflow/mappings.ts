@@ -426,6 +426,7 @@ export function getDefaultTag(componentType: WebflowComponentType): string {
     // Media
     HtmlEmbed: 'div',
     Icon: 'div',
+    HamburgerIcon: 'div',
     Video: 'div',
     RichText: 'div',
     LightboxWrapper: 'a',
