@@ -20,4 +20,5 @@ export * from './clipboard-export';
 export * from './workflow-files';
 export * from './project-config';
 export * from './component-settings';
+export * from './component-props';
 //# sourceMappingURL=index.d.ts.map

@@ -4,44 +4,61 @@
  * These settings flow through: EditableNode → React Export → Webflow XSCP
  */
 
+import type { EasingType, SliderAnimation, LightboxItem } from './component-props';
+
 // ============================================================================
 // SLIDER SETTINGS
 // ============================================================================
 
 export interface SliderSettings {
-  /** Enable auto-advance slides (default: false) */
-  autoplay?: boolean;
-  /** Milliseconds between auto-advance (default: 4000) */
-  autoplayDelay?: number;
-  /** Animation type (default: 'slide') */
-  animation?: 'slide' | 'fade' | 'cross' | 'over';
+  /** Animation type: slide, cross, outin, fade, over (default: 'slide') */
+  animation?: SliderAnimation;
+  /** Animation easing (default: 'ease') */
+  easing?: EasingType;
   /** Animation duration in ms (default: 500) */
   duration?: number;
-  /** CSS easing function (default: 'ease') */
-  easing?: string;
-  /** Loop back to start after last slide (default: true) */
+  /** Infinite repeat slides (default: true) */
   infinite?: boolean;
-  /** Pause autoplay on hover (default: true) */
-  pauseOnHover?: boolean;
-  /** Hide arrow buttons (default: false) */
+  /** Disable swipe gestures (default: false) */
+  disableSwipe?: boolean;
+  /** Auto-play slides (default: false) */
+  autoplay?: boolean;
+  /** Timer delay in ms (default: 4000) */
+  delay?: number;
+  /** Stop after X slides, 0 = never (default: 0) */
+  autoMax?: number;
+  /** Hide arrows at each end (default: false) */
   hideArrows?: boolean;
-  /** Show navigation dots (default: true) */
-  showNav?: boolean;
-  /** Enable touch/swipe gestures (default: true) */
-  swipe?: boolean;
+  /** Use icon arrows (default: true) */
+  iconArrows?: boolean;
+  /** Rounded nav dots (default: true) */
+  navRound?: boolean;
+  /** Number labels on nav (default: false) */
+  navNumbers?: boolean;
+  /** Shadow on nav (default: false) */
+  navShadow?: boolean;
+  /** Invert nav colors (default: false) */
+  navInvert?: boolean;
+  /** Nav dot spacing in px (default: 3) */
+  navSpacing?: number;
 }
 
 export const DEFAULT_SLIDER_SETTINGS: Required<SliderSettings> = {
-  autoplay: false,
-  autoplayDelay: 4000,
   animation: 'slide',
-  duration: 500,
   easing: 'ease',
+  duration: 500,
   infinite: true,
-  pauseOnHover: true,
+  disableSwipe: false,
+  autoplay: true,
+  delay: 4000,
+  autoMax: 0,
   hideArrows: false,
-  showNav: true,
-  swipe: true,
+  iconArrows: false,
+  navRound: false,
+  navNumbers: false,
+  navShadow: false,
+  navInvert: false,
+  navSpacing: 3,
 };
 
 // ============================================================================
@@ -55,12 +72,15 @@ export interface DropdownSettings {
   closeDelay?: number;
   /** Start in open state (default: false) */
   startOpen?: boolean;
+  /** Exclude dropdown content from site search results (default: false) */
+  searchExclude?: boolean;
 }
 
 export const DEFAULT_DROPDOWN_SETTINGS: Required<DropdownSettings> = {
   mode: 'click',
   closeDelay: 200,
   startOpen: false,
+  searchExclude: false,
 };
 
 // ============================================================================
@@ -90,12 +110,20 @@ export const DEFAULT_TABS_SETTINGS: Required<Omit<TabsSettings, 'defaultTab'>> &
 // ============================================================================
 
 export interface NavbarSettings {
-  /** Breakpoint to collapse menu: 'medium' (991px), 'small' (767px), 'none' (default: 'medium') */
+  /** Menu icon for: 'medium' (Tablet and below), 'small' (Mobile landscape and below), 'none' (never collapse) */
   collapseAt?: 'medium' | 'small' | 'none';
-  /** Mobile menu animation style (default: 'default') */
+  /** Menu type/animation style: 'default' (Drop Down), 'over-left', 'over-right' */
   animation?: 'default' | 'over-left' | 'over-right';
   /** Animation duration in ms (default: 400) */
   animationDuration?: number;
+  /** Easing open - animation easing when menu opens (default: 'ease') */
+  easing?: EasingType;
+  /** Easing close - animation easing when menu closes (default: 'ease') */
+  easing2?: EasingType;
+  /** Menu fills page height - mobile menu expands to fill viewport (default: true) */
+  docHeight?: boolean;
+  /** Disable scroll offset when fixed (default: true) */
+  noScroll?: boolean;
   /** Dropdown trigger in desktop: 'hover' or 'click' (default: 'hover') */
   dropdownMode?: 'hover' | 'click';
   /** Dropdown close delay in ms (default: 300) */
@@ -106,6 +134,10 @@ export const DEFAULT_NAVBAR_SETTINGS: Required<NavbarSettings> = {
   collapseAt: 'medium',
   animation: 'default',
   animationDuration: 400,
+  easing: 'ease',
+  easing2: 'ease',
+  docHeight: true,
+  noScroll: true,
   dropdownMode: 'hover',
   dropdownDelay: 300,
 };
@@ -159,12 +191,18 @@ export const DEFAULT_FORM_SETTINGS: Required<Omit<FormSettings, 'redirectUrl'>> 
 // ============================================================================
 
 export interface LightboxSettings {
-  /** Group name for gallery navigation */
+  /** Group name for gallery navigation - links multiple lightboxes together */
   group?: string;
+  /** Media items in the lightbox gallery */
+  items?: LightboxItem[];
+  /** Exclude from site search results (default: false) */
+  searchExclude?: boolean;
 }
 
 export const DEFAULT_LIGHTBOX_SETTINGS: LightboxSettings = {
   group: undefined,
+  items: [],
+  searchExclude: false,
 };
 
 // ============================================================================
@@ -212,4 +250,9 @@ export function getVideoSettings(settings?: VideoSettings): typeof DEFAULT_VIDEO
 /** Get form settings with defaults applied */
 export function getFormSettings(settings?: FormSettings): typeof DEFAULT_FORM_SETTINGS {
   return { ...DEFAULT_FORM_SETTINGS, ...settings };
+}
+
+/** Get lightbox settings with defaults applied */
+export function getLightboxSettings(settings?: LightboxSettings): typeof DEFAULT_LIGHTBOX_SETTINGS {
+  return { ...DEFAULT_LIGHTBOX_SETTINGS, ...settings };
 }

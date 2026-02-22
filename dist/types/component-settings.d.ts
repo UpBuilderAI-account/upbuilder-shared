@@ -3,27 +3,38 @@
  * Configurable settings for interactive components (Slider, Dropdown, Tabs, Navbar, etc.)
  * These settings flow through: EditableNode → React Export → Webflow XSCP
  */
+import type { EasingType, SliderAnimation, LightboxItem } from './component-props';
 export interface SliderSettings {
-    /** Enable auto-advance slides (default: false) */
-    autoplay?: boolean;
-    /** Milliseconds between auto-advance (default: 4000) */
-    autoplayDelay?: number;
-    /** Animation type (default: 'slide') */
-    animation?: 'slide' | 'fade' | 'cross' | 'over';
+    /** Animation type: slide, cross, outin, fade, over (default: 'slide') */
+    animation?: SliderAnimation;
+    /** Animation easing (default: 'ease') */
+    easing?: EasingType;
     /** Animation duration in ms (default: 500) */
     duration?: number;
-    /** CSS easing function (default: 'ease') */
-    easing?: string;
-    /** Loop back to start after last slide (default: true) */
+    /** Infinite repeat slides (default: true) */
     infinite?: boolean;
-    /** Pause autoplay on hover (default: true) */
-    pauseOnHover?: boolean;
-    /** Hide arrow buttons (default: false) */
+    /** Disable swipe gestures (default: false) */
+    disableSwipe?: boolean;
+    /** Auto-play slides (default: false) */
+    autoplay?: boolean;
+    /** Timer delay in ms (default: 4000) */
+    delay?: number;
+    /** Stop after X slides, 0 = never (default: 0) */
+    autoMax?: number;
+    /** Hide arrows at each end (default: false) */
     hideArrows?: boolean;
-    /** Show navigation dots (default: true) */
-    showNav?: boolean;
-    /** Enable touch/swipe gestures (default: true) */
-    swipe?: boolean;
+    /** Use icon arrows (default: true) */
+    iconArrows?: boolean;
+    /** Rounded nav dots (default: true) */
+    navRound?: boolean;
+    /** Number labels on nav (default: false) */
+    navNumbers?: boolean;
+    /** Shadow on nav (default: false) */
+    navShadow?: boolean;
+    /** Invert nav colors (default: false) */
+    navInvert?: boolean;
+    /** Nav dot spacing in px (default: 3) */
+    navSpacing?: number;
 }
 export declare const DEFAULT_SLIDER_SETTINGS: Required<SliderSettings>;
 export interface DropdownSettings {
@@ -33,6 +44,8 @@ export interface DropdownSettings {
     closeDelay?: number;
     /** Start in open state (default: false) */
     startOpen?: boolean;
+    /** Exclude dropdown content from site search results (default: false) */
+    searchExclude?: boolean;
 }
 export declare const DEFAULT_DROPDOWN_SETTINGS: Required<DropdownSettings>;
 export interface TabsSettings {
@@ -47,12 +60,20 @@ export interface TabsSettings {
 }
 export declare const DEFAULT_TABS_SETTINGS: Required<Omit<TabsSettings, 'defaultTab'>> & Pick<TabsSettings, 'defaultTab'>;
 export interface NavbarSettings {
-    /** Breakpoint to collapse menu: 'medium' (991px), 'small' (767px), 'none' (default: 'medium') */
+    /** Menu icon for: 'medium' (Tablet and below), 'small' (Mobile landscape and below), 'none' (never collapse) */
     collapseAt?: 'medium' | 'small' | 'none';
-    /** Mobile menu animation style (default: 'default') */
+    /** Menu type/animation style: 'default' (Drop Down), 'over-left', 'over-right' */
     animation?: 'default' | 'over-left' | 'over-right';
     /** Animation duration in ms (default: 400) */
     animationDuration?: number;
+    /** Easing open - animation easing when menu opens (default: 'ease') */
+    easing?: EasingType;
+    /** Easing close - animation easing when menu closes (default: 'ease') */
+    easing2?: EasingType;
+    /** Menu fills page height - mobile menu expands to fill viewport (default: true) */
+    docHeight?: boolean;
+    /** Disable scroll offset when fixed (default: true) */
+    noScroll?: boolean;
     /** Dropdown trigger in desktop: 'hover' or 'click' (default: 'hover') */
     dropdownMode?: 'hover' | 'click';
     /** Dropdown close delay in ms (default: 300) */
@@ -82,8 +103,12 @@ export interface FormSettings {
 }
 export declare const DEFAULT_FORM_SETTINGS: Required<Omit<FormSettings, 'redirectUrl'>> & Pick<FormSettings, 'redirectUrl'>;
 export interface LightboxSettings {
-    /** Group name for gallery navigation */
+    /** Group name for gallery navigation - links multiple lightboxes together */
     group?: string;
+    /** Media items in the lightbox gallery */
+    items?: LightboxItem[];
+    /** Exclude from site search results (default: false) */
+    searchExclude?: boolean;
 }
 export declare const DEFAULT_LIGHTBOX_SETTINGS: LightboxSettings;
 export type ComponentSettings = {
@@ -120,4 +145,6 @@ export declare function getNavbarSettings(settings?: NavbarSettings): Required<N
 export declare function getVideoSettings(settings?: VideoSettings): typeof DEFAULT_VIDEO_SETTINGS;
 /** Get form settings with defaults applied */
 export declare function getFormSettings(settings?: FormSettings): typeof DEFAULT_FORM_SETTINGS;
+/** Get lightbox settings with defaults applied */
+export declare function getLightboxSettings(settings?: LightboxSettings): typeof DEFAULT_LIGHTBOX_SETTINGS;
 //# sourceMappingURL=component-settings.d.ts.map

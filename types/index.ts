@@ -200,3 +200,6 @@ export * from './project-config';
 
 // Component settings types (Slider, Dropdown, Tabs, Navbar, etc.)
 export * from './component-settings';
+
+// Component prop types (shared between backend XSCP builder and React export)
+export * from './component-props';

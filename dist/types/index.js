@@ -95,3 +95,5 @@ __exportStar(require("./workflow-files"), exports);
 __exportStar(require("./project-config"), exports);
 // Component settings types (Slider, Dropdown, Tabs, Navbar, etc.)
 __exportStar(require("./component-settings"), exports);
+// Component prop types (shared between backend XSCP builder and React export)
+__exportStar(require("./component-props"), exports);

@@ -12,22 +12,29 @@ exports.getTabsSettings = getTabsSettings;
 exports.getNavbarSettings = getNavbarSettings;
 exports.getVideoSettings = getVideoSettings;
 exports.getFormSettings = getFormSettings;
+exports.getLightboxSettings = getLightboxSettings;
 exports.DEFAULT_SLIDER_SETTINGS = {
-    autoplay: false,
-    autoplayDelay: 4000,
     animation: 'slide',
-    duration: 500,
     easing: 'ease',
+    duration: 500,
     infinite: true,
-    pauseOnHover: true,
+    disableSwipe: false,
+    autoplay: true,
+    delay: 4000,
+    autoMax: 0,
     hideArrows: false,
-    showNav: true,
-    swipe: true,
+    iconArrows: false,
+    navRound: false,
+    navNumbers: false,
+    navShadow: false,
+    navInvert: false,
+    navSpacing: 3,
 };
 exports.DEFAULT_DROPDOWN_SETTINGS = {
     mode: 'click',
     closeDelay: 200,
     startOpen: false,
+    searchExclude: false,
 };
 exports.DEFAULT_TABS_SETTINGS = {
     defaultTab: undefined, // Will use first tab
@@ -39,6 +46,10 @@ exports.DEFAULT_NAVBAR_SETTINGS = {
     collapseAt: 'medium',
     animation: 'default',
     animationDuration: 400,
+    easing: 'ease',
+    easing2: 'ease',
+    docHeight: true,
+    noScroll: true,
     dropdownMode: 'hover',
     dropdownDelay: 300,
 };
@@ -56,6 +67,8 @@ exports.DEFAULT_FORM_SETTINGS = {
 };
 exports.DEFAULT_LIGHTBOX_SETTINGS = {
     group: undefined,
+    items: [],
+    searchExclude: false,
 };
 // ============================================================================
 // HELPER FUNCTIONS
@@ -83,4 +96,8 @@ function getVideoSettings(settings) {
 /** Get form settings with defaults applied */
 function getFormSettings(settings) {
     return Object.assign(Object.assign({}, exports.DEFAULT_FORM_SETTINGS), settings);
+}
+/** Get lightbox settings with defaults applied */
+function getLightboxSettings(settings) {
+    return Object.assign(Object.assign({}, exports.DEFAULT_LIGHTBOX_SETTINGS), settings);
 }
