@@ -143,6 +143,8 @@ export interface AgentEvent {
   file?: string;
   /** Number of lines in written file */
   lineCount?: number;
+  /** Preview of content being written (first ~20 lines) */
+  contentPreview?: string;
   /** Diff chunks for edit operations */
   diff?: AgentDiffChunk[];
   /** Command being run (for 'running' type) */
