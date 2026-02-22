@@ -36,8 +36,8 @@ exports.BREAKPOINT_CONFIG = {
     },
     mobile: {
         label: 'Mobile',
-        query: '@media (max-width: 478px)',
-        width: 478,
+        query: '@media (max-width: 479px)',
+        width: 479,
         cascadeDirection: 'down',
         cascadeSource: 'tablet',
     },

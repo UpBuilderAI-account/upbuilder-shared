@@ -19,7 +19,7 @@ export declare const DEFAULT_STYLE_FRAMEWORK = "client-first";
  */
 export declare const DEFAULT_BREAKPOINTS: {
     readonly tablet: 991;
-    readonly mobile: 478;
+    readonly mobile: 479;
 };
 /**
  * JSON/URL-encoded payload limit (30MB)

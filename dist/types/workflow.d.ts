@@ -187,7 +187,7 @@ export interface ResponsiveConfig {
      * - Desktop: Base styles (default)
      * - Tablet: 991px and below
      * - Mobile Landscape: 767px and below
-     * - Mobile Portrait: 478px and below
+     * - Mobile Portrait: 479px and below
      */
     enableResponsive: boolean;
 }
@@ -706,7 +706,7 @@ export interface StyleDefinition {
     main: string;
     /** Tablet CSS (≤991px) */
     medium?: string;
-    /** Mobile portrait CSS (≤478px) */
+    /** Mobile portrait CSS (≤479px) */
     tiny?: string;
     /** Hover state CSS */
     hover?: string;

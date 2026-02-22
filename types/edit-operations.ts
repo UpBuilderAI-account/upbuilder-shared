@@ -566,7 +566,7 @@ export interface RebuildStyleDefinition {
   main: string;
   /** CSS overrides for tablet (≤991px) */
   medium?: string;
-  /** CSS overrides for mobile (≤478px) */
+  /** CSS overrides for mobile (≤479px) */
   tiny?: string;
   /** Hover state CSS */
   hover?: string;

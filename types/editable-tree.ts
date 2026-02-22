@@ -14,7 +14,7 @@
 export type Breakpoint =
   | 'desktop'         // Base (no media query)
   | 'tablet'          // ≤991px (max-width: 991px) - cascades DOWN from desktop
-  | 'mobile';         // ≤478px (max-width: 478px) - cascades DOWN from tablet
+  | 'mobile';         // ≤479px (max-width: 479px) - cascades DOWN from tablet
 
 /**
  * Breakpoint configuration metadata
@@ -47,8 +47,8 @@ export const BREAKPOINT_CONFIG: Record<Breakpoint, BreakpointConfig> = {
   },
   mobile: {
     label: 'Mobile',
-    query: '@media (max-width: 478px)',
-    width: 478,
+    query: '@media (max-width: 479px)',
+    width: 479,
     cascadeDirection: 'down',
     cascadeSource: 'tablet',
   },

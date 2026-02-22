@@ -40,7 +40,7 @@ exports.DEFAULT_STYLE_FRAMEWORK = 'client-first';
  */
 exports.DEFAULT_BREAKPOINTS = {
     tablet: 991,
-    mobile: 478,
+    mobile: 479,
 };
 // ============================================================================
 // NETWORK

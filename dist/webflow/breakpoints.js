@@ -279,7 +279,7 @@ Each style entry uses this format:
   comb: "" | "&"
   main: "[desktop CSS properties]"
   medium: "[≤991px properties]"    # optional (tablet)
-  tiny: "[≤478px properties]"      # optional (mobile)
+  tiny: "[≤479px properties]"      # optional (mobile)
   hover: "[hover state]"           # optional
   focus: "[focus state]"           # optional
 \`\`\`
