@@ -154,6 +154,7 @@ export type PluginBackendMessage =
   | { type: 'frame-selected'; data: FrameData }
   | { type: 'current-selection-detected'; data: FrameData }
   | { type: 'selection-error'; data: { message: string; nodeType?: string } }
+  | { type: 'selection-cleared'; data: Record<string, never> }
   | { type: 'frame-oversized'; data: { name: string; width: number; height: number } }
   | { type: 'nodes-extracted'; data: PluginNodesData }
   | { type: 'images-extracted'; data: PluginImagesData }

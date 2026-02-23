@@ -130,6 +130,9 @@ export type PluginBackendMessage = {
         nodeType?: string;
     };
 } | {
+    type: 'selection-cleared';
+    data: Record<string, never>;
+} | {
     type: 'frame-oversized';
     data: {
         name: string;
