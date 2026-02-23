@@ -93,8 +93,9 @@ export type ProjectStatus =
   | 'export_config'      // First stage - configure export options
   | 'load'
   | 'plan'               // AI analyzes designs, user can ask questions, then confirms
-  | 'section_bounding'   // Extract bounding boxes + section tree from designs
-  | 'build_styles'       // Build base style system (utilities, typography, buttons)
+  | 'design_analysis'    // Combined: section detection + style extraction (single Claude call)
+  | 'section_bounding'   // @deprecated - use design_analysis instead
+  | 'build_styles'       // @deprecated - use design_analysis instead
   | 'build_sections'     // Per-section structure + new styles (references build_styles)
   | 'cms_schema'         // Generate CMS collection schemas (webflow only)
   | 'assembly'           // @deprecated - kept for backwards compatibility
@@ -119,8 +120,9 @@ export const PROJECT_STATUS = {
   EXPORT_CONFIG: 'export_config' as ProjectStatus,
   LOAD: 'load' as ProjectStatus,
   PLAN: 'plan' as ProjectStatus,
-  SECTION_BOUNDING: 'section_bounding' as ProjectStatus,
-  BUILD_STYLES: 'build_styles' as ProjectStatus,
+  DESIGN_ANALYSIS: 'design_analysis' as ProjectStatus,
+  SECTION_BOUNDING: 'section_bounding' as ProjectStatus, // @deprecated
+  BUILD_STYLES: 'build_styles' as ProjectStatus, // @deprecated
   BUILD_SECTIONS: 'build_sections' as ProjectStatus,
   CMS_SCHEMA: 'cms_schema' as ProjectStatus,
   ASSEMBLY: 'assembly' as ProjectStatus, // @deprecated - kept for backwards compatibility
@@ -138,8 +140,9 @@ export function isProcessingStage(status: ProjectStatus): boolean {
   const processingStages: ProjectStatus[] = [
     'load',
     // 'plan' removed - stage no longer exists
-    'section_bounding',
-    'build_styles',
+    'design_analysis',    // Combined section detection + style extraction
+    'section_bounding',   // @deprecated - kept for legacy projects
+    'build_styles',       // @deprecated - kept for legacy projects
     'build_sections',
     'cms_schema',
     'convert_to_platform',
@@ -166,10 +169,11 @@ export function getNextStatus(status: ProjectStatus, platform?: Platform, quickM
     import: 'load',  // After import completes, workflow starts at load
     // Backend workflow stages (export_config removed - plugin sends config)
     export_config: 'load',  // Legacy fallback - skip to load
-    load: 'section_bounding',  // plan stage removed
-    plan: 'section_bounding',  // @deprecated - kept for backwards compatibility
-    section_bounding: 'build_styles',
-    build_styles: 'build_sections',
+    load: 'design_analysis',  // NEW: combined section detection + style extraction
+    plan: 'design_analysis',  // @deprecated - kept for backwards compatibility
+    design_analysis: 'build_sections',  // NEW: goes directly to build_sections
+    section_bounding: 'build_styles',  // @deprecated - legacy projects only
+    build_styles: 'build_sections',    // @deprecated - legacy projects only
     build_sections: 'cms_schema',
     cms_schema: 'convert_to_platform',
     assembly: 'convert_to_platform', // @deprecated - old projects skip to convert

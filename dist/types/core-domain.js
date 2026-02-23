@@ -29,8 +29,9 @@ exports.PROJECT_STATUS = {
     EXPORT_CONFIG: 'export_config',
     LOAD: 'load',
     PLAN: 'plan',
-    SECTION_BOUNDING: 'section_bounding',
-    BUILD_STYLES: 'build_styles',
+    DESIGN_ANALYSIS: 'design_analysis',
+    SECTION_BOUNDING: 'section_bounding', // @deprecated
+    BUILD_STYLES: 'build_styles', // @deprecated
     BUILD_SECTIONS: 'build_sections',
     CMS_SCHEMA: 'cms_schema',
     ASSEMBLY: 'assembly', // @deprecated - kept for backwards compatibility
@@ -47,8 +48,9 @@ function isProcessingStage(status) {
     const processingStages = [
         'load',
         // 'plan' removed - stage no longer exists
-        'section_bounding',
-        'build_styles',
+        'design_analysis', // Combined section detection + style extraction
+        'section_bounding', // @deprecated - kept for legacy projects
+        'build_styles', // @deprecated - kept for legacy projects
         'build_sections',
         'cms_schema',
         'convert_to_platform',
@@ -75,10 +77,11 @@ function getNextStatus(status, platform, quickMode, _enableAIAssistant) {
         import: 'load', // After import completes, workflow starts at load
         // Backend workflow stages (export_config removed - plugin sends config)
         export_config: 'load', // Legacy fallback - skip to load
-        load: 'section_bounding', // plan stage removed
-        plan: 'section_bounding', // @deprecated - kept for backwards compatibility
-        section_bounding: 'build_styles',
-        build_styles: 'build_sections',
+        load: 'design_analysis', // NEW: combined section detection + style extraction
+        plan: 'design_analysis', // @deprecated - kept for backwards compatibility
+        design_analysis: 'build_sections', // NEW: goes directly to build_sections
+        section_bounding: 'build_styles', // @deprecated - legacy projects only
+        build_styles: 'build_sections', // @deprecated - legacy projects only
         build_sections: 'cms_schema',
         cms_schema: 'convert_to_platform',
         assembly: 'convert_to_platform', // @deprecated - old projects skip to convert

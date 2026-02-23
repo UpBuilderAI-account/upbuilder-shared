@@ -184,6 +184,7 @@ exports.STAGE_LABELS = {
     export_config: 'Configure Export',
     load: 'Loading Data',
     plan: 'Planning Design',
+    design_analysis: 'Analyzing Design',
     section_bounding: 'Detecting Sections',
     build_styles: 'Building Styles',
     build_sections: 'Building Sections',

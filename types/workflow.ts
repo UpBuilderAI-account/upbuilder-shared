@@ -1369,6 +1369,7 @@ export const STAGE_LABELS: Record<Stage, string> = {
   export_config: 'Configure Export',
   load: 'Loading Data',
   plan: 'Planning Design',
+  design_analysis: 'Analyzing Design',
   section_bounding: 'Detecting Sections',
   build_styles: 'Building Styles',
   build_sections: 'Building Sections',
