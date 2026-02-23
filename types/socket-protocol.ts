@@ -1242,6 +1242,21 @@ export interface ServerToClientEvents {
   'agent:error': (data: { projectId: string; message: string }) => void;
   'agent:preview_ready': (data: { projectId: string; port: number; url: string }) => void;
   'agent:preview_stopped': (data: { projectId: string }) => void;
+
+  // Activity feed events (persistent workflow history)
+  'activity:event': (data: {
+    id: string;
+    event_type: string;
+    message: string;
+    dot_color: string;
+    meta?: string;
+    stage?: string;
+    section_id?: string;
+    section_name?: string;
+    design_id?: string;
+    design_name?: string;
+    created_at: string | Date;
+  }) => void;
 }
 
 /**

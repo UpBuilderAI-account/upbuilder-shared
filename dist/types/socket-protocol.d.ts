@@ -1163,6 +1163,19 @@ export interface ServerToClientEvents {
     'agent:preview_stopped': (data: {
         projectId: string;
     }) => void;
+    'activity:event': (data: {
+        id: string;
+        event_type: string;
+        message: string;
+        dot_color: string;
+        meta?: string;
+        stage?: string;
+        section_id?: string;
+        section_name?: string;
+        design_id?: string;
+        design_name?: string;
+        created_at: string | Date;
+    }) => void;
 }
 /**
  * Socket data attached to each connection

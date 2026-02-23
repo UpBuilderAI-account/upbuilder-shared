@@ -319,6 +319,7 @@ export type ClientEventName =
  */
 export type ServerEventName =
   | typeof SOCKET_EVENTS.STATE[keyof typeof SOCKET_EVENTS.STATE]
+  | typeof SOCKET_EVENTS.ACTIVITY[keyof typeof SOCKET_EVENTS.ACTIVITY]
   | typeof SOCKET_EVENTS.EXPANSION[keyof typeof SOCKET_EVENTS.EXPANSION]
   | typeof SOCKET_EVENTS.PLUGIN_EVENTS[keyof typeof SOCKET_EVENTS.PLUGIN_EVENTS]
   | typeof SOCKET_EVENTS.RECEIVE[keyof typeof SOCKET_EVENTS.RECEIVE]
@@ -326,7 +327,8 @@ export type ServerEventName =
   | typeof SOCKET_EVENTS.OWNERSHIP[keyof typeof SOCKET_EVENTS.OWNERSHIP]
   | typeof SOCKET_EVENTS.USER[keyof typeof SOCKET_EVENTS.USER]
   | typeof SOCKET_EVENTS.CUSTOMIZER[keyof typeof SOCKET_EVENTS.CUSTOMIZER]
-  | typeof SOCKET_EVENTS.WEBFLOW[keyof typeof SOCKET_EVENTS.WEBFLOW];
+  | typeof SOCKET_EVENTS.WEBFLOW[keyof typeof SOCKET_EVENTS.WEBFLOW]
+  | typeof SOCKET_EVENTS.AGENT[keyof typeof SOCKET_EVENTS.AGENT];
 
 // ============================================================================
 // ERROR CODES
