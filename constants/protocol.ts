@@ -112,6 +112,13 @@ export const SOCKET_EVENTS = {
   },
 
   /**
+   * Server → Client: Activity feed events (persistent workflow history)
+   */
+  ACTIVITY: {
+    EVENT: 'activity:event', // Real-time activity event (persisted to DB)
+  },
+
+  /**
    * Server → Client: Expansion lifecycle events (multi-tab sync)
    * Broadcast to all tabs viewing the same project
    */

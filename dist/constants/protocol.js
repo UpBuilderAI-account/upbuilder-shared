@@ -107,6 +107,12 @@ exports.SOCKET_EVENTS = {
         SECTION_UPDATE: 'section:update', // NEW: Granular section updates (relational migration)
     },
     /**
+     * Server → Client: Activity feed events (persistent workflow history)
+     */
+    ACTIVITY: {
+        EVENT: 'activity:event', // Real-time activity event (persisted to DB)
+    },
+    /**
      * Server → Client: Expansion lifecycle events (multi-tab sync)
      * Broadcast to all tabs viewing the same project
      */

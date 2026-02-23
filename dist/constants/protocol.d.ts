@@ -81,6 +81,12 @@ export declare const SOCKET_EVENTS: {
         readonly SECTION_UPDATE: "section:update";
     };
     /**
+     * Server → Client: Activity feed events (persistent workflow history)
+     */
+    readonly ACTIVITY: {
+        readonly EVENT: "activity:event";
+    };
+    /**
      * Server → Client: Expansion lifecycle events (multi-tab sync)
      * Broadcast to all tabs viewing the same project
      */
