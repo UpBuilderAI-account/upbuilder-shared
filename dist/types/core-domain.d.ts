@@ -414,6 +414,8 @@ export interface Design {
     images?: string[];
     /** Google AI Files API URI for the design screenshot (used in AI prompts) */
     googleAiScreenshotUri?: string;
+    /** S3 URL for full design screenshot (populated during load stage) */
+    bigPreviewUrl?: string;
 }
 export interface Project {
     id: string;
