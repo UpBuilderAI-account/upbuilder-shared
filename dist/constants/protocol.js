@@ -224,8 +224,9 @@ exports.SOCKET_EVENTS = {
         EVENT: 'agent:event', // Server → Client: Single agent action (read/write/edit/etc)
         COMPLETE: 'agent:complete', // Server → Client: Agent finished with history
         ERROR: 'agent:error', // Server → Client: Agent error
-        PREVIEW_READY: 'agent:preview_ready', // Server → Client: Vite dev server started
-        PREVIEW_STOPPED: 'agent:preview_stopped', // Server → Client: Vite dev server stopped
+        PREVIEW_READY: 'agent:preview_ready', // Server → Client: Preview ready (mode: 'vite' | 'html')
+        PREVIEW_STOPPED: 'agent:preview_stopped', // Server → Client: Preview stopped
+        PREVIEW_HTML: 'agent:preview_html', // Server → Client: HTML content for srcdoc preview
     },
     /**
      * Fixing stage events (client ↔ server)

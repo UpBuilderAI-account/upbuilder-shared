@@ -15,7 +15,6 @@ export * from './fixing';
 export * from './expansion';
 export * from './image-review';
 export * from './cms';
-export * from './section-render';
 export * from './clipboard-export';
 export * from './workflow-files';
 export * from './project-config';

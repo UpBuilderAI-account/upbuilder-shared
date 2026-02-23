@@ -85,8 +85,6 @@ __exportStar(require("./expansion"), exports);
 __exportStar(require("./image-review"), exports);
 // CMS types (schema, bindings, XSCP integration)
 __exportStar(require("./cms"), exports);
-// Section render types (browser-based QA rendering)
-__exportStar(require("./section-render"), exports);
 // Clipboard export types (plugin → frontend paste workflow)
 __exportStar(require("./clipboard-export"), exports);
 // Workflow files types (progressive file display)
