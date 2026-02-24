@@ -78,6 +78,7 @@ export const SOCKET_EVENTS = {
     IMPORT_SESSION: 'workflow:import_session', // Client → Server: Import temp session files to real project
     IMPORT_PROJECT_CREATED: 'workflow:import_project_created', // Server → Client: Project created, redirect immediately
     VALIDATE_SESSION: 'workflow:validate_session', // Client → Server: Check if session still exists (not expired)
+    GET_SESSION_DESIGNS: 'workflow:get_session_designs', // Client → Server: Get session designs for URL-based import
     // Background progress (export_config stage)
     BACKGROUND_PROGRESS: 'workflow:background_progress', // Server → Client: Background job progress during export_config
     // Webflow structure preview (customize stage)
