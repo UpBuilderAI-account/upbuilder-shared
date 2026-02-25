@@ -3,51 +3,55 @@ export type { SubscriptionTier };
 /**
  * Free plan feature list
  */
-export declare const BASIC_FEATURES: readonly ["5 exports", "2 designs per import"];
+export declare const BASIC_FEATURES: readonly ["1 export", "1 design per import"];
 /**
- * Pro plan feature list
+ * Pro plan feature list (deprecated - kept for legacy users)
  */
-export declare const PRO_FEATURES: readonly ["75 exports/month", "2 designs per import"];
+export declare const PRO_FEATURES: readonly ["Unlimited exports", "9 designs per import"];
 /**
  * Max plan feature list
  */
-export declare const MAX_FEATURES: readonly ["200 exports/month", "9 designs per import", "30 designs per project", "Import more designs to a project"];
+export declare const MAX_FEATURES: readonly ["Unlimited exports", "9 designs per import", "30 designs per project", "Import more designs to a project"];
 /**
  * Design slots per tier
  * Controls how many frames users can select in the plugin
  */
 export declare const MAX_DESIGNS_PER_PROJECT: {
-    readonly basic: 2;
-    readonly pro: 2;
+    readonly basic: 1;
+    readonly pro: 9;
     readonly max: 9;
 };
 /**
  * Comprehensive tier limits for enforcement
  * Used by backend to validate exports and by frontend to show upgrade prompts
+ *
+ * Free: 1 export total, 1 design per import
+ * Pro (deprecated): Same as Max for legacy users
+ * Max: Unlimited exports, 9 designs per import
  */
 export declare const TIER_LIMITS: {
     readonly basic: {
-        readonly exportsPerMonth: 5;
-        readonly maxDesignsPerExport: 2;
-        readonly aiExportsPerMonth: 5;
+        readonly exportsPerMonth: 1;
+        readonly maxDesignsPerExport: 1;
+        readonly aiExportsPerMonth: 1;
         readonly smartModel: true;
-        readonly smartModelUsesPerMonth: 5;
+        readonly smartModelUsesPerMonth: 1;
         readonly aiImageDetection: true;
     };
     readonly pro: {
-        readonly exportsPerMonth: 75;
-        readonly maxDesignsPerExport: 2;
-        readonly aiExportsPerMonth: 75;
+        readonly exportsPerMonth: 999999;
+        readonly maxDesignsPerExport: 9;
+        readonly aiExportsPerMonth: 999999;
         readonly smartModel: true;
-        readonly smartModelUsesPerMonth: 75;
+        readonly smartModelUsesPerMonth: 999999;
         readonly aiImageDetection: true;
     };
     readonly max: {
-        readonly exportsPerMonth: 200;
+        readonly exportsPerMonth: 999999;
         readonly maxDesignsPerExport: 9;
-        readonly aiExportsPerMonth: 200;
+        readonly aiExportsPerMonth: 999999;
         readonly smartModel: true;
-        readonly smartModelUsesPerMonth: 200;
+        readonly smartModelUsesPerMonth: 999999;
         readonly aiImageDetection: true;
     };
 };
@@ -62,16 +66,16 @@ export declare const PRICING_CONFIG: {
         readonly price: 0;
         readonly displayPrice: "Free";
         readonly description: "Try it out";
-        readonly features: readonly ["5 exports", "2 designs per import"];
-        readonly maxDesigns: 2;
+        readonly features: readonly ["1 export", "1 design per import"];
+        readonly maxDesigns: 1;
     };
     readonly pro: {
         readonly name: "Pro";
         readonly price: 9.99;
         readonly displayPrice: "9.99";
         readonly description: "For individual makers";
-        readonly features: readonly ["75 exports/month", "2 designs per import"];
-        readonly maxDesigns: 2;
+        readonly features: readonly ["Unlimited exports", "9 designs per import"];
+        readonly maxDesigns: 9;
         readonly popular: true;
     };
     readonly max: {
@@ -79,7 +83,7 @@ export declare const PRICING_CONFIG: {
         readonly price: 19.99;
         readonly displayPrice: "19.99";
         readonly description: "For teams & agencies";
-        readonly features: readonly ["200 exports/month", "9 designs per import", "30 designs per project", "Import more designs to a project"];
+        readonly features: readonly ["Unlimited exports", "9 designs per import", "30 designs per project", "Import more designs to a project"];
         readonly maxDesigns: 9;
     };
 };

@@ -12,21 +12,21 @@ exports.PRICING_CONFIG = exports.TIER_LIMITS = exports.MAX_DESIGNS_PER_PROJECT =
  * Free plan feature list
  */
 exports.BASIC_FEATURES = [
-    '5 exports',
-    '2 designs per import',
+    '1 export',
+    '1 design per import',
 ];
 /**
- * Pro plan feature list
+ * Pro plan feature list (deprecated - kept for legacy users)
  */
 exports.PRO_FEATURES = [
-    '75 exports/month',
-    '2 designs per import',
+    'Unlimited exports',
+    '9 designs per import',
 ];
 /**
  * Max plan feature list
  */
 exports.MAX_FEATURES = [
-    '200 exports/month',
+    'Unlimited exports',
     '9 designs per import',
     '30 designs per project',
     'Import more designs to a project',
@@ -36,40 +36,45 @@ exports.MAX_FEATURES = [
  * Controls how many frames users can select in the plugin
  */
 exports.MAX_DESIGNS_PER_PROJECT = {
-    basic: 2,
-    pro: 2,
+    basic: 1,
+    pro: 9, // Legacy pro users get max features
     max: 9,
 };
 /**
  * Comprehensive tier limits for enforcement
  * Used by backend to validate exports and by frontend to show upgrade prompts
+ *
+ * Free: 1 export total, 1 design per import
+ * Pro (deprecated): Same as Max for legacy users
+ * Max: Unlimited exports, 9 designs per import
  */
 exports.TIER_LIMITS = {
     basic: {
-        exportsPerMonth: 5,
-        maxDesignsPerExport: 2,
-        aiExportsPerMonth: 5,
+        exportsPerMonth: 1, // Free tier gets 1 export total
+        maxDesignsPerExport: 1, // Free tier gets 1 design per import
+        aiExportsPerMonth: 1,
         // Legacy fields for backwards compatibility
         smartModel: true,
-        smartModelUsesPerMonth: 5,
+        smartModelUsesPerMonth: 1,
         aiImageDetection: true,
     },
     pro: {
-        exportsPerMonth: 75,
-        maxDesignsPerExport: 2,
-        aiExportsPerMonth: 75,
+        // Pro is deprecated - give them Max features
+        exportsPerMonth: 999999, // Unlimited
+        maxDesignsPerExport: 9,
+        aiExportsPerMonth: 999999,
         // Legacy fields for backwards compatibility
         smartModel: true,
-        smartModelUsesPerMonth: 75,
+        smartModelUsesPerMonth: 999999,
         aiImageDetection: true,
     },
     max: {
-        exportsPerMonth: 200,
+        exportsPerMonth: 999999, // Unlimited
         maxDesignsPerExport: 9,
-        aiExportsPerMonth: 200,
+        aiExportsPerMonth: 999999,
         // Legacy fields for backwards compatibility
         smartModel: true,
-        smartModelUsesPerMonth: 200,
+        smartModelUsesPerMonth: 999999,
         aiImageDetection: true,
     },
 };

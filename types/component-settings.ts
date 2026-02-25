@@ -49,7 +49,7 @@ export const DEFAULT_SLIDER_SETTINGS: Required<SliderSettings> = {
   duration: 500,
   infinite: true,
   disableSwipe: false,
-  autoplay: true,
+  autoplay: false,
   delay: 4000,
   autoMax: 0,
   hideArrows: false,
