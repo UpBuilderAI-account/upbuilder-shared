@@ -53,8 +53,7 @@ exports.TIER_LIMITS = {
         exportsPerMonth: 1, // Free tier gets 1 export total
         maxDesignsPerExport: 1, // Free tier gets 1 design per import
         aiExportsPerMonth: 1,
-        // Legacy fields for backwards compatibility
-        smartModel: true,
+        // Legacy fields for backwards compatibility (DB tracking)
         smartModelUsesPerMonth: 1,
         aiImageDetection: true,
     },
@@ -63,8 +62,7 @@ exports.TIER_LIMITS = {
         exportsPerMonth: 999999, // Unlimited
         maxDesignsPerExport: 9,
         aiExportsPerMonth: 999999,
-        // Legacy fields for backwards compatibility
-        smartModel: true,
+        // Legacy fields for backwards compatibility (DB tracking)
         smartModelUsesPerMonth: 999999,
         aiImageDetection: true,
     },
@@ -72,8 +70,7 @@ exports.TIER_LIMITS = {
         exportsPerMonth: 999999, // Unlimited
         maxDesignsPerExport: 9,
         aiExportsPerMonth: 999999,
-        // Legacy fields for backwards compatibility
-        smartModel: true,
+        // Legacy fields for backwards compatibility (DB tracking)
         smartModelUsesPerMonth: 999999,
         aiImageDetection: true,
     },

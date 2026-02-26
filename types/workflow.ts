@@ -20,20 +20,13 @@ export type Progress = number;
 export type { Platform };
 
 // =============================================================================
-// AI MODEL & PRESET CONFIGURATION
+// EXPORT PRESET CONFIGURATION
 // =============================================================================
 
 /**
- * AI model for section building and analysis
- * - flash: Gemini Flash (faster, cheaper, good for well-structured designs)
- * - pro: Gemini Pro (more capable, better for complex designs)
- */
-export type AIModel = 'flash' | 'pro';
-
-/**
  * Export preset for quick configuration
- * - quality: Pro model + full image analysis (best results)
- * - fast: Flash model + basic analysis (faster, cheaper)
+ * - quality: Full image analysis (best results)
+ * - fast: Basic analysis (faster, cheaper)
  * - unstyled: Structure only, no CSS styles (fastest, for custom styling)
  */
 export type ExportPreset = 'quality' | 'fast' | 'unstyled';
@@ -552,13 +545,6 @@ export interface ExportConfig {
     reuseStyles?: boolean;
   };
   /**
-   * AI model for section building and analysis
-   * - flash: Gemini Flash (faster, cheaper, good for well-structured designs)
-   * - pro: Gemini Pro (more capable, better for complex designs)
-   */
-  aiModel?: AIModel;
-
-  /**
    * Skip all image analysis features:
    * - Image review (AI scan phase suggestions)
    * - Image deduplication
@@ -579,20 +565,8 @@ export interface ExportConfig {
   skipStyling?: boolean;
 
   /**
-   * @deprecated Use aiModel instead
-   * Fast Mode - optimized for well-structured Figma files with high auto layout coverage
-   * When enabled:
-   * - Uses Gemini Flash instead of Pro for all AI calls (faster, cheaper)
-   * - Skips AI image naming (uses sanitized Figma node names instead)
-   * - Best results when design has ≥85% auto layout coverage
-   * Default: false
-   */
-  fastMode?: boolean;
-
-  /**
    * @deprecated Use skipImageAnalysis instead
    * Skip AI image naming - use sanitized Figma layer names instead of AI descriptions
-   * Auto-enabled when fastMode is true, but can be toggled independently
    */
   skipImageTagging?: boolean;
   /**

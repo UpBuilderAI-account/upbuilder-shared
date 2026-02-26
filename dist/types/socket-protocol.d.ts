@@ -336,7 +336,6 @@ export interface ClientToServerEvents {
             nodeIdMap?: Record<string, string>;
             currentDetections: string[];
         }>;
-        fastMode?: boolean;
     }, callback: CallbackResponse<{
         sessionId: string;
         designs: Array<{

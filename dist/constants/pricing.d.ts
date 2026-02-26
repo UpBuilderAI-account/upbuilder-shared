@@ -34,7 +34,6 @@ export declare const TIER_LIMITS: {
         readonly exportsPerMonth: 1;
         readonly maxDesignsPerExport: 1;
         readonly aiExportsPerMonth: 1;
-        readonly smartModel: true;
         readonly smartModelUsesPerMonth: 1;
         readonly aiImageDetection: true;
     };
@@ -42,7 +41,6 @@ export declare const TIER_LIMITS: {
         readonly exportsPerMonth: 999999;
         readonly maxDesignsPerExport: 9;
         readonly aiExportsPerMonth: 999999;
-        readonly smartModel: true;
         readonly smartModelUsesPerMonth: 999999;
         readonly aiImageDetection: true;
     };
@@ -50,7 +48,6 @@ export declare const TIER_LIMITS: {
         readonly exportsPerMonth: 999999;
         readonly maxDesignsPerExport: 9;
         readonly aiExportsPerMonth: 999999;
-        readonly smartModel: true;
         readonly smartModelUsesPerMonth: 999999;
         readonly aiImageDetection: true;
     };
