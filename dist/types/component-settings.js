@@ -17,7 +17,7 @@ exports.DEFAULT_SLIDER_SETTINGS = {
     animation: 'slide',
     easing: 'ease',
     duration: 500,
-    infinite: true,
+    infinite: false, // false by default - infinite only works for single-slide-per-view layouts
     disableSwipe: false,
     autoplay: false,
     delay: 4000,
