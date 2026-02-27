@@ -1,64 +1,77 @@
 /**
  * COMPONENT SETTINGS
- * Configurable settings for interactive components (Slider, Dropdown, Tabs, Navbar, etc.)
+ * Configurable settings for interactive components (Swiper, Dropdown, Tabs, Navbar, etc.)
  * These settings flow through: EditableNode → React Export → Webflow XSCP
  */
 
-import type { EasingType, SliderAnimation, LightboxItem } from './component-props';
+import type {
+  EasingType,
+  LightboxItem,
+  SwiperEffect,
+  SwiperAutoplayConfig,
+  SwiperPaginationConfig,
+  SwiperScrollbarConfig,
+  SwiperBreakpointConfig,
+} from './component-props';
 
 // ============================================================================
-// SLIDER SETTINGS
+// SWIPER SETTINGS
 // ============================================================================
 
-export interface SliderSettings {
-  /** Animation type: slide, cross, outin, fade, over (default: 'slide') */
-  animation?: SliderAnimation;
-  /** Animation easing (default: 'ease') */
-  easing?: EasingType;
-  /** Animation duration in ms (default: 500) */
-  duration?: number;
-  /** Infinite repeat slides (default: true) */
-  infinite?: boolean;
-  /** Disable swipe gestures (default: false) */
-  disableSwipe?: boolean;
-  /** Auto-play slides (default: false) */
-  autoplay?: boolean;
-  /** Timer delay in ms (default: 4000) */
-  delay?: number;
-  /** Stop after X slides, 0 = never (default: 0) */
-  autoMax?: number;
-  /** Hide arrows at each end (default: false) */
-  hideArrows?: boolean;
-  /** Use icon arrows (default: true) */
-  iconArrows?: boolean;
-  /** Rounded nav dots (default: true) */
-  navRound?: boolean;
-  /** Number labels on nav (default: false) */
-  navNumbers?: boolean;
-  /** Shadow on nav (default: false) */
-  navShadow?: boolean;
-  /** Invert nav colors (default: false) */
-  navInvert?: boolean;
-  /** Nav dot spacing in px (default: 3) */
-  navSpacing?: number;
+export interface SwiperSettings {
+  /** Number of slides per view (default: 1) */
+  slidesPerView?: number | 'auto';
+  /** Space between slides in px (default: 0) */
+  spaceBetween?: number;
+  /** Slide direction (default: 'horizontal') */
+  direction?: 'horizontal' | 'vertical';
+  /** Enable loop mode (default: false) */
+  loop?: boolean;
+  /** Enable autoplay (default: false) */
+  autoplay?: boolean | SwiperAutoplayConfig;
+  /** Transition effect (default: 'slide') */
+  effect?: SwiperEffect;
+  /** Transition speed in ms (default: 300) */
+  speed?: number;
+  /** Enable navigation arrows (default: false) */
+  navigation?: boolean;
+  /** Enable pagination (default: false) */
+  pagination?: boolean | SwiperPaginationConfig;
+  /** Enable scrollbar (default: false) */
+  scrollbar?: boolean | SwiperScrollbarConfig;
+  /** Allow touch/swipe (default: true) */
+  allowTouchMove?: boolean;
+  /** Show grab cursor (default: false) */
+  grabCursor?: boolean;
+  /** Enable free mode - slides don't snap (default: false) */
+  freeMode?: boolean;
+  /** Center active slide (default: false) */
+  centeredSlides?: boolean;
+  /** Initial slide index (default: 0) */
+  initialSlide?: number;
+  /** Number of slides to advance per group (default: 1) */
+  slidesPerGroup?: number;
+  /** Responsive breakpoints */
+  breakpoints?: Record<number, SwiperBreakpointConfig>;
 }
 
-export const DEFAULT_SLIDER_SETTINGS: Required<SliderSettings> = {
-  animation: 'slide',
-  easing: 'ease',
-  duration: 500,
-  infinite: true,
-  disableSwipe: false,
-  autoplay: true,
-  delay: 4000,
-  autoMax: 0,
-  hideArrows: false,
-  iconArrows: false,
-  navRound: false,
-  navNumbers: false,
-  navShadow: false,
-  navInvert: false,
-  navSpacing: 3,
+export const DEFAULT_SWIPER_SETTINGS: SwiperSettings = {
+  slidesPerView: 1,
+  spaceBetween: 0,
+  direction: 'horizontal',
+  loop: false,
+  autoplay: false,
+  effect: 'slide',
+  speed: 300,
+  navigation: false,
+  pagination: false,
+  scrollbar: false,
+  allowTouchMove: true,
+  grabCursor: false,
+  freeMode: false,
+  centeredSlides: false,
+  initialSlide: 0,
+  slidesPerGroup: 1,
 };
 
 // ============================================================================
@@ -210,7 +223,7 @@ export const DEFAULT_LIGHTBOX_SETTINGS: LightboxSettings = {
 // ============================================================================
 
 export type ComponentSettings =
-  | { type: 'slider'; config: SliderSettings }
+  | { type: 'swiper'; config: SwiperSettings }
   | { type: 'dropdown'; config: DropdownSettings }
   | { type: 'tabs'; config: TabsSettings }
   | { type: 'navbar'; config: NavbarSettings }
@@ -222,9 +235,9 @@ export type ComponentSettings =
 // HELPER FUNCTIONS
 // ============================================================================
 
-/** Get slider settings with defaults applied */
-export function getSliderSettings(settings?: SliderSettings): Required<SliderSettings> {
-  return { ...DEFAULT_SLIDER_SETTINGS, ...settings };
+/** Get swiper settings with defaults applied */
+export function getSwiperSettings(settings?: SwiperSettings): SwiperSettings {
+  return { ...DEFAULT_SWIPER_SETTINGS, ...settings };
 }
 
 /** Get dropdown settings with defaults applied */

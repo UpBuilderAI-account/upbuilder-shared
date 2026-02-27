@@ -5,48 +5,78 @@
  */
 
 // ============================================================================
-// SLIDER
+// SWIPER SLIDER
 // ============================================================================
 
-/** Slider animation types */
-export type SliderAnimation = 'slide' | 'cross' | 'outin' | 'fade' | 'over';
+/** Swiper effect types */
+export type SwiperEffect = 'slide' | 'fade' | 'cube' | 'coverflow' | 'flip' | 'cards' | 'creative';
 
-export interface SliderProps {
-  /** Animation type: slide, cross (Cross Fade), outin (Fade Out-In), fade (Fade Over), over (Slide Over) */
-  animation?: SliderAnimation;
-  /** Animation easing (default: 'ease') */
-  easing?: EasingType;
-  /** Animation duration in ms (default: 500) */
-  duration?: number;
-  /** Infinite repeat slides - loop back to start (default: true) */
-  infinite?: boolean;
-  /** Disable swipe gestures (default: false) */
-  disableSwipe?: boolean;
-  /** Auto-play slides (default: false) */
-  autoplay?: boolean;
-  /** Timer delay between auto-advance in ms (default: 4000) */
+/** Swiper pagination types */
+export type SwiperPaginationType = 'bullets' | 'fraction' | 'progressbar';
+
+/** Swiper autoplay configuration */
+export interface SwiperAutoplayConfig {
   delay?: number;
-  /** Stop after X slides - 0 means never stop (default: 0) */
-  autoMax?: number;
-  /** Hide arrows at each end (default: false) */
-  hideArrows?: boolean;
-  /** Use icon arrows vs custom (default: true) */
-  iconArrows?: boolean;
-  /** Rounded nav dots (default: true) */
-  navRound?: boolean;
-  /** Show number labels on nav dots (default: false) */
-  navNumbers?: boolean;
-  /** Show shadow on nav dots (default: false) */
-  navShadow?: boolean;
-  /** Invert nav dot colors (default: false) */
-  navInvert?: boolean;
-  /** Spacing between nav dots in px (default: 3) */
-  navSpacing?: number;
+  disableOnInteraction?: boolean;
+  pauseOnMouseEnter?: boolean;
+  stopOnLastSlide?: boolean;
 }
 
-export interface SliderArrowProps {
-  /** Arrow direction */
-  direction?: 'left' | 'right';
+/** Swiper pagination configuration */
+export interface SwiperPaginationConfig {
+  type?: SwiperPaginationType;
+  clickable?: boolean;
+  dynamicBullets?: boolean;
+}
+
+/** Swiper scrollbar configuration */
+export interface SwiperScrollbarConfig {
+  draggable?: boolean;
+  hide?: boolean;
+}
+
+/** Swiper breakpoint configuration */
+export interface SwiperBreakpointConfig {
+  slidesPerView?: number | 'auto';
+  spaceBetween?: number;
+  slidesPerGroup?: number;
+}
+
+export interface SwiperSliderProps {
+  /** Number of slides per view (default: 1) */
+  slidesPerView?: number | 'auto';
+  /** Space between slides in px (default: 0) */
+  spaceBetween?: number;
+  /** Slide direction (default: 'horizontal') */
+  direction?: 'horizontal' | 'vertical';
+  /** Enable loop mode (default: false) */
+  loop?: boolean;
+  /** Enable autoplay (default: false) */
+  autoplay?: boolean | SwiperAutoplayConfig;
+  /** Transition effect (default: 'slide') */
+  effect?: SwiperEffect;
+  /** Transition speed in ms (default: 300) */
+  speed?: number;
+  /** Enable navigation arrows (default: false) */
+  navigation?: boolean;
+  /** Enable pagination (default: false) */
+  pagination?: boolean | SwiperPaginationConfig;
+  /** Enable scrollbar (default: false) */
+  scrollbar?: boolean | SwiperScrollbarConfig;
+  /** Allow touch/swipe (default: true) */
+  allowTouchMove?: boolean;
+  /** Show grab cursor (default: false) */
+  grabCursor?: boolean;
+  /** Enable free mode - slides don't snap (default: false) */
+  freeMode?: boolean;
+  /** Center active slide (default: false) */
+  centeredSlides?: boolean;
+  /** Initial slide index (default: 0) */
+  initialSlide?: number;
+  /** Number of slides to advance per group (default: 1) */
+  slidesPerGroup?: number;
+  /** Responsive breakpoints */
+  breakpoints?: Record<number, SwiperBreakpointConfig>;
 }
 
 // ============================================================================

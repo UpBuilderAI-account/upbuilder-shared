@@ -434,47 +434,56 @@ exports.WEBFLOW_COMPONENTS = {
         description: 'Tab content pane, must be direct child of TabsContent'
     },
     // ===========================================================================
-    // SLIDER COMPONENTS (5)
+    // SWIPER SLIDER COMPONENTS (6)
+    // Using Swiper library - fully customizable, no Webflow restrictions
     // ===========================================================================
-    SliderWrapper: {
-        displayName: 'Slider',
+    SwiperSlider: {
+        displayName: 'Swiper Slider',
         tags: ['div'],
         isContainer: true,
         category: 'slider',
-        specialDataFields: ['slider'],
-        description: 'Slider/carousel wrapper'
+        specialDataFields: ['swiper'],
+        description: 'Swiper slider container - wraps .swiper element'
     },
-    SliderMask: {
-        displayName: 'Mask',
+    SwiperSlide: {
+        displayName: 'Swiper Slide',
         tags: ['div'],
         isContainer: true,
         category: 'slider',
-        specialDataFields: ['slider'],
-        description: 'Slider mask/viewport, must be direct child of SliderWrapper'
+        specialDataFields: ['swiper'],
+        description: 'Individual slide - wraps .swiper-slide element'
     },
-    SliderSlide: {
-        displayName: 'Slide',
+    SwiperNavPrev: {
+        displayName: 'Swiper Nav Prev',
         tags: ['div'],
         isContainer: true,
         category: 'slider',
-        specialDataFields: ['slider'],
-        description: 'Individual slide, must be direct child of SliderMask'
+        specialDataFields: ['swiper'],
+        description: 'Previous navigation button (optional, auto-generated if navigation=true)'
     },
-    SliderArrow: {
-        displayName: 'Slider Arrow',
+    SwiperNavNext: {
+        displayName: 'Swiper Nav Next',
         tags: ['div'],
         isContainer: true,
         category: 'slider',
-        specialDataFields: ['slider'],
-        description: 'Navigation arrow, must be direct child of SliderWrapper'
+        specialDataFields: ['swiper'],
+        description: 'Next navigation button (optional, auto-generated if navigation=true)'
     },
-    SliderNav: {
-        displayName: 'Slide Nav',
+    SwiperPagination: {
+        displayName: 'Swiper Pagination',
         tags: ['div'],
         isContainer: false,
         category: 'slider',
-        specialDataFields: ['slider'],
-        description: 'Slide indicator dots, must be direct child of SliderWrapper'
+        specialDataFields: ['swiper'],
+        description: 'Pagination dots/bullets (optional, auto-generated if pagination=true)'
+    },
+    SwiperScrollbar: {
+        displayName: 'Swiper Scrollbar',
+        tags: ['div'],
+        isContainer: false,
+        category: 'slider',
+        specialDataFields: ['swiper'],
+        description: 'Scrollbar (optional, auto-generated if scrollbar=true)'
     },
     // ===========================================================================
     // FORM COMPONENTS (17)

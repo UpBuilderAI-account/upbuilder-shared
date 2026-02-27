@@ -279,21 +279,24 @@ function mapDivElement(context?: MappingContext): WebflowComponentType {
       return 'TabsPane';
     }
 
-    // Slider patterns
-    if (classStr.includes('slider') && !classStr.includes('mask') && !classStr.includes('slide') && !classStr.includes('arrow') && !classStr.includes('nav')) {
-      return 'SliderWrapper';
+    // Swiper patterns
+    if (classStr.includes('swiper-container') || classStr.includes('swiper')) {
+      return 'SwiperSlider';
     }
-    if (classStr.includes('slider-mask') || classStr.includes('w-slider-mask')) {
-      return 'SliderMask';
+    if (classStr.includes('swiper-slide')) {
+      return 'SwiperSlide';
     }
-    if (classStr.includes('slide') && !classStr.includes('slider')) {
-      return 'SliderSlide';
+    if (classStr.includes('swiper-button-prev')) {
+      return 'SwiperNavPrev';
     }
-    if (classStr.includes('slider-arrow') || classStr.includes('w-slider-arrow')) {
-      return 'SliderArrow';
+    if (classStr.includes('swiper-button-next')) {
+      return 'SwiperNavNext';
     }
-    if (classStr.includes('slider-nav') || classStr.includes('w-slider-nav')) {
-      return 'SliderNav';
+    if (classStr.includes('swiper-pagination')) {
+      return 'SwiperPagination';
+    }
+    if (classStr.includes('swiper-scrollbar')) {
+      return 'SwiperScrollbar';
     }
 
     // Form patterns
@@ -386,12 +389,13 @@ export function getDefaultTag(componentType: WebflowComponentType): string {
     TabsLink: 'a',
     TabsPane: 'div',
 
-    // Slider
-    SliderWrapper: 'div',
-    SliderMask: 'div',
-    SliderSlide: 'div',
-    SliderArrow: 'div',
-    SliderNav: 'div',
+    // Swiper Slider
+    SwiperSlider: 'div',
+    SwiperSlide: 'div',
+    SwiperNavPrev: 'div',
+    SwiperNavNext: 'div',
+    SwiperPagination: 'div',
+    SwiperScrollbar: 'div',
 
     // Forms
     FormWrapper: 'div',

@@ -1,34 +1,35 @@
 "use strict";
 /**
  * COMPONENT SETTINGS
- * Configurable settings for interactive components (Slider, Dropdown, Tabs, Navbar, etc.)
+ * Configurable settings for interactive components (Swiper, Dropdown, Tabs, Navbar, etc.)
  * These settings flow through: EditableNode → React Export → Webflow XSCP
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DEFAULT_LIGHTBOX_SETTINGS = exports.DEFAULT_FORM_SETTINGS = exports.DEFAULT_VIDEO_SETTINGS = exports.DEFAULT_NAVBAR_SETTINGS = exports.DEFAULT_TABS_SETTINGS = exports.DEFAULT_DROPDOWN_SETTINGS = exports.DEFAULT_SLIDER_SETTINGS = void 0;
-exports.getSliderSettings = getSliderSettings;
+exports.DEFAULT_LIGHTBOX_SETTINGS = exports.DEFAULT_FORM_SETTINGS = exports.DEFAULT_VIDEO_SETTINGS = exports.DEFAULT_NAVBAR_SETTINGS = exports.DEFAULT_TABS_SETTINGS = exports.DEFAULT_DROPDOWN_SETTINGS = exports.DEFAULT_SWIPER_SETTINGS = void 0;
+exports.getSwiperSettings = getSwiperSettings;
 exports.getDropdownSettings = getDropdownSettings;
 exports.getTabsSettings = getTabsSettings;
 exports.getNavbarSettings = getNavbarSettings;
 exports.getVideoSettings = getVideoSettings;
 exports.getFormSettings = getFormSettings;
 exports.getLightboxSettings = getLightboxSettings;
-exports.DEFAULT_SLIDER_SETTINGS = {
-    animation: 'slide',
-    easing: 'ease',
-    duration: 500,
-    infinite: true,
-    disableSwipe: false,
-    autoplay: true,
-    delay: 4000,
-    autoMax: 0,
-    hideArrows: false,
-    iconArrows: false,
-    navRound: false,
-    navNumbers: false,
-    navShadow: false,
-    navInvert: false,
-    navSpacing: 3,
+exports.DEFAULT_SWIPER_SETTINGS = {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    direction: 'horizontal',
+    loop: false,
+    autoplay: false,
+    effect: 'slide',
+    speed: 300,
+    navigation: false,
+    pagination: false,
+    scrollbar: false,
+    allowTouchMove: true,
+    grabCursor: false,
+    freeMode: false,
+    centeredSlides: false,
+    initialSlide: 0,
+    slidesPerGroup: 1,
 };
 exports.DEFAULT_DROPDOWN_SETTINGS = {
     mode: 'click',
@@ -73,9 +74,9 @@ exports.DEFAULT_LIGHTBOX_SETTINGS = {
 // ============================================================================
 // HELPER FUNCTIONS
 // ============================================================================
-/** Get slider settings with defaults applied */
-function getSliderSettings(settings) {
-    return Object.assign(Object.assign({}, exports.DEFAULT_SLIDER_SETTINGS), settings);
+/** Get swiper settings with defaults applied */
+function getSwiperSettings(settings) {
+    return Object.assign(Object.assign({}, exports.DEFAULT_SWIPER_SETTINGS), settings);
 }
 /** Get dropdown settings with defaults applied */
 function getDropdownSettings(settings) {

@@ -345,45 +345,35 @@ exports.WEBFLOW_CONSTRAINTS = {
         }
     },
     // ===========================================================================
-    // SLIDER COMPONENTS
+    // SWIPER SLIDER COMPONENTS - minimal constraints, library handles everything
     // ===========================================================================
-    SliderWrapper: {
-        displayName: 'Slider',
+    SwiperSlider: {
+        displayName: 'Swiper Slider',
         constraints: {
-            descendants: [{ is: 'SliderWrapper', rule: 'Forbid' }]
+            descendants: [{ is: 'SwiperSlider', rule: 'Forbid' }]
         }
     },
-    SliderMask: {
-        displayName: 'Mask',
+    SwiperSlide: {
+        displayName: 'Swiper Slide',
         constraints: {
-            pinToParent: true,
-            children: [
-                { is: 'SliderSlide', name: 'Non-Slide Item', rule: 'RequireOnly' },
-                { is: 'SliderSlide', rule: 'AtLeastOne' },
-            ]
+            ancestors: [{ is: 'SwiperSlider', rule: 'AtLeastOne' }]
         }
     },
-    SliderSlide: {
-        displayName: 'Slide',
-        constraints: {
-            parent: [{ is: 'SliderMask', rule: 'ExactlyOne' }]
-        }
+    SwiperNavPrev: {
+        displayName: 'Swiper Nav Prev',
+        constraints: {}
     },
-    SliderArrow: {
-        displayName: 'Slider Arrow',
-        constraints: {
-            pinToParent: true,
-            parent: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }], // MUST be direct child of SliderWrapper
-            children: [{ is: 'Icon', rule: 'Forbid' }] // Use Image for arrow graphics, not Icon
-        }
+    SwiperNavNext: {
+        displayName: 'Swiper Nav Next',
+        constraints: {}
     },
-    SliderNav: {
-        displayName: 'Slide Nav',
-        constraints: {
-            pinToParent: true,
-            parent: [{ is: 'SliderWrapper', rule: 'ExactlyOne' }] // MUST be direct child of SliderWrapper
-            // Note: SliderNav should have NO children - Webflow auto-generates nav dots
-        }
+    SwiperPagination: {
+        displayName: 'Swiper Pagination',
+        constraints: {}
+    },
+    SwiperScrollbar: {
+        displayName: 'Swiper Scrollbar',
+        constraints: {}
     },
     // ===========================================================================
     // FORM COMPONENTS
