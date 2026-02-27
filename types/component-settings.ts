@@ -47,9 +47,9 @@ export const DEFAULT_SLIDER_SETTINGS: Required<SliderSettings> = {
   animation: 'slide',
   easing: 'ease',
   duration: 500,
-  infinite: false,  // false by default - infinite only works for single-slide-per-view layouts
+  infinite: true,
   disableSwipe: false,
-  autoplay: false,
+  autoplay: true,
   delay: 4000,
   autoMax: 0,
   hideArrows: false,
