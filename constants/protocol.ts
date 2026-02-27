@@ -59,6 +59,7 @@ export const SOCKET_EVENTS = {
     TRANSFER_OWNERSHIP: 'transfer_project_ownership',
     CLAIM_GUEST_PROJECTS: 'claim_guest_projects',  // Batch claim guest-owned projects
     GET_STATUS: 'project:get_status',  // Get project processing status for resume
+    GET_DEBUG_DATA: 'project:get_debug_data',  // Get debug data for data-debug page
   },
 
   /**

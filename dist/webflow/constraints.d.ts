@@ -45,7 +45,7 @@ export declare const HIERARCHY_CHAINS: {
     readonly navbar: readonly ["NavbarWrapper", readonly ["NavbarBrand", "NavbarMenu", "NavbarButton"], "NavbarLink"];
     readonly dropdown: readonly ["DropdownWrapper", readonly ["DropdownToggle", "DropdownList"], "DropdownLink"];
     readonly tabs: readonly ["TabsWrapper", readonly ["TabsMenu", "TabsContent"], readonly ["TabsLink", "TabsPane"]];
-    readonly slider: readonly ["SliderWrapper", readonly ["SliderMask", "SliderArrow", "SliderNav"], "SliderSlide"];
+    readonly swiper: readonly ["SwiperSlider", readonly ["SwiperSlide", "SwiperNavPrev", "SwiperNavNext", "SwiperPagination", "SwiperScrollbar"]];
     readonly form: readonly ["FormWrapper", "FormForm", readonly ["FormTextInput", "FormTextarea", "FormSelect", "FormButton", "FormBlockLabel", "FormCheckboxWrapper", "FormRadioWrapper"]];
     readonly checkbox: readonly ["FormCheckboxWrapper", readonly ["FormCheckboxInput", "FormInlineLabel"]];
     readonly radio: readonly ["FormRadioWrapper", readonly ["FormRadioInput", "FormInlineLabel"]];

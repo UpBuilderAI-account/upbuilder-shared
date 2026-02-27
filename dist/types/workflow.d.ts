@@ -247,7 +247,7 @@ export interface ComponentsConfig {
     forms: boolean;
     /** TabsWrapper, TabsMenu, TabsLink, TabsPane */
     tabs: boolean;
-    /** SliderWrapper, SliderMask, SliderSlide, SliderArrow */
+    /** SwiperSlider, SwiperSlide, SwiperNavPrev, SwiperNavNext, SwiperPagination */
     sliders: boolean;
     /** Video, BackgroundVideoWrapper */
     videos: boolean;

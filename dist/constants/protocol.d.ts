@@ -42,6 +42,7 @@ export declare const SOCKET_EVENTS: {
         readonly TRANSFER_OWNERSHIP: "transfer_project_ownership";
         readonly CLAIM_GUEST_PROJECTS: "claim_guest_projects";
         readonly GET_STATUS: "project:get_status";
+        readonly GET_DEBUG_DATA: "project:get_debug_data";
     };
     /**
      * Workflow control events (client → server)

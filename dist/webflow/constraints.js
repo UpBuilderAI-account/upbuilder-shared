@@ -741,7 +741,7 @@ exports.HIERARCHY_CHAINS = {
     navbar: ['NavbarWrapper', ['NavbarBrand', 'NavbarMenu', 'NavbarButton'], 'NavbarLink'],
     dropdown: ['DropdownWrapper', ['DropdownToggle', 'DropdownList'], 'DropdownLink'],
     tabs: ['TabsWrapper', ['TabsMenu', 'TabsContent'], ['TabsLink', 'TabsPane']],
-    slider: ['SliderWrapper', ['SliderMask', 'SliderArrow', 'SliderNav'], 'SliderSlide'],
+    swiper: ['SwiperSlider', ['SwiperSlide', 'SwiperNavPrev', 'SwiperNavNext', 'SwiperPagination', 'SwiperScrollbar']],
     form: ['FormWrapper', 'FormForm', ['FormTextInput', 'FormTextarea', 'FormSelect', 'FormButton', 'FormBlockLabel', 'FormCheckboxWrapper', 'FormRadioWrapper']],
     checkbox: ['FormCheckboxWrapper', ['FormCheckboxInput', 'FormInlineLabel']],
     radio: ['FormRadioWrapper', ['FormRadioInput', 'FormInlineLabel']],
