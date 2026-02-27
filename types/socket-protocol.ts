@@ -837,6 +837,12 @@ export interface ClientToServerEvents {
     },
     callback: (response: { success: boolean; error?: string }) => void
   ) => void;
+
+  // Cancel active workflow/import for current user
+  'workflow:cancel_active': (
+    data: Record<string, never>,
+    callback: (response: { success: boolean; data?: { cancelled: boolean; reason?: string }; error?: string }) => void
+  ) => void;
 }
 
 /**

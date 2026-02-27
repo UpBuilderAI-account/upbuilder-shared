@@ -611,6 +611,14 @@ export interface EditableTreePayloadV2 extends EditableTreePayload {
      * Merged into tree response to eliminate separate socket round-trip
      */
     hasOriginal?: boolean;
+    /**
+     * Required external scripts (e.g., Swiper CDN) that must be added to Webflow
+     * Each script contains name for display and code for the actual script tags
+     */
+    requiredScripts?: Array<{
+        name: string;
+        code: string;
+    }>;
 }
 /**
  * Cross-design node mapping for a global section variant
