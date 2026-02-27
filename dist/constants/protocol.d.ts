@@ -61,6 +61,7 @@ export declare const SOCKET_EVENTS: {
         readonly IMPORT_PROJECT_CREATED: "workflow:import_project_created";
         readonly VALIDATE_SESSION: "workflow:validate_session";
         readonly GET_SESSION_DESIGNS: "workflow:get_session_designs";
+        readonly CANCEL_ACTIVE: "workflow:cancel_active";
         readonly BACKGROUND_PROGRESS: "workflow:background_progress";
         readonly WEBFLOW_STRUCTURE: "workflow:webflow_structure";
         readonly STYLE_REGISTRY: "workflow:style_registry";
