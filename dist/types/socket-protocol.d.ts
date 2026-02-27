@@ -657,6 +657,15 @@ export interface ClientToServerEvents {
         success: boolean;
         error?: string;
     }) => void) => void;
+    'project:get_debug_data': (data: {
+        projectId: string;
+    }, callback: CallbackResponse<{
+        designs: Array<{
+            id: string;
+            name: string;
+            big_preview_url?: string;
+        }>;
+    }>) => void;
     'workflow:validate_session': (data: {
         sessionId: string;
     }, callback: (response: {

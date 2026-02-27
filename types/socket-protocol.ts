@@ -781,6 +781,12 @@ export interface ClientToServerEvents {
     callback?: (response: { success: boolean; error?: string }) => void
   ) => void;
 
+  // Get debug data for data-debug page
+  'project:get_debug_data': (
+    data: { projectId: string },
+    callback: CallbackResponse<{ designs: Array<{ id: string; name: string; big_preview_url?: string }> }>
+  ) => void;
+
   // Validate session (check if temp session still exists and has valid data)
   'workflow:validate_session': (
     data: { sessionId: string },
