@@ -16,14 +16,17 @@ export interface ParsedGradient {
     stops: CSSGradientStop[];
 }
 /**
- * Convert RGBA color object (0-1 range) to hex string
+ * Convert RGBA color object (0-1 range) to 6-digit hex string
+ * Alpha channel is intentionally dropped to prevent AI confusion.
+ * (AI sometimes misreads 8-digit hex #RRGGBBAA as #RRGGBB solid color)
+ *
  * @param r Red (0-1)
  * @param g Green (0-1)
  * @param b Blue (0-1)
- * @param a Alpha (0-1), optional
- * @returns Hex color string (#RRGGBB or #RRGGBBAA if alpha < 1)
+ * @param _a Alpha (0-1), intentionally ignored - always outputs opaque 6-digit hex
+ * @returns Hex color string (#RRGGBB) - always 6-digit, never 8-digit
  */
-export declare function rgbaToHex(r: number, g: number, b: number, a?: number): string;
+export declare function rgbaToHex(r: number, g: number, b: number, _a?: number): string;
 /**
  * Convert ColorRGBA object to hex string
  */

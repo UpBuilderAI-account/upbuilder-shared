@@ -17,27 +17,24 @@ exports.roundDimension = roundDimension;
 exports.formatToMaxDecimals = formatToMaxDecimals;
 // ==================== COLOR CONVERSION ====================
 /**
- * Convert RGBA color object (0-1 range) to hex string
+ * Convert RGBA color object (0-1 range) to 6-digit hex string
+ * Alpha channel is intentionally dropped to prevent AI confusion.
+ * (AI sometimes misreads 8-digit hex #RRGGBBAA as #RRGGBB solid color)
+ *
  * @param r Red (0-1)
  * @param g Green (0-1)
  * @param b Blue (0-1)
- * @param a Alpha (0-1), optional
- * @returns Hex color string (#RRGGBB or #RRGGBBAA if alpha < 1)
+ * @param _a Alpha (0-1), intentionally ignored - always outputs opaque 6-digit hex
+ * @returns Hex color string (#RRGGBB) - always 6-digit, never 8-digit
  */
-function rgbaToHex(r, g, b, a) {
+function rgbaToHex(r, g, b, _a) {
     // Convert from 0-1 range to 0-255
     const r255 = Math.round(r * 255);
     const g255 = Math.round(g * 255);
     const b255 = Math.round(b * 255);
-    // Convert to hex
+    // Convert to hex - always 6-digit (no alpha)
     const toHex = (n) => n.toString(16).padStart(2, '0');
-    const hex = `#${toHex(r255)}${toHex(g255)}${toHex(b255)}`;
-    // Only add alpha if it's not fully opaque
-    if (a !== undefined && a < 1) {
-        const a255 = Math.round(a * 255);
-        return `${hex}${toHex(a255)}`;
-    }
-    return hex;
+    return `#${toHex(r255)}${toHex(g255)}${toHex(b255)}`;
 }
 /**
  * Convert ColorRGBA object to hex string
@@ -119,7 +116,7 @@ function convertGradientDataToCSS(gradientData) {
  * Parse a gradient string into its components
  */
 function parseGradient(gradient) {
-    var _a;
+    var _b;
     const gradientRegex = /(\w+)-gradient\s*\(((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*)\)/;
     const match = gradient.match(gradientRegex);
     if (!match) {
@@ -130,7 +127,7 @@ function parseGradient(gradient) {
     let direction;
     const stops = [];
     if (isDirectionPart(parts[0])) {
-        direction = (_a = parts.shift()) === null || _a === void 0 ? void 0 : _a.trim();
+        direction = (_b = parts.shift()) === null || _b === void 0 ? void 0 : _b.trim();
     }
     parts.forEach(part => {
         const [color, position] = part.trim().split(/\s+(?![^(]*\))/);

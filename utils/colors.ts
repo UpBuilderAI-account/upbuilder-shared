@@ -29,31 +29,26 @@ export interface ParsedGradient {
 // ==================== COLOR CONVERSION ====================
 
 /**
- * Convert RGBA color object (0-1 range) to hex string
+ * Convert RGBA color object (0-1 range) to 6-digit hex string
+ * Alpha channel is intentionally dropped to prevent AI confusion.
+ * (AI sometimes misreads 8-digit hex #RRGGBBAA as #RRGGBB solid color)
+ *
  * @param r Red (0-1)
  * @param g Green (0-1)
  * @param b Blue (0-1)
- * @param a Alpha (0-1), optional
- * @returns Hex color string (#RRGGBB or #RRGGBBAA if alpha < 1)
+ * @param _a Alpha (0-1), intentionally ignored - always outputs opaque 6-digit hex
+ * @returns Hex color string (#RRGGBB) - always 6-digit, never 8-digit
  */
-export function rgbaToHex(r: number, g: number, b: number, a?: number): string {
+export function rgbaToHex(r: number, g: number, b: number, _a?: number): string {
   // Convert from 0-1 range to 0-255
   const r255 = Math.round(r * 255);
   const g255 = Math.round(g * 255);
   const b255 = Math.round(b * 255);
 
-  // Convert to hex
+  // Convert to hex - always 6-digit (no alpha)
   const toHex = (n: number) => n.toString(16).padStart(2, '0');
 
-  const hex = `#${toHex(r255)}${toHex(g255)}${toHex(b255)}`;
-
-  // Only add alpha if it's not fully opaque
-  if (a !== undefined && a < 1) {
-    const a255 = Math.round(a * 255);
-    return `${hex}${toHex(a255)}`;
-  }
-
-  return hex;
+  return `#${toHex(r255)}${toHex(g255)}${toHex(b255)}`;
 }
 
 /**
