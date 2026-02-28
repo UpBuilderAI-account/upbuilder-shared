@@ -20,11 +20,11 @@ export const BASIC_FEATURES = [
 ] as const;
 
 /**
- * Pro plan feature list (deprecated - kept for legacy users)
+ * Pro plan feature list
  */
 export const PRO_FEATURES = [
   'Unlimited exports',
-  '9 designs per import',
+  '2 designs per import',
 ] as const;
 
 /**
@@ -43,7 +43,7 @@ export const MAX_FEATURES = [
  */
 export const MAX_DESIGNS_PER_PROJECT = {
   basic: 1,
-  pro: 9, // Legacy pro users get max features
+  pro: 2,
   max: 9,
 } as const;
 
@@ -52,7 +52,7 @@ export const MAX_DESIGNS_PER_PROJECT = {
  * Used by backend to validate exports and by frontend to show upgrade prompts
  *
  * Free: 1 export total, 1 design per import
- * Pro (deprecated): Same as Max for legacy users
+ * Pro: Unlimited exports, 2 designs per import
  * Max: Unlimited exports, 9 designs per import
  */
 export const TIER_LIMITS = {
@@ -65,9 +65,8 @@ export const TIER_LIMITS = {
     aiImageDetection: true,
   },
   pro: {
-    // Pro is deprecated - give them Max features
     exportsPerMonth: 999999,      // Unlimited
-    maxDesignsPerExport: 9,
+    maxDesignsPerExport: 2,
     aiExportsPerMonth: 999999,
     // Legacy fields for backwards compatibility (DB tracking)
     smartModelUsesPerMonth: 999999,

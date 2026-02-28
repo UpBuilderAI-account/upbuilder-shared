@@ -203,7 +203,7 @@ function mapDivElement(context) {
             return 'NavbarWrapper';
         }
         if (classStr.includes('nav-container')) {
-            return 'NavbarContainer';
+            return 'Block'; // NavbarContainer is deprecated, use Block
         }
         // Dropdown patterns
         if (classStr.includes('dropdown') && !classStr.includes('toggle') && !classStr.includes('list')) {
@@ -309,7 +309,6 @@ function getDefaultTag(componentType) {
         Figcaption: 'figcaption',
         // Navigation
         NavbarWrapper: 'div',
-        NavbarContainer: 'div',
         NavbarBrand: 'a',
         NavbarMenu: 'nav',
         NavbarLink: 'a',

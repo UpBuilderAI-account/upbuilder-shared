@@ -5,9 +5,9 @@ export type { SubscriptionTier };
  */
 export declare const BASIC_FEATURES: readonly ["1 export", "1 design per import"];
 /**
- * Pro plan feature list (deprecated - kept for legacy users)
+ * Pro plan feature list
  */
-export declare const PRO_FEATURES: readonly ["Unlimited exports", "9 designs per import"];
+export declare const PRO_FEATURES: readonly ["Unlimited exports", "2 designs per import"];
 /**
  * Max plan feature list
  */
@@ -18,7 +18,7 @@ export declare const MAX_FEATURES: readonly ["Unlimited exports", "9 designs per
  */
 export declare const MAX_DESIGNS_PER_PROJECT: {
     readonly basic: 1;
-    readonly pro: 9;
+    readonly pro: 2;
     readonly max: 9;
 };
 /**
@@ -26,7 +26,7 @@ export declare const MAX_DESIGNS_PER_PROJECT: {
  * Used by backend to validate exports and by frontend to show upgrade prompts
  *
  * Free: 1 export total, 1 design per import
- * Pro (deprecated): Same as Max for legacy users
+ * Pro: Unlimited exports, 2 designs per import
  * Max: Unlimited exports, 9 designs per import
  */
 export declare const TIER_LIMITS: {
@@ -39,7 +39,7 @@ export declare const TIER_LIMITS: {
     };
     readonly pro: {
         readonly exportsPerMonth: 999999;
-        readonly maxDesignsPerExport: 9;
+        readonly maxDesignsPerExport: 2;
         readonly aiExportsPerMonth: 999999;
         readonly smartModelUsesPerMonth: 999999;
         readonly aiImageDetection: true;
@@ -71,8 +71,8 @@ export declare const PRICING_CONFIG: {
         readonly price: 9.99;
         readonly displayPrice: "9.99";
         readonly description: "For individual makers";
-        readonly features: readonly ["Unlimited exports", "9 designs per import"];
-        readonly maxDesigns: 9;
+        readonly features: readonly ["Unlimited exports", "2 designs per import"];
+        readonly maxDesigns: 2;
         readonly popular: true;
     };
     readonly max: {

@@ -347,15 +347,7 @@ export const WEBFLOW_COMPONENTS = {
     isContainer: true,
     category: 'navigation',
     specialDataFields: ['navbar'],
-    description: 'Navbar wrapper, contains NavbarContainer'
-  },
-  NavbarContainer: {
-    displayName: 'Container',
-    tags: ['div'],
-    isContainer: true,
-    category: 'navigation',
-    specialDataFields: ['navbar'],
-    description: 'Navbar container, must be direct child of NavbarWrapper'
+    description: 'Navbar wrapper, contains NavbarBrand, NavbarMenu, NavbarButton'
   },
   NavbarBrand: {
     displayName: 'Brand',

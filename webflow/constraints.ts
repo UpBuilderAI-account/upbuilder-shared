@@ -271,12 +271,6 @@ export const WEBFLOW_CONSTRAINTS: Record<WebflowComponentType, ComponentConstrai
       descendants: [{ is: 'NavbarWrapper', rule: 'Forbid' }]
     }
   },
-  NavbarContainer: {
-    displayName: 'Container',
-    constraints: {
-      ancestors: [{ is: 'NavbarWrapper', rule: 'ExactlyOne' }]
-    }
-  },
   NavbarBrand: {
     displayName: 'Brand',
     constraints: {

@@ -1,8 +1,8 @@
 /**
  * User subscription tiers
- * basic: Free tier (2 frames per export)
- * pro: $9.99/mo (2 frames per export, full Webflow export)
- * max: $19.99/mo (9 frames per export, all features)
+ * basic: Free tier (1 design per import, 1 export total)
+ * pro: $9.99/mo (2 designs per import, unlimited exports)
+ * max: $19.99/mo (9 designs per import, unlimited exports)
  */
 export type SubscriptionTier = 'basic' | 'pro' | 'max';
 /**

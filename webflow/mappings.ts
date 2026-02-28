@@ -254,7 +254,7 @@ function mapDivElement(context?: MappingContext): WebflowComponentType {
       return 'NavbarWrapper';
     }
     if (classStr.includes('nav-container')) {
-      return 'NavbarContainer';
+      return 'Block';  // NavbarContainer is deprecated, use Block
     }
 
     // Dropdown patterns
@@ -370,7 +370,6 @@ export function getDefaultTag(componentType: WebflowComponentType): string {
 
     // Navigation
     NavbarWrapper: 'div',
-    NavbarContainer: 'div',
     NavbarBrand: 'a',
     NavbarMenu: 'nav',
     NavbarLink: 'a',

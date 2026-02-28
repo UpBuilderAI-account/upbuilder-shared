@@ -233,12 +233,6 @@ exports.WEBFLOW_CONSTRAINTS = {
             descendants: [{ is: 'NavbarWrapper', rule: 'Forbid' }]
         }
     },
-    NavbarContainer: {
-        displayName: 'Container',
-        constraints: {
-            ancestors: [{ is: 'NavbarWrapper', rule: 'ExactlyOne' }]
-        }
-    },
     NavbarBrand: {
         displayName: 'Brand',
         constraints: {
